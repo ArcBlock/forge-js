@@ -284,29 +284,30 @@
   'ConsensusUpgradeTx',
   'DeployProtocolTx',
   'SysUpgradeTx',
+  'WithdrawTokenTx',
+  'TransferTx',
   'AccountMigrateTx',
-  'AcquireAssetTx',
+  'DeclareTx',
+  'RevokeDelegateTx',
+  'DeactivateProtocolTx',
+  'RevokeWithdrawTx',
+  'CreateAssetTx',
+  'RetrieveSwapTx',
+  'ConsumeAssetTx',
+  'PokeTx',
+  'UpdateAssetTx',
+  'ExchangeTx',
+  'UpdateConsensusParamsTx',
+  'RevokeSwapTx',
   'ActivateProtocolTx',
   'ApproveWithdrawTx',
-  'ConsumeAssetTx',
-  'CreateAssetTx',
-  'DeactivateProtocolTx',
-  'DeclareTx',
+  'UpgradeNodeTx',
+  'UpdateValidatorTx',
+  'AcquireAssetTx',
   'DelegateTx',
   'DepositTokenTx',
-  'ExchangeTx',
-  'PokeTx',
-  'RefuelTx',
-  'RetrieveSwapTx',
-  'RevokeDelegateTx',
-  'RevokeSwapTx',
-  'RevokeWithdrawTx',
   'SetupSwapTx',
-  'TransferTx',
-  'UpdateAssetTx',
-  'UpdateValidatorTx',
-  'UpgradeNodeTx',
-  'WithdrawTokenTx'
+  'RefuelTx'
 ]
 ```
 
@@ -416,8 +417,8 @@ const stream = client.getAccountState({
     context: {
       genesisTx: 'arcblock',
       renaissanceTx: 'arcblock',
-      genesisTime: '2019-12-24T06:36:39.561Z',
-      renaissanceTime: '2019-12-24T06:36:39.561Z'
+      genesisTime: '2020-01-11T02:02:55.125Z',
+      renaissanceTime: '2020-01-11T02:02:55.125Z'
     },
     issuer: 'arcblock',
     gasBalance: [Function: BigUint],
@@ -511,7 +512,7 @@ const stream = client.getAssetState({
     readonly: true,
     transferrable: true,
     ttl: 2,
-    consumedTime: '2019-12-24T06:36:39.562Z',
+    consumedTime: '2020-01-11T02:02:55.125Z',
     issuer: 'arcblock',
     parent: 'arcblock',
     stake: {
@@ -542,8 +543,8 @@ const stream = client.getAssetState({
     context: {
       genesisTx: 'arcblock',
       renaissanceTx: 'arcblock',
-      genesisTime: '2019-12-24T06:36:39.562Z',
-      renaissanceTime: '2019-12-24T06:36:39.562Z'
+      genesisTime: '2020-01-11T02:02:55.125Z',
+      renaissanceTime: '2020-01-11T02:02:55.125Z'
     },
     data: {
       type: 'string',
@@ -566,7 +567,7 @@ const stream = client.getBlock({
   block: {
     height: 5,
     numTxs: 2,
-    time: '2019-12-24T06:36:39.562Z',
+    time: '2020-01-11T02:02:55.126Z',
     appHash: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
     proposer: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
     txs: [
@@ -620,7 +621,7 @@ const stream = client.getBlock({
           }
         ],
         code: 0,
-        time: '2019-12-24T06:36:39.562Z'
+        time: '2020-01-11T02:02:55.126Z'
       },
       {
         tx: {
@@ -672,7 +673,7 @@ const stream = client.getBlock({
           }
         ],
         code: 0,
-        time: '2019-12-24T06:36:39.562Z'
+        time: '2020-01-11T02:02:55.126Z'
       }
     ],
     totalTxs: 5,
@@ -727,7 +728,7 @@ const stream = client.getBlock({
           }
         ],
         code: 0,
-        time: '2019-12-24T06:36:39.563Z'
+        time: '2020-01-11T02:02:55.126Z'
       },
       {
         tx: {
@@ -779,7 +780,7 @@ const stream = client.getBlock({
           }
         ],
         code: 0,
-        time: '2019-12-24T06:36:39.563Z'
+        time: '2020-01-11T02:02:55.126Z'
       }
     ],
     txsHashes: [
@@ -851,7 +852,7 @@ result.on('data', data => {
     {
       height: 5,
       numTxs: 2,
-      time: '2019-12-24T06:36:39.563Z',
+      time: '2020-01-11T02:02:55.127Z',
       appHash: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
       proposer: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
       totalTxs: 5,
@@ -885,7 +886,7 @@ result.on('data', data => {
     {
       height: 5,
       numTxs: 2,
-      time: '2019-12-24T06:36:39.563Z',
+      time: '2020-01-11T02:02:55.127Z',
       appHash: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
       proposer: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
       totalTxs: 5,
@@ -940,7 +941,7 @@ result.on('data', data => {
     appHash: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
     blockHash: Uint8Array [],
     blockHeight: 5,
-    blockTime: '2019-12-24T06:36:39.564Z',
+    blockTime: '2020-01-11T02:02:55.128Z',
     address: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
     votingPower: 5,
     totalTxs: 5,
@@ -1003,8 +1004,8 @@ const stream = client.getDelegateState({
     context: {
       genesisTx: 'arcblock',
       renaissanceTx: 'arcblock',
-      genesisTime: '2019-12-24T06:36:39.564Z',
-      renaissanceTime: '2019-12-24T06:36:39.564Z'
+      genesisTime: '2020-01-11T02:02:55.128Z',
+      renaissanceTime: '2020-01-11T02:02:55.128Z'
     },
     data: {
       type: 'string',
@@ -1083,8 +1084,8 @@ result.on('data', data => {
         context: {
           genesisTx: 'arcblock',
           renaissanceTx: 'arcblock',
-          genesisTime: '2019-12-24T06:36:39.564Z',
-          renaissanceTime: '2019-12-24T06:36:39.564Z'
+          genesisTime: '2020-01-11T02:02:55.128Z',
+          renaissanceTime: '2020-01-11T02:02:55.128Z'
         }
       }
     },
@@ -1374,7 +1375,7 @@ result.on('data', data => {
     appHash: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
     blockHash: Uint8Array [],
     blockHeight: 5,
-    blockTime: '2019-12-24T06:36:39.565Z',
+    blockTime: '2020-01-11T02:02:55.129Z',
     address: 'F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55',
     votingPower: 5,
     totalTxs: 5,
@@ -1470,8 +1471,8 @@ const stream = client.getProtocolState({
     context: {
       genesisTx: 'arcblock',
       renaissanceTx: 'arcblock',
-      genesisTime: '2019-12-24T06:36:39.565Z',
-      renaissanceTime: '2019-12-24T06:36:39.565Z'
+      genesisTime: '2020-01-11T02:02:55.129Z',
+      renaissanceTime: '2020-01-11T02:02:55.129Z'
     },
     data: {
       type: 'string',
@@ -1505,8 +1506,8 @@ const stream = client.getStakeState({
     context: {
       genesisTx: 'arcblock',
       renaissanceTx: 'arcblock',
-      genesisTime: '2019-12-24T06:36:39.565Z',
-      renaissanceTime: '2019-12-24T06:36:39.565Z'
+      genesisTime: '2020-01-11T02:02:55.130Z',
+      renaissanceTime: '2020-01-11T02:02:55.130Z'
     },
     data: {
       type: 'string',
@@ -1547,8 +1548,8 @@ const stream = client.getSwapState({
     context: {
       genesisTx: 'arcblock',
       renaissanceTx: 'arcblock',
-      genesisTime: '2019-12-24T06:36:39.566Z',
-      renaissanceTime: '2019-12-24T06:36:39.566Z'
+      genesisTime: '2020-01-11T02:02:55.130Z',
+      renaissanceTime: '2020-01-11T02:02:55.130Z'
     }
   }
 }
@@ -1637,7 +1638,7 @@ const stream = client.getTx({
       }
     ],
     code: 0,
-    time: '2019-12-24T06:36:39.566Z'
+    time: '2020-01-11T02:02:55.130Z'
   }
 }
 ```
@@ -2211,8 +2212,8 @@ result.on('data', data => {
       context: {
         genesisTx: 'arcblock',
         renaissanceTx: 'arcblock',
-        genesisTime: '2019-12-24T06:36:39.568Z',
-        renaissanceTime: '2019-12-24T06:36:39.568Z'
+        genesisTime: '2020-01-11T02:02:55.132Z',
+        renaissanceTime: '2020-01-11T02:02:55.132Z'
       }
     },
     {
@@ -2231,8 +2232,8 @@ result.on('data', data => {
       context: {
         genesisTx: 'arcblock',
         renaissanceTx: 'arcblock',
-        genesisTime: '2019-12-24T06:36:39.568Z',
-        renaissanceTime: '2019-12-24T06:36:39.568Z'
+        genesisTime: '2020-01-11T02:02:55.132Z',
+        renaissanceTime: '2020-01-11T02:02:55.132Z'
       }
     }
   ]
@@ -2550,7 +2551,7 @@ result.on('data', data => {
         }
       ],
       code: 0,
-      time: '2019-12-24T06:36:39.568Z'
+      time: '2020-01-11T02:02:55.133Z'
     },
     {
       tx: {
@@ -2602,7 +2603,7 @@ result.on('data', data => {
         }
       ],
       code: 0,
-      time: '2019-12-24T06:36:39.569Z'
+      time: '2020-01-11T02:02:55.133Z'
     }
   ]
 }

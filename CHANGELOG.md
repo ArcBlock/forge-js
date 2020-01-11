@@ -1,3 +1,10 @@
+## 1.0.32 (January 11, 2020)
+
+- chore: update grpc-client with forge 1.0.7
+- chore: update graphql-client with forge 1.0.7
+- chore: update forge-proto with forge 1.0.7
+- update readme
+
 ## 1.0.31 (January 09, 2020)
 
 - fix: clientExtension.toLocktime

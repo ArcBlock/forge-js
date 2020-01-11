@@ -106,6 +106,7 @@ Please note that, due to internal implementation of google-protobuf, all `repeat
       * [23(params)](#GRpcClient+23) ⇒ `Promise.<string>`
       * [24(params)](#GRpcClient+24) ⇒ `Promise.<string>`
       * [25(params)](#GRpcClient+25) ⇒ `Promise.<string>`
+      * [26(params)](#GRpcClient+26) ⇒ `Promise.<string>`
       * [0(params)](#GRpcClient+0) ⇒ [`Promise.<TxEncodeOutput>`](#GRpcClient.TxEncodeOutput)
       * [1(params)](#GRpcClient+1) ⇒ [`Promise.<TxEncodeOutput>`](#GRpcClient.TxEncodeOutput)
       * [2(params)](#GRpcClient+2) ⇒ [`Promise.<TxEncodeOutput>`](#GRpcClient.TxEncodeOutput)
@@ -132,6 +133,7 @@ Please note that, due to internal implementation of google-protobuf, all `repeat
       * [23(params)](#GRpcClient+23) ⇒ [`Promise.<TxEncodeOutput>`](#GRpcClient.TxEncodeOutput)
       * [24(params)](#GRpcClient+24) ⇒ [`Promise.<TxEncodeOutput>`](#GRpcClient.TxEncodeOutput)
       * [25(params)](#GRpcClient+25) ⇒ [`Promise.<TxEncodeOutput>`](#GRpcClient.TxEncodeOutput)
+      * [26(params)](#GRpcClient+26) ⇒ [`Promise.<TxEncodeOutput>`](#GRpcClient.TxEncodeOutput)
     * _static_
       * [TxEncodeOutput](#GRpcClient.TxEncodeOutput) : `object`
       * [RequestSendTx](#GRpcClient.RequestSendTx) : `object`
@@ -312,6 +314,7 @@ Please note that, due to internal implementation of google-protobuf, all `repeat
       * [SetupSwapTx](#GRpcClient.SetupSwapTx) : `object`
       * [TransferTx](#GRpcClient.TransferTx) : `object`
       * [UpdateAssetTx](#GRpcClient.UpdateAssetTx) : `object`
+      * [UpdateConsensusParamsTx](#GRpcClient.UpdateConsensusParamsTx) : `object`
       * [UpdateValidatorTx](#GRpcClient.UpdateValidatorTx) : `object`
       * [UpgradeNodeTx](#GRpcClient.UpgradeNodeTx) : `object`
       * [WithdrawTokenTx](#GRpcClient.WithdrawTokenTx) : `object`
@@ -341,29 +344,30 @@ Please note that, due to internal implementation of google-protobuf, all `repeat
       * [sendConsensusUpgradeTxInput](#GRpcClient.sendConsensusUpgradeTxInput) : `Object`
       * [sendDeployProtocolTxInput](#GRpcClient.sendDeployProtocolTxInput) : `Object`
       * [sendSysUpgradeTxInput](#GRpcClient.sendSysUpgradeTxInput) : `Object`
+      * [sendWithdrawTokenTxInput](#GRpcClient.sendWithdrawTokenTxInput) : `Object`
+      * [sendTransferTxInput](#GRpcClient.sendTransferTxInput) : `Object`
       * [sendAccountMigrateTxInput](#GRpcClient.sendAccountMigrateTxInput) : `Object`
-      * [sendAcquireAssetTxInput](#GRpcClient.sendAcquireAssetTxInput) : `Object`
+      * [sendDeclareTxInput](#GRpcClient.sendDeclareTxInput) : `Object`
+      * [sendRevokeDelegateTxInput](#GRpcClient.sendRevokeDelegateTxInput) : `Object`
+      * [sendDeactivateProtocolTxInput](#GRpcClient.sendDeactivateProtocolTxInput) : `Object`
+      * [sendRevokeWithdrawTxInput](#GRpcClient.sendRevokeWithdrawTxInput) : `Object`
+      * [sendCreateAssetTxInput](#GRpcClient.sendCreateAssetTxInput) : `Object`
+      * [sendRetrieveSwapTxInput](#GRpcClient.sendRetrieveSwapTxInput) : `Object`
+      * [sendConsumeAssetTxInput](#GRpcClient.sendConsumeAssetTxInput) : `Object`
+      * [sendPokeTxInput](#GRpcClient.sendPokeTxInput) : `Object`
+      * [sendUpdateAssetTxInput](#GRpcClient.sendUpdateAssetTxInput) : `Object`
+      * [sendExchangeTxInput](#GRpcClient.sendExchangeTxInput) : `Object`
+      * [sendUpdateConsensusParamsTxInput](#GRpcClient.sendUpdateConsensusParamsTxInput) : `Object`
+      * [sendRevokeSwapTxInput](#GRpcClient.sendRevokeSwapTxInput) : `Object`
       * [sendActivateProtocolTxInput](#GRpcClient.sendActivateProtocolTxInput) : `Object`
       * [sendApproveWithdrawTxInput](#GRpcClient.sendApproveWithdrawTxInput) : `Object`
-      * [sendConsumeAssetTxInput](#GRpcClient.sendConsumeAssetTxInput) : `Object`
-      * [sendCreateAssetTxInput](#GRpcClient.sendCreateAssetTxInput) : `Object`
-      * [sendDeactivateProtocolTxInput](#GRpcClient.sendDeactivateProtocolTxInput) : `Object`
-      * [sendDeclareTxInput](#GRpcClient.sendDeclareTxInput) : `Object`
+      * [sendUpgradeNodeTxInput](#GRpcClient.sendUpgradeNodeTxInput) : `Object`
+      * [sendUpdateValidatorTxInput](#GRpcClient.sendUpdateValidatorTxInput) : `Object`
+      * [sendAcquireAssetTxInput](#GRpcClient.sendAcquireAssetTxInput) : `Object`
       * [sendDelegateTxInput](#GRpcClient.sendDelegateTxInput) : `Object`
       * [sendDepositTokenTxInput](#GRpcClient.sendDepositTokenTxInput) : `Object`
-      * [sendExchangeTxInput](#GRpcClient.sendExchangeTxInput) : `Object`
-      * [sendPokeTxInput](#GRpcClient.sendPokeTxInput) : `Object`
-      * [sendRefuelTxInput](#GRpcClient.sendRefuelTxInput) : `Object`
-      * [sendRetrieveSwapTxInput](#GRpcClient.sendRetrieveSwapTxInput) : `Object`
-      * [sendRevokeDelegateTxInput](#GRpcClient.sendRevokeDelegateTxInput) : `Object`
-      * [sendRevokeSwapTxInput](#GRpcClient.sendRevokeSwapTxInput) : `Object`
-      * [sendRevokeWithdrawTxInput](#GRpcClient.sendRevokeWithdrawTxInput) : `Object`
       * [sendSetupSwapTxInput](#GRpcClient.sendSetupSwapTxInput) : `Object`
-      * [sendTransferTxInput](#GRpcClient.sendTransferTxInput) : `Object`
-      * [sendUpdateAssetTxInput](#GRpcClient.sendUpdateAssetTxInput) : `Object`
-      * [sendUpdateValidatorTxInput](#GRpcClient.sendUpdateValidatorTxInput) : `Object`
-      * [sendUpgradeNodeTxInput](#GRpcClient.sendUpgradeNodeTxInput) : `Object`
-      * [sendWithdrawTokenTxInput](#GRpcClient.sendWithdrawTokenTxInput) : `Object`
+      * [sendRefuelTxInput](#GRpcClient.sendRefuelTxInput) : `Object`
 
 ### new GRpcClient(config)
 
@@ -1253,203 +1257,16 @@ Send sendSysUpgradeTx transaction and get the hash, use [getTx](#GRpcClient+getT
 
 ### gRpcClient.3(params) ⇒ `Promise.<string>`
 
-Send sendAccountMigrateTx transaction and get the hash, use [getTx](#GRpcClient+getTx) to get transaction detail
+Send sendWithdrawTokenTx transaction and get the hash, use [getTx](#GRpcClient+getTx) to get transaction detail
 
 **Kind**: instance method of [`GRpcClient`](#GRpcClient)  
 **Returns**: `Promise.<string>` - returns transaction hash if success, otherwise error was thrown  
 
-| Param  | Type                                                                 |
-| ------ | -------------------------------------------------------------------- |
-| params | [`sendAccountMigrateTxInput`](#GRpcClient.sendAccountMigrateTxInput) |
+| Param  | Type                                                               |
+| ------ | ------------------------------------------------------------------ |
+| params | [`sendWithdrawTokenTxInput`](#GRpcClient.sendWithdrawTokenTxInput) |
 
 ### gRpcClient.4(params) ⇒ `Promise.<string>`
-
-Send sendAcquireAssetTx transaction and get the hash, use [getTx](#GRpcClient+getTx) to get transaction detail
-
-**Kind**: instance method of [`GRpcClient`](#GRpcClient)  
-**Returns**: `Promise.<string>` - returns transaction hash if success, otherwise error was thrown  
-
-| Param  | Type                                                             |
-| ------ | ---------------------------------------------------------------- |
-| params | [`sendAcquireAssetTxInput`](#GRpcClient.sendAcquireAssetTxInput) |
-
-### gRpcClient.5(params) ⇒ `Promise.<string>`
-
-Send sendActivateProtocolTx transaction and get the hash, use [getTx](#GRpcClient+getTx) to get transaction detail
-
-**Kind**: instance method of [`GRpcClient`](#GRpcClient)  
-**Returns**: `Promise.<string>` - returns transaction hash if success, otherwise error was thrown  
-
-| Param  | Type                                                                     |
-| ------ | ------------------------------------------------------------------------ |
-| params | [`sendActivateProtocolTxInput`](#GRpcClient.sendActivateProtocolTxInput) |
-
-### gRpcClient.6(params) ⇒ `Promise.<string>`
-
-Send sendApproveWithdrawTx transaction and get the hash, use [getTx](#GRpcClient+getTx) to get transaction detail
-
-**Kind**: instance method of [`GRpcClient`](#GRpcClient)  
-**Returns**: `Promise.<string>` - returns transaction hash if success, otherwise error was thrown  
-
-| Param  | Type                                                                   |
-| ------ | ---------------------------------------------------------------------- |
-| params | [`sendApproveWithdrawTxInput`](#GRpcClient.sendApproveWithdrawTxInput) |
-
-### gRpcClient.7(params) ⇒ `Promise.<string>`
-
-Send sendConsumeAssetTx transaction and get the hash, use [getTx](#GRpcClient+getTx) to get transaction detail
-
-**Kind**: instance method of [`GRpcClient`](#GRpcClient)  
-**Returns**: `Promise.<string>` - returns transaction hash if success, otherwise error was thrown  
-
-| Param  | Type                                                             |
-| ------ | ---------------------------------------------------------------- |
-| params | [`sendConsumeAssetTxInput`](#GRpcClient.sendConsumeAssetTxInput) |
-
-### gRpcClient.8(params) ⇒ `Promise.<string>`
-
-Send sendCreateAssetTx transaction and get the hash, use [getTx](#GRpcClient+getTx) to get transaction detail
-
-**Kind**: instance method of [`GRpcClient`](#GRpcClient)  
-**Returns**: `Promise.<string>` - returns transaction hash if success, otherwise error was thrown  
-
-| Param  | Type                                                           |
-| ------ | -------------------------------------------------------------- |
-| params | [`sendCreateAssetTxInput`](#GRpcClient.sendCreateAssetTxInput) |
-
-### gRpcClient.9(params) ⇒ `Promise.<string>`
-
-Send sendDeactivateProtocolTx transaction and get the hash, use [getTx](#GRpcClient+getTx) to get transaction detail
-
-**Kind**: instance method of [`GRpcClient`](#GRpcClient)  
-**Returns**: `Promise.<string>` - returns transaction hash if success, otherwise error was thrown  
-
-| Param  | Type                                                                         |
-| ------ | ---------------------------------------------------------------------------- |
-| params | [`sendDeactivateProtocolTxInput`](#GRpcClient.sendDeactivateProtocolTxInput) |
-
-### gRpcClient.10(params) ⇒ `Promise.<string>`
-
-Send sendDeclareTx transaction and get the hash, use [getTx](#GRpcClient+getTx) to get transaction detail
-
-**Kind**: instance method of [`GRpcClient`](#GRpcClient)  
-**Returns**: `Promise.<string>` - returns transaction hash if success, otherwise error was thrown  
-
-| Param  | Type                                                   |
-| ------ | ------------------------------------------------------ |
-| params | [`sendDeclareTxInput`](#GRpcClient.sendDeclareTxInput) |
-
-### gRpcClient.11(params) ⇒ `Promise.<string>`
-
-Send sendDelegateTx transaction and get the hash, use [getTx](#GRpcClient+getTx) to get transaction detail
-
-**Kind**: instance method of [`GRpcClient`](#GRpcClient)  
-**Returns**: `Promise.<string>` - returns transaction hash if success, otherwise error was thrown  
-
-| Param  | Type                                                     |
-| ------ | -------------------------------------------------------- |
-| params | [`sendDelegateTxInput`](#GRpcClient.sendDelegateTxInput) |
-
-### gRpcClient.12(params) ⇒ `Promise.<string>`
-
-Send sendDepositTokenTx transaction and get the hash, use [getTx](#GRpcClient+getTx) to get transaction detail
-
-**Kind**: instance method of [`GRpcClient`](#GRpcClient)  
-**Returns**: `Promise.<string>` - returns transaction hash if success, otherwise error was thrown  
-
-| Param  | Type                                                             |
-| ------ | ---------------------------------------------------------------- |
-| params | [`sendDepositTokenTxInput`](#GRpcClient.sendDepositTokenTxInput) |
-
-### gRpcClient.13(params) ⇒ `Promise.<string>`
-
-Send sendExchangeTx transaction and get the hash, use [getTx](#GRpcClient+getTx) to get transaction detail
-
-**Kind**: instance method of [`GRpcClient`](#GRpcClient)  
-**Returns**: `Promise.<string>` - returns transaction hash if success, otherwise error was thrown  
-
-| Param  | Type                                                     |
-| ------ | -------------------------------------------------------- |
-| params | [`sendExchangeTxInput`](#GRpcClient.sendExchangeTxInput) |
-
-### gRpcClient.14(params) ⇒ `Promise.<string>`
-
-Send sendPokeTx transaction and get the hash, use [getTx](#GRpcClient+getTx) to get transaction detail
-
-**Kind**: instance method of [`GRpcClient`](#GRpcClient)  
-**Returns**: `Promise.<string>` - returns transaction hash if success, otherwise error was thrown  
-
-| Param  | Type                                             |
-| ------ | ------------------------------------------------ |
-| params | [`sendPokeTxInput`](#GRpcClient.sendPokeTxInput) |
-
-### gRpcClient.15(params) ⇒ `Promise.<string>`
-
-Send sendRefuelTx transaction and get the hash, use [getTx](#GRpcClient+getTx) to get transaction detail
-
-**Kind**: instance method of [`GRpcClient`](#GRpcClient)  
-**Returns**: `Promise.<string>` - returns transaction hash if success, otherwise error was thrown  
-
-| Param  | Type                                                 |
-| ------ | ---------------------------------------------------- |
-| params | [`sendRefuelTxInput`](#GRpcClient.sendRefuelTxInput) |
-
-### gRpcClient.16(params) ⇒ `Promise.<string>`
-
-Send sendRetrieveSwapTx transaction and get the hash, use [getTx](#GRpcClient+getTx) to get transaction detail
-
-**Kind**: instance method of [`GRpcClient`](#GRpcClient)  
-**Returns**: `Promise.<string>` - returns transaction hash if success, otherwise error was thrown  
-
-| Param  | Type                                                             |
-| ------ | ---------------------------------------------------------------- |
-| params | [`sendRetrieveSwapTxInput`](#GRpcClient.sendRetrieveSwapTxInput) |
-
-### gRpcClient.17(params) ⇒ `Promise.<string>`
-
-Send sendRevokeDelegateTx transaction and get the hash, use [getTx](#GRpcClient+getTx) to get transaction detail
-
-**Kind**: instance method of [`GRpcClient`](#GRpcClient)  
-**Returns**: `Promise.<string>` - returns transaction hash if success, otherwise error was thrown  
-
-| Param  | Type                                                                 |
-| ------ | -------------------------------------------------------------------- |
-| params | [`sendRevokeDelegateTxInput`](#GRpcClient.sendRevokeDelegateTxInput) |
-
-### gRpcClient.18(params) ⇒ `Promise.<string>`
-
-Send sendRevokeSwapTx transaction and get the hash, use [getTx](#GRpcClient+getTx) to get transaction detail
-
-**Kind**: instance method of [`GRpcClient`](#GRpcClient)  
-**Returns**: `Promise.<string>` - returns transaction hash if success, otherwise error was thrown  
-
-| Param  | Type                                                         |
-| ------ | ------------------------------------------------------------ |
-| params | [`sendRevokeSwapTxInput`](#GRpcClient.sendRevokeSwapTxInput) |
-
-### gRpcClient.19(params) ⇒ `Promise.<string>`
-
-Send sendRevokeWithdrawTx transaction and get the hash, use [getTx](#GRpcClient+getTx) to get transaction detail
-
-**Kind**: instance method of [`GRpcClient`](#GRpcClient)  
-**Returns**: `Promise.<string>` - returns transaction hash if success, otherwise error was thrown  
-
-| Param  | Type                                                                 |
-| ------ | -------------------------------------------------------------------- |
-| params | [`sendRevokeWithdrawTxInput`](#GRpcClient.sendRevokeWithdrawTxInput) |
-
-### gRpcClient.20(params) ⇒ `Promise.<string>`
-
-Send sendSetupSwapTx transaction and get the hash, use [getTx](#GRpcClient+getTx) to get transaction detail
-
-**Kind**: instance method of [`GRpcClient`](#GRpcClient)  
-**Returns**: `Promise.<string>` - returns transaction hash if success, otherwise error was thrown  
-
-| Param  | Type                                                       |
-| ------ | ---------------------------------------------------------- |
-| params | [`sendSetupSwapTxInput`](#GRpcClient.sendSetupSwapTxInput) |
-
-### gRpcClient.21(params) ⇒ `Promise.<string>`
 
 Send sendTransferTx transaction and get the hash, use [getTx](#GRpcClient+getTx) to get transaction detail
 
@@ -1460,7 +1277,106 @@ Send sendTransferTx transaction and get the hash, use [getTx](#GRpcClient+getTx)
 | ------ | -------------------------------------------------------- |
 | params | [`sendTransferTxInput`](#GRpcClient.sendTransferTxInput) |
 
-### gRpcClient.22(params) ⇒ `Promise.<string>`
+### gRpcClient.5(params) ⇒ `Promise.<string>`
+
+Send sendAccountMigrateTx transaction and get the hash, use [getTx](#GRpcClient+getTx) to get transaction detail
+
+**Kind**: instance method of [`GRpcClient`](#GRpcClient)  
+**Returns**: `Promise.<string>` - returns transaction hash if success, otherwise error was thrown  
+
+| Param  | Type                                                                 |
+| ------ | -------------------------------------------------------------------- |
+| params | [`sendAccountMigrateTxInput`](#GRpcClient.sendAccountMigrateTxInput) |
+
+### gRpcClient.6(params) ⇒ `Promise.<string>`
+
+Send sendDeclareTx transaction and get the hash, use [getTx](#GRpcClient+getTx) to get transaction detail
+
+**Kind**: instance method of [`GRpcClient`](#GRpcClient)  
+**Returns**: `Promise.<string>` - returns transaction hash if success, otherwise error was thrown  
+
+| Param  | Type                                                   |
+| ------ | ------------------------------------------------------ |
+| params | [`sendDeclareTxInput`](#GRpcClient.sendDeclareTxInput) |
+
+### gRpcClient.7(params) ⇒ `Promise.<string>`
+
+Send sendRevokeDelegateTx transaction and get the hash, use [getTx](#GRpcClient+getTx) to get transaction detail
+
+**Kind**: instance method of [`GRpcClient`](#GRpcClient)  
+**Returns**: `Promise.<string>` - returns transaction hash if success, otherwise error was thrown  
+
+| Param  | Type                                                                 |
+| ------ | -------------------------------------------------------------------- |
+| params | [`sendRevokeDelegateTxInput`](#GRpcClient.sendRevokeDelegateTxInput) |
+
+### gRpcClient.8(params) ⇒ `Promise.<string>`
+
+Send sendDeactivateProtocolTx transaction and get the hash, use [getTx](#GRpcClient+getTx) to get transaction detail
+
+**Kind**: instance method of [`GRpcClient`](#GRpcClient)  
+**Returns**: `Promise.<string>` - returns transaction hash if success, otherwise error was thrown  
+
+| Param  | Type                                                                         |
+| ------ | ---------------------------------------------------------------------------- |
+| params | [`sendDeactivateProtocolTxInput`](#GRpcClient.sendDeactivateProtocolTxInput) |
+
+### gRpcClient.9(params) ⇒ `Promise.<string>`
+
+Send sendRevokeWithdrawTx transaction and get the hash, use [getTx](#GRpcClient+getTx) to get transaction detail
+
+**Kind**: instance method of [`GRpcClient`](#GRpcClient)  
+**Returns**: `Promise.<string>` - returns transaction hash if success, otherwise error was thrown  
+
+| Param  | Type                                                                 |
+| ------ | -------------------------------------------------------------------- |
+| params | [`sendRevokeWithdrawTxInput`](#GRpcClient.sendRevokeWithdrawTxInput) |
+
+### gRpcClient.10(params) ⇒ `Promise.<string>`
+
+Send sendCreateAssetTx transaction and get the hash, use [getTx](#GRpcClient+getTx) to get transaction detail
+
+**Kind**: instance method of [`GRpcClient`](#GRpcClient)  
+**Returns**: `Promise.<string>` - returns transaction hash if success, otherwise error was thrown  
+
+| Param  | Type                                                           |
+| ------ | -------------------------------------------------------------- |
+| params | [`sendCreateAssetTxInput`](#GRpcClient.sendCreateAssetTxInput) |
+
+### gRpcClient.11(params) ⇒ `Promise.<string>`
+
+Send sendRetrieveSwapTx transaction and get the hash, use [getTx](#GRpcClient+getTx) to get transaction detail
+
+**Kind**: instance method of [`GRpcClient`](#GRpcClient)  
+**Returns**: `Promise.<string>` - returns transaction hash if success, otherwise error was thrown  
+
+| Param  | Type                                                             |
+| ------ | ---------------------------------------------------------------- |
+| params | [`sendRetrieveSwapTxInput`](#GRpcClient.sendRetrieveSwapTxInput) |
+
+### gRpcClient.12(params) ⇒ `Promise.<string>`
+
+Send sendConsumeAssetTx transaction and get the hash, use [getTx](#GRpcClient+getTx) to get transaction detail
+
+**Kind**: instance method of [`GRpcClient`](#GRpcClient)  
+**Returns**: `Promise.<string>` - returns transaction hash if success, otherwise error was thrown  
+
+| Param  | Type                                                             |
+| ------ | ---------------------------------------------------------------- |
+| params | [`sendConsumeAssetTxInput`](#GRpcClient.sendConsumeAssetTxInput) |
+
+### gRpcClient.13(params) ⇒ `Promise.<string>`
+
+Send sendPokeTx transaction and get the hash, use [getTx](#GRpcClient+getTx) to get transaction detail
+
+**Kind**: instance method of [`GRpcClient`](#GRpcClient)  
+**Returns**: `Promise.<string>` - returns transaction hash if success, otherwise error was thrown  
+
+| Param  | Type                                             |
+| ------ | ------------------------------------------------ |
+| params | [`sendPokeTxInput`](#GRpcClient.sendPokeTxInput) |
+
+### gRpcClient.14(params) ⇒ `Promise.<string>`
 
 Send sendUpdateAssetTx transaction and get the hash, use [getTx](#GRpcClient+getTx) to get transaction detail
 
@@ -1471,18 +1387,62 @@ Send sendUpdateAssetTx transaction and get the hash, use [getTx](#GRpcClient+get
 | ------ | -------------------------------------------------------------- |
 | params | [`sendUpdateAssetTxInput`](#GRpcClient.sendUpdateAssetTxInput) |
 
-### gRpcClient.23(params) ⇒ `Promise.<string>`
+### gRpcClient.15(params) ⇒ `Promise.<string>`
 
-Send sendUpdateValidatorTx transaction and get the hash, use [getTx](#GRpcClient+getTx) to get transaction detail
+Send sendExchangeTx transaction and get the hash, use [getTx](#GRpcClient+getTx) to get transaction detail
+
+**Kind**: instance method of [`GRpcClient`](#GRpcClient)  
+**Returns**: `Promise.<string>` - returns transaction hash if success, otherwise error was thrown  
+
+| Param  | Type                                                     |
+| ------ | -------------------------------------------------------- |
+| params | [`sendExchangeTxInput`](#GRpcClient.sendExchangeTxInput) |
+
+### gRpcClient.16(params) ⇒ `Promise.<string>`
+
+Send sendUpdateConsensusParamsTx transaction and get the hash, use [getTx](#GRpcClient+getTx) to get transaction detail
+
+**Kind**: instance method of [`GRpcClient`](#GRpcClient)  
+**Returns**: `Promise.<string>` - returns transaction hash if success, otherwise error was thrown  
+
+| Param  | Type                                                                               |
+| ------ | ---------------------------------------------------------------------------------- |
+| params | [`sendUpdateConsensusParamsTxInput`](#GRpcClient.sendUpdateConsensusParamsTxInput) |
+
+### gRpcClient.17(params) ⇒ `Promise.<string>`
+
+Send sendRevokeSwapTx transaction and get the hash, use [getTx](#GRpcClient+getTx) to get transaction detail
+
+**Kind**: instance method of [`GRpcClient`](#GRpcClient)  
+**Returns**: `Promise.<string>` - returns transaction hash if success, otherwise error was thrown  
+
+| Param  | Type                                                         |
+| ------ | ------------------------------------------------------------ |
+| params | [`sendRevokeSwapTxInput`](#GRpcClient.sendRevokeSwapTxInput) |
+
+### gRpcClient.18(params) ⇒ `Promise.<string>`
+
+Send sendActivateProtocolTx transaction and get the hash, use [getTx](#GRpcClient+getTx) to get transaction detail
+
+**Kind**: instance method of [`GRpcClient`](#GRpcClient)  
+**Returns**: `Promise.<string>` - returns transaction hash if success, otherwise error was thrown  
+
+| Param  | Type                                                                     |
+| ------ | ------------------------------------------------------------------------ |
+| params | [`sendActivateProtocolTxInput`](#GRpcClient.sendActivateProtocolTxInput) |
+
+### gRpcClient.19(params) ⇒ `Promise.<string>`
+
+Send sendApproveWithdrawTx transaction and get the hash, use [getTx](#GRpcClient+getTx) to get transaction detail
 
 **Kind**: instance method of [`GRpcClient`](#GRpcClient)  
 **Returns**: `Promise.<string>` - returns transaction hash if success, otherwise error was thrown  
 
 | Param  | Type                                                                   |
 | ------ | ---------------------------------------------------------------------- |
-| params | [`sendUpdateValidatorTxInput`](#GRpcClient.sendUpdateValidatorTxInput) |
+| params | [`sendApproveWithdrawTxInput`](#GRpcClient.sendApproveWithdrawTxInput) |
 
-### gRpcClient.24(params) ⇒ `Promise.<string>`
+### gRpcClient.20(params) ⇒ `Promise.<string>`
 
 Send sendUpgradeNodeTx transaction and get the hash, use [getTx](#GRpcClient+getTx) to get transaction detail
 
@@ -1493,16 +1453,71 @@ Send sendUpgradeNodeTx transaction and get the hash, use [getTx](#GRpcClient+get
 | ------ | -------------------------------------------------------------- |
 | params | [`sendUpgradeNodeTxInput`](#GRpcClient.sendUpgradeNodeTxInput) |
 
-### gRpcClient.25(params) ⇒ `Promise.<string>`
+### gRpcClient.21(params) ⇒ `Promise.<string>`
 
-Send sendWithdrawTokenTx transaction and get the hash, use [getTx](#GRpcClient+getTx) to get transaction detail
+Send sendUpdateValidatorTx transaction and get the hash, use [getTx](#GRpcClient+getTx) to get transaction detail
 
 **Kind**: instance method of [`GRpcClient`](#GRpcClient)  
 **Returns**: `Promise.<string>` - returns transaction hash if success, otherwise error was thrown  
 
-| Param  | Type                                                               |
-| ------ | ------------------------------------------------------------------ |
-| params | [`sendWithdrawTokenTxInput`](#GRpcClient.sendWithdrawTokenTxInput) |
+| Param  | Type                                                                   |
+| ------ | ---------------------------------------------------------------------- |
+| params | [`sendUpdateValidatorTxInput`](#GRpcClient.sendUpdateValidatorTxInput) |
+
+### gRpcClient.22(params) ⇒ `Promise.<string>`
+
+Send sendAcquireAssetTx transaction and get the hash, use [getTx](#GRpcClient+getTx) to get transaction detail
+
+**Kind**: instance method of [`GRpcClient`](#GRpcClient)  
+**Returns**: `Promise.<string>` - returns transaction hash if success, otherwise error was thrown  
+
+| Param  | Type                                                             |
+| ------ | ---------------------------------------------------------------- |
+| params | [`sendAcquireAssetTxInput`](#GRpcClient.sendAcquireAssetTxInput) |
+
+### gRpcClient.23(params) ⇒ `Promise.<string>`
+
+Send sendDelegateTx transaction and get the hash, use [getTx](#GRpcClient+getTx) to get transaction detail
+
+**Kind**: instance method of [`GRpcClient`](#GRpcClient)  
+**Returns**: `Promise.<string>` - returns transaction hash if success, otherwise error was thrown  
+
+| Param  | Type                                                     |
+| ------ | -------------------------------------------------------- |
+| params | [`sendDelegateTxInput`](#GRpcClient.sendDelegateTxInput) |
+
+### gRpcClient.24(params) ⇒ `Promise.<string>`
+
+Send sendDepositTokenTx transaction and get the hash, use [getTx](#GRpcClient+getTx) to get transaction detail
+
+**Kind**: instance method of [`GRpcClient`](#GRpcClient)  
+**Returns**: `Promise.<string>` - returns transaction hash if success, otherwise error was thrown  
+
+| Param  | Type                                                             |
+| ------ | ---------------------------------------------------------------- |
+| params | [`sendDepositTokenTxInput`](#GRpcClient.sendDepositTokenTxInput) |
+
+### gRpcClient.25(params) ⇒ `Promise.<string>`
+
+Send sendSetupSwapTx transaction and get the hash, use [getTx](#GRpcClient+getTx) to get transaction detail
+
+**Kind**: instance method of [`GRpcClient`](#GRpcClient)  
+**Returns**: `Promise.<string>` - returns transaction hash if success, otherwise error was thrown  
+
+| Param  | Type                                                       |
+| ------ | ---------------------------------------------------------- |
+| params | [`sendSetupSwapTxInput`](#GRpcClient.sendSetupSwapTxInput) |
+
+### gRpcClient.26(params) ⇒ `Promise.<string>`
+
+Send sendRefuelTx transaction and get the hash, use [getTx](#GRpcClient+getTx) to get transaction detail
+
+**Kind**: instance method of [`GRpcClient`](#GRpcClient)  
+**Returns**: `Promise.<string>` - returns transaction hash if success, otherwise error was thrown  
+
+| Param  | Type                                                 |
+| ------ | ---------------------------------------------------- |
+| params | [`sendRefuelTxInput`](#GRpcClient.sendRefuelTxInput) |
 
 ### gRpcClient.0(params) ⇒ [`Promise.<TxEncodeOutput>`](#GRpcClient.TxEncodeOutput)
 
@@ -1539,203 +1554,16 @@ Encode a encodeSysUpgradeTx transaction for later use
 
 ### gRpcClient.3(params) ⇒ [`Promise.<TxEncodeOutput>`](#GRpcClient.TxEncodeOutput)
 
-Encode a encodeAccountMigrateTx transaction for later use
+Encode a encodeWithdrawTokenTx transaction for later use
 
 **Kind**: instance method of [`GRpcClient`](#GRpcClient)  
 **Returns**: [`Promise.<TxEncodeOutput>`](#GRpcClient.TxEncodeOutput) - result - we provide two formats of the encoding result, binary presentation and human readable object  
 
-| Param  | Type                                     |
-| ------ | ---------------------------------------- |
-| params | `GRpcClient.encodeAccountMigrateTxInput` |
+| Param  | Type                                    |
+| ------ | --------------------------------------- |
+| params | `GRpcClient.encodeWithdrawTokenTxInput` |
 
 ### gRpcClient.4(params) ⇒ [`Promise.<TxEncodeOutput>`](#GRpcClient.TxEncodeOutput)
-
-Encode a encodeAcquireAssetTx transaction for later use
-
-**Kind**: instance method of [`GRpcClient`](#GRpcClient)  
-**Returns**: [`Promise.<TxEncodeOutput>`](#GRpcClient.TxEncodeOutput) - result - we provide two formats of the encoding result, binary presentation and human readable object  
-
-| Param  | Type                                   |
-| ------ | -------------------------------------- |
-| params | `GRpcClient.encodeAcquireAssetTxInput` |
-
-### gRpcClient.5(params) ⇒ [`Promise.<TxEncodeOutput>`](#GRpcClient.TxEncodeOutput)
-
-Encode a encodeActivateProtocolTx transaction for later use
-
-**Kind**: instance method of [`GRpcClient`](#GRpcClient)  
-**Returns**: [`Promise.<TxEncodeOutput>`](#GRpcClient.TxEncodeOutput) - result - we provide two formats of the encoding result, binary presentation and human readable object  
-
-| Param  | Type                                       |
-| ------ | ------------------------------------------ |
-| params | `GRpcClient.encodeActivateProtocolTxInput` |
-
-### gRpcClient.6(params) ⇒ [`Promise.<TxEncodeOutput>`](#GRpcClient.TxEncodeOutput)
-
-Encode a encodeApproveWithdrawTx transaction for later use
-
-**Kind**: instance method of [`GRpcClient`](#GRpcClient)  
-**Returns**: [`Promise.<TxEncodeOutput>`](#GRpcClient.TxEncodeOutput) - result - we provide two formats of the encoding result, binary presentation and human readable object  
-
-| Param  | Type                                      |
-| ------ | ----------------------------------------- |
-| params | `GRpcClient.encodeApproveWithdrawTxInput` |
-
-### gRpcClient.7(params) ⇒ [`Promise.<TxEncodeOutput>`](#GRpcClient.TxEncodeOutput)
-
-Encode a encodeConsumeAssetTx transaction for later use
-
-**Kind**: instance method of [`GRpcClient`](#GRpcClient)  
-**Returns**: [`Promise.<TxEncodeOutput>`](#GRpcClient.TxEncodeOutput) - result - we provide two formats of the encoding result, binary presentation and human readable object  
-
-| Param  | Type                                   |
-| ------ | -------------------------------------- |
-| params | `GRpcClient.encodeConsumeAssetTxInput` |
-
-### gRpcClient.8(params) ⇒ [`Promise.<TxEncodeOutput>`](#GRpcClient.TxEncodeOutput)
-
-Encode a encodeCreateAssetTx transaction for later use
-
-**Kind**: instance method of [`GRpcClient`](#GRpcClient)  
-**Returns**: [`Promise.<TxEncodeOutput>`](#GRpcClient.TxEncodeOutput) - result - we provide two formats of the encoding result, binary presentation and human readable object  
-
-| Param  | Type                                  |
-| ------ | ------------------------------------- |
-| params | `GRpcClient.encodeCreateAssetTxInput` |
-
-### gRpcClient.9(params) ⇒ [`Promise.<TxEncodeOutput>`](#GRpcClient.TxEncodeOutput)
-
-Encode a encodeDeactivateProtocolTx transaction for later use
-
-**Kind**: instance method of [`GRpcClient`](#GRpcClient)  
-**Returns**: [`Promise.<TxEncodeOutput>`](#GRpcClient.TxEncodeOutput) - result - we provide two formats of the encoding result, binary presentation and human readable object  
-
-| Param  | Type                                         |
-| ------ | -------------------------------------------- |
-| params | `GRpcClient.encodeDeactivateProtocolTxInput` |
-
-### gRpcClient.10(params) ⇒ [`Promise.<TxEncodeOutput>`](#GRpcClient.TxEncodeOutput)
-
-Encode a encodeDeclareTx transaction for later use
-
-**Kind**: instance method of [`GRpcClient`](#GRpcClient)  
-**Returns**: [`Promise.<TxEncodeOutput>`](#GRpcClient.TxEncodeOutput) - result - we provide two formats of the encoding result, binary presentation and human readable object  
-
-| Param  | Type                              |
-| ------ | --------------------------------- |
-| params | `GRpcClient.encodeDeclareTxInput` |
-
-### gRpcClient.11(params) ⇒ [`Promise.<TxEncodeOutput>`](#GRpcClient.TxEncodeOutput)
-
-Encode a encodeDelegateTx transaction for later use
-
-**Kind**: instance method of [`GRpcClient`](#GRpcClient)  
-**Returns**: [`Promise.<TxEncodeOutput>`](#GRpcClient.TxEncodeOutput) - result - we provide two formats of the encoding result, binary presentation and human readable object  
-
-| Param  | Type                               |
-| ------ | ---------------------------------- |
-| params | `GRpcClient.encodeDelegateTxInput` |
-
-### gRpcClient.12(params) ⇒ [`Promise.<TxEncodeOutput>`](#GRpcClient.TxEncodeOutput)
-
-Encode a encodeDepositTokenTx transaction for later use
-
-**Kind**: instance method of [`GRpcClient`](#GRpcClient)  
-**Returns**: [`Promise.<TxEncodeOutput>`](#GRpcClient.TxEncodeOutput) - result - we provide two formats of the encoding result, binary presentation and human readable object  
-
-| Param  | Type                                   |
-| ------ | -------------------------------------- |
-| params | `GRpcClient.encodeDepositTokenTxInput` |
-
-### gRpcClient.13(params) ⇒ [`Promise.<TxEncodeOutput>`](#GRpcClient.TxEncodeOutput)
-
-Encode a encodeExchangeTx transaction for later use
-
-**Kind**: instance method of [`GRpcClient`](#GRpcClient)  
-**Returns**: [`Promise.<TxEncodeOutput>`](#GRpcClient.TxEncodeOutput) - result - we provide two formats of the encoding result, binary presentation and human readable object  
-
-| Param  | Type                               |
-| ------ | ---------------------------------- |
-| params | `GRpcClient.encodeExchangeTxInput` |
-
-### gRpcClient.14(params) ⇒ [`Promise.<TxEncodeOutput>`](#GRpcClient.TxEncodeOutput)
-
-Encode a encodePokeTx transaction for later use
-
-**Kind**: instance method of [`GRpcClient`](#GRpcClient)  
-**Returns**: [`Promise.<TxEncodeOutput>`](#GRpcClient.TxEncodeOutput) - result - we provide two formats of the encoding result, binary presentation and human readable object  
-
-| Param  | Type                           |
-| ------ | ------------------------------ |
-| params | `GRpcClient.encodePokeTxInput` |
-
-### gRpcClient.15(params) ⇒ [`Promise.<TxEncodeOutput>`](#GRpcClient.TxEncodeOutput)
-
-Encode a encodeRefuelTx transaction for later use
-
-**Kind**: instance method of [`GRpcClient`](#GRpcClient)  
-**Returns**: [`Promise.<TxEncodeOutput>`](#GRpcClient.TxEncodeOutput) - result - we provide two formats of the encoding result, binary presentation and human readable object  
-
-| Param  | Type                             |
-| ------ | -------------------------------- |
-| params | `GRpcClient.encodeRefuelTxInput` |
-
-### gRpcClient.16(params) ⇒ [`Promise.<TxEncodeOutput>`](#GRpcClient.TxEncodeOutput)
-
-Encode a encodeRetrieveSwapTx transaction for later use
-
-**Kind**: instance method of [`GRpcClient`](#GRpcClient)  
-**Returns**: [`Promise.<TxEncodeOutput>`](#GRpcClient.TxEncodeOutput) - result - we provide two formats of the encoding result, binary presentation and human readable object  
-
-| Param  | Type                                   |
-| ------ | -------------------------------------- |
-| params | `GRpcClient.encodeRetrieveSwapTxInput` |
-
-### gRpcClient.17(params) ⇒ [`Promise.<TxEncodeOutput>`](#GRpcClient.TxEncodeOutput)
-
-Encode a encodeRevokeDelegateTx transaction for later use
-
-**Kind**: instance method of [`GRpcClient`](#GRpcClient)  
-**Returns**: [`Promise.<TxEncodeOutput>`](#GRpcClient.TxEncodeOutput) - result - we provide two formats of the encoding result, binary presentation and human readable object  
-
-| Param  | Type                                     |
-| ------ | ---------------------------------------- |
-| params | `GRpcClient.encodeRevokeDelegateTxInput` |
-
-### gRpcClient.18(params) ⇒ [`Promise.<TxEncodeOutput>`](#GRpcClient.TxEncodeOutput)
-
-Encode a encodeRevokeSwapTx transaction for later use
-
-**Kind**: instance method of [`GRpcClient`](#GRpcClient)  
-**Returns**: [`Promise.<TxEncodeOutput>`](#GRpcClient.TxEncodeOutput) - result - we provide two formats of the encoding result, binary presentation and human readable object  
-
-| Param  | Type                                 |
-| ------ | ------------------------------------ |
-| params | `GRpcClient.encodeRevokeSwapTxInput` |
-
-### gRpcClient.19(params) ⇒ [`Promise.<TxEncodeOutput>`](#GRpcClient.TxEncodeOutput)
-
-Encode a encodeRevokeWithdrawTx transaction for later use
-
-**Kind**: instance method of [`GRpcClient`](#GRpcClient)  
-**Returns**: [`Promise.<TxEncodeOutput>`](#GRpcClient.TxEncodeOutput) - result - we provide two formats of the encoding result, binary presentation and human readable object  
-
-| Param  | Type                                     |
-| ------ | ---------------------------------------- |
-| params | `GRpcClient.encodeRevokeWithdrawTxInput` |
-
-### gRpcClient.20(params) ⇒ [`Promise.<TxEncodeOutput>`](#GRpcClient.TxEncodeOutput)
-
-Encode a encodeSetupSwapTx transaction for later use
-
-**Kind**: instance method of [`GRpcClient`](#GRpcClient)  
-**Returns**: [`Promise.<TxEncodeOutput>`](#GRpcClient.TxEncodeOutput) - result - we provide two formats of the encoding result, binary presentation and human readable object  
-
-| Param  | Type                                |
-| ------ | ----------------------------------- |
-| params | `GRpcClient.encodeSetupSwapTxInput` |
-
-### gRpcClient.21(params) ⇒ [`Promise.<TxEncodeOutput>`](#GRpcClient.TxEncodeOutput)
 
 Encode a encodeTransferTx transaction for later use
 
@@ -1746,7 +1574,106 @@ Encode a encodeTransferTx transaction for later use
 | ------ | ---------------------------------- |
 | params | `GRpcClient.encodeTransferTxInput` |
 
-### gRpcClient.22(params) ⇒ [`Promise.<TxEncodeOutput>`](#GRpcClient.TxEncodeOutput)
+### gRpcClient.5(params) ⇒ [`Promise.<TxEncodeOutput>`](#GRpcClient.TxEncodeOutput)
+
+Encode a encodeAccountMigrateTx transaction for later use
+
+**Kind**: instance method of [`GRpcClient`](#GRpcClient)  
+**Returns**: [`Promise.<TxEncodeOutput>`](#GRpcClient.TxEncodeOutput) - result - we provide two formats of the encoding result, binary presentation and human readable object  
+
+| Param  | Type                                     |
+| ------ | ---------------------------------------- |
+| params | `GRpcClient.encodeAccountMigrateTxInput` |
+
+### gRpcClient.6(params) ⇒ [`Promise.<TxEncodeOutput>`](#GRpcClient.TxEncodeOutput)
+
+Encode a encodeDeclareTx transaction for later use
+
+**Kind**: instance method of [`GRpcClient`](#GRpcClient)  
+**Returns**: [`Promise.<TxEncodeOutput>`](#GRpcClient.TxEncodeOutput) - result - we provide two formats of the encoding result, binary presentation and human readable object  
+
+| Param  | Type                              |
+| ------ | --------------------------------- |
+| params | `GRpcClient.encodeDeclareTxInput` |
+
+### gRpcClient.7(params) ⇒ [`Promise.<TxEncodeOutput>`](#GRpcClient.TxEncodeOutput)
+
+Encode a encodeRevokeDelegateTx transaction for later use
+
+**Kind**: instance method of [`GRpcClient`](#GRpcClient)  
+**Returns**: [`Promise.<TxEncodeOutput>`](#GRpcClient.TxEncodeOutput) - result - we provide two formats of the encoding result, binary presentation and human readable object  
+
+| Param  | Type                                     |
+| ------ | ---------------------------------------- |
+| params | `GRpcClient.encodeRevokeDelegateTxInput` |
+
+### gRpcClient.8(params) ⇒ [`Promise.<TxEncodeOutput>`](#GRpcClient.TxEncodeOutput)
+
+Encode a encodeDeactivateProtocolTx transaction for later use
+
+**Kind**: instance method of [`GRpcClient`](#GRpcClient)  
+**Returns**: [`Promise.<TxEncodeOutput>`](#GRpcClient.TxEncodeOutput) - result - we provide two formats of the encoding result, binary presentation and human readable object  
+
+| Param  | Type                                         |
+| ------ | -------------------------------------------- |
+| params | `GRpcClient.encodeDeactivateProtocolTxInput` |
+
+### gRpcClient.9(params) ⇒ [`Promise.<TxEncodeOutput>`](#GRpcClient.TxEncodeOutput)
+
+Encode a encodeRevokeWithdrawTx transaction for later use
+
+**Kind**: instance method of [`GRpcClient`](#GRpcClient)  
+**Returns**: [`Promise.<TxEncodeOutput>`](#GRpcClient.TxEncodeOutput) - result - we provide two formats of the encoding result, binary presentation and human readable object  
+
+| Param  | Type                                     |
+| ------ | ---------------------------------------- |
+| params | `GRpcClient.encodeRevokeWithdrawTxInput` |
+
+### gRpcClient.10(params) ⇒ [`Promise.<TxEncodeOutput>`](#GRpcClient.TxEncodeOutput)
+
+Encode a encodeCreateAssetTx transaction for later use
+
+**Kind**: instance method of [`GRpcClient`](#GRpcClient)  
+**Returns**: [`Promise.<TxEncodeOutput>`](#GRpcClient.TxEncodeOutput) - result - we provide two formats of the encoding result, binary presentation and human readable object  
+
+| Param  | Type                                  |
+| ------ | ------------------------------------- |
+| params | `GRpcClient.encodeCreateAssetTxInput` |
+
+### gRpcClient.11(params) ⇒ [`Promise.<TxEncodeOutput>`](#GRpcClient.TxEncodeOutput)
+
+Encode a encodeRetrieveSwapTx transaction for later use
+
+**Kind**: instance method of [`GRpcClient`](#GRpcClient)  
+**Returns**: [`Promise.<TxEncodeOutput>`](#GRpcClient.TxEncodeOutput) - result - we provide two formats of the encoding result, binary presentation and human readable object  
+
+| Param  | Type                                   |
+| ------ | -------------------------------------- |
+| params | `GRpcClient.encodeRetrieveSwapTxInput` |
+
+### gRpcClient.12(params) ⇒ [`Promise.<TxEncodeOutput>`](#GRpcClient.TxEncodeOutput)
+
+Encode a encodeConsumeAssetTx transaction for later use
+
+**Kind**: instance method of [`GRpcClient`](#GRpcClient)  
+**Returns**: [`Promise.<TxEncodeOutput>`](#GRpcClient.TxEncodeOutput) - result - we provide two formats of the encoding result, binary presentation and human readable object  
+
+| Param  | Type                                   |
+| ------ | -------------------------------------- |
+| params | `GRpcClient.encodeConsumeAssetTxInput` |
+
+### gRpcClient.13(params) ⇒ [`Promise.<TxEncodeOutput>`](#GRpcClient.TxEncodeOutput)
+
+Encode a encodePokeTx transaction for later use
+
+**Kind**: instance method of [`GRpcClient`](#GRpcClient)  
+**Returns**: [`Promise.<TxEncodeOutput>`](#GRpcClient.TxEncodeOutput) - result - we provide two formats of the encoding result, binary presentation and human readable object  
+
+| Param  | Type                           |
+| ------ | ------------------------------ |
+| params | `GRpcClient.encodePokeTxInput` |
+
+### gRpcClient.14(params) ⇒ [`Promise.<TxEncodeOutput>`](#GRpcClient.TxEncodeOutput)
 
 Encode a encodeUpdateAssetTx transaction for later use
 
@@ -1757,18 +1684,62 @@ Encode a encodeUpdateAssetTx transaction for later use
 | ------ | ------------------------------------- |
 | params | `GRpcClient.encodeUpdateAssetTxInput` |
 
-### gRpcClient.23(params) ⇒ [`Promise.<TxEncodeOutput>`](#GRpcClient.TxEncodeOutput)
+### gRpcClient.15(params) ⇒ [`Promise.<TxEncodeOutput>`](#GRpcClient.TxEncodeOutput)
 
-Encode a encodeUpdateValidatorTx transaction for later use
+Encode a encodeExchangeTx transaction for later use
+
+**Kind**: instance method of [`GRpcClient`](#GRpcClient)  
+**Returns**: [`Promise.<TxEncodeOutput>`](#GRpcClient.TxEncodeOutput) - result - we provide two formats of the encoding result, binary presentation and human readable object  
+
+| Param  | Type                               |
+| ------ | ---------------------------------- |
+| params | `GRpcClient.encodeExchangeTxInput` |
+
+### gRpcClient.16(params) ⇒ [`Promise.<TxEncodeOutput>`](#GRpcClient.TxEncodeOutput)
+
+Encode a encodeUpdateConsensusParamsTx transaction for later use
+
+**Kind**: instance method of [`GRpcClient`](#GRpcClient)  
+**Returns**: [`Promise.<TxEncodeOutput>`](#GRpcClient.TxEncodeOutput) - result - we provide two formats of the encoding result, binary presentation and human readable object  
+
+| Param  | Type                                            |
+| ------ | ----------------------------------------------- |
+| params | `GRpcClient.encodeUpdateConsensusParamsTxInput` |
+
+### gRpcClient.17(params) ⇒ [`Promise.<TxEncodeOutput>`](#GRpcClient.TxEncodeOutput)
+
+Encode a encodeRevokeSwapTx transaction for later use
+
+**Kind**: instance method of [`GRpcClient`](#GRpcClient)  
+**Returns**: [`Promise.<TxEncodeOutput>`](#GRpcClient.TxEncodeOutput) - result - we provide two formats of the encoding result, binary presentation and human readable object  
+
+| Param  | Type                                 |
+| ------ | ------------------------------------ |
+| params | `GRpcClient.encodeRevokeSwapTxInput` |
+
+### gRpcClient.18(params) ⇒ [`Promise.<TxEncodeOutput>`](#GRpcClient.TxEncodeOutput)
+
+Encode a encodeActivateProtocolTx transaction for later use
+
+**Kind**: instance method of [`GRpcClient`](#GRpcClient)  
+**Returns**: [`Promise.<TxEncodeOutput>`](#GRpcClient.TxEncodeOutput) - result - we provide two formats of the encoding result, binary presentation and human readable object  
+
+| Param  | Type                                       |
+| ------ | ------------------------------------------ |
+| params | `GRpcClient.encodeActivateProtocolTxInput` |
+
+### gRpcClient.19(params) ⇒ [`Promise.<TxEncodeOutput>`](#GRpcClient.TxEncodeOutput)
+
+Encode a encodeApproveWithdrawTx transaction for later use
 
 **Kind**: instance method of [`GRpcClient`](#GRpcClient)  
 **Returns**: [`Promise.<TxEncodeOutput>`](#GRpcClient.TxEncodeOutput) - result - we provide two formats of the encoding result, binary presentation and human readable object  
 
 | Param  | Type                                      |
 | ------ | ----------------------------------------- |
-| params | `GRpcClient.encodeUpdateValidatorTxInput` |
+| params | `GRpcClient.encodeApproveWithdrawTxInput` |
 
-### gRpcClient.24(params) ⇒ [`Promise.<TxEncodeOutput>`](#GRpcClient.TxEncodeOutput)
+### gRpcClient.20(params) ⇒ [`Promise.<TxEncodeOutput>`](#GRpcClient.TxEncodeOutput)
 
 Encode a encodeUpgradeNodeTx transaction for later use
 
@@ -1779,16 +1750,71 @@ Encode a encodeUpgradeNodeTx transaction for later use
 | ------ | ------------------------------------- |
 | params | `GRpcClient.encodeUpgradeNodeTxInput` |
 
-### gRpcClient.25(params) ⇒ [`Promise.<TxEncodeOutput>`](#GRpcClient.TxEncodeOutput)
+### gRpcClient.21(params) ⇒ [`Promise.<TxEncodeOutput>`](#GRpcClient.TxEncodeOutput)
 
-Encode a encodeWithdrawTokenTx transaction for later use
+Encode a encodeUpdateValidatorTx transaction for later use
 
 **Kind**: instance method of [`GRpcClient`](#GRpcClient)  
 **Returns**: [`Promise.<TxEncodeOutput>`](#GRpcClient.TxEncodeOutput) - result - we provide two formats of the encoding result, binary presentation and human readable object  
 
-| Param  | Type                                    |
-| ------ | --------------------------------------- |
-| params | `GRpcClient.encodeWithdrawTokenTxInput` |
+| Param  | Type                                      |
+| ------ | ----------------------------------------- |
+| params | `GRpcClient.encodeUpdateValidatorTxInput` |
+
+### gRpcClient.22(params) ⇒ [`Promise.<TxEncodeOutput>`](#GRpcClient.TxEncodeOutput)
+
+Encode a encodeAcquireAssetTx transaction for later use
+
+**Kind**: instance method of [`GRpcClient`](#GRpcClient)  
+**Returns**: [`Promise.<TxEncodeOutput>`](#GRpcClient.TxEncodeOutput) - result - we provide two formats of the encoding result, binary presentation and human readable object  
+
+| Param  | Type                                   |
+| ------ | -------------------------------------- |
+| params | `GRpcClient.encodeAcquireAssetTxInput` |
+
+### gRpcClient.23(params) ⇒ [`Promise.<TxEncodeOutput>`](#GRpcClient.TxEncodeOutput)
+
+Encode a encodeDelegateTx transaction for later use
+
+**Kind**: instance method of [`GRpcClient`](#GRpcClient)  
+**Returns**: [`Promise.<TxEncodeOutput>`](#GRpcClient.TxEncodeOutput) - result - we provide two formats of the encoding result, binary presentation and human readable object  
+
+| Param  | Type                               |
+| ------ | ---------------------------------- |
+| params | `GRpcClient.encodeDelegateTxInput` |
+
+### gRpcClient.24(params) ⇒ [`Promise.<TxEncodeOutput>`](#GRpcClient.TxEncodeOutput)
+
+Encode a encodeDepositTokenTx transaction for later use
+
+**Kind**: instance method of [`GRpcClient`](#GRpcClient)  
+**Returns**: [`Promise.<TxEncodeOutput>`](#GRpcClient.TxEncodeOutput) - result - we provide two formats of the encoding result, binary presentation and human readable object  
+
+| Param  | Type                                   |
+| ------ | -------------------------------------- |
+| params | `GRpcClient.encodeDepositTokenTxInput` |
+
+### gRpcClient.25(params) ⇒ [`Promise.<TxEncodeOutput>`](#GRpcClient.TxEncodeOutput)
+
+Encode a encodeSetupSwapTx transaction for later use
+
+**Kind**: instance method of [`GRpcClient`](#GRpcClient)  
+**Returns**: [`Promise.<TxEncodeOutput>`](#GRpcClient.TxEncodeOutput) - result - we provide two formats of the encoding result, binary presentation and human readable object  
+
+| Param  | Type                                |
+| ------ | ----------------------------------- |
+| params | `GRpcClient.encodeSetupSwapTxInput` |
+
+### gRpcClient.26(params) ⇒ [`Promise.<TxEncodeOutput>`](#GRpcClient.TxEncodeOutput)
+
+Encode a encodeRefuelTx transaction for later use
+
+**Kind**: instance method of [`GRpcClient`](#GRpcClient)  
+**Returns**: [`Promise.<TxEncodeOutput>`](#GRpcClient.TxEncodeOutput) - result - we provide two formats of the encoding result, binary presentation and human readable object  
+
+| Param  | Type                             |
+| ------ | -------------------------------- |
+| params | `GRpcClient.encodeRefuelTxInput` |
 
 ### GRpcClient.TxEncodeOutput : `object`
 
@@ -1962,7 +1988,7 @@ Structure of GRpcClient.ResponseGetTx
       }
     ],
     "code": 0,
-    "time": "2019-12-24T06:36:38.955Z"
+    "time": "2020-01-11T02:02:54.432Z"
   }
 }
 ```
@@ -2002,7 +2028,7 @@ Structure of GRpcClient.ResponseGetBlock
   "block": {
     "height": 5,
     "numTxs": 2,
-    "time": "2019-12-24T06:36:38.950Z",
+    "time": "2020-01-11T02:02:54.427Z",
     "appHash": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
     "proposer": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
     "txs": [
@@ -2056,7 +2082,7 @@ Structure of GRpcClient.ResponseGetBlock
           }
         ],
         "code": 0,
-        "time": "2019-12-24T06:36:38.950Z"
+        "time": "2020-01-11T02:02:54.427Z"
       },
       {
         "tx": {
@@ -2108,7 +2134,7 @@ Structure of GRpcClient.ResponseGetBlock
           }
         ],
         "code": 0,
-        "time": "2019-12-24T06:36:38.950Z"
+        "time": "2020-01-11T02:02:54.428Z"
       }
     ],
     "totalTxs": 5,
@@ -2163,7 +2189,7 @@ Structure of GRpcClient.ResponseGetBlock
           }
         ],
         "code": 0,
-        "time": "2019-12-24T06:36:38.951Z"
+        "time": "2020-01-11T02:02:54.428Z"
       },
       {
         "tx": {
@@ -2215,7 +2241,7 @@ Structure of GRpcClient.ResponseGetBlock
           }
         ],
         "code": 0,
-        "time": "2019-12-24T06:36:38.951Z"
+        "time": "2020-01-11T02:02:54.428Z"
       }
     ],
     "txsHashes": [
@@ -2308,7 +2334,7 @@ Structure of GRpcClient.ResponseGetBlocks
     {
       "height": 5,
       "numTxs": 2,
-      "time": "2019-12-24T06:36:38.951Z",
+      "time": "2020-01-11T02:02:54.428Z",
       "appHash": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
       "proposer": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
       "totalTxs": 5,
@@ -2341,7 +2367,7 @@ Structure of GRpcClient.ResponseGetBlocks
     {
       "height": 5,
       "numTxs": 2,
-      "time": "2019-12-24T06:36:38.951Z",
+      "time": "2020-01-11T02:02:54.428Z",
       "appHash": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
       "proposer": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
       "totalTxs": 5,
@@ -2514,8 +2540,8 @@ Structure of GRpcClient.ResponseGetAccountState
     "context": {
       "genesisTx": "arcblock",
       "renaissanceTx": "arcblock",
-      "genesisTime": "2019-12-24T06:36:38.952Z",
-      "renaissanceTime": "2019-12-24T06:36:38.952Z"
+      "genesisTime": "2020-01-11T02:02:54.429Z",
+      "renaissanceTime": "2020-01-11T02:02:54.429Z"
     },
     "issuer": "arcblock",
     "migratedTo": [
@@ -2624,7 +2650,7 @@ Structure of GRpcClient.ResponseGetAssetState
     "readonly": true,
     "transferrable": true,
     "ttl": 2,
-    "consumedTime": "2019-12-24T06:36:38.952Z",
+    "consumedTime": "2020-01-11T02:02:54.429Z",
     "issuer": "arcblock",
     "parent": "arcblock",
     "stake": {
@@ -2652,8 +2678,8 @@ Structure of GRpcClient.ResponseGetAssetState
     "context": {
       "genesisTx": "arcblock",
       "renaissanceTx": "arcblock",
-      "genesisTime": "2019-12-24T06:36:38.952Z",
-      "renaissanceTime": "2019-12-24T06:36:38.952Z"
+      "genesisTime": "2020-01-11T02:02:54.429Z",
+      "renaissanceTime": "2020-01-11T02:02:54.429Z"
     },
     "data": {
       "type": "string",
@@ -2758,8 +2784,8 @@ Structure of GRpcClient.ResponseGetProtocolState
     "context": {
       "genesisTx": "arcblock",
       "renaissanceTx": "arcblock",
-      "genesisTime": "2019-12-24T06:36:38.953Z",
-      "renaissanceTime": "2019-12-24T06:36:38.953Z"
+      "genesisTime": "2020-01-11T02:02:54.430Z",
+      "renaissanceTime": "2020-01-11T02:02:54.430Z"
     },
     "data": {
       "type": "string",
@@ -2816,8 +2842,8 @@ Structure of GRpcClient.ResponseGetStakeState
     "context": {
       "genesisTx": "arcblock",
       "renaissanceTx": "arcblock",
-      "genesisTime": "2019-12-24T06:36:38.953Z",
-      "renaissanceTime": "2019-12-24T06:36:38.953Z"
+      "genesisTime": "2020-01-11T02:02:54.430Z",
+      "renaissanceTime": "2020-01-11T02:02:54.430Z"
     },
     "data": {
       "type": "string",
@@ -2915,8 +2941,8 @@ Structure of GRpcClient.ResponseGetForgeState
         "context": {
           "genesisTx": "arcblock",
           "renaissanceTx": "arcblock",
-          "genesisTime": "2019-12-24T06:36:38.952Z",
-          "renaissanceTime": "2019-12-24T06:36:38.952Z"
+          "genesisTime": "2020-01-11T02:02:54.429Z",
+          "renaissanceTime": "2020-01-11T02:02:54.429Z"
         }
       }
     },
@@ -3050,8 +3076,8 @@ Structure of GRpcClient.ResponseGetSwapState
     "context": {
       "genesisTx": "arcblock",
       "renaissanceTx": "arcblock",
-      "genesisTime": "2019-12-24T06:36:38.953Z",
-      "renaissanceTime": "2019-12-24T06:36:38.953Z"
+      "genesisTime": "2020-01-11T02:02:54.430Z",
+      "renaissanceTime": "2020-01-11T02:02:54.430Z"
     }
   }
 }
@@ -3108,8 +3134,8 @@ Structure of GRpcClient.ResponseGetDelegateState
     "context": {
       "genesisTx": "arcblock",
       "renaissanceTx": "arcblock",
-      "genesisTime": "2019-12-24T06:36:38.953Z",
-      "renaissanceTime": "2019-12-24T06:36:38.953Z"
+      "genesisTime": "2020-01-11T02:02:54.430Z",
+      "renaissanceTime": "2020-01-11T02:02:54.430Z"
     },
     "data": {
       "type": "string",
@@ -3259,7 +3285,7 @@ Structure of GRpcClient.ResponseGetChainInfo
     "appHash": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
     "blockHash": {},
     "blockHeight": 5,
-    "blockTime": "2019-12-24T06:36:38.951Z",
+    "blockTime": "2020-01-11T02:02:54.428Z",
     "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
     "votingPower": 5,
     "totalTxs": 5,
@@ -3309,7 +3335,7 @@ Structure of GRpcClient.ResponseGetNodeInfo
     "appHash": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
     "blockHash": {},
     "blockHeight": 5,
-    "blockTime": "2019-12-24T06:36:38.951Z",
+    "blockTime": "2020-01-11T02:02:54.428Z",
     "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
     "votingPower": 5,
     "totalTxs": 5,
@@ -3418,7 +3444,7 @@ Structure of GRpcClient.ResponseSearch
         }
       ],
       "code": 0,
-      "time": "2019-12-24T06:36:38.951Z"
+      "time": "2020-01-11T02:02:54.428Z"
     },
     {
       "tx": {
@@ -3470,7 +3496,7 @@ Structure of GRpcClient.ResponseSearch
         }
       ],
       "code": 0,
-      "time": "2019-12-24T06:36:38.951Z"
+      "time": "2020-01-11T02:02:54.428Z"
     }
   ]
 }
@@ -3774,47 +3800,49 @@ Structure of GRpcClient.ResponseSubscribe
 **Kind**: static typedef of [`GRpcClient`](#GRpcClient)  
 **Properties**
 
-| Name               | Type                                                 |
-| ------------------ | ---------------------------------------------------- |
-| code               | `GRpcClient.StatusCode`                              |
-| topic              | `string`                                             |
-| transfer           | [`Transaction`](#GRpcClient.Transaction)             |
-| accountMigrate     | [`Transaction`](#GRpcClient.Transaction)             |
-| confirm            | [`Transaction`](#GRpcClient.Transaction)             |
-| createAsset        | [`Transaction`](#GRpcClient.Transaction)             |
-| exchange           | [`Transaction`](#GRpcClient.Transaction)             |
-| revoke             | [`Transaction`](#GRpcClient.Transaction)             |
-| beginBlock         | [`RequestBeginBlock`](#GRpcClient.RequestBeginBlock) |
-| endBlock           | [`RequestEndBlock`](#GRpcClient.RequestEndBlock)     |
-| declare            | [`Transaction`](#GRpcClient.Transaction)             |
-| updateAsset        | [`Transaction`](#GRpcClient.Transaction)             |
-| consensusUpgrade   | [`Transaction`](#GRpcClient.Transaction)             |
-| declareFile        | [`Transaction`](#GRpcClient.Transaction)             |
-| sysUpgrade         | [`Transaction`](#GRpcClient.Transaction)             |
-| stake              | [`Transaction`](#GRpcClient.Transaction)             |
-| delegate           | [`Transaction`](#GRpcClient.Transaction)             |
-| activateProtocol   | [`Transaction`](#GRpcClient.Transaction)             |
-| deactivateProtocol | [`Transaction`](#GRpcClient.Transaction)             |
-| revokeDelegate     | [`Transaction`](#GRpcClient.Transaction)             |
-| depositToken       | [`Transaction`](#GRpcClient.Transaction)             |
-| withdrawToken      | [`Transaction`](#GRpcClient.Transaction)             |
-| approveWithdraw    | [`Transaction`](#GRpcClient.Transaction)             |
-| revokeWithdraw     | [`Transaction`](#GRpcClient.Transaction)             |
-| setupSwap          | [`Transaction`](#GRpcClient.Transaction)             |
-| revokeSwap         | [`Transaction`](#GRpcClient.Transaction)             |
-| retrieveSwap       | [`Transaction`](#GRpcClient.Transaction)             |
-| poke               | [`Transaction`](#GRpcClient.Transaction)             |
-| deployProtocol     | [`Transaction`](#GRpcClient.Transaction)             |
-| consumeAsset       | [`Transaction`](#GRpcClient.Transaction)             |
-| acquireAsset       | [`Transaction`](#GRpcClient.Transaction)             |
-| upgradeNode        | [`Transaction`](#GRpcClient.Transaction)             |
-| accountState       | [`AccountState`](#GRpcClient.AccountState)           |
-| assetState         | [`AssetState`](#GRpcClient.AssetState)               |
-| forgeState         | [`ForgeState`](#GRpcClient.ForgeState)               |
-| stakeState         | [`StakeState`](#GRpcClient.StakeState)               |
-| protocolState      | [`ProtocolState`](#GRpcClient.ProtocolState)         |
-| delegateState      | [`DelegateState`](#GRpcClient.DelegateState)         |
-| swapState          | [`SwapState`](#GRpcClient.SwapState)                 |
+| Name                  | Type                                                 |
+| --------------------- | ---------------------------------------------------- |
+| code                  | `GRpcClient.StatusCode`                              |
+| topic                 | `string`                                             |
+| transfer              | [`Transaction`](#GRpcClient.Transaction)             |
+| accountMigrate        | [`Transaction`](#GRpcClient.Transaction)             |
+| confirm               | [`Transaction`](#GRpcClient.Transaction)             |
+| createAsset           | [`Transaction`](#GRpcClient.Transaction)             |
+| exchange              | [`Transaction`](#GRpcClient.Transaction)             |
+| revoke                | [`Transaction`](#GRpcClient.Transaction)             |
+| beginBlock            | [`RequestBeginBlock`](#GRpcClient.RequestBeginBlock) |
+| endBlock              | [`RequestEndBlock`](#GRpcClient.RequestEndBlock)     |
+| declare               | [`Transaction`](#GRpcClient.Transaction)             |
+| updateAsset           | [`Transaction`](#GRpcClient.Transaction)             |
+| consensusUpgrade      | [`Transaction`](#GRpcClient.Transaction)             |
+| declareFile           | [`Transaction`](#GRpcClient.Transaction)             |
+| sysUpgrade            | [`Transaction`](#GRpcClient.Transaction)             |
+| stake                 | [`Transaction`](#GRpcClient.Transaction)             |
+| delegate              | [`Transaction`](#GRpcClient.Transaction)             |
+| activateProtocol      | [`Transaction`](#GRpcClient.Transaction)             |
+| deactivateProtocol    | [`Transaction`](#GRpcClient.Transaction)             |
+| revokeDelegate        | [`Transaction`](#GRpcClient.Transaction)             |
+| depositToken          | [`Transaction`](#GRpcClient.Transaction)             |
+| withdrawToken         | [`Transaction`](#GRpcClient.Transaction)             |
+| approveWithdraw       | [`Transaction`](#GRpcClient.Transaction)             |
+| revokeWithdraw        | [`Transaction`](#GRpcClient.Transaction)             |
+| setupSwap             | [`Transaction`](#GRpcClient.Transaction)             |
+| revokeSwap            | [`Transaction`](#GRpcClient.Transaction)             |
+| retrieveSwap          | [`Transaction`](#GRpcClient.Transaction)             |
+| poke                  | [`Transaction`](#GRpcClient.Transaction)             |
+| deployProtocol        | [`Transaction`](#GRpcClient.Transaction)             |
+| consumeAsset          | [`Transaction`](#GRpcClient.Transaction)             |
+| acquireAsset          | [`Transaction`](#GRpcClient.Transaction)             |
+| upgradeNode           | [`Transaction`](#GRpcClient.Transaction)             |
+| updateValidator       | [`Transaction`](#GRpcClient.Transaction)             |
+| updateConsensusParams | [`Transaction`](#GRpcClient.Transaction)             |
+| accountState          | [`AccountState`](#GRpcClient.AccountState)           |
+| assetState            | [`AssetState`](#GRpcClient.AssetState)               |
+| forgeState            | [`ForgeState`](#GRpcClient.ForgeState)               |
+| stakeState            | [`StakeState`](#GRpcClient.StakeState)               |
+| protocolState         | [`ProtocolState`](#GRpcClient.ProtocolState)         |
+| delegateState         | [`DelegateState`](#GRpcClient.DelegateState)         |
+| swapState             | [`SwapState`](#GRpcClient.SwapState)                 |
 
 ### GRpcClient.RequestUnsubscribe : `object`
 
@@ -4797,8 +4825,8 @@ Structure of GRpcClient.ResponseListSwap
       "context": {
         "genesisTx": "arcblock",
         "renaissanceTx": "arcblock",
-        "genesisTime": "2019-12-24T06:36:38.954Z",
-        "renaissanceTime": "2019-12-24T06:36:38.954Z"
+        "genesisTime": "2020-01-11T02:02:54.431Z",
+        "renaissanceTime": "2020-01-11T02:02:54.431Z"
       }
     },
     {
@@ -4816,8 +4844,8 @@ Structure of GRpcClient.ResponseListSwap
       "context": {
         "genesisTx": "arcblock",
         "renaissanceTx": "arcblock",
-        "genesisTime": "2019-12-24T06:36:38.954Z",
-        "renaissanceTime": "2019-12-24T06:36:38.954Z"
+        "genesisTime": "2020-01-11T02:02:54.431Z",
+        "renaissanceTime": "2020-01-11T02:02:54.431Z"
       }
     }
   ]
@@ -6660,7 +6688,7 @@ Structure of GRpcClient.ExchangeTx
       "arcblock"
     ]
   },
-  "expiredAt": "2019-12-24T06:36:38.957Z",
+  "expiredAt": "2020-01-11T02:02:54.435Z",
   "data": {
     "type": "string",
     "value": "ABCD 1234"
@@ -6901,6 +6929,42 @@ Structure of GRpcClient.UpdateAssetTx
 | moniker | `string`                 |
 | data    | [`Any`](#GRpcClient.Any) |
 
+### GRpcClient.UpdateConsensusParamsTx : `object`
+
+Structure of GRpcClient.UpdateConsensusParamsTx
+
+```javascript
+{
+  "delegateConfig": {
+    "deltaInterval": 2,
+    "typeUrls": [
+      "arcblock",
+      "arcblock"
+    ]
+  },
+  "declareConfig": {
+    "restricted": true,
+    "hierarchy": 2
+  },
+  "tokenSwapConfig": {
+    "commissionHolderAddress": "arcblock",
+    "commissionRate": 2,
+    "revokeCommissionRate": 2,
+    "withdrawInterval": 2,
+    "revokeCommission": 2
+  }
+}
+```
+
+**Kind**: static typedef of [`GRpcClient`](#GRpcClient)  
+**Properties**
+
+| Name            | Type                                             |
+| --------------- | ------------------------------------------------ |
+| delegateConfig  | [`DelegateConfig`](#GRpcClient.DelegateConfig)   |
+| declareConfig   | [`DeclareConfig`](#GRpcClient.DeclareConfig)     |
+| tokenSwapConfig | [`TokenSwapConfig`](#GRpcClient.TokenSwapConfig) |
+
 ### GRpcClient.UpdateValidatorTx : `object`
 
 Structure of GRpcClient.UpdateValidatorTx
@@ -6961,21 +7025,19 @@ Structure of GRpcClient.WithdrawTokenTx
 {
   "to": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
   "chainType": "arcblock",
-  "chainId": "arcblock",
-  "ttl": "2019-12-24T06:36:38.957Z"
+  "chainId": "arcblock"
 }
 ```
 
 **Kind**: static typedef of [`GRpcClient`](#GRpcClient)  
 **Properties**
 
-| Name      | Type                                 |
-| --------- | ------------------------------------ |
-| value     | [`BigUint`](#GRpcClient.BigUint)     |
-| to        | `string`                             |
-| chainType | `string`                             |
-| chainId   | `string`                             |
-| ttl       | [`Timestamp`](#GRpcClient.Timestamp) |
+| Name      | Type                             |
+| --------- | -------------------------------- |
+| value     | [`BigUint`](#GRpcClient.BigUint) |
+| to        | `string`                         |
+| chainType | `string`                         |
+| chainId   | `string`                         |
 
 ### GRpcClient.Timestamp : `object`
 
@@ -7379,6 +7441,44 @@ Structure of GRpcClient.ResponseDeliverTx
 | input.wallet          | `object`                      | the wallet used to sign the transaction, either a forge managed wallet or user managed wallet |
 | [input.signature]     | `string`                      | the signature of the tx, if this parameter exist, we will not sign the transaction            |
 
+### GRpcClient.sendWithdrawTokenTxInput : `Object`
+
+**Kind**: static typedef of [`GRpcClient`](#GRpcClient)  
+**Properties**
+
+| Name                  | Type                             | Description                                                                                   |
+| --------------------- | -------------------------------- | --------------------------------------------------------------------------------------------- |
+| input                 | `object`                         |                                                                                               |
+| input.tx              | `object`                         | data of the transaction                                                                       |
+| input.tx.itx          | `GRpcClient.sendWithdrawTokenTx` | the actual transaction object                                                                 |
+| [input.tx.pk]         | `string`                         | the sender pk                                                                                 |
+| [input.tx.from]       | `string`                         | the sender address, can be derived from wallet                                                |
+| [input.tx.nonce]      | `number`                         | the tx nonce, defaults to Date.now if not set                                                 |
+| [input.tx.chainId]    | `string`                         | the chainId                                                                                   |
+| [input.tx.signature]  | `string`                         | transaction signature                                                                         |
+| [input.tx.signatures] | `array`                          | transaction signatures, should be set when it's a multisig transaction                        |
+| input.wallet          | `object`                         | the wallet used to sign the transaction, either a forge managed wallet or user managed wallet |
+| [input.signature]     | `string`                         | the signature of the tx, if this parameter exist, we will not sign the transaction            |
+
+### GRpcClient.sendTransferTxInput : `Object`
+
+**Kind**: static typedef of [`GRpcClient`](#GRpcClient)  
+**Properties**
+
+| Name                  | Type                        | Description                                                                                   |
+| --------------------- | --------------------------- | --------------------------------------------------------------------------------------------- |
+| input                 | `object`                    |                                                                                               |
+| input.tx              | `object`                    | data of the transaction                                                                       |
+| input.tx.itx          | `GRpcClient.sendTransferTx` | the actual transaction object                                                                 |
+| [input.tx.pk]         | `string`                    | the sender pk                                                                                 |
+| [input.tx.from]       | `string`                    | the sender address, can be derived from wallet                                                |
+| [input.tx.nonce]      | `number`                    | the tx nonce, defaults to Date.now if not set                                                 |
+| [input.tx.chainId]    | `string`                    | the chainId                                                                                   |
+| [input.tx.signature]  | `string`                    | transaction signature                                                                         |
+| [input.tx.signatures] | `array`                     | transaction signatures, should be set when it's a multisig transaction                        |
+| input.wallet          | `object`                    | the wallet used to sign the transaction, either a forge managed wallet or user managed wallet |
+| [input.signature]     | `string`                    | the signature of the tx, if this parameter exist, we will not sign the transaction            |
+
 ### GRpcClient.sendAccountMigrateTxInput : `Object`
 
 **Kind**: static typedef of [`GRpcClient`](#GRpcClient)  
@@ -7398,7 +7498,102 @@ Structure of GRpcClient.ResponseDeliverTx
 | input.wallet          | `object`                          | the wallet used to sign the transaction, either a forge managed wallet or user managed wallet |
 | [input.signature]     | `string`                          | the signature of the tx, if this parameter exist, we will not sign the transaction            |
 
-### GRpcClient.sendAcquireAssetTxInput : `Object`
+### GRpcClient.sendDeclareTxInput : `Object`
+
+**Kind**: static typedef of [`GRpcClient`](#GRpcClient)  
+**Properties**
+
+| Name                  | Type                       | Description                                                                                   |
+| --------------------- | -------------------------- | --------------------------------------------------------------------------------------------- |
+| input                 | `object`                   |                                                                                               |
+| input.tx              | `object`                   | data of the transaction                                                                       |
+| input.tx.itx          | `GRpcClient.sendDeclareTx` | the actual transaction object                                                                 |
+| [input.tx.pk]         | `string`                   | the sender pk                                                                                 |
+| [input.tx.from]       | `string`                   | the sender address, can be derived from wallet                                                |
+| [input.tx.nonce]      | `number`                   | the tx nonce, defaults to Date.now if not set                                                 |
+| [input.tx.chainId]    | `string`                   | the chainId                                                                                   |
+| [input.tx.signature]  | `string`                   | transaction signature                                                                         |
+| [input.tx.signatures] | `array`                    | transaction signatures, should be set when it's a multisig transaction                        |
+| input.wallet          | `object`                   | the wallet used to sign the transaction, either a forge managed wallet or user managed wallet |
+| [input.signature]     | `string`                   | the signature of the tx, if this parameter exist, we will not sign the transaction            |
+
+### GRpcClient.sendRevokeDelegateTxInput : `Object`
+
+**Kind**: static typedef of [`GRpcClient`](#GRpcClient)  
+**Properties**
+
+| Name                  | Type                              | Description                                                                                   |
+| --------------------- | --------------------------------- | --------------------------------------------------------------------------------------------- |
+| input                 | `object`                          |                                                                                               |
+| input.tx              | `object`                          | data of the transaction                                                                       |
+| input.tx.itx          | `GRpcClient.sendRevokeDelegateTx` | the actual transaction object                                                                 |
+| [input.tx.pk]         | `string`                          | the sender pk                                                                                 |
+| [input.tx.from]       | `string`                          | the sender address, can be derived from wallet                                                |
+| [input.tx.nonce]      | `number`                          | the tx nonce, defaults to Date.now if not set                                                 |
+| [input.tx.chainId]    | `string`                          | the chainId                                                                                   |
+| [input.tx.signature]  | `string`                          | transaction signature                                                                         |
+| [input.tx.signatures] | `array`                           | transaction signatures, should be set when it's a multisig transaction                        |
+| input.wallet          | `object`                          | the wallet used to sign the transaction, either a forge managed wallet or user managed wallet |
+| [input.signature]     | `string`                          | the signature of the tx, if this parameter exist, we will not sign the transaction            |
+
+### GRpcClient.sendDeactivateProtocolTxInput : `Object`
+
+**Kind**: static typedef of [`GRpcClient`](#GRpcClient)  
+**Properties**
+
+| Name                  | Type                                  | Description                                                                                   |
+| --------------------- | ------------------------------------- | --------------------------------------------------------------------------------------------- |
+| input                 | `object`                              |                                                                                               |
+| input.tx              | `object`                              | data of the transaction                                                                       |
+| input.tx.itx          | `GRpcClient.sendDeactivateProtocolTx` | the actual transaction object                                                                 |
+| [input.tx.pk]         | `string`                              | the sender pk                                                                                 |
+| [input.tx.from]       | `string`                              | the sender address, can be derived from wallet                                                |
+| [input.tx.nonce]      | `number`                              | the tx nonce, defaults to Date.now if not set                                                 |
+| [input.tx.chainId]    | `string`                              | the chainId                                                                                   |
+| [input.tx.signature]  | `string`                              | transaction signature                                                                         |
+| [input.tx.signatures] | `array`                               | transaction signatures, should be set when it's a multisig transaction                        |
+| input.wallet          | `object`                              | the wallet used to sign the transaction, either a forge managed wallet or user managed wallet |
+| [input.signature]     | `string`                              | the signature of the tx, if this parameter exist, we will not sign the transaction            |
+
+### GRpcClient.sendRevokeWithdrawTxInput : `Object`
+
+**Kind**: static typedef of [`GRpcClient`](#GRpcClient)  
+**Properties**
+
+| Name                  | Type                              | Description                                                                                   |
+| --------------------- | --------------------------------- | --------------------------------------------------------------------------------------------- |
+| input                 | `object`                          |                                                                                               |
+| input.tx              | `object`                          | data of the transaction                                                                       |
+| input.tx.itx          | `GRpcClient.sendRevokeWithdrawTx` | the actual transaction object                                                                 |
+| [input.tx.pk]         | `string`                          | the sender pk                                                                                 |
+| [input.tx.from]       | `string`                          | the sender address, can be derived from wallet                                                |
+| [input.tx.nonce]      | `number`                          | the tx nonce, defaults to Date.now if not set                                                 |
+| [input.tx.chainId]    | `string`                          | the chainId                                                                                   |
+| [input.tx.signature]  | `string`                          | transaction signature                                                                         |
+| [input.tx.signatures] | `array`                           | transaction signatures, should be set when it's a multisig transaction                        |
+| input.wallet          | `object`                          | the wallet used to sign the transaction, either a forge managed wallet or user managed wallet |
+| [input.signature]     | `string`                          | the signature of the tx, if this parameter exist, we will not sign the transaction            |
+
+### GRpcClient.sendCreateAssetTxInput : `Object`
+
+**Kind**: static typedef of [`GRpcClient`](#GRpcClient)  
+**Properties**
+
+| Name                  | Type                           | Description                                                                                   |
+| --------------------- | ------------------------------ | --------------------------------------------------------------------------------------------- |
+| input                 | `object`                       |                                                                                               |
+| input.tx              | `object`                       | data of the transaction                                                                       |
+| input.tx.itx          | `GRpcClient.sendCreateAssetTx` | the actual transaction object                                                                 |
+| [input.tx.pk]         | `string`                       | the sender pk                                                                                 |
+| [input.tx.from]       | `string`                       | the sender address, can be derived from wallet                                                |
+| [input.tx.nonce]      | `number`                       | the tx nonce, defaults to Date.now if not set                                                 |
+| [input.tx.chainId]    | `string`                       | the chainId                                                                                   |
+| [input.tx.signature]  | `string`                       | transaction signature                                                                         |
+| [input.tx.signatures] | `array`                        | transaction signatures, should be set when it's a multisig transaction                        |
+| input.wallet          | `object`                       | the wallet used to sign the transaction, either a forge managed wallet or user managed wallet |
+| [input.signature]     | `string`                       | the signature of the tx, if this parameter exist, we will not sign the transaction            |
+
+### GRpcClient.sendRetrieveSwapTxInput : `Object`
 
 **Kind**: static typedef of [`GRpcClient`](#GRpcClient)  
 **Properties**
@@ -7407,7 +7602,7 @@ Structure of GRpcClient.ResponseDeliverTx
 | --------------------- | ------------------------------- | --------------------------------------------------------------------------------------------- |
 | input                 | `object`                        |                                                                                               |
 | input.tx              | `object`                        | data of the transaction                                                                       |
-| input.tx.itx          | `GRpcClient.sendAcquireAssetTx` | the actual transaction object                                                                 |
+| input.tx.itx          | `GRpcClient.sendRetrieveSwapTx` | the actual transaction object                                                                 |
 | [input.tx.pk]         | `string`                        | the sender pk                                                                                 |
 | [input.tx.from]       | `string`                        | the sender address, can be derived from wallet                                                |
 | [input.tx.nonce]      | `number`                        | the tx nonce, defaults to Date.now if not set                                                 |
@@ -7416,6 +7611,120 @@ Structure of GRpcClient.ResponseDeliverTx
 | [input.tx.signatures] | `array`                         | transaction signatures, should be set when it's a multisig transaction                        |
 | input.wallet          | `object`                        | the wallet used to sign the transaction, either a forge managed wallet or user managed wallet |
 | [input.signature]     | `string`                        | the signature of the tx, if this parameter exist, we will not sign the transaction            |
+
+### GRpcClient.sendConsumeAssetTxInput : `Object`
+
+**Kind**: static typedef of [`GRpcClient`](#GRpcClient)  
+**Properties**
+
+| Name                  | Type                            | Description                                                                                   |
+| --------------------- | ------------------------------- | --------------------------------------------------------------------------------------------- |
+| input                 | `object`                        |                                                                                               |
+| input.tx              | `object`                        | data of the transaction                                                                       |
+| input.tx.itx          | `GRpcClient.sendConsumeAssetTx` | the actual transaction object                                                                 |
+| [input.tx.pk]         | `string`                        | the sender pk                                                                                 |
+| [input.tx.from]       | `string`                        | the sender address, can be derived from wallet                                                |
+| [input.tx.nonce]      | `number`                        | the tx nonce, defaults to Date.now if not set                                                 |
+| [input.tx.chainId]    | `string`                        | the chainId                                                                                   |
+| [input.tx.signature]  | `string`                        | transaction signature                                                                         |
+| [input.tx.signatures] | `array`                         | transaction signatures, should be set when it's a multisig transaction                        |
+| input.wallet          | `object`                        | the wallet used to sign the transaction, either a forge managed wallet or user managed wallet |
+| [input.signature]     | `string`                        | the signature of the tx, if this parameter exist, we will not sign the transaction            |
+
+### GRpcClient.sendPokeTxInput : `Object`
+
+**Kind**: static typedef of [`GRpcClient`](#GRpcClient)  
+**Properties**
+
+| Name                  | Type                    | Description                                                                                   |
+| --------------------- | ----------------------- | --------------------------------------------------------------------------------------------- |
+| input                 | `object`                |                                                                                               |
+| input.tx              | `object`                | data of the transaction                                                                       |
+| input.tx.itx          | `GRpcClient.sendPokeTx` | the actual transaction object                                                                 |
+| [input.tx.pk]         | `string`                | the sender pk                                                                                 |
+| [input.tx.from]       | `string`                | the sender address, can be derived from wallet                                                |
+| [input.tx.nonce]      | `number`                | the tx nonce, defaults to Date.now if not set                                                 |
+| [input.tx.chainId]    | `string`                | the chainId                                                                                   |
+| [input.tx.signature]  | `string`                | transaction signature                                                                         |
+| [input.tx.signatures] | `array`                 | transaction signatures, should be set when it's a multisig transaction                        |
+| input.wallet          | `object`                | the wallet used to sign the transaction, either a forge managed wallet or user managed wallet |
+| [input.signature]     | `string`                | the signature of the tx, if this parameter exist, we will not sign the transaction            |
+
+### GRpcClient.sendUpdateAssetTxInput : `Object`
+
+**Kind**: static typedef of [`GRpcClient`](#GRpcClient)  
+**Properties**
+
+| Name                  | Type                           | Description                                                                                   |
+| --------------------- | ------------------------------ | --------------------------------------------------------------------------------------------- |
+| input                 | `object`                       |                                                                                               |
+| input.tx              | `object`                       | data of the transaction                                                                       |
+| input.tx.itx          | `GRpcClient.sendUpdateAssetTx` | the actual transaction object                                                                 |
+| [input.tx.pk]         | `string`                       | the sender pk                                                                                 |
+| [input.tx.from]       | `string`                       | the sender address, can be derived from wallet                                                |
+| [input.tx.nonce]      | `number`                       | the tx nonce, defaults to Date.now if not set                                                 |
+| [input.tx.chainId]    | `string`                       | the chainId                                                                                   |
+| [input.tx.signature]  | `string`                       | transaction signature                                                                         |
+| [input.tx.signatures] | `array`                        | transaction signatures, should be set when it's a multisig transaction                        |
+| input.wallet          | `object`                       | the wallet used to sign the transaction, either a forge managed wallet or user managed wallet |
+| [input.signature]     | `string`                       | the signature of the tx, if this parameter exist, we will not sign the transaction            |
+
+### GRpcClient.sendExchangeTxInput : `Object`
+
+**Kind**: static typedef of [`GRpcClient`](#GRpcClient)  
+**Properties**
+
+| Name                  | Type                        | Description                                                                                   |
+| --------------------- | --------------------------- | --------------------------------------------------------------------------------------------- |
+| input                 | `object`                    |                                                                                               |
+| input.tx              | `object`                    | data of the transaction                                                                       |
+| input.tx.itx          | `GRpcClient.sendExchangeTx` | the actual transaction object                                                                 |
+| [input.tx.pk]         | `string`                    | the sender pk                                                                                 |
+| [input.tx.from]       | `string`                    | the sender address, can be derived from wallet                                                |
+| [input.tx.nonce]      | `number`                    | the tx nonce, defaults to Date.now if not set                                                 |
+| [input.tx.chainId]    | `string`                    | the chainId                                                                                   |
+| [input.tx.signature]  | `string`                    | transaction signature                                                                         |
+| [input.tx.signatures] | `array`                     | transaction signatures, should be set when it's a multisig transaction                        |
+| input.wallet          | `object`                    | the wallet used to sign the transaction, either a forge managed wallet or user managed wallet |
+| [input.signature]     | `string`                    | the signature of the tx, if this parameter exist, we will not sign the transaction            |
+
+### GRpcClient.sendUpdateConsensusParamsTxInput : `Object`
+
+**Kind**: static typedef of [`GRpcClient`](#GRpcClient)  
+**Properties**
+
+| Name                  | Type                                     | Description                                                                                   |
+| --------------------- | ---------------------------------------- | --------------------------------------------------------------------------------------------- |
+| input                 | `object`                                 |                                                                                               |
+| input.tx              | `object`                                 | data of the transaction                                                                       |
+| input.tx.itx          | `GRpcClient.sendUpdateConsensusParamsTx` | the actual transaction object                                                                 |
+| [input.tx.pk]         | `string`                                 | the sender pk                                                                                 |
+| [input.tx.from]       | `string`                                 | the sender address, can be derived from wallet                                                |
+| [input.tx.nonce]      | `number`                                 | the tx nonce, defaults to Date.now if not set                                                 |
+| [input.tx.chainId]    | `string`                                 | the chainId                                                                                   |
+| [input.tx.signature]  | `string`                                 | transaction signature                                                                         |
+| [input.tx.signatures] | `array`                                  | transaction signatures, should be set when it's a multisig transaction                        |
+| input.wallet          | `object`                                 | the wallet used to sign the transaction, either a forge managed wallet or user managed wallet |
+| [input.signature]     | `string`                                 | the signature of the tx, if this parameter exist, we will not sign the transaction            |
+
+### GRpcClient.sendRevokeSwapTxInput : `Object`
+
+**Kind**: static typedef of [`GRpcClient`](#GRpcClient)  
+**Properties**
+
+| Name                  | Type                          | Description                                                                                   |
+| --------------------- | ----------------------------- | --------------------------------------------------------------------------------------------- |
+| input                 | `object`                      |                                                                                               |
+| input.tx              | `object`                      | data of the transaction                                                                       |
+| input.tx.itx          | `GRpcClient.sendRevokeSwapTx` | the actual transaction object                                                                 |
+| [input.tx.pk]         | `string`                      | the sender pk                                                                                 |
+| [input.tx.from]       | `string`                      | the sender address, can be derived from wallet                                                |
+| [input.tx.nonce]      | `number`                      | the tx nonce, defaults to Date.now if not set                                                 |
+| [input.tx.chainId]    | `string`                      | the chainId                                                                                   |
+| [input.tx.signature]  | `string`                      | transaction signature                                                                         |
+| [input.tx.signatures] | `array`                       | transaction signatures, should be set when it's a multisig transaction                        |
+| input.wallet          | `object`                      | the wallet used to sign the transaction, either a forge managed wallet or user managed wallet |
+| [input.signature]     | `string`                      | the signature of the tx, if this parameter exist, we will not sign the transaction            |
 
 ### GRpcClient.sendActivateProtocolTxInput : `Object`
 
@@ -7455,26 +7764,7 @@ Structure of GRpcClient.ResponseDeliverTx
 | input.wallet          | `object`                           | the wallet used to sign the transaction, either a forge managed wallet or user managed wallet |
 | [input.signature]     | `string`                           | the signature of the tx, if this parameter exist, we will not sign the transaction            |
 
-### GRpcClient.sendConsumeAssetTxInput : `Object`
-
-**Kind**: static typedef of [`GRpcClient`](#GRpcClient)  
-**Properties**
-
-| Name                  | Type                            | Description                                                                                   |
-| --------------------- | ------------------------------- | --------------------------------------------------------------------------------------------- |
-| input                 | `object`                        |                                                                                               |
-| input.tx              | `object`                        | data of the transaction                                                                       |
-| input.tx.itx          | `GRpcClient.sendConsumeAssetTx` | the actual transaction object                                                                 |
-| [input.tx.pk]         | `string`                        | the sender pk                                                                                 |
-| [input.tx.from]       | `string`                        | the sender address, can be derived from wallet                                                |
-| [input.tx.nonce]      | `number`                        | the tx nonce, defaults to Date.now if not set                                                 |
-| [input.tx.chainId]    | `string`                        | the chainId                                                                                   |
-| [input.tx.signature]  | `string`                        | transaction signature                                                                         |
-| [input.tx.signatures] | `array`                         | transaction signatures, should be set when it's a multisig transaction                        |
-| input.wallet          | `object`                        | the wallet used to sign the transaction, either a forge managed wallet or user managed wallet |
-| [input.signature]     | `string`                        | the signature of the tx, if this parameter exist, we will not sign the transaction            |
-
-### GRpcClient.sendCreateAssetTxInput : `Object`
+### GRpcClient.sendUpgradeNodeTxInput : `Object`
 
 **Kind**: static typedef of [`GRpcClient`](#GRpcClient)  
 **Properties**
@@ -7483,7 +7773,7 @@ Structure of GRpcClient.ResponseDeliverTx
 | --------------------- | ------------------------------ | --------------------------------------------------------------------------------------------- |
 | input                 | `object`                       |                                                                                               |
 | input.tx              | `object`                       | data of the transaction                                                                       |
-| input.tx.itx          | `GRpcClient.sendCreateAssetTx` | the actual transaction object                                                                 |
+| input.tx.itx          | `GRpcClient.sendUpgradeNodeTx` | the actual transaction object                                                                 |
 | [input.tx.pk]         | `string`                       | the sender pk                                                                                 |
 | [input.tx.from]       | `string`                       | the sender address, can be derived from wallet                                                |
 | [input.tx.nonce]      | `number`                       | the tx nonce, defaults to Date.now if not set                                                 |
@@ -7493,43 +7783,43 @@ Structure of GRpcClient.ResponseDeliverTx
 | input.wallet          | `object`                       | the wallet used to sign the transaction, either a forge managed wallet or user managed wallet |
 | [input.signature]     | `string`                       | the signature of the tx, if this parameter exist, we will not sign the transaction            |
 
-### GRpcClient.sendDeactivateProtocolTxInput : `Object`
+### GRpcClient.sendUpdateValidatorTxInput : `Object`
 
 **Kind**: static typedef of [`GRpcClient`](#GRpcClient)  
 **Properties**
 
-| Name                  | Type                                  | Description                                                                                   |
-| --------------------- | ------------------------------------- | --------------------------------------------------------------------------------------------- |
-| input                 | `object`                              |                                                                                               |
-| input.tx              | `object`                              | data of the transaction                                                                       |
-| input.tx.itx          | `GRpcClient.sendDeactivateProtocolTx` | the actual transaction object                                                                 |
-| [input.tx.pk]         | `string`                              | the sender pk                                                                                 |
-| [input.tx.from]       | `string`                              | the sender address, can be derived from wallet                                                |
-| [input.tx.nonce]      | `number`                              | the tx nonce, defaults to Date.now if not set                                                 |
-| [input.tx.chainId]    | `string`                              | the chainId                                                                                   |
-| [input.tx.signature]  | `string`                              | transaction signature                                                                         |
-| [input.tx.signatures] | `array`                               | transaction signatures, should be set when it's a multisig transaction                        |
-| input.wallet          | `object`                              | the wallet used to sign the transaction, either a forge managed wallet or user managed wallet |
-| [input.signature]     | `string`                              | the signature of the tx, if this parameter exist, we will not sign the transaction            |
+| Name                  | Type                               | Description                                                                                   |
+| --------------------- | ---------------------------------- | --------------------------------------------------------------------------------------------- |
+| input                 | `object`                           |                                                                                               |
+| input.tx              | `object`                           | data of the transaction                                                                       |
+| input.tx.itx          | `GRpcClient.sendUpdateValidatorTx` | the actual transaction object                                                                 |
+| [input.tx.pk]         | `string`                           | the sender pk                                                                                 |
+| [input.tx.from]       | `string`                           | the sender address, can be derived from wallet                                                |
+| [input.tx.nonce]      | `number`                           | the tx nonce, defaults to Date.now if not set                                                 |
+| [input.tx.chainId]    | `string`                           | the chainId                                                                                   |
+| [input.tx.signature]  | `string`                           | transaction signature                                                                         |
+| [input.tx.signatures] | `array`                            | transaction signatures, should be set when it's a multisig transaction                        |
+| input.wallet          | `object`                           | the wallet used to sign the transaction, either a forge managed wallet or user managed wallet |
+| [input.signature]     | `string`                           | the signature of the tx, if this parameter exist, we will not sign the transaction            |
 
-### GRpcClient.sendDeclareTxInput : `Object`
+### GRpcClient.sendAcquireAssetTxInput : `Object`
 
 **Kind**: static typedef of [`GRpcClient`](#GRpcClient)  
 **Properties**
 
-| Name                  | Type                       | Description                                                                                   |
-| --------------------- | -------------------------- | --------------------------------------------------------------------------------------------- |
-| input                 | `object`                   |                                                                                               |
-| input.tx              | `object`                   | data of the transaction                                                                       |
-| input.tx.itx          | `GRpcClient.sendDeclareTx` | the actual transaction object                                                                 |
-| [input.tx.pk]         | `string`                   | the sender pk                                                                                 |
-| [input.tx.from]       | `string`                   | the sender address, can be derived from wallet                                                |
-| [input.tx.nonce]      | `number`                   | the tx nonce, defaults to Date.now if not set                                                 |
-| [input.tx.chainId]    | `string`                   | the chainId                                                                                   |
-| [input.tx.signature]  | `string`                   | transaction signature                                                                         |
-| [input.tx.signatures] | `array`                    | transaction signatures, should be set when it's a multisig transaction                        |
-| input.wallet          | `object`                   | the wallet used to sign the transaction, either a forge managed wallet or user managed wallet |
-| [input.signature]     | `string`                   | the signature of the tx, if this parameter exist, we will not sign the transaction            |
+| Name                  | Type                            | Description                                                                                   |
+| --------------------- | ------------------------------- | --------------------------------------------------------------------------------------------- |
+| input                 | `object`                        |                                                                                               |
+| input.tx              | `object`                        | data of the transaction                                                                       |
+| input.tx.itx          | `GRpcClient.sendAcquireAssetTx` | the actual transaction object                                                                 |
+| [input.tx.pk]         | `string`                        | the sender pk                                                                                 |
+| [input.tx.from]       | `string`                        | the sender address, can be derived from wallet                                                |
+| [input.tx.nonce]      | `number`                        | the tx nonce, defaults to Date.now if not set                                                 |
+| [input.tx.chainId]    | `string`                        | the chainId                                                                                   |
+| [input.tx.signature]  | `string`                        | transaction signature                                                                         |
+| [input.tx.signatures] | `array`                         | transaction signatures, should be set when it's a multisig transaction                        |
+| input.wallet          | `object`                        | the wallet used to sign the transaction, either a forge managed wallet or user managed wallet |
+| [input.signature]     | `string`                        | the signature of the tx, if this parameter exist, we will not sign the transaction            |
 
 ### GRpcClient.sendDelegateTxInput : `Object`
 
@@ -7569,139 +7859,6 @@ Structure of GRpcClient.ResponseDeliverTx
 | input.wallet          | `object`                        | the wallet used to sign the transaction, either a forge managed wallet or user managed wallet |
 | [input.signature]     | `string`                        | the signature of the tx, if this parameter exist, we will not sign the transaction            |
 
-### GRpcClient.sendExchangeTxInput : `Object`
-
-**Kind**: static typedef of [`GRpcClient`](#GRpcClient)  
-**Properties**
-
-| Name                  | Type                        | Description                                                                                   |
-| --------------------- | --------------------------- | --------------------------------------------------------------------------------------------- |
-| input                 | `object`                    |                                                                                               |
-| input.tx              | `object`                    | data of the transaction                                                                       |
-| input.tx.itx          | `GRpcClient.sendExchangeTx` | the actual transaction object                                                                 |
-| [input.tx.pk]         | `string`                    | the sender pk                                                                                 |
-| [input.tx.from]       | `string`                    | the sender address, can be derived from wallet                                                |
-| [input.tx.nonce]      | `number`                    | the tx nonce, defaults to Date.now if not set                                                 |
-| [input.tx.chainId]    | `string`                    | the chainId                                                                                   |
-| [input.tx.signature]  | `string`                    | transaction signature                                                                         |
-| [input.tx.signatures] | `array`                     | transaction signatures, should be set when it's a multisig transaction                        |
-| input.wallet          | `object`                    | the wallet used to sign the transaction, either a forge managed wallet or user managed wallet |
-| [input.signature]     | `string`                    | the signature of the tx, if this parameter exist, we will not sign the transaction            |
-
-### GRpcClient.sendPokeTxInput : `Object`
-
-**Kind**: static typedef of [`GRpcClient`](#GRpcClient)  
-**Properties**
-
-| Name                  | Type                    | Description                                                                                   |
-| --------------------- | ----------------------- | --------------------------------------------------------------------------------------------- |
-| input                 | `object`                |                                                                                               |
-| input.tx              | `object`                | data of the transaction                                                                       |
-| input.tx.itx          | `GRpcClient.sendPokeTx` | the actual transaction object                                                                 |
-| [input.tx.pk]         | `string`                | the sender pk                                                                                 |
-| [input.tx.from]       | `string`                | the sender address, can be derived from wallet                                                |
-| [input.tx.nonce]      | `number`                | the tx nonce, defaults to Date.now if not set                                                 |
-| [input.tx.chainId]    | `string`                | the chainId                                                                                   |
-| [input.tx.signature]  | `string`                | transaction signature                                                                         |
-| [input.tx.signatures] | `array`                 | transaction signatures, should be set when it's a multisig transaction                        |
-| input.wallet          | `object`                | the wallet used to sign the transaction, either a forge managed wallet or user managed wallet |
-| [input.signature]     | `string`                | the signature of the tx, if this parameter exist, we will not sign the transaction            |
-
-### GRpcClient.sendRefuelTxInput : `Object`
-
-**Kind**: static typedef of [`GRpcClient`](#GRpcClient)  
-**Properties**
-
-| Name                  | Type                      | Description                                                                                   |
-| --------------------- | ------------------------- | --------------------------------------------------------------------------------------------- |
-| input                 | `object`                  |                                                                                               |
-| input.tx              | `object`                  | data of the transaction                                                                       |
-| input.tx.itx          | `GRpcClient.sendRefuelTx` | the actual transaction object                                                                 |
-| [input.tx.pk]         | `string`                  | the sender pk                                                                                 |
-| [input.tx.from]       | `string`                  | the sender address, can be derived from wallet                                                |
-| [input.tx.nonce]      | `number`                  | the tx nonce, defaults to Date.now if not set                                                 |
-| [input.tx.chainId]    | `string`                  | the chainId                                                                                   |
-| [input.tx.signature]  | `string`                  | transaction signature                                                                         |
-| [input.tx.signatures] | `array`                   | transaction signatures, should be set when it's a multisig transaction                        |
-| input.wallet          | `object`                  | the wallet used to sign the transaction, either a forge managed wallet or user managed wallet |
-| [input.signature]     | `string`                  | the signature of the tx, if this parameter exist, we will not sign the transaction            |
-
-### GRpcClient.sendRetrieveSwapTxInput : `Object`
-
-**Kind**: static typedef of [`GRpcClient`](#GRpcClient)  
-**Properties**
-
-| Name                  | Type                            | Description                                                                                   |
-| --------------------- | ------------------------------- | --------------------------------------------------------------------------------------------- |
-| input                 | `object`                        |                                                                                               |
-| input.tx              | `object`                        | data of the transaction                                                                       |
-| input.tx.itx          | `GRpcClient.sendRetrieveSwapTx` | the actual transaction object                                                                 |
-| [input.tx.pk]         | `string`                        | the sender pk                                                                                 |
-| [input.tx.from]       | `string`                        | the sender address, can be derived from wallet                                                |
-| [input.tx.nonce]      | `number`                        | the tx nonce, defaults to Date.now if not set                                                 |
-| [input.tx.chainId]    | `string`                        | the chainId                                                                                   |
-| [input.tx.signature]  | `string`                        | transaction signature                                                                         |
-| [input.tx.signatures] | `array`                         | transaction signatures, should be set when it's a multisig transaction                        |
-| input.wallet          | `object`                        | the wallet used to sign the transaction, either a forge managed wallet or user managed wallet |
-| [input.signature]     | `string`                        | the signature of the tx, if this parameter exist, we will not sign the transaction            |
-
-### GRpcClient.sendRevokeDelegateTxInput : `Object`
-
-**Kind**: static typedef of [`GRpcClient`](#GRpcClient)  
-**Properties**
-
-| Name                  | Type                              | Description                                                                                   |
-| --------------------- | --------------------------------- | --------------------------------------------------------------------------------------------- |
-| input                 | `object`                          |                                                                                               |
-| input.tx              | `object`                          | data of the transaction                                                                       |
-| input.tx.itx          | `GRpcClient.sendRevokeDelegateTx` | the actual transaction object                                                                 |
-| [input.tx.pk]         | `string`                          | the sender pk                                                                                 |
-| [input.tx.from]       | `string`                          | the sender address, can be derived from wallet                                                |
-| [input.tx.nonce]      | `number`                          | the tx nonce, defaults to Date.now if not set                                                 |
-| [input.tx.chainId]    | `string`                          | the chainId                                                                                   |
-| [input.tx.signature]  | `string`                          | transaction signature                                                                         |
-| [input.tx.signatures] | `array`                           | transaction signatures, should be set when it's a multisig transaction                        |
-| input.wallet          | `object`                          | the wallet used to sign the transaction, either a forge managed wallet or user managed wallet |
-| [input.signature]     | `string`                          | the signature of the tx, if this parameter exist, we will not sign the transaction            |
-
-### GRpcClient.sendRevokeSwapTxInput : `Object`
-
-**Kind**: static typedef of [`GRpcClient`](#GRpcClient)  
-**Properties**
-
-| Name                  | Type                          | Description                                                                                   |
-| --------------------- | ----------------------------- | --------------------------------------------------------------------------------------------- |
-| input                 | `object`                      |                                                                                               |
-| input.tx              | `object`                      | data of the transaction                                                                       |
-| input.tx.itx          | `GRpcClient.sendRevokeSwapTx` | the actual transaction object                                                                 |
-| [input.tx.pk]         | `string`                      | the sender pk                                                                                 |
-| [input.tx.from]       | `string`                      | the sender address, can be derived from wallet                                                |
-| [input.tx.nonce]      | `number`                      | the tx nonce, defaults to Date.now if not set                                                 |
-| [input.tx.chainId]    | `string`                      | the chainId                                                                                   |
-| [input.tx.signature]  | `string`                      | transaction signature                                                                         |
-| [input.tx.signatures] | `array`                       | transaction signatures, should be set when it's a multisig transaction                        |
-| input.wallet          | `object`                      | the wallet used to sign the transaction, either a forge managed wallet or user managed wallet |
-| [input.signature]     | `string`                      | the signature of the tx, if this parameter exist, we will not sign the transaction            |
-
-### GRpcClient.sendRevokeWithdrawTxInput : `Object`
-
-**Kind**: static typedef of [`GRpcClient`](#GRpcClient)  
-**Properties**
-
-| Name                  | Type                              | Description                                                                                   |
-| --------------------- | --------------------------------- | --------------------------------------------------------------------------------------------- |
-| input                 | `object`                          |                                                                                               |
-| input.tx              | `object`                          | data of the transaction                                                                       |
-| input.tx.itx          | `GRpcClient.sendRevokeWithdrawTx` | the actual transaction object                                                                 |
-| [input.tx.pk]         | `string`                          | the sender pk                                                                                 |
-| [input.tx.from]       | `string`                          | the sender address, can be derived from wallet                                                |
-| [input.tx.nonce]      | `number`                          | the tx nonce, defaults to Date.now if not set                                                 |
-| [input.tx.chainId]    | `string`                          | the chainId                                                                                   |
-| [input.tx.signature]  | `string`                          | transaction signature                                                                         |
-| [input.tx.signatures] | `array`                           | transaction signatures, should be set when it's a multisig transaction                        |
-| input.wallet          | `object`                          | the wallet used to sign the transaction, either a forge managed wallet or user managed wallet |
-| [input.signature]     | `string`                          | the signature of the tx, if this parameter exist, we will not sign the transaction            |
-
 ### GRpcClient.sendSetupSwapTxInput : `Object`
 
 **Kind**: static typedef of [`GRpcClient`](#GRpcClient)  
@@ -7721,97 +7878,21 @@ Structure of GRpcClient.ResponseDeliverTx
 | input.wallet          | `object`                     | the wallet used to sign the transaction, either a forge managed wallet or user managed wallet |
 | [input.signature]     | `string`                     | the signature of the tx, if this parameter exist, we will not sign the transaction            |
 
-### GRpcClient.sendTransferTxInput : `Object`
+### GRpcClient.sendRefuelTxInput : `Object`
 
 **Kind**: static typedef of [`GRpcClient`](#GRpcClient)  
 **Properties**
 
-| Name                  | Type                        | Description                                                                                   |
-| --------------------- | --------------------------- | --------------------------------------------------------------------------------------------- |
-| input                 | `object`                    |                                                                                               |
-| input.tx              | `object`                    | data of the transaction                                                                       |
-| input.tx.itx          | `GRpcClient.sendTransferTx` | the actual transaction object                                                                 |
-| [input.tx.pk]         | `string`                    | the sender pk                                                                                 |
-| [input.tx.from]       | `string`                    | the sender address, can be derived from wallet                                                |
-| [input.tx.nonce]      | `number`                    | the tx nonce, defaults to Date.now if not set                                                 |
-| [input.tx.chainId]    | `string`                    | the chainId                                                                                   |
-| [input.tx.signature]  | `string`                    | transaction signature                                                                         |
-| [input.tx.signatures] | `array`                     | transaction signatures, should be set when it's a multisig transaction                        |
-| input.wallet          | `object`                    | the wallet used to sign the transaction, either a forge managed wallet or user managed wallet |
-| [input.signature]     | `string`                    | the signature of the tx, if this parameter exist, we will not sign the transaction            |
-
-### GRpcClient.sendUpdateAssetTxInput : `Object`
-
-**Kind**: static typedef of [`GRpcClient`](#GRpcClient)  
-**Properties**
-
-| Name                  | Type                           | Description                                                                                   |
-| --------------------- | ------------------------------ | --------------------------------------------------------------------------------------------- |
-| input                 | `object`                       |                                                                                               |
-| input.tx              | `object`                       | data of the transaction                                                                       |
-| input.tx.itx          | `GRpcClient.sendUpdateAssetTx` | the actual transaction object                                                                 |
-| [input.tx.pk]         | `string`                       | the sender pk                                                                                 |
-| [input.tx.from]       | `string`                       | the sender address, can be derived from wallet                                                |
-| [input.tx.nonce]      | `number`                       | the tx nonce, defaults to Date.now if not set                                                 |
-| [input.tx.chainId]    | `string`                       | the chainId                                                                                   |
-| [input.tx.signature]  | `string`                       | transaction signature                                                                         |
-| [input.tx.signatures] | `array`                        | transaction signatures, should be set when it's a multisig transaction                        |
-| input.wallet          | `object`                       | the wallet used to sign the transaction, either a forge managed wallet or user managed wallet |
-| [input.signature]     | `string`                       | the signature of the tx, if this parameter exist, we will not sign the transaction            |
-
-### GRpcClient.sendUpdateValidatorTxInput : `Object`
-
-**Kind**: static typedef of [`GRpcClient`](#GRpcClient)  
-**Properties**
-
-| Name                  | Type                               | Description                                                                                   |
-| --------------------- | ---------------------------------- | --------------------------------------------------------------------------------------------- |
-| input                 | `object`                           |                                                                                               |
-| input.tx              | `object`                           | data of the transaction                                                                       |
-| input.tx.itx          | `GRpcClient.sendUpdateValidatorTx` | the actual transaction object                                                                 |
-| [input.tx.pk]         | `string`                           | the sender pk                                                                                 |
-| [input.tx.from]       | `string`                           | the sender address, can be derived from wallet                                                |
-| [input.tx.nonce]      | `number`                           | the tx nonce, defaults to Date.now if not set                                                 |
-| [input.tx.chainId]    | `string`                           | the chainId                                                                                   |
-| [input.tx.signature]  | `string`                           | transaction signature                                                                         |
-| [input.tx.signatures] | `array`                            | transaction signatures, should be set when it's a multisig transaction                        |
-| input.wallet          | `object`                           | the wallet used to sign the transaction, either a forge managed wallet or user managed wallet |
-| [input.signature]     | `string`                           | the signature of the tx, if this parameter exist, we will not sign the transaction            |
-
-### GRpcClient.sendUpgradeNodeTxInput : `Object`
-
-**Kind**: static typedef of [`GRpcClient`](#GRpcClient)  
-**Properties**
-
-| Name                  | Type                           | Description                                                                                   |
-| --------------------- | ------------------------------ | --------------------------------------------------------------------------------------------- |
-| input                 | `object`                       |                                                                                               |
-| input.tx              | `object`                       | data of the transaction                                                                       |
-| input.tx.itx          | `GRpcClient.sendUpgradeNodeTx` | the actual transaction object                                                                 |
-| [input.tx.pk]         | `string`                       | the sender pk                                                                                 |
-| [input.tx.from]       | `string`                       | the sender address, can be derived from wallet                                                |
-| [input.tx.nonce]      | `number`                       | the tx nonce, defaults to Date.now if not set                                                 |
-| [input.tx.chainId]    | `string`                       | the chainId                                                                                   |
-| [input.tx.signature]  | `string`                       | transaction signature                                                                         |
-| [input.tx.signatures] | `array`                        | transaction signatures, should be set when it's a multisig transaction                        |
-| input.wallet          | `object`                       | the wallet used to sign the transaction, either a forge managed wallet or user managed wallet |
-| [input.signature]     | `string`                       | the signature of the tx, if this parameter exist, we will not sign the transaction            |
-
-### GRpcClient.sendWithdrawTokenTxInput : `Object`
-
-**Kind**: static typedef of [`GRpcClient`](#GRpcClient)  
-**Properties**
-
-| Name                  | Type                             | Description                                                                                   |
-| --------------------- | -------------------------------- | --------------------------------------------------------------------------------------------- |
-| input                 | `object`                         |                                                                                               |
-| input.tx              | `object`                         | data of the transaction                                                                       |
-| input.tx.itx          | `GRpcClient.sendWithdrawTokenTx` | the actual transaction object                                                                 |
-| [input.tx.pk]         | `string`                         | the sender pk                                                                                 |
-| [input.tx.from]       | `string`                         | the sender address, can be derived from wallet                                                |
-| [input.tx.nonce]      | `number`                         | the tx nonce, defaults to Date.now if not set                                                 |
-| [input.tx.chainId]    | `string`                         | the chainId                                                                                   |
-| [input.tx.signature]  | `string`                         | transaction signature                                                                         |
-| [input.tx.signatures] | `array`                          | transaction signatures, should be set when it's a multisig transaction                        |
-| input.wallet          | `object`                         | the wallet used to sign the transaction, either a forge managed wallet or user managed wallet |
-| [input.signature]     | `string`                         | the signature of the tx, if this parameter exist, we will not sign the transaction            |
+| Name                  | Type                      | Description                                                                                   |
+| --------------------- | ------------------------- | --------------------------------------------------------------------------------------------- |
+| input                 | `object`                  |                                                                                               |
+| input.tx              | `object`                  | data of the transaction                                                                       |
+| input.tx.itx          | `GRpcClient.sendRefuelTx` | the actual transaction object                                                                 |
+| [input.tx.pk]         | `string`                  | the sender pk                                                                                 |
+| [input.tx.from]       | `string`                  | the sender address, can be derived from wallet                                                |
+| [input.tx.nonce]      | `number`                  | the tx nonce, defaults to Date.now if not set                                                 |
+| [input.tx.chainId]    | `string`                  | the chainId                                                                                   |
+| [input.tx.signature]  | `string`                  | transaction signature                                                                         |
+| [input.tx.signatures] | `array`                   | transaction signatures, should be set when it's a multisig transaction                        |
+| input.wallet          | `object`                  | the wallet used to sign the transaction, either a forge managed wallet or user managed wallet |
+| [input.signature]     | `string`                  | the signature of the tx, if this parameter exist, we will not sign the transaction            |
