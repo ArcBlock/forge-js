@@ -721,6 +721,8 @@
                 "consumeAsset",
                 "acquireAsset",
                 "upgradeNode",
+                "updateValidator",
+                "updateConsensusParams",
                 "accountState",
                 "assetState",
                 "forgeState",
@@ -865,6 +867,14 @@
             "upgradeNode": {
               "type": "Transaction",
               "id": 40
+            },
+            "updateValidator": {
+              "type": "Transaction",
+              "id": 41
+            },
+            "updateConsensusParams": {
+              "type": "Transaction",
+              "id": 42
             },
             "accountState": {
               "type": "AccountState",
@@ -4178,6 +4188,22 @@
             }
           }
         },
+        "UpdateConsensusParamsTx": {
+          "fields": {
+            "delegateConfig": {
+              "type": "DelegateConfig",
+              "id": 1
+            },
+            "declareConfig": {
+              "type": "DeclareConfig",
+              "id": 2
+            },
+            "tokenSwapConfig": {
+              "type": "TokenSwapConfig",
+              "id": 3
+            }
+          }
+        },
         "UpdateValidatorTx": {
           "fields": {
             "candidates": {
@@ -4224,10 +4250,6 @@
             "chainId": {
               "type": "string",
               "id": 4
-            },
-            "ttl": {
-              "type": "google.protobuf.Timestamp",
-              "id": 5
             }
           }
         }
