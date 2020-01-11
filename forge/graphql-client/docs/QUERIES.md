@@ -1,6 +1,6 @@
 # Forge GraphQL API List
 
-> Updated on 2019-12-25T02:25:05.889Z
+> Updated on 2020-01-11T02:00:25.641Z
 
 
 ## Table of Contents
@@ -3059,6 +3059,44 @@ subscription {
       }
     }
     updateAsset {
+      chainId
+      delegator
+      from
+      itxJson
+      nonce
+      pk
+      signature
+      signatures {
+        delegator
+        pk
+        signature
+        signer
+        data {
+          typeUrl
+          value
+        }
+      }
+    }
+    updateConsensusParams {
+      chainId
+      delegator
+      from
+      itxJson
+      nonce
+      pk
+      signature
+      signatures {
+        delegator
+        pk
+        signature
+        signer
+        data {
+          typeUrl
+          value
+        }
+      }
+    }
+    updateValidator {
       chainId
       delegator
       from
