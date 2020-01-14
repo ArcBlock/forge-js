@@ -405,6 +405,7 @@ Browser
 | config.claims          | `object`                       |                 | claims for this request                                               |
 | config.action          | `string`                       |                 | action of this group of routes                                        |
 | config.onAuth          | `function`                     |                 | callback when user completed auth in abt wallet, and data posted back |
+| [config.onDecline]     | `function`                     | `noop`          | callback when user declined in wallet                                 |
 | [config.onComplete]    | `function`                     | `noop`          | callback when the whole auth process is done, action token is removed |
 | [config.onExpire]      | `function`                     | `noop`          | callback when the action token expired                                |
 | [config.onError]       | `function`                     | `console.error` | callback when there are some errors                                   |
@@ -466,6 +467,7 @@ Now express app have route handlers attached to the following url
 | config.claims          | `object`                       |                 | claims for this request                                               |
 | config.action          | `string`                       |                 | action of this group of routes                                        |
 | config.onAuth          | `function`                     |                 | callback when user completed auth in abt wallet, and data posted back |
+| [config.onDecline]     | `function`                     | `noop`          | callback when user has declined in wallet                             |
 | [config.onComplete]    | `function`                     | `noop`          | callback when the whole auth process is done, action token is removed |
 | [config.onExpire]      | `function`                     | `noop`          | callback when the action token expired                                |
 | [config.onError]       | `function`                     | `console.error` | callback when there are some errors                                   |
@@ -526,6 +528,7 @@ Now express app have route handlers attached to the following url
 | config.claims          | `object`                       |                 | claims for this request                                               |
 | config.action          | `string`                       |                 | action of this group of routes                                        |
 | config.onAuth          | `function`                     |                 | callback when user completed auth in abt wallet, and data posted back |
+| [config.onDecline]     | `function`                     | `noop`          | callback when user has declined in wallet                             |
 | [config.onComplete]    | `function`                     | `noop`          | callback when the whole auth process is done, action token is removed |
 | [config.onExpire]      | `function`                     | `noop`          | callback when the action token expired                                |
 | [config.onError]       | `function`                     | `console.error` | callback when there are some errors                                   |
@@ -578,6 +581,7 @@ Now express app have route handlers attached to the following url
 | config.claims          | `object`                       |                 | claims for this request                                               |
 | config.action          | `string`                       |                 | action of this group of routes                                        |
 | config.onAuth          | `function`                     |                 | callback when user completed auth in abt wallet, and data posted back |
+| [config.onDecline]     | `function`                     | `noop`          | callback when user has declined in wallet                             |
 | [config.onComplete]    | `function`                     | `noop`          | callback when the whole auth process is done, action token is removed |
 | [config.onExpire]      | `function`                     | `noop`          | callback when the action token expired                                |
 | [config.onError]       | `function`                     | `console.error` | callback when there are some errors                                   |

@@ -363,7 +363,7 @@ Decode base64(base64_url) string to buffer
 
 ### toAddress(did) ⇒ `string`
 
-Convert did to address: remove `did:abt:` prefix if exists
+Convert did to address: remove `did:abt:` prefix
 
 **Kind**: static method  
 **Access**: public  

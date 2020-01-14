@@ -221,6 +221,7 @@ declare class WalletHandlers extends BaseHandler {
    * @param {object} config.claims - claims for this request
    * @param {string} config.action - action of this group of routes
    * @param {function} config.onAuth - callback when user completed auth in abt wallet, and data posted back
+   * @param {function} [config.onDecline=noop] - callback when user has declined in wallet
    * @param {function} [config.onComplete=noop] - callback when the whole auth process is done, action token is removed
    * @param {function} [config.onExpire=noop] - callback when the action token expired
    * @param {function} [config.onError=console.error] - callback when there are some errors
@@ -281,6 +282,7 @@ declare class AtomicSwapHandlers extends BaseHandler {
    * @param {object} config.claims - claims for this request
    * @param {string} config.action - action of this group of routes
    * @param {function} config.onAuth - callback when user completed auth in abt wallet, and data posted back
+   * @param {function} [config.onDecline=noop] - callback when user declined in wallet
    * @param {function} [config.onComplete=noop] - callback when the whole auth process is done, action token is removed
    * @param {function} [config.onExpire=noop] - callback when the action token expired
    * @param {function} [config.onError=console.error] - callback when there are some errors
@@ -363,6 +365,7 @@ declare class AgentWalletHandlers extends WalletHandlers {
    * @param {object} config.claims - claims for this request
    * @param {string} config.action - action of this group of routes
    * @param {function} config.onAuth - callback when user completed auth in abt wallet, and data posted back
+   * @param {function} [config.onDecline=noop] - callback when user has declined in wallet
    * @param {function} [config.onComplete=noop] - callback when the whole auth process is done, action token is removed
    * @param {function} [config.onExpire=noop] - callback when the action token expired
    * @param {function} [config.onError=console.error] - callback when there are some errors
@@ -488,6 +491,7 @@ declare namespace _Lib {
     claims: any;
     action: string;
     onAuth: (...args: any[]) => any;
+    onDecline?: (...args: any[]) => any;
     onComplete?: (...args: any[]) => any;
     onExpire?: (...args: any[]) => any;
     onError?: (...args: any[]) => any;

@@ -1,3 +1,8 @@
+## 1.0.33 (January 14, 2020)
+
+- feat: support doBatch query
+- update readme
+
 ## 1.0.32 (January 11, 2020)
 
 - chore: update grpc-client with forge 1.0.7

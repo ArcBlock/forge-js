@@ -1,7 +1,7 @@
 // Generate by [js2dts@0.3.3](https://github.com/whxaxes/js2dts#readme)
 
 /**
- * Convert did to address: remove `did:abt:` prefix if exists
+ * Convert did to address: remove `did:abt:` prefix
  *
  * @public
  * @static
