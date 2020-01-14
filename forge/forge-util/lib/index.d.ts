@@ -95,7 +95,7 @@ declare function isUUID(str: string): boolean;
  */
 declare function toDid(address: any): string;
 /**
- * Convert did to address: remove `did:abt:` prefix if exists
+ * Convert did to address: remove `did:abt:` prefix
  *
  * @public
  * @static
