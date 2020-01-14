@@ -29,7 +29,7 @@
   ],
   "dependencies": {
     "@arcblock/client-extension": "^1.0.32",
-    "@arcblock/sdk-util": "^0.24.0",
+    "@arcblock/sdk-util": "^0.25.0",
     "blueimp-md5": "^2.10.0",
     "debug": "^4.1.1",
     "jsonpack": "^1.1.5",

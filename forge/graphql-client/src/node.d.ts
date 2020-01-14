@@ -25,6 +25,8 @@ declare class GraphQLClient {
   doRawQuery(query: any, requestOptions?: any): Promise<any>;
   doRawSubscription(query: any): Promise<any>;
 
+  doBatchQuery(queries: object, requestOptions?: any): Promise<object>;
+
   fromUnitToToken(value: string): Promise<string>;
   fromTokenToUnit(amount: number): Promise<BN>;
   toLocktime(number: number, options: any): Promise<number>;

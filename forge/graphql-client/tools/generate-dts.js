@@ -45,9 +45,7 @@ const getFieldType = (type, ns = '') => {
   }
 
   if (type.kind === 'LIST') {
-    return `Array<${
-      type.ofType.kind === 'SCALAR' ? scalarTypes[type.ofType.name] : type.ofType.name
-    }>`;
+    return `Array<${type.ofType.kind === 'SCALAR' ? scalarTypes[type.ofType.name] : type.ofType.name}>`;
   }
 
   if (['OBJECT', 'ENUM', 'UNION'].includes(type.kind)) {
@@ -135,6 +133,8 @@ declare class GraphQLClient {
    */
   doRawQuery(query: any, requestOptions?: any): Promise<any>;
   doRawSubscription(query: any): Promise<any>;
+
+  doBatchQuery(queries: object, requestOptions?: any): Promise<object>;
 
   fromUnitToToken(value: string): Promise<string>;
   fromTokenToUnit(amount: number): Promise<BN>;

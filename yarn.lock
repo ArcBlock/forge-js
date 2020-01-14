@@ -2,14 +2,16 @@
 # yarn lockfile v1
 
 
-"@arcblock/sdk-util@^0.24.0":
-  version "0.24.0"
-  resolved "https://registry.npm.taobao.org/@arcblock/sdk-util/download/@arcblock/sdk-util-0.24.0.tgz#3c540ed57aa8769efd66f92aae59161bc3d61798"
-  integrity sha1-PFQO1Xqodp79ZvkqrlkWG8PWF5g=
+"@arcblock/sdk-util@^0.25.0":
+  version "0.25.0"
+  resolved "https://registry.npm.taobao.org/@arcblock/sdk-util/download/@arcblock/sdk-util-0.25.0.tgz#2967dc0798dde110f31491fe567e9eef68ee41bc"
+  integrity sha1-KWfcB5jd4RDzFJH+Vn6e72juQbw=
   dependencies:
     axios "^0.19.0"
     debug "^4.1.1"
     graphql "^14.1.1"
+    lodash.get "^4.4.2"
+    lodash.set "^4.3.2"
 
 "@babel/code-frame@^7.0.0":
   version "7.0.0"
