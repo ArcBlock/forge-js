@@ -18,9 +18,12 @@ const factory = new AssetFactory({
   },
 });
 
+const sleep = timeout => new Promise(resolve => setTimeout(resolve, timeout));
+
 beforeAll(async () => {
   ForgeSDK.connect(chainHost, { chainId, name: chainId });
   await ForgeSDK.declare({ moniker: 'asset_factory_issuer', wallet });
+  await sleep(3000);
 });
 
 describe('AssetFactory.createTicket', () => {
