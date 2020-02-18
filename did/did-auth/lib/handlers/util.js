@@ -166,6 +166,10 @@ module.exports = function createHandlers({
   };
 
   // This logic exist because the handlers maybe attached to a nested router
+  // pathname pattern: /:prefix/:action/auth
+  // But the group of handlers may be attached to a sub router, which has a baseUrl of `/api/login` (can only be extracted from `req.originalUrl`)
+  // We need to ensure the full url is given to abt wallet
+  // eg: `/agent/login/auth` on the current router will be converted to `/api/login/agent/login/auth`
   const preparePathname = (path, req) => {
     const delimiter = path.replace(/\/auth$/, '');
     const fullPath = url.parse(req.originalUrl).pathname;
