@@ -1,3 +1,8 @@
+## 1.0.34 (February 18, 2020)
+
+- fix: did-auth does not work with nested routes
+- update readme
+
 ## 1.0.33 (January 14, 2020)
 
 - feat: support doBatch query

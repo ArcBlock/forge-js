@@ -1,6 +1,7 @@
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable prefer-destructuring */
 /* eslint-disable object-curly-newline */
+const url = require('url');
 const get = require('lodash.get');
 const Mcrypto = require('@arcblock/mcrypto');
 const { isValid: isValidDid } = require('@arcblock/did');
@@ -164,6 +165,19 @@ module.exports = function createHandlers({
     onError({ stage, err });
   };
 
+  // This logic exist because the handlers maybe attached to a nested router
+  // pathname pattern: /:prefix/:action/auth
+  // But the group of handlers may be attached to a sub router, which has a baseUrl of `/api/login` (can only be extracted from `req.originalUrl`)
+  // We need to ensure the full url is given to abt wallet
+  // eg: `/agent/login/auth` on the current router will be converted to `/api/login/agent/login/auth`
+  const preparePathname = (path, req) => {
+    const delimiter = path.replace(/\/auth$/, '');
+    const fullPath = url.parse(req.originalUrl).pathname;
+    const [prefix] = fullPath.split(delimiter);
+    const cleanPath = [prefix, path].join('/').replace(/\/+/g, '/');
+    return cleanPath;
+  };
+
   // For web app
   const generateActionToken = async (req, res) => {
     try {
@@ -184,7 +198,7 @@ module.exports = function createHandlers({
         token,
         url: authenticator.uri({
           token,
-          pathname: getPathName(pathname, req),
+          pathname: preparePathname(getPathName(pathname, req), req),
           query: req.query,
         }),
       });
@@ -315,7 +329,7 @@ module.exports = function createHandlers({
               walletOS: wallet.os,
             },
             claims: store ? steps[store.currentStep] : steps[0],
-            pathname: getPathName(pathname, req),
+            pathname: preparePathname(getPathName(pathname, req), req),
             extraParams: createExtraParams(locale, params),
           })
         )
@@ -406,7 +420,7 @@ module.exports = function createHandlers({
                   walletOS: wallet.os,
                 },
                 claims: steps[nextStep],
-                pathname: getPathName(pathname, req),
+                pathname: preparePathname(getPathName(pathname, req), req),
                 extraParams: createExtraParams(locale, params),
               })
             );
