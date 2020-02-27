@@ -207,10 +207,13 @@ class AssetFactory {
     );
     asset.address = ForgeSDK.Util.toAssetAddress(asset);
 
-    const hash = await ForgeSDK.sendCreateAssetTx({
-      tx: { itx: asset },
-      wallet: this.wallet,
-    });
+    const hash = await ForgeSDK.sendCreateAssetTx(
+      {
+        tx: { itx: asset },
+        wallet: this.wallet,
+      },
+      { conn: this.chainId }
+    );
 
     return [asset, hash];
   }
