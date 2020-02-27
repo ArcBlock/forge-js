@@ -197,7 +197,7 @@ class AtomicSwapHandlers extends BaseHandler {
 
     // Shared middleware that ensure a valid swap id exists in the url
     const ensureSwap = async (req, res, next) => {
-      const traceId = req.query.traceId || req.query[swapKey] || req.params.traceId || req.params[swapKey];
+      const traceId = req.query[swapKey] || req.params[swapKey];
 
       if (!traceId) {
         return res.json({ error: 'Swap ID is required to start' });
@@ -217,13 +217,12 @@ class AtomicSwapHandlers extends BaseHandler {
     // Update swap storage
     const onAuthAugmented = async cbParams => {
       const { claims: userClaims, extraParams } = cbParams;
-      const { traceId } = extraParams;
+      const traceId = extraParams[swapKey];
       const swap = userClaims.find(x => x.type === 'swap');
       const result = await onAuth(cbParams);
 
+      debug('swap.onUserSetup', { traceId, swap });
       if (swap && traceId) {
-        debug('swap.onUserSetup', { traceId, swap });
-
         const { state } = await ForgeSDK.getSwapState({ address: swap.address }, { conn: swap.demandChain });
 
         if (!state) {
@@ -275,8 +274,8 @@ class AtomicSwapHandlers extends BaseHandler {
     const ensureWallet = ensureRequester('wallet');
 
     // 0. create swap or retrieve swap
-    app.get('/api/swap/:traceId', ensureSwap, async (req, res) => res.jsonp(req.swap));
-    app.post('/api/swap', async (req, res) => {
+    app.get(`${prefix}/swap/:traceId`, ensureSwap, async (req, res) => res.jsonp(req.swap));
+    app.post(`${prefix}/swap`, async (req, res) => {
       const swap = await this.start(req.body);
       return res.jsonp(swap);
     });
@@ -334,7 +333,7 @@ class AtomicSwapHandlers extends BaseHandler {
     // 7. Wallet: setup seller swap and start retriever
     app.post(retrievePath, ensureWallet, ensureSignedJson, ensureContext, ensureSwap, async (req, res) => {
       const { locale, token, params } = req.context;
-      const { traceId } = params;
+      const traceId = params[swapKey];
 
       // FIXME: enforceTimestamp is turned off for now
       const { userDid, userPk, claims: claimResponse } = await this.authenticator.verify(params, locale, false);

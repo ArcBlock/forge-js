@@ -1,3 +1,8 @@
+## 1.0.35 (February 27, 2020)
+
+- fix: swap handler should respect option.swapKey
+- update readme
+
 ## 1.0.34 (February 18, 2020)
 
 - fix: did-auth does not work with nested routes
