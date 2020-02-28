@@ -9,6 +9,8 @@ const debug = require('debug')(`${require('../../package.json').name}:handlers:s
 const createHandlers = require('./util');
 const BaseHandler = require('./base');
 
+const { preparePathname } = createHandlers;
+
 const noop = () => {};
 
 class AtomicSwapHandlers extends BaseHandler {
@@ -235,7 +237,7 @@ class AtomicSwapHandlers extends BaseHandler {
           demandSwapAddress: swap.address,
         });
 
-        const url = this.authenticator.getPublicUrl(retrievePath, extraParams);
+        const url = this.authenticator.getPublicUrl(preparePathname(retrievePath, cbParams.req), extraParams);
         return Object.assign({}, result || {}, { response: { callback: url } });
       }
 
@@ -253,7 +255,6 @@ class AtomicSwapHandlers extends BaseHandler {
       createExtraParams,
       ensureSignedJson,
       checkUser,
-      preparePathname,
     } = createHandlers({
       action,
       pathname: authPath,

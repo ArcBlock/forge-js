@@ -50,6 +50,20 @@ const STATUS_ERROR = 'error';
 const STATUS_SCANNED = 'scanned';
 const STATUS_FORBIDDEN = 'forbidden';
 
+// This logic exist because the handlers maybe attached to a nested router
+// pathname pattern: /:prefix/:action/auth
+// But the group of handlers may be attached to a sub router, which has a baseUrl of `/api/login` (can only be extracted from `req.originalUrl`)
+// We need to ensure the full url is given to abt wallet
+// eg: `/agent/login/auth` on the current router will be converted to `/api/login/agent/login/auth`
+const preparePathname = (path, req) => {
+  const delimiter = path.replace(/\/retrieve$/, '').replace(/\/auth$/, '');
+  const fullPath = url.parse(req.originalUrl).pathname;
+  const [prefix] = fullPath.split(delimiter);
+  const cleanPath = [prefix, path].join('/').replace(/\/+/g, '/');
+  // console.log('preparePathname', { path, delimiter, fullPath, prefix, cleanPath });
+  return cleanPath;
+};
+
 const parseWalletUA = (userAgent = '') => {
   const ua = userAgent.toLocaleLowerCase();
   let os = '';
@@ -163,19 +177,6 @@ module.exports = function createHandlers({
 
     res.json({ error: err.message });
     onError({ stage, err });
-  };
-
-  // This logic exist because the handlers maybe attached to a nested router
-  // pathname pattern: /:prefix/:action/auth
-  // But the group of handlers may be attached to a sub router, which has a baseUrl of `/api/login` (can only be extracted from `req.originalUrl`)
-  // We need to ensure the full url is given to abt wallet
-  // eg: `/agent/login/auth` on the current router will be converted to `/api/login/agent/login/auth`
-  const preparePathname = (path, req) => {
-    const delimiter = path.replace(/\/retrieve$/, '').replace(/\/auth$/, '');
-    const fullPath = url.parse(req.originalUrl).pathname;
-    const [prefix] = fullPath.split(delimiter);
-    const cleanPath = [prefix, path].join('/').replace(/\/+/g, '/');
-    return cleanPath;
   };
 
   // For web app
@@ -523,8 +524,8 @@ module.exports = function createHandlers({
     ensureSignedJson,
     createExtraParams,
     checkUser,
-    preparePathname,
   };
 };
 
 module.exports.parseWalletUA = parseWalletUA;
+module.exports.preparePathname = preparePathname;
