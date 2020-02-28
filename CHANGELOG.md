@@ -1,3 +1,8 @@
+## 1.0.36 (February 28, 2020)
+
+- fix: asset_factory should respect chainId in constructor
+- update readme
+
 ## 1.0.35 (February 27, 2020)
 
 - fix: swap handler should respect option.swapKey
