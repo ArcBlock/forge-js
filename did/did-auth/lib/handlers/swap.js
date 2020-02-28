@@ -253,6 +253,7 @@ class AtomicSwapHandlers extends BaseHandler {
       createExtraParams,
       ensureSignedJson,
       checkUser,
+      preparePathname,
     } = createHandlers({
       action,
       pathname: authPath,
@@ -319,7 +320,7 @@ class AtomicSwapHandlers extends BaseHandler {
               description: 'Please provided the address to complete swap',
             }),
           },
-          pathname: retrievePath,
+          pathname: preparePathname(retrievePath, req),
           extraParams: createExtraParams(locale, params),
         });
 

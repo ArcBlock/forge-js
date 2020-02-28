@@ -171,7 +171,7 @@ module.exports = function createHandlers({
   // We need to ensure the full url is given to abt wallet
   // eg: `/agent/login/auth` on the current router will be converted to `/api/login/agent/login/auth`
   const preparePathname = (path, req) => {
-    const delimiter = path.replace(/\/auth$/, '');
+    const delimiter = path.replace(/\/retrieve$/, '').replace(/\/auth$/, '');
     const fullPath = url.parse(req.originalUrl).pathname;
     const [prefix] = fullPath.split(delimiter);
     const cleanPath = [prefix, path].join('/').replace(/\/+/g, '/');
@@ -378,7 +378,7 @@ module.exports = function createHandlers({
       // Since we can only get userDid after authPrincipal
       // So we update userDid in the token storage here
       // But we just need to update the did once
-      if (!store.did) {
+      if (token && store && !store.did) {
         await tokenStorage.update(token, { did: userDid });
       }
 
@@ -523,6 +523,7 @@ module.exports = function createHandlers({
     ensureSignedJson,
     createExtraParams,
     checkUser,
+    preparePathname,
   };
 };
 
