@@ -1,3 +1,8 @@
+## 1.0.37 (February 28, 2020)
+
+- fix: swap retrieve handlers is broken on netlify
+- update readme
+
 ## 1.0.36 (February 28, 2020)
 
 - fix: asset_factory should respect chainId in constructor
