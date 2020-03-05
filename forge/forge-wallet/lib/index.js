@@ -116,6 +116,9 @@ function Wallet(keyPair, type = defaultWalletType) {
     secretKey: keyPair.sk,
     publicKey: keyPair.pk,
 
+    hash(data, round = 1) {
+      return hasher(data, round);
+    },
     sign(data) {
       if (!keyPair.sk) {
         throw new Error('Cannot sign data without a secretKey');

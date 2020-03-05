@@ -455,9 +455,11 @@ class WalletAuthenticator extends BaseAuthenticator {
 
     return {
       type: 'verifiableCredential',
-      description: 'Please provide Verifiable Credential match this case',
-      item: item,
-      trustedIssuers: trustedIssuers,
+      description: desc || 'Please provide Verifiable Credential match this case',
+      item,
+      trustedIssuers,
+      chainInfo,
+      meta,
     };
   }
 
