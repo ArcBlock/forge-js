@@ -445,6 +445,24 @@ class WalletAuthenticator extends BaseAuthenticator {
     };
   }
 
+  // request wallet provide verifiableCredential
+  async verifiableCredential({ claim, context, extraParams }) {
+    const { item, trustedIssuers, description: desc, chainInfo, meta = {} } = await this.getClaimInfo({
+      claim,
+      context,
+      extraParams,
+    });
+
+    return {
+      type: 'verifiableCredential',
+      description: desc || 'Please provide Verifiable Credential match this case',
+      item,
+      trustedIssuers,
+      chainInfo,
+      meta,
+    };
+  }
+
   // 要求 setup swap，做同构链的跨链
   async swap({ claim, context, extraParams }) {
     const {

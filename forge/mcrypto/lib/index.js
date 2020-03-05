@@ -144,6 +144,7 @@ const Mcrypto = (module.exports = {
       ROLE_TETHER: 11,
       ROLE_SWAP: 12,
       ROLE_DELEGATE: 13,
+      ROLE_VC: 14, // verifiable credential
       ROLE_ANY: 63,
     },
     /**
