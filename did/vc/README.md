@@ -6,6 +6,7 @@
 
 > Javascript library to manipulate Verifiable Credentials (VC) to DID Protocol
 
+
 ## Usage
 
 ```terminal
@@ -35,6 +36,7 @@ console.log(vc);
 const result = VC.verify({ vc, ownerDid: owner.toAddress(), trustedIssuers: issuer.toAddress() });
 console.log(result); // true
 ```
+
 
 ## Documentation
 
