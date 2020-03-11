@@ -1,3 +1,15 @@
+## 1.0.39 (March 11, 2020)
+
+- update readme
+- update readme
+- update readme
+- update readme
+- update readme
+- update readme
+- v1.0.38
+- chore(deps): bump handlebars from 4.1.1 to 4.7.3 (#430)
+- feat: support verifialble credential sdk and make it work in did-auth (#434)
+
 ## 1.0.38 (February 28, 2020)
 
 - fix: swap retrieve handlers is broken on netlify

@@ -50,6 +50,10 @@ class EventServer {
   dispatch(channel, message) {
     debug('dispatch.call', channel, message);
 
+    if (!message) {
+      return;
+    }
+
     if (!message.token) {
       throw new Error('Message to be dispatched must contain a token prop');
     }
