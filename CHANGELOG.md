@@ -1,3 +1,8 @@
+## 1.1.0 (March 17, 2020)
+
+- feat: support vc type url
+- update readme
+
 ## 1.0.39 (March 11, 2020)
 
 - update readme

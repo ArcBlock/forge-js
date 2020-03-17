@@ -272,6 +272,25 @@ describe('#encodeAny & #decodeAny & json', () => {
     expect(decoded.value.key).toEqual('value1');
     expect(decoded.type).toEqual('json');
   });
+
+  it('should encode and decode vc type', () => {
+    const encoded = encodeAny({
+      typeUrl: 'vc',
+      value: { key: 'value1' },
+    });
+
+    expect(encoded.array[0]).toEqual('vc');
+    expect(encoded.array[1]).toEqual(
+      Uint8Array.from(Buffer.from(JSON.stringify({ key: 'value1' })))
+    );
+
+    const decoded = decodeAny({
+      typeUrl: 'vc',
+      value: Buffer.from(JSON.stringify({ key: 'value1' })),
+    });
+    expect(decoded.value.key).toEqual('value1');
+    expect(decoded.type).toEqual('vc');
+  });
 });
 
 describe('#encodeBigInt & decodeBitIng', () => {

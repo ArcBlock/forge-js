@@ -16,14 +16,7 @@ const jspb = require('google-protobuf');
 const { Any } = require('google-protobuf/google/protobuf/any_pb');
 const { Timestamp } = require('google-protobuf/google/protobuf/timestamp_pb');
 const { toBN, bytesToHex, isUint8Array, toUint8Array } = require('@arcblock/forge-util');
-const {
-  enums,
-  messages,
-  getMessageType,
-  toTypeUrl,
-  fromTypeUrl,
-  addProvider,
-} = require('./provider');
+const { enums, messages, getMessageType, toTypeUrl, fromTypeUrl, addProvider } = require('./provider');
 // eslint-disable-next-line
 const debug = require('debug')(`${require('../package.json').name}`);
 
@@ -401,7 +394,7 @@ function decodeAny(data) {
   }
 
   const { typeUrl, value } = data;
-  if (typeUrl === 'json') {
+  if (['json', 'vc'].includes(typeUrl)) {
     return { type: typeUrl, value: JSON.parse(Buffer.from(value, 'base64')) };
   }
 
@@ -437,7 +430,7 @@ function encodeAny(data) {
       anyMessage.setTypeUrl(data.typeUrl);
       if (data.typeUrl === 'fg:x:address') {
         anyMessage.setValue(data.value);
-      } else if (data.typeUrl === 'json') {
+      } else if (['json', 'vc'].includes(data.typeUrl)) {
         anyMessage.setValue(Uint8Array.from(Buffer.from(JSON.stringify(data.value))));
       } else {
         anyMessage.setValue(Uint8Array.from(Buffer.from(data.value, 'base64')));
