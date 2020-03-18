@@ -18,7 +18,7 @@ const type = WalletType({
 
 const user = fromRandom();
 const app = fromRandom(type);
-const chainHost = 'http://47.104.23.85:8213/api';
+const chainHost = 'https://playground.network.arcblockio.cn/api';
 const chainId = 'playground';
 const noop = () => {};
 const headers = {
@@ -32,6 +32,7 @@ describe('#WalletHandlers', () => {
     server = await createTestServer();
   });
 
+  // Attach challenge
   test('should handle common did-auth attach as expected', async () => {
     const tokenStorage = new MemoryAuthStorage();
     const authenticator = new Authenticator({
@@ -113,12 +114,16 @@ describe('#WalletHandlers', () => {
       authInfo1.url,
       {
         userPk: toBase58(user.publicKey),
-        userInfo: Jwt.sign(user.toAddress(), user.secretKey, { requestedClaims: [] }),
+        userInfo: Jwt.sign(user.toAddress(), user.secretKey, { requestedClaims: [], challenge: authInfo1.challenge }),
       },
       { headers }
     );
     const authInfo2 = Jwt.decode(info5.authInfo);
     // console.log('authInfo2', authInfo2);
+
+    expect(authInfo1.challenge).toBeTruthy();
+    expect(authInfo2.challenge).toBeTruthy();
+    expect(authInfo1.challenge).not.toEqual(authInfo2.challenge);
 
     // Check store status: scanned
     const { data: info6 } = await getTokenState();
@@ -133,6 +138,7 @@ describe('#WalletHandlers', () => {
         userPk: toBase58(user.publicKey),
         userInfo: Jwt.sign(user.toAddress(), user.secretKey, {
           requestedClaims: [{ type: 'profile', email: 'shijun@arcblock.io', fullName: 'wangshijun' }],
+          challenge: authInfo2.challenge,
         }),
       },
       { headers }

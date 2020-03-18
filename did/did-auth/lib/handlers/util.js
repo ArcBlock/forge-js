@@ -5,6 +5,8 @@ const url = require('url');
 const get = require('lodash.get');
 const Mcrypto = require('@arcblock/mcrypto');
 const { isValid: isValidDid } = require('@arcblock/did');
+const { stripHexPrefix } = require('@arcblock/forge-util');
+
 // eslint-disable-next-line
 const debug = require('debug')(`${require('../../package.json').name}:handlers:util`);
 
@@ -21,6 +23,10 @@ const errors = {
   didMismatch: {
     en: 'Login user and wallet user mismatch, please relogin and try again',
     zh: '登录用户和扫码用户不匹配，为保障安全，请重新登录应用',
+  },
+  challengeMismatch: {
+    en: 'Challenge mismatch',
+    zh: '随机校验码不匹配',
   },
   token404: {
     en: 'Token not found or expired',
@@ -63,6 +69,8 @@ const preparePathname = (path, req) => {
   // console.log('preparePathname', { path, delimiter, fullPath, prefix, cleanPath });
   return cleanPath;
 };
+
+const getStepChallenge = () => stripHexPrefix(Mcrypto.getRandomBytes(16)).toUpperCase();
 
 const parseWalletUA = (userAgent = '') => {
   const ua = userAgent.toLocaleLowerCase();
@@ -192,7 +200,9 @@ module.exports = function createHandlers({
       // Always set currentStep to 0 when generate a new token
       // Since the did of logged in user may be different of the auth did
       // We should store the sessionDid in token storage for possible usage
-      await tokenStorage.update(token, { currentStep: 0, sessionDid });
+      const challenge = getStepChallenge();
+      console.log('getStepChallenge', challenge);
+      await tokenStorage.update(token, { currentStep: 0, sessionDid, challenge });
       // debug('generate token', { action, pathname, token, sessionDid });
 
       res.json({
@@ -247,7 +257,14 @@ module.exports = function createHandlers({
           });
         }
 
-        res.status(200).json(store);
+        res.status(200).json(
+          Object.keys(store)
+            .filter(x => x !== 'challenge')
+            .reduce((acc, key) => {
+              acc[key] = store[key];
+              return acc;
+            }, {})
+        );
       } else {
         res.status(404).json({ error: errors.token404[locale] });
       }
@@ -318,6 +335,7 @@ module.exports = function createHandlers({
       }
 
       const signParams = await getSignParams(req);
+      console.log('onAuthRequest', { store, token });
       res.jsonp(
         await authenticator.sign(
           Object.assign(signParams, {
@@ -332,6 +350,7 @@ module.exports = function createHandlers({
             claims: store ? steps[store.currentStep] : steps[0],
             pathname: preparePathname(getPathName(pathname, req), req),
             extraParams: createExtraParams(locale, params),
+            challenge: store ? store.challenge : '',
           })
         )
       );
@@ -345,7 +364,21 @@ module.exports = function createHandlers({
     const { locale, token, store, params, wallet } = req.context;
 
     try {
-      const { userDid, userPk, action: userAction, claims: claimResponse } = await authenticator.verify(params, locale);
+      const {
+        userDid,
+        userPk,
+        action: userAction,
+        challenge: userChallenge,
+        claims: claimResponse,
+      } = await authenticator.verify(params, locale);
+
+      // We need to verify challenge here
+      // TODO: in next minor release, we should enforce challenge
+      if (store && store.challenge && userChallenge) {
+        if (store.challenge !== userChallenge) {
+          return res.json({ error: errors.challengeMismatch[locale] });
+        }
+      }
 
       const cbParams = {
         step: store ? store.currentStep : null,
@@ -406,7 +439,8 @@ module.exports = function createHandlers({
 
           // Move to next step: nextStep is persisted here to avoid an memory storage error
           const nextStep = store.currentStep + 1;
-          await tokenStorage.update(token, { currentStep: nextStep });
+          const nextChallenge = getStepChallenge();
+          await tokenStorage.update(token, { currentStep: nextStep, challenge: nextChallenge });
           const signParams = await getSignParams(req);
 
           try {
@@ -423,6 +457,7 @@ module.exports = function createHandlers({
                 claims: steps[nextStep],
                 pathname: preparePathname(getPathName(pathname, req), req),
                 extraParams: createExtraParams(locale, params),
+                challenge: nextChallenge,
               })
             );
             return res.jsonp(nextSignedClaim);
@@ -529,3 +564,4 @@ module.exports = function createHandlers({
 
 module.exports.parseWalletUA = parseWalletUA;
 module.exports.preparePathname = preparePathname;
+module.exports.getStepChallenge = getStepChallenge;

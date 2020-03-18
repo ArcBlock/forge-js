@@ -97,7 +97,7 @@ class AtomicSwapHandlers extends BaseHandler {
    * @param {object} payload
    * @returns {Promise<object>}
    */
-  start(payload = {}) {
+  async start(payload = {}) {
     const {
       offerUserAddress = '',
       offerAssets = [],
@@ -139,7 +139,8 @@ class AtomicSwapHandlers extends BaseHandler {
       createdAt: new Date(),
     };
 
-    return this.swapStorage.create(traceId, updates);
+    await this.swapStorage.create(traceId, updates);
+    return updates;
   }
 
   /**
@@ -276,11 +277,11 @@ class AtomicSwapHandlers extends BaseHandler {
     const ensureWallet = ensureRequester('wallet');
 
     // 0. create swap or retrieve swap
-    app.get(`${prefix}/swap/:traceId`, ensureSwap, async (req, res) => res.jsonp(req.swap));
     app.post(`${prefix}/swap`, async (req, res) => {
       const swap = await this.start(req.body);
-      return res.jsonp(swap);
+      return res.json(swap);
     });
+    // app.get(`${prefix}/swap/:traceId`, ensureSwap, async (req, res) => res.jsonp(req.swap));
 
     // 1. WEB: to generate new token
     app.get(`${prefix}/${action}/token`, ensureWeb, ensureSwap, generateActionToken);
