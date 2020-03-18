@@ -1,4 +1,4 @@
-const { parseWalletUA, getStepChallenge } = require('../../lib/handlers/util');
+const { parseWalletUA, getStepChallenge, preparePathname } = require('../../lib/handlers/util');
 
 describe('#parseWalletUA', () => {
   describe('#android', () => {
@@ -51,5 +51,43 @@ describe('#getStepChallenge', () => {
     expect(c1).toBeTruthy();
     expect(c2).toBeTruthy();
     expect(c1).not.toEqual(c2);
+  });
+});
+
+describe('#preparePathname', () => {
+  test('should return correct path when not nested', async () => {
+    const path = '/api/did/login/auth';
+    const req = {
+      originalUrl: '/api/did/login/auth',
+    };
+
+    expect(preparePathname(path, req)).toEqual('/api/did/login/auth');
+  });
+
+  test('should return correct path when not nested: retrieve', async () => {
+    const path = '/api/did/login/retrieve';
+    const req = {
+      originalUrl: '/api/did/login/retrieve',
+    };
+
+    expect(preparePathname(path, req)).toEqual('/api/did/login/retrieve');
+  });
+
+  test('should return correct path when nested', async () => {
+    const path = '/api/did/login/auth';
+    const req = {
+      originalUrl: '/root/nested/api/did/login/auth',
+    };
+
+    expect(preparePathname(path, req)).toEqual('/root/nested/api/did/login/auth');
+  });
+
+  test('should return correct path when netlify', async () => {
+    const path = '/api/did/login/auth';
+    const req = {
+      originalUrl: '/.netlify/functions/app/api/did/login/auth',
+    };
+
+    expect(preparePathname(path, req)).toEqual('/.netlify/functions/app/api/did/login/auth');
   });
 });
