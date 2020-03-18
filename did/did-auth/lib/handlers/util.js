@@ -201,7 +201,6 @@ module.exports = function createHandlers({
       // Since the did of logged in user may be different of the auth did
       // We should store the sessionDid in token storage for possible usage
       const challenge = getStepChallenge();
-      console.log('getStepChallenge', challenge);
       await tokenStorage.update(token, { currentStep: 0, sessionDid, challenge });
       // debug('generate token', { action, pathname, token, sessionDid });
 
@@ -335,7 +334,6 @@ module.exports = function createHandlers({
       }
 
       const signParams = await getSignParams(req);
-      console.log('onAuthRequest', { store, token });
       res.jsonp(
         await authenticator.sign(
           Object.assign(signParams, {
