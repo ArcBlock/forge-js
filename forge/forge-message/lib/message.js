@@ -161,7 +161,7 @@ function formatMessage(type, data) {
     return data;
   }
 
-  if (type === 'json') {
+  if (['json', 'vc'].includes(type)) {
     return data;
   }
 

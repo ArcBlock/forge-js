@@ -135,7 +135,7 @@ describe('#WalletHandlers', () => {
     // Submit auth principal
     const { data: info5 } = await axios.post(authInfo1.url, {
       userPk: toBase58(user.publicKey),
-      userInfo: Jwt.sign(user.toAddress(), user.secretKey, { requestedClaims: [] }),
+      userInfo: Jwt.sign(user.toAddress(), user.secretKey, { requestedClaims: [], challenge: authInfo1.challenge }),
     });
     const authInfo2 = Jwt.decode(info5.authInfo);
     expect(authInfo2.status).toEqual(undefined);
@@ -152,6 +152,7 @@ describe('#WalletHandlers', () => {
       userPk: toBase58(user.publicKey),
       userInfo: Jwt.sign(user.toAddress(), user.secretKey, {
         requestedClaims: [{ type: 'profile', email: 'shijun@arcblock.io', fullName: 'wangshijun' }],
+        challenge: authInfo2.challenge,
       }),
     });
     const authInfo3 = Jwt.decode(info7.authInfo);

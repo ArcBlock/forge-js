@@ -20,7 +20,7 @@ const type = WalletType({
 
 const user = fromRandom();
 const app = fromRandom(type);
-const chainHost = 'http://47.104.23.85:8213/api';
+const chainHost = 'https://playground.network.arcblockio.cn/api';
 const chainId = 'playground';
 const assetChainHost = 'https://zinc.network.arcblockio.cn/api';
 const assetChainId = 'zinc-2019-05-17';
@@ -136,7 +136,7 @@ describe('#SwapHandlers', () => {
     // Init new swap placeholder
     const {
       data: { status, traceId },
-    } = await axios.post(`${server.url}/api/swap`, {});
+    } = await axios.post(`${server.url}/api/did/swap`, {});
     expect(traceId).toBeTruthy();
     expect(status).toEqual('not_started');
 
@@ -178,7 +178,7 @@ describe('#SwapHandlers', () => {
     // Submit auth principal
     const { data: info5 } = await axios.post(authInfo1.url, {
       userPk: toBase58(user.publicKey),
-      userInfo: Jwt.sign(user.toAddress(), user.secretKey, { requestedClaims: [] }),
+      userInfo: Jwt.sign(user.toAddress(), user.secretKey, { requestedClaims: [], challenge: authInfo1.challenge }),
     });
     const authInfo2 = Jwt.decode(info5.authInfo);
     const [claim] = authInfo2.requestedClaims;
@@ -195,6 +195,7 @@ describe('#SwapHandlers', () => {
     expect(info6.currentStep).toEqual(1);
 
     // Setup swap for user
+    await sleep(3000);
     const hashkey = Mcrypto.getRandomBytes(32);
     const hashlock = Mcrypto.Hasher.SHA3.hash256(hashkey);
     const [hash7, swapAddress] = await ForgeSDK.setupSwap(
@@ -219,6 +220,7 @@ describe('#SwapHandlers', () => {
       userPk: toBase58(user.publicKey),
       userInfo: Jwt.sign(user.toAddress(), user.secretKey, {
         requestedClaims: [Object.assign({ address: swapAddress }, claim)],
+        challenge: authInfo2.challenge,
       }),
     });
     const authInfo3 = Jwt.decode(info7.authInfo);

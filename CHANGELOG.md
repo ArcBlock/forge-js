@@ -1,3 +1,9 @@
+## 1.1.1 (March 18, 2020)
+
+- chore: add challenge in did-auth
+- fix: vs type should be supported when format message
+- update readme
+
 ## 1.1.0 (March 17, 2020)
 
 - feat: support vc type url
