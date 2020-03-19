@@ -1,3 +1,8 @@
+## 1.1.2 (March 19, 2020)
+
+- pass challenge to onAuthResponse
+- update readme
+
 ## 1.1.1 (March 18, 2020)
 
 - chore: add challenge in did-auth
