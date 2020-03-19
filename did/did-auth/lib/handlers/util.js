@@ -385,6 +385,7 @@ module.exports = function createHandlers({
         userPk,
         token,
         sessionDid: store ? store.sessionDid : '',
+        challenge: store ? store.challenge : '',
         walletVersion: wallet.version,
         walletOS: wallet.os,
         claims: claimResponse,
