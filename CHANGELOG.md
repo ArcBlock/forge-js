@@ -1,3 +1,8 @@
+## 1.1.3 (March 20, 2020)
+
+- new badge create
+- update readme
+
 ## 1.1.2 (March 19, 2020)
 
 - pass challenge to onAuthResponse
