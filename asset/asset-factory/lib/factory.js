@@ -5,6 +5,7 @@ const { isValid } = require('@arcblock/forge-wallet');
 const isDate = require('lodash/isDate');
 const isNumber = require('lodash/isNumber');
 const stringify = require('json-stable-stringify');
+const { create } = require('@arcblock/vc');
 const debug = require('debug')(require('../package.json').name);
 
 const AssetIssuer = require('./issuer');
@@ -185,21 +186,42 @@ class AssetFactory {
     return this._createCert({ backgroundUrl, data, attributes, type: 'certificate' });
   }
 
-  async createBadge({ backgroundUrl = '', data = {}, attributes = {} }) {
-    return this._createCert({ backgroundUrl, data, attributes, type: 'badge' });
+  async createBadge({ data = {}, attributes = {} }) {
+    const { name, recipient, description, svg } = data;
+    debug(`name: ${name}`);
+    const vc = create({
+      type: 'WalletPlaygroundAchievement',
+      issuer: {
+        wallet: this.wallet,
+        name: 'ArcBlock.Badge',
+      },
+      subject: {
+        id: recipient.wallet.toAddress(),
+        name: name || 'Wallet Playground Completion',
+        description: description || 'Master of Cross Border Money Transfer',
+        display: {
+          type: 'svg_gzipped',
+          content: svg,
+        },
+      },
+    });
+    return this.createSignedAsset(vc, attributes);
   }
 
   async createSignedAsset(payload, attributes) {
     const signature = ForgeSDK.Util.toBase58(this.wallet.sign(stringify(payload)));
     payload.signature = signature;
-
+    const moniker = payload.data ? payload.data.name : payload.credentialSubject.name;
     const asset = Object.assign(
       {
-        moniker: payload.data.name,
+        moniker,
         readonly: false,
         transferrable: true,
         data: {
-          typeUrl: 'json',
+          typeUrl:
+            payload.type === 'WalletPlaygroundAchievement' || payload.type.contains('VerifiableCredential')
+              ? 'vc'
+              : 'json',
           value: payload,
         },
       },
