@@ -7,7 +7,7 @@ const AssetRecipient = require('../lib/recipient');
 const AssetFactory = require('../lib/factory');
 
 const chainId = 'zinc-2019-05-17';
-const chainHost = 'https://zinc.network.arcblockio.cn/api';
+const chainHost = 'https://zinc.abtnetwork.io/api';
 const wallet = fromRandom();
 const owner = fromRandom();
 const factory = new AssetFactory({
