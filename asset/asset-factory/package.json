@@ -16,7 +16,7 @@
   },
   "dependencies": {
     "@arcblock/forge-sdk": "^1.1.1",
-    "@arcblock/vc": "^1.1.1",
+    "@arcblock/vc": "^1.0.39",
     "@arcblock/forge-wallet": "^1.0.39",
     "debug": "^4.1.1",
     "json-stable-stringify": "^1.0.1",

@@ -187,13 +187,16 @@ class AssetFactory {
   }
 
   async createBadge({ data = {}, attributes = {} }) {
-    const { name, recipient, description, svg } = data;
+    const { name, recipient, description, svg, host, badgeType } = data;
+    if (!host) {
+      throw Error('badge issuer cannot be empty');
+    }
     debug(`name: ${name}`);
     const vc = create({
-      type: 'WalletPlaygroundAchievement',
+      type: badgeType,
       issuer: {
         wallet: this.wallet,
-        name: 'ArcBlock.Badge',
+        name: host.name,
       },
       subject: {
         id: recipient.wallet.toAddress(),
@@ -219,7 +222,8 @@ class AssetFactory {
         transferrable: true,
         data: {
           typeUrl:
-            payload.type === 'WalletPlaygroundAchievement' || payload.type.contains('VerifiableCredential')
+            payload.type === 'WalletPlaygroundAchievement' ||
+            (Array.isArray(payload.type) && payload.type.includes('VerifiableCredential'))
               ? 'vc'
               : 'json',
           value: payload,

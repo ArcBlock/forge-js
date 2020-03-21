@@ -1,12 +1,15 @@
 const ForgeSDK = require('@arcblock/forge-sdk');
+const { fromRandom } = require('@arcblock/forge-wallet');
+const { verify } = require('@arcblock/vc');
 
 const AssetIssuer = require('../lib/issuer');
 const AssetRecipient = require('../lib/recipient');
 const AssetFactory = require('../lib/factory');
 
 const chainId = 'zinc-2019-05-17';
-const chainHost = 'https://zinc.abtnetwork.io/api';
-const wallet = ForgeSDK.Wallet.fromRandom();
+const chainHost = 'https://zinc.network.arcblockio.cn/api';
+const wallet = fromRandom();
+const owner = fromRandom();
 const factory = new AssetFactory({
   chainId,
   chainHost,
@@ -23,6 +26,7 @@ const sleep = timeout => new Promise(resolve => setTimeout(resolve, timeout));
 beforeAll(async () => {
   ForgeSDK.connect(chainHost, { chainId, name: chainId });
   await ForgeSDK.declare({ moniker: 'asset_factory_issuer', wallet });
+  await ForgeSDK.declare({ moniker: 'asset_factory_owner', owner });
   await sleep(3000);
 });
 
@@ -45,6 +49,11 @@ describe('AssetFactory.createTicket', () => {
           name: '万达影城',
           logo: 'https://www.baidu.com',
           url: 'https://www.baidu.com',
+        }),
+        recipient: new AssetRecipient({
+          wallet,
+          name: '王仕军',
+          location: '北京市朝阳区',
         }),
       },
     });
@@ -119,7 +128,6 @@ describe('AssetFactory.createBadge', () => {
 
   test('should return asset and names', async () => {
     const [asset, hash] = await factory.createBadge({
-      backgroundUrl: 'https://www.arcblock.io',
       data: {
         name: 'DevCon0 参与者',
         description: '你的参与票号是 XXXXXX',
@@ -127,8 +135,14 @@ describe('AssetFactory.createBadge', () => {
         logoUrl: 'https://www.arcblock.io',
         issueTime: Date.now(),
         expireTime: -1,
-        recipient: new AssetRecipient({
+        badgeType: 'WalletPlaygroundAchievement',
+        svg: 'abc',
+        host: new AssetIssuer({
           wallet,
+          name: 'ArcBlock',
+        }),
+        recipient: new AssetRecipient({
+          wallet: owner,
           name: '王仕军',
           location: '北京市朝阳区',
         }),
@@ -138,6 +152,10 @@ describe('AssetFactory.createBadge', () => {
     expect(hash).toBeTruthy();
     expect(asset).toBeTruthy();
     expect(asset.address).toBeTruthy();
-    expect(asset.data.value.signature).toBeTruthy();
+    expect(asset.moniker === 'DevCon0 参与者').toBeTruthy();
+    console.info(`vc: ${asset.data.value}`);
+    expect(
+      verify({ vc: asset.data.value, ownerDid: owner.toAddress(), trustedIssuers: wallet.toAddress() })
+    ).toBeTruthy();
   });
 });
