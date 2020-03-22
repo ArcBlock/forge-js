@@ -24,7 +24,7 @@
 [![docs](https://img.shields.io/badge/powered%20by-arcblock-green.svg)](https://docs.arcblock.io)
 [![Gitter](https://badges.gitter.im/ArcBlock/community.svg)](https://gitter.im/ArcBlock/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
-> Last updated at 3/21/2020, 9:55:14 AM
+> Last updated at 3/22/2020, 10:47:12 PM
 
 Javascript SDK for [forge](https://docs.arcblock.io/forge/latest/), which is an awesome framework to write distributed blockchain applications.
 
@@ -54,12 +54,12 @@ Javascript SDK for [forge](https://docs.arcblock.io/forge/latest/), which is an 
 - [did-util <img src="https://img.shields.io/npm/v/@arcblock/did-util.svg" alt="Version">](https://www.npmjs.com/package/@arcblock/did-util)
 - [event-client <img src="https://img.shields.io/npm/v/@arcblock/event-client.svg" alt="Version">](https://www.npmjs.com/package/@arcblock/event-client)
 - [event-server <img src="https://img.shields.io/npm/v/@arcblock/event-server.svg" alt="Version">](https://www.npmjs.com/package/@arcblock/event-server)
-- [vc <img src="https://img.shields.io/npm/v/@arcblock/vc.svg" alt="Version">](https://www.npmjs.com/package/@arcblock/vc)
 - [swap-retriever <img src="https://img.shields.io/npm/v/@arcblock/swap-retriever.svg" alt="Version">](https://www.npmjs.com/package/@arcblock/swap-retriever)
 - [swap-storage <img src="https://img.shields.io/npm/v/@arcblock/swap-storage.svg" alt="Version">](https://www.npmjs.com/package/@arcblock/swap-storage)
 - [swap-storage-memory <img src="https://img.shields.io/npm/v/@arcblock/swap-storage-memory.svg" alt="Version">](https://www.npmjs.com/package/@arcblock/swap-storage-memory)
 - [swap-storage-mongo <img src="https://img.shields.io/npm/v/@arcblock/swap-storage-mongo.svg" alt="Version">](https://www.npmjs.com/package/@arcblock/swap-storage-mongo)
 - [asset-factory <img src="https://img.shields.io/npm/v/@arcblock/asset-factory.svg" alt="Version">](https://www.npmjs.com/package/@arcblock/asset-factory)
+- [vc <img src="https://img.shields.io/npm/v/@arcblock/vc.svg" alt="Version">](https://www.npmjs.com/package/@arcblock/vc)
 
 ## Install
 
