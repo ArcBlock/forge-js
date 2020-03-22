@@ -1,6 +1,7 @@
-## 1.1.3 (March 20, 2020)
+## 1.1.3 (March 21, 2020)
 
-- new badge create
+- chore: tx util can now verify tx/account/assets
+- chore(deps): bump acorn from 5.7.3 to 5.7.4 (#437)
 - update readme
 
 ## 1.1.2 (March 19, 2020)
