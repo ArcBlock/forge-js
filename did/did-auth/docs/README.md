@@ -276,6 +276,8 @@ Sign a auth response that returned to wallet: tell the wallet the appInfo/chainI
 | ---------------------------- | -------- | ------------------------------------------------- |
 | params                       | `object` |                                                   |
 | params.claims                | `object` | info required by application to complete the auth |
+| params.pathname              | `object` | pathname to assemble callback url                 |
+| params.challenge             | `object` | random challenge to be included in the body       |
 | params.extraParams           | `object` | extra query params and locale                     |
 | params.context.token         | `string` | action token                                      |
 | params.context.userDid       | `string` | decoded from req.query, base58                    |
