@@ -1,4 +1,6 @@
 const ForgeSDK = require('@arcblock/forge-sdk');
+const { fromRandom } = require('@arcblock/forge-wallet');
+const { verify } = require('@arcblock/vc');
 
 const AssetIssuer = require('../lib/issuer');
 const AssetRecipient = require('../lib/recipient');
@@ -6,11 +8,12 @@ const AssetFactory = require('../lib/factory');
 
 const chainId = 'zinc-2019-05-17';
 const chainHost = 'https://zinc.abtnetwork.io/api';
-const wallet = ForgeSDK.Wallet.fromRandom();
+const issuer = fromRandom();
+const owner = fromRandom();
 const factory = new AssetFactory({
   chainId,
   chainHost,
-  wallet,
+  wallet: issuer,
   issuer: {
     name: 'test case',
     url: 'https://www.arcblock.io',
@@ -22,7 +25,8 @@ const sleep = timeout => new Promise(resolve => setTimeout(resolve, timeout));
 
 beforeAll(async () => {
   ForgeSDK.connect(chainHost, { chainId, name: chainId });
-  await ForgeSDK.declare({ moniker: 'asset_factory_issuer', wallet });
+  await ForgeSDK.declare({ moniker: 'asset_factory_issuer', wallet: issuer });
+  await ForgeSDK.declare({ moniker: 'asset_factory_owner', wallet: owner });
   await sleep(3000);
 });
 
@@ -41,10 +45,15 @@ describe('AssetFactory.createTicket', () => {
         startTime: Date.now(),
         endTime: Date.now() + 24 * 60 * 60 * 1000,
         host: new AssetIssuer({
-          wallet,
+          wallet: issuer,
           name: '万达影城',
           logo: 'https://www.baidu.com',
           url: 'https://www.baidu.com',
+        }),
+        recipient: new AssetRecipient({
+          wallet: owner,
+          name: '王仕军',
+          location: '北京市朝阳区',
         }),
       },
     });
@@ -98,7 +107,7 @@ describe('AssetFactory.createCertificate', () => {
         issueTime: Date.now(),
         expireTime: Date.now() + 360 * 100 * 60 * 60 * 1000,
         recipient: new AssetRecipient({
-          wallet,
+          wallet: owner,
           name: '王仕军',
           location: '北京市朝阳区',
         }),
@@ -119,7 +128,6 @@ describe('AssetFactory.createBadge', () => {
 
   test('should return asset and names', async () => {
     const [asset, hash] = await factory.createBadge({
-      backgroundUrl: 'https://www.arcblock.io',
       data: {
         name: 'DevCon0 参与者',
         description: '你的参与票号是 XXXXXX',
@@ -127,8 +135,17 @@ describe('AssetFactory.createBadge', () => {
         logoUrl: 'https://www.arcblock.io',
         issueTime: Date.now(),
         expireTime: -1,
+
+        // VC attributes
+        type: 'WalletPlaygroundAchievement',
+        display: 'abc',
+
+        host: new AssetIssuer({
+          wallet: owner,
+          name: 'ArcBlock',
+        }),
         recipient: new AssetRecipient({
-          wallet,
+          wallet: owner,
           name: '王仕军',
           location: '北京市朝阳区',
         }),
@@ -138,6 +155,9 @@ describe('AssetFactory.createBadge', () => {
     expect(hash).toBeTruthy();
     expect(asset).toBeTruthy();
     expect(asset.address).toBeTruthy();
-    expect(asset.data.value.signature).toBeTruthy();
+    expect(asset.moniker === 'DevCon0 参与者').toBeTruthy();
+
+    const vc = factory.getVCBody(asset);
+    expect(verify({ vc, ownerDid: owner.toAddress(), trustedIssuers: issuer.toAddress() })).toBeTruthy();
   });
 });

@@ -2,9 +2,12 @@
 /* eslint-disable no-console */
 const ForgeSDK = require('@arcblock/forge-sdk');
 const { isValid } = require('@arcblock/forge-wallet');
+const get = require('lodash/get');
+const cloneDeep = require('lodash/cloneDeep');
 const isDate = require('lodash/isDate');
 const isNumber = require('lodash/isNumber');
 const stringify = require('json-stable-stringify');
+const { create } = require('@arcblock/vc');
 const debug = require('debug')(require('../package.json').name);
 
 const AssetIssuer = require('./issuer');
@@ -185,21 +188,40 @@ class AssetFactory {
     return this._createCert({ backgroundUrl, data, attributes, type: 'certificate' });
   }
 
-  async createBadge({ backgroundUrl = '', data = {}, attributes = {} }) {
-    return this._createCert({ backgroundUrl, data, attributes, type: 'badge' });
+  async createBadge({ data = {}, attributes = {} }) {
+    const { name, recipient, description, display, type } = data;
+
+    const vc = create({
+      type,
+      issuer: {
+        wallet: this.wallet,
+        name: this.issuer.name,
+      },
+      subject: {
+        id: recipient.wallet.toAddress(),
+        name,
+        description,
+        display: this._createDisplay(display),
+      },
+    });
+    return this.createSignedAsset(vc, attributes);
   }
 
   async createSignedAsset(payload, attributes) {
     const signature = ForgeSDK.Util.toBase58(this.wallet.sign(stringify(payload)));
     payload.signature = signature;
-
+    const moniker = get(payload, 'data.name') || get(payload, 'credentialSubject.name') || 'signed_asset';
     const asset = Object.assign(
       {
-        moniker: payload.data.name,
+        moniker,
         readonly: false,
         transferrable: true,
         data: {
-          typeUrl: 'json',
+          typeUrl:
+            payload.type === 'WalletPlaygroundAchievement' ||
+            (Array.isArray(payload.type) && payload.type.includes('VerifiableCredential'))
+              ? 'vc'
+              : 'json',
           value: payload,
         },
       },
@@ -216,6 +238,17 @@ class AssetFactory {
     );
 
     return [asset, hash];
+  }
+
+  _createDisplay(display) {
+    if (display) {
+      if (typeof display === 'string') {
+        return { type: 'svg_gzipped', content: display };
+      }
+      return display;
+    }
+
+    return {};
   }
 
   async _createCert({ backgroundUrl = '', data = {}, attributes = {}, type }) {
@@ -257,6 +290,23 @@ class AssetFactory {
     debug('createCertificate.payload', payload);
 
     return this.createSignedAsset(payload, attributes);
+  }
+
+  getVCBody(asset) {
+    if (!asset.data) {
+      return null;
+    }
+    if (!asset.data.typeUrl) {
+      return null;
+    }
+
+    if (asset.data.typeUrl === 'vc') {
+      const vc = cloneDeep(asset.data.value);
+      delete vc.signature; // we need to strip the signature from outside
+      return vc;
+    }
+
+    return null;
   }
 }
 

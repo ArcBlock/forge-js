@@ -1,3 +1,7 @@
+## 1.1.4 (March 22, 2020)
+
+- new badge create for svg support
+
 ## 1.1.3 (March 21, 2020)
 
 - chore: tx util can now verify tx/account/assets

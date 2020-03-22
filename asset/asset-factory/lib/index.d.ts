@@ -105,6 +105,7 @@ declare class AssetFactory {
   createCertificate(T117: _Lib.T119): Promise<any>;
   createBadge(T120: _Lib.T122): Promise<any[]>;
   createSignedAsset(payload: any, attributes: any): Promise<any[]>;
+  getVCBody(asset: any): any;
 }
 declare const _Lib: _Lib.T123;
 declare namespace _Lib {
@@ -201,7 +202,6 @@ declare namespace _Lib {
     [key: string]: any;
   }
   export interface T122 {
-    backgroundUrl?: string;
     data?: _Lib.T121;
     attributes?: _Lib.T121;
   }

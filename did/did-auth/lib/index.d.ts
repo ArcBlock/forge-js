@@ -94,6 +94,8 @@ declare class WalletAuthenticator extends BaseAuthenticator {
    * @method
    * @param {object} params
    * @param {object} params.claims - info required by application to complete the auth
+   * @param {object} params.pathname - pathname to assemble callback url
+   * @param {object} params.challenge - random challenge to be included in the body
    * @param {object} params.extraParams - extra query params and locale
    * @param {string} params.context.token - action token
    * @param {string} params.context.userDid - decoded from req.query, base58
@@ -391,6 +393,8 @@ declare namespace _Lib {
   }
   export interface T107 {
     claims: any;
+    pathname: any;
+    challenge: any;
     extraParams: any;
   }
   export interface ChainInfo {
