@@ -1,5 +1,4 @@
 const ForgeSDK = require('@arcblock/forge-sdk');
-const cloneDeep = require('lodash/cloneDeep');
 const { fromRandom } = require('@arcblock/forge-wallet');
 const { verify } = require('@arcblock/vc');
 
