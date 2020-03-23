@@ -1,3 +1,7 @@
+## 1.1.5 (March 23, 2020)
+
+- update readme
+
 ## 1.1.4 (March 22, 2020)
 
 - new badge create for svg support

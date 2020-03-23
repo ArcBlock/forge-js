@@ -37,6 +37,7 @@ categories:
       'Asset':
         links:
           - /asset-factory
+          - /vc
       'Misc':
         links:
           - /forge-config
