@@ -54,7 +54,7 @@ class AssetFactory {
    * Create a ticket
    *
    * @param {object} params
-   * @param {string} params.backgroundUrl - asset background
+   * @param {string} params.display - display of the ticket { type, content }
    * @param {object} params.data - asset payload
    * @param {string} params.data.name - ticket name
    * @param {string} params.data.description - ticket description
@@ -66,7 +66,7 @@ class AssetFactory {
    * @returns {Promise} - the `[asset, hash]` on resolved
    * @memberof AssetFactory
    */
-  async createTicket({ backgroundUrl = '', data = {}, attributes = {} }) {
+  async createTicket({ display = '', data = {}, attributes = {} }) {
     const requiredFields = ['name', 'description', 'location', 'host'];
     const timeFields = ['startTime', 'endTime'];
 
@@ -88,10 +88,10 @@ class AssetFactory {
 
     const { name, description, location, host, startTime, endTime } = data;
     const payload = {
-      backgroundUrl,
       type: AssetType.ticket,
       status: AssetStatus.normal,
       issuer: this.issuer.toJSON(),
+      display: this._createDisplay(display),
       data: {
         name,
         description,
@@ -110,7 +110,7 @@ class AssetFactory {
    * Create a coupon asset
    *
    * @param {object} params
-   * @param {string} params.backgroundUrl - asset background
+   * @param {string} params.display - display of the coupon { type, content }
    * @param {object} params.data - asset payload
    * @param {string} params.data.name - coupon name
    * @param {string} params.data.description - coupon description
@@ -123,7 +123,7 @@ class AssetFactory {
    * @returns {Promise} - the `[asset, hash]` on resolved
    * @memberof AssetFactory
    */
-  async createCoupon({ backgroundUrl = '', data = {}, attributes = {} }) {
+  async createCoupon({ display = '', data = {}, attributes = {} }) {
     const requiredFields = ['name', 'description'];
     const numberFields = ['ratio', 'amount', 'minAmount'];
     const timeFields = ['startTime', 'expireTime'];
@@ -148,10 +148,10 @@ class AssetFactory {
 
     const { name, description, ratio, amount, minAmount, startTime, expireTime } = data;
     const payload = {
-      backgroundUrl,
       type: AssetType.coupon,
       status: AssetStatus.normal,
       issuer: this.issuer.toJSON(),
+      display: this._createDisplay(display),
       data: {
         name,
         description,
@@ -171,7 +171,7 @@ class AssetFactory {
    * Create a coupon asset
    *
    * @param {object} params
-   * @param {string} params.backgroundUrl - asset background
+   * @param {string} params.display - display of the certificate { type, content }
    * @param {object} params.data - asset payload
    * @param {string} params.data.name - certificate name
    * @param {string} params.data.description - certificate description
@@ -184,12 +184,25 @@ class AssetFactory {
    * @returns {Promise} - the `[asset, hash]` on resolved
    * @memberof AssetFactory
    */
-  async createCertificate({ backgroundUrl = '', data = {}, attributes = {} }) {
-    return this._createCert({ backgroundUrl, data, attributes, type: 'certificate' });
+  async createCertificate({ display = '', data = {}, attributes = {} }) {
+    return this._createCert({ data, display, attributes, type: 'certificate' });
   }
 
-  async createBadge({ data = {}, attributes = {} }) {
-    const { name, recipient, description, display, type } = data;
+  /**
+   * Create a badge
+   *
+   * @param {object} params
+   * @param {string} params.display - display of the certificate { type, content }
+   * @param {object} params.data - asset payload
+   * @param {string} params.data.name - certificate name
+   * @param {string} params.data.description - certificate description
+   * @param {AssetRecipient} params.data.recipient - certificate recipient
+   * @param {object} params.attributes - asset attributes
+   * @returns {Promise} - the `[asset, hash]` on resolved
+   * @memberof AssetFactory
+   */
+  async createBadge({ display = '', data = {}, attributes = {} }) {
+    const { name, recipient, description, display: innerDisplay = '', type } = data;
 
     const vc = create({
       type,
@@ -201,7 +214,7 @@ class AssetFactory {
         id: recipient.wallet.toAddress(),
         name,
         description,
-        display: this._createDisplay(display),
+        display: this._createDisplay(display || innerDisplay),
       },
     });
     return this.createSignedAsset(vc, attributes);
@@ -251,7 +264,7 @@ class AssetFactory {
     return {};
   }
 
-  async _createCert({ backgroundUrl = '', data = {}, attributes = {}, type }) {
+  async _createCert({ display = '', data = {}, attributes = {}, type }) {
     const requiredFields = ['name', 'description', 'reason', 'logoUrl'];
     const timeFields = ['issueTime', 'expireTime'];
 
@@ -273,10 +286,10 @@ class AssetFactory {
 
     const { name, description, reason, logoUrl, recipient, issueTime, expireTime } = data;
     const payload = {
-      backgroundUrl,
       type: AssetType[type],
       status: AssetStatus.normal,
       issuer: this.issuer.toJSON(),
+      display: this._createDisplay(display),
       data: {
         name,
         description,
