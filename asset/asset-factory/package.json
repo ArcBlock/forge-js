@@ -1,7 +1,7 @@
 {
   "name": "@arcblock/asset-factory",
   "description": "Utility to create standard asset on forge powered blockchain",
-  "version": "1.1.4",
+  "version": "1.1.6",
   "author": {
     "name": "wangshijun",
     "email": "shijun@arcblock.io",
