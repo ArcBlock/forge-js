@@ -1,3 +1,7 @@
+## 1.1.6 (March 24, 2020)
+
+- add display parameter when signature
+
 ## 1.1.5 (March 23, 2020)
 
 - update readme
