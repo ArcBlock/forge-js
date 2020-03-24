@@ -432,6 +432,7 @@ declare namespace _Lib {
     description: any;
     origin: string;
     typeUrl: any;
+    display: any;
     method: string;
     digest: any;
     sig: string;

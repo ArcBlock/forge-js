@@ -54,7 +54,7 @@ declare class AssetFactory {
    * Create a ticket
    *
    * @param {object} params
-   * @param {string} params.backgroundUrl - asset background
+   * @param {string} params.display - display of the ticket { type, content }
    * @param {object} params.data - asset payload
    * @param {string} params.data.name - ticket name
    * @param {string} params.data.description - ticket description
@@ -71,7 +71,7 @@ declare class AssetFactory {
    * Create a coupon asset
    *
    * @param {object} params
-   * @param {string} params.backgroundUrl - asset background
+   * @param {string} params.display - display of the coupon { type, content }
    * @param {object} params.data - asset payload
    * @param {string} params.data.name - coupon name
    * @param {string} params.data.description - coupon description
@@ -89,7 +89,7 @@ declare class AssetFactory {
    * Create a coupon asset
    *
    * @param {object} params
-   * @param {string} params.backgroundUrl - asset background
+   * @param {string} params.display - display of the certificate { type, content }
    * @param {object} params.data - asset payload
    * @param {string} params.data.name - certificate name
    * @param {string} params.data.description - certificate description
@@ -103,7 +103,20 @@ declare class AssetFactory {
    * @memberof AssetFactory
    */
   createCertificate(T117: _Lib.T119): Promise<any>;
-  createBadge(T120: _Lib.T122): Promise<any[]>;
+  /**
+   * Create a badge
+   *
+   * @param {object} params
+   * @param {string} params.display - display of the certificate { type, content }
+   * @param {object} params.data - asset payload
+   * @param {string} params.data.name - certificate name
+   * @param {string} params.data.description - certificate description
+   * @param {AssetRecipient} params.data.recipient - certificate recipient
+   * @param {object} params.attributes - asset attributes
+   * @returns {Promise} - the `[asset, hash]` on resolved
+   * @memberof AssetFactory
+   */
+  createBadge(T120: _Lib.T122): Promise<any>;
   createSignedAsset(payload: any, attributes: any): Promise<any[]>;
   getVCBody(asset: any): any;
 }
@@ -166,7 +179,7 @@ declare namespace _Lib {
     endTime: number;
   }
   export interface T113 {
-    backgroundUrl: string;
+    display: string;
     data: _Lib.T112;
     attributes: any;
   }
@@ -180,7 +193,7 @@ declare namespace _Lib {
     endTime: number;
   }
   export interface T116 {
-    backgroundUrl: string;
+    display: string;
     data: _Lib.T115;
     attributes: any;
   }
@@ -194,16 +207,19 @@ declare namespace _Lib {
     expireTime: number;
   }
   export interface T119 {
-    backgroundUrl: string;
+    display: string;
     data: _Lib.T118;
     attributes: any;
   }
   export interface T121 {
-    [key: string]: any;
+    name: string;
+    description: string;
+    recipient: AssetRecipient;
   }
   export interface T122 {
-    data?: _Lib.T121;
-    attributes?: _Lib.T121;
+    display: string;
+    data: _Lib.T121;
+    attributes: any;
   }
   export interface T123 {
     AssetStatus: Readonly<_Lib.T100>;
