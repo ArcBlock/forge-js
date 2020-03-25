@@ -73,8 +73,7 @@
             "validator_not_changed": 73,
             "forbidden": 403,
             "internal": 500,
-            "timeout": 504,
-            "duplicate_tether": 48
+            "timeout": 504
           }
         },
         "KeyType": {
@@ -113,8 +112,7 @@
             "role_validator": 8,
             "role_group": 9,
             "role_tx": 10,
-            "role_any": 63,
-            "role_tether": 11
+            "role_any": 63
           }
         },
         "UpgradeType": {
@@ -965,7 +963,10 @@
         "RequestGetForgeStats": {
           "oneofs": {
             "value": {
-              "oneof": ["dayInfo", "date"]
+              "oneof": [
+                "dayInfo",
+                "date"
+              ]
             }
           },
           "fields": {
@@ -2461,18 +2462,6 @@
             "maxCommission": {
               "type": "BigUint",
               "id": 7
-            },
-            "withdrawInterval": {
-              "type": "uint32",
-              "id": 2
-            },
-            "commission": {
-              "type": "BigUint",
-              "id": 3
-            },
-            "revokeCommission": {
-              "type": "uint32",
-              "id": 5
             }
           }
         },
@@ -2963,6 +2952,47 @@
             }
           }
         },
+        "AssetFactoryState": {
+          "fields": {
+            "description": {
+              "type": "string",
+              "id": 1
+            },
+            "limit": {
+              "type": "uint32",
+              "id": 2
+            },
+            "price": {
+              "type": "BigUint",
+              "id": 3
+            },
+            "template": {
+              "type": "string",
+              "id": 4
+            },
+            "allowedSpecArgs": {
+              "rule": "repeated",
+              "type": "string",
+              "id": 5
+            },
+            "assetName": {
+              "type": "string",
+              "id": 6
+            },
+            "attributes": {
+              "type": "AssetAttributes",
+              "id": 7
+            },
+            "numCreated": {
+              "type": "uint32",
+              "id": 8
+            },
+            "data": {
+              "type": "google.protobuf.Any",
+              "id": 15
+            }
+          }
+        },
         "CodeInfo": {
           "fields": {
             "checksum": {
@@ -3043,26 +3073,367 @@
             }
           }
         },
-        "ConsensusUpgradeTx": {
+        "AccountMigrateTx": {
           "fields": {
-            "validators": {
-              "rule": "repeated",
-              "type": "Validator",
+            "pk": {
+              "type": "bytes",
               "id": 1
             },
-            "maxBytes": {
-              "type": "uint64",
-              "id": 2
+            "type": {
+              "type": "WalletType",
+              "id": 2,
+              "options": {
+                "deprecated": true
+              }
             },
-            "maxGas": {
-              "type": "sint64",
+            "address": {
+              "type": "string",
               "id": 3
             },
-            "maxValidators": {
-              "type": "uint32",
+            "data": {
+              "type": "google.protobuf.Any",
+              "id": 15
+            }
+          }
+        },
+        "DeclareTx": {
+          "fields": {
+            "moniker": {
+              "type": "string",
+              "id": 1
+            },
+            "issuer": {
+              "type": "string",
+              "id": 2
+            },
+            "data": {
+              "type": "google.protobuf.Any",
+              "id": 15
+            }
+          }
+        },
+        "DelegateTx": {
+          "fields": {
+            "address": {
+              "type": "string",
+              "id": 1
+            },
+            "to": {
+              "type": "string",
+              "id": 2
+            },
+            "ops": {
+              "rule": "repeated",
+              "type": "DelegateOp",
+              "id": 3
+            },
+            "data": {
+              "type": "google.protobuf.Any",
+              "id": 15
+            }
+          }
+        },
+        "DelegateOp": {
+          "fields": {
+            "typeUrl": {
+              "type": "string",
+              "id": 1
+            },
+            "rules": {
+              "rule": "repeated",
+              "type": "string",
+              "id": 2
+            }
+          }
+        },
+        "RevokeDelegateTx": {
+          "fields": {
+            "address": {
+              "type": "string",
+              "id": 1
+            },
+            "to": {
+              "type": "string",
+              "id": 2
+            },
+            "typeUrls": {
+              "rule": "repeated",
+              "type": "string",
+              "id": 3
+            },
+            "data": {
+              "type": "google.protobuf.Any",
+              "id": 15
+            }
+          }
+        },
+        "AssetSpec": {
+          "fields": {
+            "address": {
+              "type": "string",
+              "id": 1
+            },
+            "data": {
+              "type": "string",
+              "id": 2
+            }
+          }
+        },
+        "AcquireAssetTx": {
+          "fields": {
+            "to": {
+              "type": "string",
+              "id": 1
+            },
+            "specs": {
+              "rule": "repeated",
+              "type": "AssetSpec",
+              "id": 2
+            },
+            "data": {
+              "type": "google.protobuf.Any",
+              "id": 15
+            }
+          }
+        },
+        "ConsumeAssetTx": {
+          "fields": {
+            "issuer": {
+              "type": "string",
+              "id": 1
+            },
+            "address": {
+              "type": "string",
+              "id": 2
+            },
+            "data": {
+              "type": "google.protobuf.Any",
+              "id": 15
+            }
+          }
+        },
+        "CreateAssetTx": {
+          "fields": {
+            "moniker": {
+              "type": "string",
+              "id": 1
+            },
+            "data": {
+              "type": "google.protobuf.Any",
+              "id": 2
+            },
+            "readonly": {
+              "type": "bool",
+              "id": 3
+            },
+            "transferrable": {
+              "type": "bool",
               "id": 4
             },
-            "maxCandidates": {
+            "ttl": {
+              "type": "uint32",
+              "id": 5
+            },
+            "parent": {
+              "type": "string",
+              "id": 6
+            },
+            "address": {
+              "type": "string",
+              "id": 7
+            }
+          }
+        },
+        "AssetAttributes": {
+          "fields": {
+            "transferrable": {
+              "type": "bool",
+              "id": 1
+            },
+            "ttl": {
+              "type": "uint32",
+              "id": 2
+            }
+          }
+        },
+        "AssetFactory": {
+          "fields": {
+            "description": {
+              "type": "string",
+              "id": 1
+            },
+            "limit": {
+              "type": "uint32",
+              "id": 2
+            },
+            "price": {
+              "type": "BigUint",
+              "id": 3
+            },
+            "template": {
+              "type": "string",
+              "id": 4
+            },
+            "allowedSpecArgs": {
+              "rule": "repeated",
+              "type": "string",
+              "id": 5
+            },
+            "assetName": {
+              "type": "string",
+              "id": 6
+            },
+            "attributes": {
+              "type": "AssetAttributes",
+              "id": 7
+            },
+            "data": {
+              "type": "google.protobuf.Any",
+              "id": 15
+            }
+          }
+        },
+        "UpdateAssetTx": {
+          "fields": {
+            "address": {
+              "type": "string",
+              "id": 1
+            },
+            "moniker": {
+              "type": "string",
+              "id": 2
+            },
+            "data": {
+              "type": "google.protobuf.Any",
+              "id": 15
+            }
+          }
+        },
+        "UpdateConsensusParamsTx": {
+          "fields": {
+            "delegateConfig": {
+              "type": "DelegateConfig",
+              "id": 1
+            },
+            "declareConfig": {
+              "type": "DeclareConfig",
+              "id": 2
+            },
+            "tokenSwapConfig": {
+              "type": "TokenSwapConfig",
+              "id": 3
+            },
+            "moderatorConfig": {
+              "type": "AccountConfig",
+              "id": 4
+            }
+          }
+        },
+        "UpdateValidatorTx": {
+          "fields": {
+            "candidates": {
+              "rule": "repeated",
+              "type": "forge_abi.Validator",
+              "id": 1
+            },
+            "data": {
+              "type": "google.protobuf.Any",
+              "id": 15
+            }
+          }
+        },
+        "UpgradeNodeTx": {
+          "fields": {
+            "height": {
+              "type": "uint64",
+              "id": 1
+            },
+            "version": {
+              "type": "string",
+              "id": 2
+            },
+            "override": {
+              "type": "bool",
+              "id": 3
+            }
+          }
+        },
+        "PokeTx": {
+          "fields": {
+            "date": {
+              "type": "string",
+              "id": 1
+            },
+            "address": {
+              "type": "string",
+              "id": 2
+            },
+            "data": {
+              "type": "google.protobuf.Any",
+              "id": 15
+            }
+          }
+        },
+        "RefuelTx": {
+          "fields": {
+            "date": {
+              "type": "string",
+              "id": 1
+            },
+            "data": {
+              "type": "google.protobuf.Any",
+              "id": 15
+            }
+          }
+        },
+        "RetrieveSwapTx": {
+          "fields": {
+            "address": {
+              "type": "string",
+              "id": 1
+            },
+            "hashkey": {
+              "type": "bytes",
+              "id": 2
+            },
+            "data": {
+              "type": "google.protobuf.Any",
+              "id": 15
+            }
+          }
+        },
+        "RevokeSwapTx": {
+          "fields": {
+            "address": {
+              "type": "string",
+              "id": 1
+            },
+            "data": {
+              "type": "google.protobuf.Any",
+              "id": 15
+            }
+          }
+        },
+        "SetupSwapTx": {
+          "fields": {
+            "value": {
+              "type": "BigUint",
+              "id": 1
+            },
+            "assets": {
+              "rule": "repeated",
+              "type": "string",
+              "id": 2
+            },
+            "receiver": {
+              "type": "string",
+              "id": 3
+            },
+            "hashlock": {
+              "type": "bytes",
+              "id": 4
+            },
+            "locktime": {
               "type": "uint32",
               "id": 5
             },
@@ -3072,15 +3443,113 @@
             }
           }
         },
-        "SysUpgradeTx": {
+        "ApproveWithdrawTx": {
           "fields": {
-            "task": {
-              "type": "UpgradeTask",
+            "withdrawTxHash": {
+              "type": "string",
               "id": 1
             },
-            "gracePeriod": {
-              "type": "uint64",
+            "evidence": {
+              "type": "Evidence",
               "id": 2
+            }
+          }
+        },
+        "DepositTokenTx": {
+          "fields": {
+            "value": {
+              "type": "BigUint",
+              "id": 1
+            },
+            "address": {
+              "type": "string",
+              "id": 2
+            },
+            "evidence": {
+              "type": "Evidence",
+              "id": 3
+            }
+          }
+        },
+        "RevokeWithdrawTx": {
+          "fields": {
+            "withdrawTxHash": {
+              "type": "string",
+              "id": 1
+            }
+          }
+        },
+        "WithdrawTokenTx": {
+          "fields": {
+            "value": {
+              "type": "BigUint",
+              "id": 1
+            },
+            "to": {
+              "type": "string",
+              "id": 2
+            },
+            "chainType": {
+              "type": "string",
+              "id": 3
+            },
+            "chainId": {
+              "type": "string",
+              "id": 4
+            }
+          }
+        },
+        "ExchangeInfo": {
+          "fields": {
+            "value": {
+              "type": "BigUint",
+              "id": 1
+            },
+            "assets": {
+              "rule": "repeated",
+              "type": "string",
+              "id": 2
+            }
+          }
+        },
+        "ExchangeTx": {
+          "fields": {
+            "to": {
+              "type": "string",
+              "id": 1
+            },
+            "sender": {
+              "type": "ExchangeInfo",
+              "id": 2
+            },
+            "receiver": {
+              "type": "ExchangeInfo",
+              "id": 3
+            },
+            "expiredAt": {
+              "type": "google.protobuf.Timestamp",
+              "id": 4
+            },
+            "data": {
+              "type": "google.protobuf.Any",
+              "id": 15
+            }
+          }
+        },
+        "TransferTx": {
+          "fields": {
+            "to": {
+              "type": "string",
+              "id": 1
+            },
+            "value": {
+              "type": "BigUint",
+              "id": 2
+            },
+            "assets": {
+              "rule": "repeated",
+              "type": "string",
+              "id": 3
             },
             "data": {
               "type": "google.protobuf.Any",
@@ -3705,551 +4174,6 @@
             "get_swap_statistics": {
               "requestType": "RequestGetSwapStatistics",
               "responseType": "ResponseGetSwapStatistics"
-            }
-          }
-        },
-        "AccountMigrateTx": {
-          "fields": {
-            "pk": {
-              "type": "bytes",
-              "id": 1
-            },
-            "type": {
-              "type": "WalletType",
-              "id": 2,
-              "options": {
-                "deprecated": true
-              }
-            },
-            "address": {
-              "type": "string",
-              "id": 3
-            },
-            "data": {
-              "type": "google.protobuf.Any",
-              "id": 15
-            }
-          }
-        },
-        "AssetSpec": {
-          "fields": {
-            "address": {
-              "type": "string",
-              "id": 1
-            },
-            "data": {
-              "type": "string",
-              "id": 2
-            }
-          }
-        },
-        "AcquireAssetTx": {
-          "fields": {
-            "to": {
-              "type": "string",
-              "id": 1
-            },
-            "specs": {
-              "rule": "repeated",
-              "type": "AssetSpec",
-              "id": 2
-            },
-            "data": {
-              "type": "google.protobuf.Any",
-              "id": 15
-            }
-          }
-        },
-        "ActivateProtocolTx": {
-          "fields": {
-            "address": {
-              "type": "string",
-              "id": 1
-            },
-            "data": {
-              "type": "google.protobuf.Any",
-              "id": 15
-            }
-          }
-        },
-        "ApproveWithdrawTx": {
-          "fields": {
-            "withdrawTxHash": {
-              "type": "string",
-              "id": 1
-            },
-            "evidence": {
-              "type": "Evidence",
-              "id": 2
-            }
-          }
-        },
-        "ConsumeAssetTx": {
-          "fields": {
-            "issuer": {
-              "type": "string",
-              "id": 1
-            },
-            "address": {
-              "type": "string",
-              "id": 2
-            },
-            "data": {
-              "type": "google.protobuf.Any",
-              "id": 15
-            }
-          }
-        },
-        "CreateAssetTx": {
-          "fields": {
-            "moniker": {
-              "type": "string",
-              "id": 1
-            },
-            "data": {
-              "type": "google.protobuf.Any",
-              "id": 2
-            },
-            "readonly": {
-              "type": "bool",
-              "id": 3
-            },
-            "transferrable": {
-              "type": "bool",
-              "id": 4
-            },
-            "ttl": {
-              "type": "uint32",
-              "id": 5
-            },
-            "parent": {
-              "type": "string",
-              "id": 6
-            },
-            "address": {
-              "type": "string",
-              "id": 7
-            }
-          }
-        },
-        "AssetAttributes": {
-          "fields": {
-            "transferrable": {
-              "type": "bool",
-              "id": 1
-            },
-            "ttl": {
-              "type": "uint32",
-              "id": 2
-            }
-          }
-        },
-        "AssetFactory": {
-          "fields": {
-            "description": {
-              "type": "string",
-              "id": 1
-            },
-            "limit": {
-              "type": "uint32",
-              "id": 2
-            },
-            "price": {
-              "type": "BigUint",
-              "id": 3
-            },
-            "template": {
-              "type": "string",
-              "id": 4
-            },
-            "allowedSpecArgs": {
-              "rule": "repeated",
-              "type": "string",
-              "id": 5
-            },
-            "assetName": {
-              "type": "string",
-              "id": 6
-            },
-            "attributes": {
-              "type": "AssetAttributes",
-              "id": 7
-            },
-            "data": {
-              "type": "google.protobuf.Any",
-              "id": 15
-            }
-          }
-        },
-        "AssetFactoryState": {
-          "fields": {
-            "description": {
-              "type": "string",
-              "id": 1
-            },
-            "limit": {
-              "type": "uint32",
-              "id": 2
-            },
-            "price": {
-              "type": "BigUint",
-              "id": 3
-            },
-            "template": {
-              "type": "string",
-              "id": 4
-            },
-            "allowedSpecArgs": {
-              "rule": "repeated",
-              "type": "string",
-              "id": 5
-            },
-            "assetName": {
-              "type": "string",
-              "id": 6
-            },
-            "attributes": {
-              "type": "AssetAttributes",
-              "id": 7
-            },
-            "numCreated": {
-              "type": "uint32",
-              "id": 8
-            },
-            "data": {
-              "type": "google.protobuf.Any",
-              "id": 15
-            }
-          }
-        },
-        "DeactivateProtocolTx": {
-          "fields": {
-            "address": {
-              "type": "string",
-              "id": 1
-            },
-            "data": {
-              "type": "google.protobuf.Any",
-              "id": 15
-            }
-          }
-        },
-        "DeclareTx": {
-          "fields": {
-            "moniker": {
-              "type": "string",
-              "id": 1
-            },
-            "issuer": {
-              "type": "string",
-              "id": 2
-            },
-            "data": {
-              "type": "google.protobuf.Any",
-              "id": 15
-            }
-          }
-        },
-        "DelegateTx": {
-          "fields": {
-            "address": {
-              "type": "string",
-              "id": 1
-            },
-            "to": {
-              "type": "string",
-              "id": 2
-            },
-            "ops": {
-              "rule": "repeated",
-              "type": "DelegateOp",
-              "id": 3
-            },
-            "data": {
-              "type": "google.protobuf.Any",
-              "id": 15
-            }
-          }
-        },
-        "DelegateOp": {
-          "fields": {
-            "typeUrl": {
-              "type": "string",
-              "id": 1
-            },
-            "rules": {
-              "rule": "repeated",
-              "type": "string",
-              "id": 2
-            }
-          }
-        },
-        "DepositTokenTx": {
-          "fields": {
-            "value": {
-              "type": "BigUint",
-              "id": 1
-            },
-            "address": {
-              "type": "string",
-              "id": 2
-            },
-            "evidence": {
-              "type": "Evidence",
-              "id": 3
-            }
-          }
-        },
-        "ExchangeInfo": {
-          "fields": {
-            "value": {
-              "type": "BigUint",
-              "id": 1
-            },
-            "assets": {
-              "rule": "repeated",
-              "type": "string",
-              "id": 2
-            }
-          }
-        },
-        "ExchangeTx": {
-          "fields": {
-            "to": {
-              "type": "string",
-              "id": 1
-            },
-            "sender": {
-              "type": "ExchangeInfo",
-              "id": 2
-            },
-            "receiver": {
-              "type": "ExchangeInfo",
-              "id": 3
-            },
-            "expiredAt": {
-              "type": "google.protobuf.Timestamp",
-              "id": 4
-            },
-            "data": {
-              "type": "google.protobuf.Any",
-              "id": 15
-            }
-          }
-        },
-        "PokeTx": {
-          "fields": {
-            "date": {
-              "type": "string",
-              "id": 1
-            },
-            "address": {
-              "type": "string",
-              "id": 2
-            },
-            "data": {
-              "type": "google.protobuf.Any",
-              "id": 15
-            }
-          }
-        },
-        "RefuelTx": {
-          "fields": {
-            "date": {
-              "type": "string",
-              "id": 1
-            },
-            "data": {
-              "type": "google.protobuf.Any",
-              "id": 15
-            }
-          }
-        },
-        "RetrieveSwapTx": {
-          "fields": {
-            "address": {
-              "type": "string",
-              "id": 1
-            },
-            "hashkey": {
-              "type": "bytes",
-              "id": 2
-            },
-            "data": {
-              "type": "google.protobuf.Any",
-              "id": 15
-            }
-          }
-        },
-        "RevokeDelegateTx": {
-          "fields": {
-            "address": {
-              "type": "string",
-              "id": 1
-            },
-            "to": {
-              "type": "string",
-              "id": 2
-            },
-            "typeUrls": {
-              "rule": "repeated",
-              "type": "string",
-              "id": 3
-            },
-            "data": {
-              "type": "google.protobuf.Any",
-              "id": 15
-            }
-          }
-        },
-        "RevokeSwapTx": {
-          "fields": {
-            "address": {
-              "type": "string",
-              "id": 1
-            },
-            "data": {
-              "type": "google.protobuf.Any",
-              "id": 15
-            }
-          }
-        },
-        "RevokeWithdrawTx": {
-          "fields": {
-            "withdrawTxHash": {
-              "type": "string",
-              "id": 1
-            }
-          }
-        },
-        "SetupSwapTx": {
-          "fields": {
-            "value": {
-              "type": "BigUint",
-              "id": 1
-            },
-            "assets": {
-              "rule": "repeated",
-              "type": "string",
-              "id": 2
-            },
-            "receiver": {
-              "type": "string",
-              "id": 3
-            },
-            "hashlock": {
-              "type": "bytes",
-              "id": 4
-            },
-            "locktime": {
-              "type": "uint32",
-              "id": 5
-            },
-            "data": {
-              "type": "google.protobuf.Any",
-              "id": 15
-            }
-          }
-        },
-        "TransferTx": {
-          "fields": {
-            "to": {
-              "type": "string",
-              "id": 1
-            },
-            "value": {
-              "type": "BigUint",
-              "id": 2
-            },
-            "assets": {
-              "rule": "repeated",
-              "type": "string",
-              "id": 3
-            },
-            "data": {
-              "type": "google.protobuf.Any",
-              "id": 15
-            }
-          }
-        },
-        "UpdateAssetTx": {
-          "fields": {
-            "address": {
-              "type": "string",
-              "id": 1
-            },
-            "moniker": {
-              "type": "string",
-              "id": 2
-            },
-            "data": {
-              "type": "google.protobuf.Any",
-              "id": 15
-            }
-          }
-        },
-        "UpdateConsensusParamsTx": {
-          "fields": {
-            "delegateConfig": {
-              "type": "DelegateConfig",
-              "id": 1
-            },
-            "declareConfig": {
-              "type": "DeclareConfig",
-              "id": 2
-            },
-            "tokenSwapConfig": {
-              "type": "TokenSwapConfig",
-              "id": 3
-            }
-          }
-        },
-        "UpdateValidatorTx": {
-          "fields": {
-            "candidates": {
-              "rule": "repeated",
-              "type": "forge_abi.Validator",
-              "id": 1
-            },
-            "data": {
-              "type": "google.protobuf.Any",
-              "id": 15
-            }
-          }
-        },
-        "UpgradeNodeTx": {
-          "fields": {
-            "height": {
-              "type": "uint64",
-              "id": 1
-            },
-            "version": {
-              "type": "string",
-              "id": 2
-            },
-            "override": {
-              "type": "bool",
-              "id": 3
-            }
-          }
-        },
-        "WithdrawTokenTx": {
-          "fields": {
-            "value": {
-              "type": "BigUint",
-              "id": 1
-            },
-            "to": {
-              "type": "string",
-              "id": 2
-            },
-            "chainType": {
-              "type": "string",
-              "id": 3
-            },
-            "chainId": {
-              "type": "string",
-              "id": 4
             }
           }
         }
