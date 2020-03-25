@@ -1,3 +1,12 @@
+## 1.2.0 (March 25, 2020)
+
+- chore: rerun upgrade script
+- fix: lite and full proto
+- chore: update latest graphql-client
+- chore: update latest grpc-client
+- chore: update latest forge-abi
+- update readme
+
 ## 1.1.6 (March 24, 2020)
 
 - add display parameter when signature
