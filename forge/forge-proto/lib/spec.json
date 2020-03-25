@@ -808,11 +808,17 @@
             },
             "activateProtocol": {
               "type": "Transaction",
-              "id": 26
+              "id": 26,
+              "options": {
+                "deprecated": true
+              }
             },
             "deactivateProtocol": {
               "type": "Transaction",
-              "id": 27
+              "id": 27,
+              "options": {
+                "deprecated": true
+              }
             },
             "revokeDelegate": {
               "type": "Transaction",
