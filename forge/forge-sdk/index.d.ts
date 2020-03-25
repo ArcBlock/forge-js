@@ -651,14 +651,10 @@ getValidatorsInfo(request: forge_abi.RequestGetValidatorsInfo): GRpcClient.Unary
 getConfig(request: forge_abi.RequestGetConfig): GRpcClient.UnaryResult<forge_abi.ResponseGetConfig>;
 subscribe(request: forge_abi.RequestSubscribe): GRpcClient.StreamResult<forge_abi.ResponseSubscribe>;
 unsubscribe(request: forge_abi.RequestUnsubscribe): GRpcClient.UnaryResult<forge_abi.ResponseUnsubscribe>;
-storeFile(request: forge_abi.RequestStoreFile | Array<forge_abi.RequestStoreFile>): GRpcClient.UnaryResult<forge_abi.ResponseStoreFile>;
-loadFile(request: forge_abi.RequestLoadFile): GRpcClient.StreamResult<forge_abi.ResponseLoadFile>;
-pinFile(request: forge_abi.RequestPinFile): GRpcClient.UnaryResult<forge_abi.ResponsePinFile>;
+
 getAccountState(request: forge_abi.RequestGetAccountState | Array<forge_abi.RequestGetAccountState>): GRpcClient.StreamResult<forge_abi.ResponseGetAccountState>;
 getAssetState(request: forge_abi.RequestGetAssetState | Array<forge_abi.RequestGetAssetState>): GRpcClient.StreamResult<forge_abi.ResponseGetAssetState>;
 getForgeState(request: forge_abi.RequestGetForgeState): GRpcClient.UnaryResult<forge_abi.ResponseGetForgeState>;
-getProtocolState(request: forge_abi.RequestGetProtocolState | Array<forge_abi.RequestGetProtocolState>): GRpcClient.StreamResult<forge_abi.ResponseGetProtocolState>;
-getStakeState(request: forge_abi.RequestGetStakeState | Array<forge_abi.RequestGetStakeState>): GRpcClient.StreamResult<forge_abi.ResponseGetStakeState>;
 getSwapState(request: forge_abi.RequestGetSwapState | Array<forge_abi.RequestGetSwapState>): GRpcClient.StreamResult<forge_abi.ResponseGetSwapState>;
 getDelegateState(request: forge_abi.RequestGetDelegateState | Array<forge_abi.RequestGetDelegateState>): GRpcClient.StreamResult<forge_abi.ResponseGetDelegateState>;
 declareNode(request: forge_abi.RequestDeclareNode): GRpcClient.UnaryResult<forge_abi.ResponseDeclareNode>;
@@ -680,7 +676,6 @@ encodeConsumeAssetTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<G
 encodeCreateAssetTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.ResponseSendTx>;
 encodeDeclareTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.ResponseSendTx>;
 encodeDelegateTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.ResponseSendTx>;
-encodeDeployProtocolTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.ResponseSendTx>;
 encodeDepositTokenTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.ResponseSendTx>;
 encodeExchangeTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.ResponseSendTx>;
 encodePokeTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.ResponseSendTx>;
@@ -703,7 +698,6 @@ sendConsumeAssetTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRp
 sendCreateAssetTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.EncodeTxResult>;
 sendDeclareTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.EncodeTxResult>;
 sendDelegateTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.EncodeTxResult>;
-sendDeployProtocolTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.EncodeTxResult>;
 sendDepositTokenTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.EncodeTxResult>;
 sendExchangeTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.EncodeTxResult>;
 sendPokeTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.EncodeTxResult>;
@@ -726,7 +720,6 @@ signConsumeAssetTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRp
 signCreateAssetTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.Transaction>;
 signDeclareTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.Transaction>;
 signDelegateTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.Transaction>;
-signDeployProtocolTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.Transaction>;
 signDepositTokenTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.Transaction>;
 signExchangeTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.Transaction>;
 signPokeTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.Transaction>;
@@ -982,28 +975,6 @@ export interface ResponseGetAssetState {
   state: forge_abi.AssetState;
 }
 
-export interface RequestGetProtocolState {
-  address: string;
-  keys: Array<string>;
-  height: number;
-}
-
-export interface ResponseGetProtocolState {
-  code: forge_abi.StatusCode;
-  state: forge_abi.ProtocolState;
-}
-
-export interface RequestGetStakeState {
-  address: string;
-  keys: Array<string>;
-  height: number;
-}
-
-export interface ResponseGetStakeState {
-  code: forge_abi.StatusCode;
-  state: forge_abi.StakeState;
-}
-
 export interface RequestGetForgeState {
   keys: Array<string>;
   height: number;
@@ -1034,32 +1005,6 @@ export interface RequestGetDelegateState {
 export interface ResponseGetDelegateState {
   code: forge_abi.StatusCode;
   state: forge_abi.DelegateState;
-}
-
-export interface RequestStoreFile {
-  chunk: Uint8Array;
-}
-
-export interface ResponseStoreFile {
-  code: forge_abi.StatusCode;
-  hash: string;
-}
-
-export interface RequestLoadFile {
-  hash: string;
-}
-
-export interface ResponseLoadFile {
-  code: forge_abi.StatusCode;
-  chunk: Uint8Array;
-}
-
-export interface RequestPinFile {
-  hash: string;
-}
-
-export interface ResponsePinFile {
-  code: forge_abi.StatusCode;
 }
 
 export interface RequestGetChainInfo {
@@ -1131,18 +1076,14 @@ export interface ResponseSubscribe {
   confirm: forge_abi.Transaction;
   createAsset: forge_abi.Transaction;
   exchange: forge_abi.Transaction;
-  revoke: forge_abi.Transaction;
   beginBlock: abci_vendor.RequestBeginBlock;
   endBlock: abci_vendor.RequestEndBlock;
   declare: forge_abi.Transaction;
   updateAsset: forge_abi.Transaction;
   consensusUpgrade: forge_abi.Transaction;
-  declareFile: forge_abi.Transaction;
   sysUpgrade: forge_abi.Transaction;
   stake: forge_abi.Transaction;
   delegate: forge_abi.Transaction;
-  activateProtocol: forge_abi.Transaction;
-  deactivateProtocol: forge_abi.Transaction;
   revokeDelegate: forge_abi.Transaction;
   depositToken: forge_abi.Transaction;
   withdrawToken: forge_abi.Transaction;
@@ -1152,7 +1093,6 @@ export interface ResponseSubscribe {
   revokeSwap: forge_abi.Transaction;
   retrieveSwap: forge_abi.Transaction;
   poke: forge_abi.Transaction;
-  deployProtocol: forge_abi.Transaction;
   consumeAsset: forge_abi.Transaction;
   acquireAsset: forge_abi.Transaction;
   upgradeNode: forge_abi.Transaction;
@@ -1161,8 +1101,6 @@ export interface ResponseSubscribe {
   accountState: forge_abi.AccountState;
   assetState: forge_abi.AssetState;
   forgeState: forge_abi.ForgeState;
-  stakeState: forge_abi.StakeState;
-  protocolState: forge_abi.ProtocolState;
   delegateState: forge_abi.DelegateState;
   swapState: forge_abi.SwapState;
 }
@@ -2468,7 +2406,6 @@ sendConsumeAssetTx(param: GraphQLClient.TxParam<GraphQLClient.ConsumeAssetTx>): 
 sendCreateAssetTx(param: GraphQLClient.TxParam<GraphQLClient.CreateAssetTx>): Promise<GraphQLClient.ResponseSendTx>;
 sendDeclareTx(param: GraphQLClient.TxParam<GraphQLClient.DeclareTx>): Promise<GraphQLClient.ResponseSendTx>;
 sendDelegateTx(param: GraphQLClient.TxParam<GraphQLClient.DelegateTx>): Promise<GraphQLClient.ResponseSendTx>;
-sendDeployProtocolTx(param: GraphQLClient.TxParam<GraphQLClient.DeployProtocolTx>): Promise<GraphQLClient.ResponseSendTx>;
 sendDepositTokenTx(param: GraphQLClient.TxParam<GraphQLClient.DepositTokenTx>): Promise<GraphQLClient.ResponseSendTx>;
 sendExchangeTx(param: GraphQLClient.TxParam<GraphQLClient.ExchangeTx>): Promise<GraphQLClient.ResponseSendTx>;
 sendPokeTx(param: GraphQLClient.TxParam<GraphQLClient.PokeTx>): Promise<GraphQLClient.ResponseSendTx>;
@@ -2491,7 +2428,6 @@ encodeConsumeAssetTx(param: GraphQLClient.TxParam<GraphQLClient.ConsumeAssetTx>)
 encodeCreateAssetTx(param: GraphQLClient.TxParam<GraphQLClient.CreateAssetTx>): Promise<GraphQLClient.EncodeTxResult>;
 encodeDeclareTx(param: GraphQLClient.TxParam<GraphQLClient.DeclareTx>): Promise<GraphQLClient.EncodeTxResult>;
 encodeDelegateTx(param: GraphQLClient.TxParam<GraphQLClient.DelegateTx>): Promise<GraphQLClient.EncodeTxResult>;
-encodeDeployProtocolTx(param: GraphQLClient.TxParam<GraphQLClient.DeployProtocolTx>): Promise<GraphQLClient.EncodeTxResult>;
 encodeDepositTokenTx(param: GraphQLClient.TxParam<GraphQLClient.DepositTokenTx>): Promise<GraphQLClient.EncodeTxResult>;
 encodeExchangeTx(param: GraphQLClient.TxParam<GraphQLClient.ExchangeTx>): Promise<GraphQLClient.EncodeTxResult>;
 encodePokeTx(param: GraphQLClient.TxParam<GraphQLClient.PokeTx>): Promise<GraphQLClient.EncodeTxResult>;
@@ -2514,7 +2450,6 @@ signConsumeAssetTx(param: GraphQLClient.TxParam<GraphQLClient.ConsumeAssetTx>): 
 signCreateAssetTx(param: GraphQLClient.TxParam<GraphQLClient.CreateAssetTx>): Promise<GraphQLClient.Transaction>;
 signDeclareTx(param: GraphQLClient.TxParam<GraphQLClient.DeclareTx>): Promise<GraphQLClient.Transaction>;
 signDelegateTx(param: GraphQLClient.TxParam<GraphQLClient.DelegateTx>): Promise<GraphQLClient.Transaction>;
-signDeployProtocolTx(param: GraphQLClient.TxParam<GraphQLClient.DeployProtocolTx>): Promise<GraphQLClient.Transaction>;
 signDepositTokenTx(param: GraphQLClient.TxParam<GraphQLClient.DepositTokenTx>): Promise<GraphQLClient.Transaction>;
 signExchangeTx(param: GraphQLClient.TxParam<GraphQLClient.ExchangeTx>): Promise<GraphQLClient.Transaction>;
 signPokeTx(param: GraphQLClient.TxParam<GraphQLClient.PokeTx>): Promise<GraphQLClient.Transaction>;
@@ -2547,10 +2482,7 @@ getForgeStatsByHour(params: GraphQLClient.GetForgeStatsByHourParams): GraphQLCli
 getHealthStatus(): GraphQLClient.QueryResult<GraphQLClient.ResponseGetHealthStatus>
 getNetInfo(): GraphQLClient.QueryResult<GraphQLClient.ResponseGetNetInfo>
 getNodeInfo(): GraphQLClient.QueryResult<GraphQLClient.ResponseGetNodeInfo>
-getProtocolState(params: GraphQLClient.GetProtocolStateParams): GraphQLClient.QueryResult<GraphQLClient.ResponseGetProtocolState>
-getProtocols(params: GraphQLClient.GetProtocolsParams): GraphQLClient.QueryResult<GraphQLClient.ResponseGetProtocols>
 getSimulatorStatus(): GraphQLClient.QueryResult<GraphQLClient.ResponseGetSimulatorStatus>
-getStakeState(params: GraphQLClient.GetStakeStateParams): GraphQLClient.QueryResult<GraphQLClient.ResponseGetStakeState>
 getSwapState(params: GraphQLClient.GetSwapStateParams): GraphQLClient.QueryResult<GraphQLClient.ResponseGetSwapState>
 getSwapStatistics(params: GraphQLClient.GetSwapStatisticsParams): GraphQLClient.QueryResult<GraphQLClient.ResponseGetSwapStatistics>
 getTx(params: GraphQLClient.GetTxParams): GraphQLClient.QueryResult<GraphQLClient.ResponseGetTx>
@@ -2669,76 +2601,76 @@ export enum RoleType {
 }
 
 export enum StatusCode {
-  UNSUPPORTED_TX,
-  CONSENSUS_RPC_ERROR,
-  READONLY_ASSET,
-  INVALID_CHAIN_TYPE,
-  INVALID_RECEIVER_STATE,
-  WITHDRAW_ITEM_MISSING,
-  INVALID_MONIKER,
-  BANNED_UNSTAKE,
-  INVALID_HASHKEY,
-  INVALID_MULTISIG,
-  EXPIRED_TX,
-  INVALID_PASSPHRASE,
-  PROTOCOL_NOT_PAUSED,
-  UNSUPPORTED_STAKE,
   INVALID_LOCK_STATUS,
-  INVALID_ASSET,
-  PROTOCOL_NOT_ACTIVATED,
-  INVALID_SIGNER_STATE,
-  UNTRANSFERRABLE_ASSET,
-  INVALID_DEPOSITOR,
-  INVALID_WALLET,
-  INSUFFICIENT_DATA,
-  RPC_CONNECTION_ERROR,
-  INVALID_TX_SIZE,
-  SENDER_WITHDRAW_ITEMS_FULL,
-  INVALID_DEACTIVATION,
-  CONSUMED_ASSET,
-  INVALID_CUSTODIAN,
-  INVALID_WITHDRAW_TX,
-  INVALID_DEPOSIT_VALUE,
-  INVALID_REQUEST,
-  ACCOUNT_MIGRATED,
-  INVALID_DELEGATION_RULE,
-  INVALID_DELEGATION_TYPE_URL,
-  INSUFFICIENT_DELEGATION,
-  EXCEED_DEPOSIT_CAP,
-  INVALID_DEPOSIT,
-  TOO_MANY_TXS,
-  INVALID_STAKE_STATE,
-  INVALID_NONCE,
-  INTERNAL,
-  INSUFFICIENT_FUND,
   INSUFFICIENT_STAKE,
-  INVALID_CHAIN_ID,
-  INVALID_EXPIRY_DATE,
-  EXPIRED_ASSET,
-  INVALID_SUBSCRIBE,
-  VALIDATOR_NOT_FOUND,
-  VALIDATOR_NOT_CHANGED,
-  INVALID_TIME,
-  PROTOCOL_NOT_RUNNING,
-  INVALID_DID_TYPE,
-  EXPIRED_WALLET_TOKEN,
-  INVALID_SENDER_STATE,
-  TIMEOUT,
-  NOENT,
-  STORAGE_RPC_ERROR,
-  INVALID_DELEGATION,
+  INVALID_WITHDRAW_TX,
+  UNSUPPORTED_STAKE,
+  INVALID_CHAIN_TYPE,
+  INVALID_DEPOSITOR,
   INVALID_WITHDRAWER,
   INVALID_DEPOSIT_TARGET,
-  INVALID_SWAP,
-  FORBIDDEN,
-  SENDER_NOT_AUTHORIZED,
-  INVALID_CANDIDATE_STATE,
-  INVALID_FORGE_STATE,
+  PROTOCOL_NOT_RUNNING,
+  EXCEED_DEPOSIT_CAP,
+  INVALID_DELEGATION_RULE,
+  WITHDRAW_ITEM_MISSING,
+  READONLY_ASSET,
   INSUFFICIENT_GAS,
-  INVALID_SIGNATURE,
+  INVALID_FORGE_STATE,
+  INVALID_CHAIN_ID,
   INVALID_OWNER,
-  OK,
+  VALIDATOR_NOT_FOUND,
+  STORAGE_RPC_ERROR,
+  INSUFFICIENT_DELEGATION,
   INVALID_TX,
+  PROTOCOL_NOT_ACTIVATED,
+  BANNED_UNSTAKE,
+  RPC_CONNECTION_ERROR,
+  INSUFFICIENT_DATA,
+  INVALID_HASHKEY,
+  INVALID_EXPIRY_DATE,
+  INVALID_RECEIVER_STATE,
+  VALIDATOR_NOT_CHANGED,
+  INVALID_SENDER_STATE,
+  INVALID_WALLET,
+  INVALID_MULTISIG,
+  INVALID_SUBSCRIBE,
+  ACCOUNT_MIGRATED,
+  EXPIRED_ASSET,
+  INVALID_SIGNER_STATE,
+  INTERNAL,
+  EXPIRED_WALLET_TOKEN,
+  INVALID_DEPOSIT_VALUE,
+  INVALID_ASSET,
+  SENDER_WITHDRAW_ITEMS_FULL,
+  INVALID_SIGNATURE,
+  UNSUPPORTED_TX,
+  INVALID_STAKE_STATE,
+  PROTOCOL_NOT_PAUSED,
+  NOENT,
+  INVALID_CUSTODIAN,
+  INSUFFICIENT_FUND,
+  TIMEOUT,
+  INVALID_NONCE,
+  INVALID_CANDIDATE_STATE,
+  INVALID_TX_SIZE,
+  EXPIRED_TX,
+  INVALID_TIME,
+  INVALID_DELEGATION_TYPE_URL,
+  CONSENSUS_RPC_ERROR,
+  INVALID_DEPOSIT,
+  INVALID_REQUEST,
+  INVALID_MONIKER,
+  INVALID_DELEGATION,
+  FORBIDDEN,
+  INVALID_DEACTIVATION,
+  TOO_MANY_TXS,
+  INVALID_PASSPHRASE,
+  UNTRANSFERRABLE_ASSET,
+  OK,
+  CONSUMED_ASSET,
+  SENDER_NOT_AUTHORIZED,
+  INVALID_DID_TYPE,
+  INVALID_SWAP,
 }
 
 export enum UpgradeAction {
@@ -2971,15 +2903,6 @@ export interface ConsensusStatus {
   synced: boolean;
 }
 
-export interface ConsensusUpgradeTx {
-  data: GraphQLClient.Any;
-  maxBytes: string;
-  maxCandidates: number;
-  maxGas: string;
-  maxValidators: number;
-  validators: Array<Validator>;
-}
-
 export interface ConsumeAssetTx {
   address: string;
   data: GraphQLClient.Any;
@@ -3005,10 +2928,6 @@ export interface DeclareConfig {
   cost: string;
   hierarchy: number;
   restricted: boolean;
-}
-
-export interface DeclareFileTx {
-  hash: string;
 }
 
 export interface DeclareTx {
@@ -3335,22 +3254,6 @@ export interface PokeTx {
   date: string;
 }
 
-export interface Protocol {
-  address: string;
-  code: Array<CodeInfo>;
-  data: GraphQLClient.Any;
-  description: string;
-  group: string;
-  installedAt: string;
-  name: string;
-  namespace: string;
-  pipeline: string;
-  proto: string;
-  sources: Array<string>;
-  typeUrls: Array<TypeUrls>;
-  version: number;
-}
-
 export interface ProtocolState {
   address: string;
   context: GraphQLClient.StateContext;
@@ -3444,24 +3347,9 @@ export interface ResponseGetNodeInfo {
   info: GraphQLClient.NodeInfo;
 }
 
-export interface ResponseGetProtocolState {
-  code: GraphQLClient.StatusCode;
-  state: GraphQLClient.ProtocolState;
-}
-
-export interface ResponseGetProtocols {
-  code: GraphQLClient.StatusCode;
-  protocols: Array<Protocol>;
-}
-
 export interface ResponseGetSimulatorStatus {
   code: GraphQLClient.StatusCode;
   result: string;
-}
-
-export interface ResponseGetStakeState {
-  code: GraphQLClient.StatusCode;
-  state: GraphQLClient.StakeState;
 }
 
 export interface ResponseGetSwapState {
@@ -3547,47 +3435,47 @@ export interface ResponseStopSimulator {
 }
 
 export interface ResponseSubscribe {
-  swapState: GraphQLClient.SwapState;
-  poke: GraphQLClient.Transaction;
-  transfer: GraphQLClient.Transaction;
-  stakeState: GraphQLClient.StakeState;
-  retrieveSwap: GraphQLClient.Transaction;
-  sysUpgrade: GraphQLClient.Transaction;
-  withdrawToken: GraphQLClient.Transaction;
-  code: GraphQLClient.StatusCode;
-  createAsset: GraphQLClient.Transaction;
-  updateValidator: GraphQLClient.Transaction;
-  acquireAsset: GraphQLClient.Transaction;
-  delegateState: GraphQLClient.DelegateState;
-  revokeWithdraw: GraphQLClient.Transaction;
-  updateAsset: GraphQLClient.Transaction;
-  setupSwap: GraphQLClient.Transaction;
-  declareFile: GraphQLClient.Transaction;
-  revoke: GraphQLClient.Transaction;
-  declare: GraphQLClient.Transaction;
-  endBlock: GraphQLClient.RequestEndBlock;
-  topic: string;
-  depositToken: GraphQLClient.Transaction;
-  assetState: GraphQLClient.AssetState;
-  protocolState: GraphQLClient.ProtocolState;
-  revokeSwap: GraphQLClient.Transaction;
-  upgradeNode: GraphQLClient.Transaction;
-  exchange: GraphQLClient.Transaction;
-  stake: GraphQLClient.Transaction;
-  delegate: GraphQLClient.Transaction;
-  updateConsensusParams: GraphQLClient.Transaction;
-  activateProtocol: GraphQLClient.Transaction;
-  approveWithdraw: GraphQLClient.Transaction;
   consumeAsset: GraphQLClient.Transaction;
-  confirm: GraphQLClient.Transaction;
-  revokeDelegate: GraphQLClient.Transaction;
-  deactivateProtocol: GraphQLClient.Transaction;
-  consensusUpgrade: GraphQLClient.Transaction;
-  forgeState: GraphQLClient.ForgeState;
-  beginBlock: GraphQLClient.RequestBeginBlock;
+  stake: GraphQLClient.Transaction;
+  topic: string;
+  assetState: GraphQLClient.AssetState;
+  stakeState: GraphQLClient.StakeState;
+  endBlock: GraphQLClient.RequestEndBlock;
+  updateAsset: GraphQLClient.Transaction;
+  revokeWithdraw: GraphQLClient.Transaction;
+  code: GraphQLClient.StatusCode;
+  withdrawToken: GraphQLClient.Transaction;
+  updateConsensusParams: GraphQLClient.Transaction;
   accountMigrate: GraphQLClient.Transaction;
-  deployProtocol: GraphQLClient.Transaction;
+  upgradeNode: GraphQLClient.Transaction;
+  delegateState: GraphQLClient.DelegateState;
+  setupSwap: GraphQLClient.Transaction;
+  retrieveSwap: GraphQLClient.Transaction;
+  acquireAsset: GraphQLClient.Transaction;
+  protocolState: GraphQLClient.ProtocolState;
+  declare: GraphQLClient.Transaction;
+  forgeState: GraphQLClient.ForgeState;
+  activateProtocol: GraphQLClient.Transaction;
+  depositToken: GraphQLClient.Transaction;
+  declareFile: GraphQLClient.Transaction;
+  revokeDelegate: GraphQLClient.Transaction;
+  exchange: GraphQLClient.Transaction;
+  poke: GraphQLClient.Transaction;
   accountState: GraphQLClient.AccountState;
+  delegate: GraphQLClient.Transaction;
+  swapState: GraphQLClient.SwapState;
+  updateValidator: GraphQLClient.Transaction;
+  sysUpgrade: GraphQLClient.Transaction;
+  deployProtocol: GraphQLClient.Transaction;
+  confirm: GraphQLClient.Transaction;
+  transfer: GraphQLClient.Transaction;
+  createAsset: GraphQLClient.Transaction;
+  consensusUpgrade: GraphQLClient.Transaction;
+  revoke: GraphQLClient.Transaction;
+  deactivateProtocol: GraphQLClient.Transaction;
+  beginBlock: GraphQLClient.RequestBeginBlock;
+  revokeSwap: GraphQLClient.Transaction;
+  approveWithdraw: GraphQLClient.Transaction;
 }
 
 export interface ResponseUnsubscribe {
@@ -3627,10 +3515,6 @@ export interface StakeContext {
   totalUnstakes: string;
 }
 
-export interface StakeDataType {
-  type: string;
-}
-
 export interface StakeState {
   address: string;
   balance: string;
@@ -3650,13 +3534,6 @@ export interface StakeSummary {
 export interface StakeSummaryEntry {
   key: number;
   value: GraphQLClient.StakeSummary;
-}
-
-export interface StakeTx {
-  data: GraphQLClient.StakeDataType;
-  message: string;
-  to: string;
-  value: string;
 }
 
 export interface StateContext {
@@ -3692,12 +3569,6 @@ export interface SwapStatistics {
   lockedAssetsOut: number;
   lockedValueIn: string;
   lockedValueOut: string;
-}
-
-export interface SysUpgradeTx {
-  data: GraphQLClient.Any;
-  gracePeriod: string;
-  task: GraphQLClient.UpgradeTask;
 }
 
 export interface TasksEntry {
@@ -3826,7 +3697,7 @@ export interface WalletType {
   role: GraphQLClient.RoleType;
 }
 
-export type Itx = GraphQLClient.RevokeSwapTx | GraphQLClient.RetrieveSwapTx | GraphQLClient.SetupSwapTx | GraphQLClient.UpgradeNodeTx | GraphQLClient.UpdateAssetTx | GraphQLClient.TransferTx | GraphQLClient.SysUpgradeTx | GraphQLClient.StakeTx | GraphQLClient.PokeTx | GraphQLClient.ExchangeTx | GraphQLClient.DeployProtocolTx | GraphQLClient.DeclareTx | GraphQLClient.DeclareFileTx | GraphQLClient.CreateAssetTx | GraphQLClient.ConsumeAssetTx | GraphQLClient.ConsensusUpgradeTx | GraphQLClient.AcquireAssetTx | GraphQLClient.AccountMigrateTx;
+export type Itx = GraphQLClient.RevokeSwapTx | GraphQLClient.RetrieveSwapTx | GraphQLClient.SetupSwapTx | GraphQLClient.UpgradeNodeTx | GraphQLClient.UpdateAssetTx | GraphQLClient.TransferTx | GraphQLClient.PokeTx | GraphQLClient.ExchangeTx | GraphQLClient.DeclareTx | GraphQLClient.CreateAssetTx | GraphQLClient.ConsumeAssetTx | GraphQLClient.AcquireAssetTx | GraphQLClient.AccountMigrateTx;
 
 
 export interface GetAccountStateParams {
@@ -3873,22 +3744,6 @@ export interface GetForgeStatsByDayParams {
 
 export interface GetForgeStatsByHourParams {
   date: string;
-}
-
-export interface GetProtocolStateParams {
-  address: string;
-  height: string;
-  keys: Array<string>;
-}
-
-export interface GetProtocolsParams {
-  address: string;
-}
-
-export interface GetStakeStateParams {
-  address: string;
-  height: string;
-  keys: Array<string>;
 }
 
 export interface GetSwapStateParams {

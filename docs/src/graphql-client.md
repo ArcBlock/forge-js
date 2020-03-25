@@ -71,7 +71,6 @@ Please note that, due to internal implementation of google-protobuf, all `repeat
       * [sendCreateAssetTx(params)](#GraphQLClient+sendCreateAssetTx) ⇒ `Promise.<string>`
       * [sendDeclareTx(params)](#GraphQLClient+sendDeclareTx) ⇒ `Promise.<string>`
       * [sendDelegateTx(params)](#GraphQLClient+sendDelegateTx) ⇒ `Promise.<string>`
-      * [sendDeployProtocolTx(params)](#GraphQLClient+sendDeployProtocolTx) ⇒ `Promise.<string>`
       * [sendDepositTokenTx(params)](#GraphQLClient+sendDepositTokenTx) ⇒ `Promise.<string>`
       * [sendExchangeTx(params)](#GraphQLClient+sendExchangeTx) ⇒ `Promise.<string>`
       * [sendPokeTx(params)](#GraphQLClient+sendPokeTx) ⇒ `Promise.<string>`
@@ -94,7 +93,6 @@ Please note that, due to internal implementation of google-protobuf, all `repeat
       * [encodeCreateAssetTx(params)](#GraphQLClient+encodeCreateAssetTx) ⇒ [`Promise.<TxEncodeOutput>`](#GraphQLClient.TxEncodeOutput)
       * [encodeDeclareTx(params)](#GraphQLClient+encodeDeclareTx) ⇒ [`Promise.<TxEncodeOutput>`](#GraphQLClient.TxEncodeOutput)
       * [encodeDelegateTx(params)](#GraphQLClient+encodeDelegateTx) ⇒ [`Promise.<TxEncodeOutput>`](#GraphQLClient.TxEncodeOutput)
-      * [encodeDeployProtocolTx(params)](#GraphQLClient+encodeDeployProtocolTx) ⇒ [`Promise.<TxEncodeOutput>`](#GraphQLClient.TxEncodeOutput)
       * [encodeDepositTokenTx(params)](#GraphQLClient+encodeDepositTokenTx) ⇒ [`Promise.<TxEncodeOutput>`](#GraphQLClient.TxEncodeOutput)
       * [encodeExchangeTx(params)](#GraphQLClient+encodeExchangeTx) ⇒ [`Promise.<TxEncodeOutput>`](#GraphQLClient.TxEncodeOutput)
       * [encodePokeTx(params)](#GraphQLClient+encodePokeTx) ⇒ [`Promise.<TxEncodeOutput>`](#GraphQLClient.TxEncodeOutput)
@@ -124,10 +122,7 @@ Please note that, due to internal implementation of google-protobuf, all `repeat
       * [getHealthStatus()](#GraphQLClient+getHealthStatus) ⇒ [`Promise.<ResponseGetHealthStatus>`](#GraphQLClient.ResponseGetHealthStatus)
       * [getNetInfo()](#GraphQLClient+getNetInfo) ⇒ [`Promise.<ResponseGetNetInfo>`](#GraphQLClient.ResponseGetNetInfo)
       * [getNodeInfo()](#GraphQLClient+getNodeInfo) ⇒ [`Promise.<ResponseGetNodeInfo>`](#GraphQLClient.ResponseGetNodeInfo)
-      * [getProtocolState(params)](#GraphQLClient+getProtocolState) ⇒ [`Promise.<ResponseGetProtocolState>`](#GraphQLClient.ResponseGetProtocolState)
-      * [getProtocols(params)](#GraphQLClient+getProtocols) ⇒ [`Promise.<ResponseGetProtocols>`](#GraphQLClient.ResponseGetProtocols)
       * [getSimulatorStatus()](#GraphQLClient+getSimulatorStatus) ⇒ [`Promise.<ResponseGetSimulatorStatus>`](#GraphQLClient.ResponseGetSimulatorStatus)
-      * [getStakeState(params)](#GraphQLClient+getStakeState) ⇒ [`Promise.<ResponseGetStakeState>`](#GraphQLClient.ResponseGetStakeState)
       * [getSwapState(params)](#GraphQLClient+getSwapState) ⇒ [`Promise.<ResponseGetSwapState>`](#GraphQLClient.ResponseGetSwapState)
       * [getSwapStatistics(params)](#GraphQLClient+getSwapStatistics) ⇒ [`Promise.<ResponseGetSwapStatistics>`](#GraphQLClient.ResponseGetSwapStatistics)
       * [getTx(params)](#GraphQLClient+getTx) ⇒ [`Promise.<ResponseGetTx>`](#GraphQLClient.ResponseGetTx)
@@ -173,12 +168,10 @@ Please note that, due to internal implementation of google-protobuf, all `repeat
       * [CodeInfo](#GraphQLClient.CodeInfo) : `object`
       * [ConsensusParams](#GraphQLClient.ConsensusParams) : `object`
       * [ConsensusStatus](#GraphQLClient.ConsensusStatus) : `object`
-      * [ConsensusUpgradeTx](#GraphQLClient.ConsensusUpgradeTx) : `object`
       * [ConsumeAssetTx](#GraphQLClient.ConsumeAssetTx) : `object`
       * [CoreProtocol](#GraphQLClient.CoreProtocol) : `object`
       * [CreateAssetTx](#GraphQLClient.CreateAssetTx) : `object`
       * [DeclareConfig](#GraphQLClient.DeclareConfig) : `object`
-      * [DeclareFileTx](#GraphQLClient.DeclareFileTx) : `object`
       * [DeclareTx](#GraphQLClient.DeclareTx) : `object`
       * [DelegateConfig](#GraphQLClient.DelegateConfig) : `object`
       * [DelegateOpState](#GraphQLClient.DelegateOpState) : `object`
@@ -215,7 +208,6 @@ Please note that, due to internal implementation of google-protobuf, all `repeat
       * [PokeConfig](#GraphQLClient.PokeConfig) : `object`
       * [PokeInfo](#GraphQLClient.PokeInfo) : `object`
       * [PokeTx](#GraphQLClient.PokeTx) : `object`
-      * [Protocol](#GraphQLClient.Protocol) : `object`
       * [ProtocolState](#GraphQLClient.ProtocolState) : `object`
       * [PubKey](#GraphQLClient.PubKey) : `object`
       * [QueueItem](#GraphQLClient.QueueItem) : `object`
@@ -233,10 +225,7 @@ Please note that, due to internal implementation of google-protobuf, all `repeat
       * [ResponseGetHealthStatus](#GraphQLClient.ResponseGetHealthStatus) : `object`
       * [ResponseGetNetInfo](#GraphQLClient.ResponseGetNetInfo) : `object`
       * [ResponseGetNodeInfo](#GraphQLClient.ResponseGetNodeInfo) : `object`
-      * [ResponseGetProtocolState](#GraphQLClient.ResponseGetProtocolState) : `object`
-      * [ResponseGetProtocols](#GraphQLClient.ResponseGetProtocols) : `object`
       * [ResponseGetSimulatorStatus](#GraphQLClient.ResponseGetSimulatorStatus) : `object`
-      * [ResponseGetStakeState](#GraphQLClient.ResponseGetStakeState) : `object`
       * [ResponseGetSwapState](#GraphQLClient.ResponseGetSwapState) : `object`
       * [ResponseGetSwapStatistics](#GraphQLClient.ResponseGetSwapStatistics) : `object`
       * [ResponseGetTx](#GraphQLClient.ResponseGetTx) : `object`
@@ -259,16 +248,13 @@ Please note that, due to internal implementation of google-protobuf, all `repeat
       * [SetupSwapTx](#GraphQLClient.SetupSwapTx) : `object`
       * [StakeConfig](#GraphQLClient.StakeConfig) : `object`
       * [StakeContext](#GraphQLClient.StakeContext) : `object`
-      * [StakeDataType](#GraphQLClient.StakeDataType) : `object`
       * [StakeState](#GraphQLClient.StakeState) : `object`
       * [StakeSummary](#GraphQLClient.StakeSummary) : `object`
       * [StakeSummaryEntry](#GraphQLClient.StakeSummaryEntry) : `object`
-      * [StakeTx](#GraphQLClient.StakeTx) : `object`
       * [StateContext](#GraphQLClient.StateContext) : `object`
       * [StorageStatus](#GraphQLClient.StorageStatus) : `object`
       * [SwapState](#GraphQLClient.SwapState) : `object`
       * [SwapStatistics](#GraphQLClient.SwapStatistics) : `object`
-      * [SysUpgradeTx](#GraphQLClient.SysUpgradeTx) : `object`
       * [TasksEntry](#GraphQLClient.TasksEntry) : `object`
       * [TokenSwapConfig](#GraphQLClient.TokenSwapConfig) : `object`
       * [Transaction](#GraphQLClient.Transaction) : `object`
@@ -297,9 +283,6 @@ Please note that, due to internal implementation of google-protobuf, all `repeat
       * [GetForgeStateParams](#GraphQLClient.GetForgeStateParams) : `object`
       * [GetForgeStatsByDayParams](#GraphQLClient.GetForgeStatsByDayParams) : `object`
       * [GetForgeStatsByHourParams](#GraphQLClient.GetForgeStatsByHourParams) : `object`
-      * [GetProtocolStateParams](#GraphQLClient.GetProtocolStateParams) : `object`
-      * [GetProtocolsParams](#GraphQLClient.GetProtocolsParams) : `object`
-      * [GetStakeStateParams](#GraphQLClient.GetStakeStateParams) : `object`
       * [GetSwapStateParams](#GraphQLClient.GetSwapStateParams) : `object`
       * [GetSwapStatisticsParams](#GraphQLClient.GetSwapStatisticsParams) : `object`
       * [GetTxParams](#GraphQLClient.GetTxParams) : `object`
@@ -321,7 +304,6 @@ Please note that, due to internal implementation of google-protobuf, all `repeat
       * [CreateAssetTxInput](#GraphQLClient.CreateAssetTxInput) : `Object`
       * [DeclareTxInput](#GraphQLClient.DeclareTxInput) : `Object`
       * [DelegateTxInput](#GraphQLClient.DelegateTxInput) : `Object`
-      * [DeployProtocolTxInput](#GraphQLClient.DeployProtocolTxInput) : `Object`
       * [DepositTokenTxInput](#GraphQLClient.DepositTokenTxInput) : `Object`
       * [ExchangeTxInput](#GraphQLClient.ExchangeTxInput) : `Object`
       * [PokeTxInput](#GraphQLClient.PokeTxInput) : `Object`
@@ -817,10 +799,7 @@ const methods = client.getQueries();
 //   getHealthStatus,
 //   getNetInfo,
 //   getNodeInfo,
-//   getProtocolState,
-//   getProtocols,
 //   getSimulatorStatus,
-//   getStakeState,
 //   getSwapState,
 //   getSwapStatistics,
 //   getTx,
@@ -987,17 +966,6 @@ Send DelegateTx transaction and get the hash, use [getTx](#GraphQLClient+getTx) 
 | Param  | Type                                                |
 | ------ | --------------------------------------------------- |
 | params | [`DelegateTxInput`](#GraphQLClient.DelegateTxInput) |
-
-### graphQLClient.sendDeployProtocolTx(params) ⇒ `Promise.<string>`
-
-Send DeployProtocolTx transaction and get the hash, use [getTx](#GraphQLClient+getTx) to get transaction detail
-
-**Kind**: instance method of [`GraphQLClient`](#GraphQLClient)  
-**Returns**: `Promise.<string>` - returns transaction hash if success, otherwise error was thrown  
-
-| Param  | Type                                                            |
-| ------ | --------------------------------------------------------------- |
-| params | [`DeployProtocolTxInput`](#GraphQLClient.DeployProtocolTxInput) |
 
 ### graphQLClient.sendDepositTokenTx(params) ⇒ `Promise.<string>`
 
@@ -1240,17 +1208,6 @@ Encode a DelegateTx transaction for later use
 | Param  | Type                                                |
 | ------ | --------------------------------------------------- |
 | params | [`DelegateTxInput`](#GraphQLClient.DelegateTxInput) |
-
-### graphQLClient.encodeDeployProtocolTx(params) ⇒ [`Promise.<TxEncodeOutput>`](#GraphQLClient.TxEncodeOutput)
-
-Encode a DeployProtocolTx transaction for later use
-
-**Kind**: instance method of [`GraphQLClient`](#GraphQLClient)  
-**Returns**: [`Promise.<TxEncodeOutput>`](#GraphQLClient.TxEncodeOutput) - result - we provide two formats of the encoding result, binary presentation and human readable object  
-
-| Param  | Type                                                            |
-| ------ | --------------------------------------------------------------- |
-| params | [`DeployProtocolTxInput`](#GraphQLClient.DeployProtocolTxInput) |
 
 ### graphQLClient.encodeDepositTokenTx(params) ⇒ [`Promise.<TxEncodeOutput>`](#GraphQLClient.TxEncodeOutput)
 
@@ -1551,45 +1508,12 @@ getNodeInfo
 **Kind**: instance method of [`GraphQLClient`](#GraphQLClient)  
 **Returns**: [`Promise.<ResponseGetNodeInfo>`](#GraphQLClient.ResponseGetNodeInfo) - Checkout [ResponseGetNodeInfo](#GraphQLClient.ResponseGetNodeInfo) for resolved data format  
 
-### graphQLClient.getProtocolState(params) ⇒ [`Promise.<ResponseGetProtocolState>`](#GraphQLClient.ResponseGetProtocolState)
-
-getProtocolState
-
-**Kind**: instance method of [`GraphQLClient`](#GraphQLClient)  
-**Returns**: [`Promise.<ResponseGetProtocolState>`](#GraphQLClient.ResponseGetProtocolState) - Checkout [ResponseGetProtocolState](#GraphQLClient.ResponseGetProtocolState) for resolved data format  
-
-| Param  | Type                                                              |
-| ------ | ----------------------------------------------------------------- |
-| params | [`GetProtocolStateParams`](#GraphQLClient.GetProtocolStateParams) |
-
-### graphQLClient.getProtocols(params) ⇒ [`Promise.<ResponseGetProtocols>`](#GraphQLClient.ResponseGetProtocols)
-
-getProtocols
-
-**Kind**: instance method of [`GraphQLClient`](#GraphQLClient)  
-**Returns**: [`Promise.<ResponseGetProtocols>`](#GraphQLClient.ResponseGetProtocols) - Checkout [ResponseGetProtocols](#GraphQLClient.ResponseGetProtocols) for resolved data format  
-
-| Param  | Type                                                      |
-| ------ | --------------------------------------------------------- |
-| params | [`GetProtocolsParams`](#GraphQLClient.GetProtocolsParams) |
-
 ### graphQLClient.getSimulatorStatus() ⇒ [`Promise.<ResponseGetSimulatorStatus>`](#GraphQLClient.ResponseGetSimulatorStatus)
 
 getSimulatorStatus
 
 **Kind**: instance method of [`GraphQLClient`](#GraphQLClient)  
 **Returns**: [`Promise.<ResponseGetSimulatorStatus>`](#GraphQLClient.ResponseGetSimulatorStatus) - Checkout [ResponseGetSimulatorStatus](#GraphQLClient.ResponseGetSimulatorStatus) for resolved data format  
-
-### graphQLClient.getStakeState(params) ⇒ [`Promise.<ResponseGetStakeState>`](#GraphQLClient.ResponseGetStakeState)
-
-getStakeState
-
-**Kind**: instance method of [`GraphQLClient`](#GraphQLClient)  
-**Returns**: [`Promise.<ResponseGetStakeState>`](#GraphQLClient.ResponseGetStakeState) - Checkout [ResponseGetStakeState](#GraphQLClient.ResponseGetStakeState) for resolved data format  
-
-| Param  | Type                                                        |
-| ------ | ----------------------------------------------------------- |
-| params | [`GetStakeStateParams`](#GraphQLClient.GetStakeStateParams) |
 
 ### graphQLClient.getSwapState(params) ⇒ [`Promise.<ResponseGetSwapState>`](#GraphQLClient.ResponseGetSwapState)
 
@@ -2235,43 +2159,6 @@ Structure of GraphQLClient.ConsensusStatus
 | health      | `boolean` |
 | synced      | `boolean` |
 
-### GraphQLClient.ConsensusUpgradeTx : `object`
-
-Structure of GraphQLClient.ConsensusUpgradeTx
-
-Checkout the following snippet for the format of ConsensusUpgradeTx:
-
-```json
-{
-  "data": {
-    "typeUrl": "abc",
-    "value": "abc"
-  },
-  "maxBytes": "abc",
-  "maxCandidates": 123,
-  "maxGas": "abc",
-  "maxValidators": 123,
-  "validators": [
-    {
-      "address": "abc",
-      "power": "abc"
-    }
-  ]
-}
-```
-
-**Kind**: static typedef of [`GraphQLClient`](#GraphQLClient)  
-**Properties**
-
-| Name          | Type                                 |
-| ------------- | ------------------------------------ |
-| ...data       | [`Any`](#GraphQLClient.Any)          |
-| maxBytes      | `string`                             |
-| maxCandidates | `number`                             |
-| maxGas        | `string`                             |
-| maxValidators | `number`                             |
-| validators    | `Array.<...GraphQLClient.Validator>` |
-
 ### GraphQLClient.ConsumeAssetTx : `object`
 
 Structure of GraphQLClient.ConsumeAssetTx
@@ -2356,25 +2243,6 @@ Structure of GraphQLClient.DeclareConfig
 | cost       | `string`  |
 | hierarchy  | `number`  |
 | restricted | `boolean` |
-
-### GraphQLClient.DeclareFileTx : `object`
-
-Structure of GraphQLClient.DeclareFileTx
-
-Checkout the following snippet for the format of DeclareFileTx:
-
-```json
-{
-  "hash": "abc"
-}
-```
-
-**Kind**: static typedef of [`GraphQLClient`](#GraphQLClient)  
-**Properties**
-
-| Name | Type     |
-| ---- | -------- |
-| hash | `string` |
 
 ### GraphQLClient.DeclareTx : `object`
 
@@ -3039,29 +2907,6 @@ Checkout the following snippet for the format of PokeTx:
 | ...data | [`Any`](#GraphQLClient.Any) |
 | date    | `string`                    |
 
-### GraphQLClient.Protocol : `object`
-
-Structure of GraphQLClient.Protocol
-
-**Kind**: static typedef of [`GraphQLClient`](#GraphQLClient)  
-**Properties**
-
-| Name        | Type                                |
-| ----------- | ----------------------------------- |
-| address     | `string`                            |
-| code        | `Array.<...GraphQLClient.CodeInfo>` |
-| ...data     | [`Any`](#GraphQLClient.Any)         |
-| description | `string`                            |
-| group       | `string`                            |
-| installedAt | `string`                            |
-| name        | `string`                            |
-| namespace   | `string`                            |
-| pipeline    | `string`                            |
-| proto       | `string`                            |
-| sources     | `Array.<...GraphQLClient.string>`   |
-| typeUrls    | `Array.<...GraphQLClient.TypeUrls>` |
-| version     | `number`                            |
-
 ### GraphQLClient.ProtocolState : `object`
 
 Structure of GraphQLClient.ProtocolState
@@ -3202,14 +3047,14 @@ Checkout the following snippet for the format of ResponseGetAccountState:
 
 ```json
 {
-  "code": "OK",
+  "code": "INVALID_LOCK_STATUS",
   "state": {
     "address": "abc",
     "balance": "abc",
     "context": {
       "genesisTime": "2019-04-29T00:00:00.000Z",
       "genesisTx": {
-        "code": "OK",
+        "code": "INVALID_LOCK_STATUS",
         "hash": "abc",
         "height": "abc",
         "index": 123,
@@ -3243,7 +3088,7 @@ Checkout the following snippet for the format of ResponseGetAccountState:
       },
       "renaissanceTime": "2019-04-29T00:00:00.000Z",
       "renaissanceTx": {
-        "code": "OK",
+        "code": "INVALID_LOCK_STATUS",
         "hash": "abc",
         "height": "abc",
         "index": 123,
@@ -3364,14 +3209,14 @@ Checkout the following snippet for the format of ResponseGetAssetState:
 
 ```json
 {
-  "code": "OK",
+  "code": "INVALID_LOCK_STATUS",
   "state": {
     "address": "abc",
     "consumedTime": "2019-04-29T00:00:00.000Z",
     "context": {
       "genesisTime": "2019-04-29T00:00:00.000Z",
       "genesisTx": {
-        "code": "OK",
+        "code": "INVALID_LOCK_STATUS",
         "hash": "abc",
         "height": "abc",
         "index": 123,
@@ -3405,7 +3250,7 @@ Checkout the following snippet for the format of ResponseGetAssetState:
       },
       "renaissanceTime": "2019-04-29T00:00:00.000Z",
       "renaissanceTx": {
-        "code": "OK",
+        "code": "INVALID_LOCK_STATUS",
         "hash": "abc",
         "height": "abc",
         "index": 123,
@@ -3506,7 +3351,7 @@ Checkout the following snippet for the format of ResponseGetBlock:
     "height": "abc",
     "invalidTxs": [
       {
-        "code": "OK",
+        "code": "INVALID_LOCK_STATUS",
         "hash": "abc",
         "height": "abc",
         "index": 123,
@@ -3558,7 +3403,7 @@ Checkout the following snippet for the format of ResponseGetBlock:
     "totalTxs": "abc",
     "txs": [
       {
-        "code": "OK",
+        "code": "INVALID_LOCK_STATUS",
         "hash": "abc",
         "height": "abc",
         "index": 123,
@@ -3600,7 +3445,7 @@ Checkout the following snippet for the format of ResponseGetBlock:
       "block": "abc"
     }
   },
-  "code": "OK"
+  "code": "INVALID_LOCK_STATUS"
 }
 ```
 
@@ -3654,7 +3499,7 @@ Checkout the following snippet for the format of ResponseGetBlocks:
       }
     }
   ],
-  "code": "OK",
+  "code": "INVALID_LOCK_STATUS",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -3680,7 +3525,7 @@ Checkout the following snippet for the format of ResponseGetChainInfo:
 
 ```json
 {
-  "code": "OK",
+  "code": "INVALID_LOCK_STATUS",
   "info": {
     "address": "abc",
     "appHash": "abc",
@@ -3724,7 +3569,7 @@ Checkout the following snippet for the format of ResponseGetConfig:
 
 ```json
 {
-  "code": "OK",
+  "code": "INVALID_LOCK_STATUS",
   "config": "abc"
 }
 ```
@@ -3745,13 +3590,13 @@ Checkout the following snippet for the format of ResponseGetDelegateState:
 
 ```json
 {
-  "code": "OK",
+  "code": "INVALID_LOCK_STATUS",
   "state": {
     "address": "abc",
     "context": {
       "genesisTime": "2019-04-29T00:00:00.000Z",
       "genesisTx": {
-        "code": "OK",
+        "code": "INVALID_LOCK_STATUS",
         "hash": "abc",
         "height": "abc",
         "index": 123,
@@ -3785,7 +3630,7 @@ Checkout the following snippet for the format of ResponseGetDelegateState:
       },
       "renaissanceTime": "2019-04-29T00:00:00.000Z",
       "renaissanceTx": {
-        "code": "OK",
+        "code": "INVALID_LOCK_STATUS",
         "hash": "abc",
         "height": "abc",
         "index": 123,
@@ -3854,7 +3699,7 @@ Checkout the following snippet for the format of ResponseGetForgeState:
 
 ```json
 {
-  "code": "OK",
+  "code": "INVALID_LOCK_STATUS",
   "state": {
     "accountConfig": [
       {
@@ -3907,7 +3752,7 @@ Checkout the following snippet for the format of ResponseGetForgeState:
           "context": {
             "genesisTime": "2019-04-29T00:00:00.000Z",
             "genesisTx": {
-              "code": "OK",
+              "code": "INVALID_LOCK_STATUS",
               "hash": "abc",
               "height": "abc",
               "index": 123,
@@ -3941,7 +3786,7 @@ Checkout the following snippet for the format of ResponseGetForgeState:
             },
             "renaissanceTime": "2019-04-29T00:00:00.000Z",
             "renaissanceTx": {
-              "code": "OK",
+              "code": "INVALID_LOCK_STATUS",
               "hash": "abc",
               "height": "abc",
               "index": 123,
@@ -4062,7 +3907,7 @@ Checkout the following snippet for the format of ResponseGetForgeStats:
 
 ```json
 {
-  "code": "OK",
+  "code": "INVALID_LOCK_STATUS",
   "forgeStats": {
     "avgBlockTime": 123,
     "avgTps": 123,
@@ -4138,7 +3983,7 @@ Checkout the following snippet for the format of ResponseGetHealthStatus:
 
 ```json
 {
-  "code": "OK",
+  "code": "INVALID_LOCK_STATUS",
   "healthStatus": {
     "consensus": {
       "blockHeight": "abc",
@@ -4187,7 +4032,7 @@ Checkout the following snippet for the format of ResponseGetNetInfo:
 
 ```json
 {
-  "code": "OK",
+  "code": "INVALID_LOCK_STATUS",
   "netInfo": {
     "listeners": [
       "abc"
@@ -4229,7 +4074,7 @@ Checkout the following snippet for the format of ResponseGetNodeInfo:
 
 ```json
 {
-  "code": "OK",
+  "code": "INVALID_LOCK_STATUS",
   "info": {
     "address": "abc",
     "appHash": "abc",
@@ -4273,195 +4118,6 @@ Checkout the following snippet for the format of ResponseGetNodeInfo:
 | ...code | `GraphQLClient.StatusCode`            |
 | ...info | [`NodeInfo`](#GraphQLClient.NodeInfo) |
 
-### GraphQLClient.ResponseGetProtocolState : `object`
-
-Structure of GraphQLClient.ResponseGetProtocolState
-
-Checkout the following snippet for the format of ResponseGetProtocolState:
-
-```json
-{
-  "code": "OK",
-  "state": {
-    "address": "abc",
-    "context": {
-      "genesisTime": "2019-04-29T00:00:00.000Z",
-      "genesisTx": {
-        "code": "OK",
-        "hash": "abc",
-        "height": "abc",
-        "index": 123,
-        "tags": [
-          {
-            "key": "abc",
-            "value": "abc"
-          }
-        ],
-        "time": "2019-04-29T00:00:00.000Z",
-        "tx": {
-          "chainId": "abc",
-          "delegator": "abc",
-          "from": "abc",
-          "nonce": "abc",
-          "pk": "abc",
-          "signature": "abc",
-          "signatures": [
-            {
-              "data": {
-                "typeUrl": "abc",
-                "value": "abc"
-              },
-              "delegator": "abc",
-              "pk": "abc",
-              "signature": "abc",
-              "signer": "abc"
-            }
-          ]
-        }
-      },
-      "renaissanceTime": "2019-04-29T00:00:00.000Z",
-      "renaissanceTx": {
-        "code": "OK",
-        "hash": "abc",
-        "height": "abc",
-        "index": 123,
-        "tags": [
-          {
-            "key": "abc",
-            "value": "abc"
-          }
-        ],
-        "time": "2019-04-29T00:00:00.000Z",
-        "tx": {
-          "chainId": "abc",
-          "delegator": "abc",
-          "from": "abc",
-          "nonce": "abc",
-          "pk": "abc",
-          "signature": "abc",
-          "signatures": [
-            {
-              "data": {
-                "typeUrl": "abc",
-                "value": "abc"
-              },
-              "delegator": "abc",
-              "pk": "abc",
-              "signature": "abc",
-              "signer": "abc"
-            }
-          ]
-        }
-      }
-    },
-    "data": {
-      "typeUrl": "abc",
-      "value": "abc"
-    },
-    "group": "abc",
-    "itx": {
-      "address": "abc",
-      "code": [
-        {
-          "binary": "abc",
-          "checksum": "abc"
-        }
-      ],
-      "data": {
-        "typeUrl": "abc",
-        "value": "abc"
-      },
-      "description": "abc",
-      "name": "abc",
-      "namespace": "abc",
-      "pipeline": "abc",
-      "proto": "abc",
-      "sources": [
-        "abc"
-      ],
-      "tags": [
-        "abc"
-      ],
-      "typeUrls": [
-        {
-          "module": "abc",
-          "url": "abc"
-        }
-      ],
-      "version": 123
-    },
-    "migratedFrom": [
-      "abc"
-    ],
-    "migratedTo": [
-      "abc"
-    ],
-    "rootHash": "abc",
-    "status": "abc"
-  }
-}
-```
-
-**Kind**: static typedef of [`GraphQLClient`](#GraphQLClient)  
-**Properties**
-
-| Name     | Type                                            |
-| -------- | ----------------------------------------------- |
-| ...code  | `GraphQLClient.StatusCode`                      |
-| ...state | [`ProtocolState`](#GraphQLClient.ProtocolState) |
-
-### GraphQLClient.ResponseGetProtocols : `object`
-
-Structure of GraphQLClient.ResponseGetProtocols
-
-Checkout the following snippet for the format of ResponseGetProtocols:
-
-```json
-{
-  "code": "OK",
-  "protocols": [
-    {
-      "address": "abc",
-      "code": [
-        {
-          "binary": "abc",
-          "checksum": "abc"
-        }
-      ],
-      "data": {
-        "typeUrl": "abc",
-        "value": "abc"
-      },
-      "description": "abc",
-      "group": "abc",
-      "installedAt": "2019-04-29T00:00:00.000Z",
-      "name": "abc",
-      "namespace": "abc",
-      "pipeline": "abc",
-      "proto": "abc",
-      "sources": [
-        "abc"
-      ],
-      "typeUrls": [
-        {
-          "module": "abc",
-          "url": "abc"
-        }
-      ],
-      "version": 123
-    }
-  ]
-}
-```
-
-**Kind**: static typedef of [`GraphQLClient`](#GraphQLClient)  
-**Properties**
-
-| Name      | Type                                |
-| --------- | ----------------------------------- |
-| ...code   | `GraphQLClient.StatusCode`          |
-| protocols | `Array.<...GraphQLClient.Protocol>` |
-
 ### GraphQLClient.ResponseGetSimulatorStatus : `object`
 
 Structure of GraphQLClient.ResponseGetSimulatorStatus
@@ -4470,7 +4126,7 @@ Checkout the following snippet for the format of ResponseGetSimulatorStatus:
 
 ```json
 {
-  "code": "OK",
+  "code": "INVALID_LOCK_STATUS",
   "result": "abc"
 }
 ```
@@ -4483,107 +4139,6 @@ Checkout the following snippet for the format of ResponseGetSimulatorStatus:
 | ...code | `GraphQLClient.StatusCode` |
 | result  | `string`                   |
 
-### GraphQLClient.ResponseGetStakeState : `object`
-
-Structure of GraphQLClient.ResponseGetStakeState
-
-Checkout the following snippet for the format of ResponseGetStakeState:
-
-```json
-{
-  "code": "OK",
-  "state": {
-    "address": "abc",
-    "balance": "abc",
-    "context": {
-      "genesisTime": "2019-04-29T00:00:00.000Z",
-      "genesisTx": {
-        "code": "OK",
-        "hash": "abc",
-        "height": "abc",
-        "index": 123,
-        "tags": [
-          {
-            "key": "abc",
-            "value": "abc"
-          }
-        ],
-        "time": "2019-04-29T00:00:00.000Z",
-        "tx": {
-          "chainId": "abc",
-          "delegator": "abc",
-          "from": "abc",
-          "nonce": "abc",
-          "pk": "abc",
-          "signature": "abc",
-          "signatures": [
-            {
-              "data": {
-                "typeUrl": "abc",
-                "value": "abc"
-              },
-              "delegator": "abc",
-              "pk": "abc",
-              "signature": "abc",
-              "signer": "abc"
-            }
-          ]
-        }
-      },
-      "renaissanceTime": "2019-04-29T00:00:00.000Z",
-      "renaissanceTx": {
-        "code": "OK",
-        "hash": "abc",
-        "height": "abc",
-        "index": 123,
-        "tags": [
-          {
-            "key": "abc",
-            "value": "abc"
-          }
-        ],
-        "time": "2019-04-29T00:00:00.000Z",
-        "tx": {
-          "chainId": "abc",
-          "delegator": "abc",
-          "from": "abc",
-          "nonce": "abc",
-          "pk": "abc",
-          "signature": "abc",
-          "signatures": [
-            {
-              "data": {
-                "typeUrl": "abc",
-                "value": "abc"
-              },
-              "delegator": "abc",
-              "pk": "abc",
-              "signature": "abc",
-              "signer": "abc"
-            }
-          ]
-        }
-      }
-    },
-    "data": {
-      "typeUrl": "abc",
-      "value": "abc"
-    },
-    "from": "abc",
-    "message": "abc",
-    "to": "abc"
-  }
-}
-```
-
-**Kind**: static typedef of [`GraphQLClient`](#GraphQLClient)  
-**Properties**
-
-| Name     | Type                                      |
-| -------- | ----------------------------------------- |
-| ...code  | `GraphQLClient.StatusCode`                |
-| ...state | [`StakeState`](#GraphQLClient.StakeState) |
-
 ### GraphQLClient.ResponseGetSwapState : `object`
 
 Structure of GraphQLClient.ResponseGetSwapState
@@ -4592,7 +4147,7 @@ Checkout the following snippet for the format of ResponseGetSwapState:
 
 ```json
 {
-  "code": "OK",
+  "code": "INVALID_LOCK_STATUS",
   "state": {
     "address": "abc",
     "assets": [
@@ -4601,7 +4156,7 @@ Checkout the following snippet for the format of ResponseGetSwapState:
     "context": {
       "genesisTime": "2019-04-29T00:00:00.000Z",
       "genesisTx": {
-        "code": "OK",
+        "code": "INVALID_LOCK_STATUS",
         "hash": "abc",
         "height": "abc",
         "index": 123,
@@ -4635,7 +4190,7 @@ Checkout the following snippet for the format of ResponseGetSwapState:
       },
       "renaissanceTime": "2019-04-29T00:00:00.000Z",
       "renaissanceTx": {
-        "code": "OK",
+        "code": "INVALID_LOCK_STATUS",
         "hash": "abc",
         "height": "abc",
         "index": 123,
@@ -4695,7 +4250,7 @@ Checkout the following snippet for the format of ResponseGetSwapStatistics:
 
 ```json
 {
-  "code": "OK",
+  "code": "INVALID_LOCK_STATUS",
   "statistics": {
     "address": "abc",
     "lockedAssetsIn": 123,
@@ -4722,9 +4277,9 @@ Checkout the following snippet for the format of ResponseGetTx:
 
 ```json
 {
-  "code": "OK",
+  "code": "INVALID_LOCK_STATUS",
   "info": {
-    "code": "OK",
+    "code": "INVALID_LOCK_STATUS",
     "hash": "abc",
     "height": "abc",
     "index": 123,
@@ -4775,7 +4330,7 @@ Checkout the following snippet for the format of ResponseGetUnconfirmedTxs:
 
 ```json
 {
-  "code": "OK",
+  "code": "INVALID_LOCK_STATUS",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -4826,7 +4381,7 @@ Checkout the following snippet for the format of ResponseGetValidatorsInfo:
 
 ```json
 {
-  "code": "OK",
+  "code": "INVALID_LOCK_STATUS",
   "validatorsInfo": {
     "blockHeight": "abc",
     "validators": [
@@ -4867,7 +4422,7 @@ Checkout the following snippet for the format of ResponseListAssetTransactions:
 
 ```json
 {
-  "code": "OK",
+  "code": "INVALID_LOCK_STATUS",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -4875,7 +4430,7 @@ Checkout the following snippet for the format of ResponseListAssetTransactions:
   },
   "transactions": [
     {
-      "code": "OK",
+      "code": "INVALID_LOCK_STATUS",
       "hash": "abc",
       "receiver": "abc",
       "sender": "abc",
@@ -4961,7 +4516,7 @@ Checkout the following snippet for the format of ResponseListAssets:
       "ttl": "abc"
     }
   ],
-  "code": "OK",
+  "code": "INVALID_LOCK_STATUS",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -4997,7 +4552,7 @@ Checkout the following snippet for the format of ResponseListBlocks:
       "time": "abc"
     }
   ],
-  "code": "OK",
+  "code": "INVALID_LOCK_STATUS",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -5023,7 +4578,7 @@ Checkout the following snippet for the format of ResponseListStakes:
 
 ```json
 {
-  "code": "OK",
+  "code": "INVALID_LOCK_STATUS",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -5061,7 +4616,7 @@ Checkout the following snippet for the format of ResponseListSwap:
 
 ```json
 {
-  "code": "OK",
+  "code": "INVALID_LOCK_STATUS",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -5076,7 +4631,7 @@ Checkout the following snippet for the format of ResponseListSwap:
       "context": {
         "genesisTime": "2019-04-29T00:00:00.000Z",
         "genesisTx": {
-          "code": "OK",
+          "code": "INVALID_LOCK_STATUS",
           "hash": "abc",
           "height": "abc",
           "index": 123,
@@ -5110,7 +4665,7 @@ Checkout the following snippet for the format of ResponseListSwap:
         },
         "renaissanceTime": "2019-04-29T00:00:00.000Z",
         "renaissanceTx": {
-          "code": "OK",
+          "code": "INVALID_LOCK_STATUS",
           "hash": "abc",
           "height": "abc",
           "index": 123,
@@ -5192,7 +4747,7 @@ Checkout the following snippet for the format of ResponseListTopAccounts:
       "totalUnstakes": "abc"
     }
   ],
-  "code": "OK",
+  "code": "INVALID_LOCK_STATUS",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -5218,7 +4773,7 @@ Checkout the following snippet for the format of ResponseListTransactions:
 
 ```json
 {
-  "code": "OK",
+  "code": "INVALID_LOCK_STATUS",
   "page": {
     "cursor": "abc",
     "next": true,
@@ -5226,7 +4781,7 @@ Checkout the following snippet for the format of ResponseListTransactions:
   },
   "transactions": [
     {
-      "code": "OK",
+      "code": "INVALID_LOCK_STATUS",
       "hash": "abc",
       "receiver": "abc",
       "sender": "abc",
@@ -5275,7 +4830,7 @@ Checkout the following snippet for the format of ResponseSendTx:
 
 ```json
 {
-  "code": "OK",
+  "code": "INVALID_LOCK_STATUS",
   "hash": "abc"
 }
 ```
@@ -5296,7 +4851,7 @@ Checkout the following snippet for the format of ResponseStartSimulator:
 
 ```json
 {
-  "code": "OK"
+  "code": "INVALID_LOCK_STATUS"
 }
 ```
 
@@ -5315,7 +4870,7 @@ Checkout the following snippet for the format of ResponseStopSimulator:
 
 ```json
 {
-  "code": "OK"
+  "code": "INVALID_LOCK_STATUS"
 }
 ```
 
@@ -5334,90 +4889,7 @@ Checkout the following snippet for the format of ResponseSubscribe:
 
 ```json
 {
-  "swapState": {
-    "address": "abc",
-    "assets": [
-      "abc"
-    ],
-    "context": {
-      "genesisTime": "2019-04-29T00:00:00.000Z",
-      "genesisTx": {
-        "code": "OK",
-        "hash": "abc",
-        "height": "abc",
-        "index": 123,
-        "tags": [
-          {
-            "key": "abc",
-            "value": "abc"
-          }
-        ],
-        "time": "2019-04-29T00:00:00.000Z",
-        "tx": {
-          "chainId": "abc",
-          "delegator": "abc",
-          "from": "abc",
-          "nonce": "abc",
-          "pk": "abc",
-          "signature": "abc",
-          "signatures": [
-            {
-              "data": {
-                "typeUrl": "abc",
-                "value": "abc"
-              },
-              "delegator": "abc",
-              "pk": "abc",
-              "signature": "abc",
-              "signer": "abc"
-            }
-          ]
-        }
-      },
-      "renaissanceTime": "2019-04-29T00:00:00.000Z",
-      "renaissanceTx": {
-        "code": "OK",
-        "hash": "abc",
-        "height": "abc",
-        "index": 123,
-        "tags": [
-          {
-            "key": "abc",
-            "value": "abc"
-          }
-        ],
-        "time": "2019-04-29T00:00:00.000Z",
-        "tx": {
-          "chainId": "abc",
-          "delegator": "abc",
-          "from": "abc",
-          "nonce": "abc",
-          "pk": "abc",
-          "signature": "abc",
-          "signatures": [
-            {
-              "data": {
-                "typeUrl": "abc",
-                "value": "abc"
-              },
-              "delegator": "abc",
-              "pk": "abc",
-              "signature": "abc",
-              "signer": "abc"
-            }
-          ]
-        }
-      }
-    },
-    "hash": "abc",
-    "hashkey": "abc",
-    "hashlock": "abc",
-    "locktime": 123,
-    "receiver": "abc",
-    "sender": "abc",
-    "value": "abc"
-  },
-  "poke": {
+  "consumeAsset": {
     "chainId": "abc",
     "delegator": "abc",
     "from": "abc",
@@ -5437,7 +4909,7 @@ Checkout the following snippet for the format of ResponseSubscribe:
       }
     ]
   },
-  "transfer": {
+  "stake": {
     "chainId": "abc",
     "delegator": "abc",
     "from": "abc",
@@ -5456,449 +4928,15 @@ Checkout the following snippet for the format of ResponseSubscribe:
         "signer": "abc"
       }
     ]
-  },
-  "stakeState": {
-    "address": "abc",
-    "balance": "abc",
-    "context": {
-      "genesisTime": "2019-04-29T00:00:00.000Z",
-      "genesisTx": {
-        "code": "OK",
-        "hash": "abc",
-        "height": "abc",
-        "index": 123,
-        "tags": [
-          {
-            "key": "abc",
-            "value": "abc"
-          }
-        ],
-        "time": "2019-04-29T00:00:00.000Z",
-        "tx": {
-          "chainId": "abc",
-          "delegator": "abc",
-          "from": "abc",
-          "nonce": "abc",
-          "pk": "abc",
-          "signature": "abc",
-          "signatures": [
-            {
-              "data": {
-                "typeUrl": "abc",
-                "value": "abc"
-              },
-              "delegator": "abc",
-              "pk": "abc",
-              "signature": "abc",
-              "signer": "abc"
-            }
-          ]
-        }
-      },
-      "renaissanceTime": "2019-04-29T00:00:00.000Z",
-      "renaissanceTx": {
-        "code": "OK",
-        "hash": "abc",
-        "height": "abc",
-        "index": 123,
-        "tags": [
-          {
-            "key": "abc",
-            "value": "abc"
-          }
-        ],
-        "time": "2019-04-29T00:00:00.000Z",
-        "tx": {
-          "chainId": "abc",
-          "delegator": "abc",
-          "from": "abc",
-          "nonce": "abc",
-          "pk": "abc",
-          "signature": "abc",
-          "signatures": [
-            {
-              "data": {
-                "typeUrl": "abc",
-                "value": "abc"
-              },
-              "delegator": "abc",
-              "pk": "abc",
-              "signature": "abc",
-              "signer": "abc"
-            }
-          ]
-        }
-      }
-    },
-    "data": {
-      "typeUrl": "abc",
-      "value": "abc"
-    },
-    "from": "abc",
-    "message": "abc",
-    "to": "abc"
-  },
-  "retrieveSwap": {
-    "chainId": "abc",
-    "delegator": "abc",
-    "from": "abc",
-    "nonce": "abc",
-    "pk": "abc",
-    "signature": "abc",
-    "signatures": [
-      {
-        "data": {
-          "typeUrl": "abc",
-          "value": "abc"
-        },
-        "delegator": "abc",
-        "pk": "abc",
-        "signature": "abc",
-        "signer": "abc"
-      }
-    ]
-  },
-  "sysUpgrade": {
-    "chainId": "abc",
-    "delegator": "abc",
-    "from": "abc",
-    "nonce": "abc",
-    "pk": "abc",
-    "signature": "abc",
-    "signatures": [
-      {
-        "data": {
-          "typeUrl": "abc",
-          "value": "abc"
-        },
-        "delegator": "abc",
-        "pk": "abc",
-        "signature": "abc",
-        "signer": "abc"
-      }
-    ]
-  },
-  "withdrawToken": {
-    "chainId": "abc",
-    "delegator": "abc",
-    "from": "abc",
-    "nonce": "abc",
-    "pk": "abc",
-    "signature": "abc",
-    "signatures": [
-      {
-        "data": {
-          "typeUrl": "abc",
-          "value": "abc"
-        },
-        "delegator": "abc",
-        "pk": "abc",
-        "signature": "abc",
-        "signer": "abc"
-      }
-    ]
-  },
-  "code": "OK",
-  "createAsset": {
-    "chainId": "abc",
-    "delegator": "abc",
-    "from": "abc",
-    "nonce": "abc",
-    "pk": "abc",
-    "signature": "abc",
-    "signatures": [
-      {
-        "data": {
-          "typeUrl": "abc",
-          "value": "abc"
-        },
-        "delegator": "abc",
-        "pk": "abc",
-        "signature": "abc",
-        "signer": "abc"
-      }
-    ]
-  },
-  "updateValidator": {
-    "chainId": "abc",
-    "delegator": "abc",
-    "from": "abc",
-    "nonce": "abc",
-    "pk": "abc",
-    "signature": "abc",
-    "signatures": [
-      {
-        "data": {
-          "typeUrl": "abc",
-          "value": "abc"
-        },
-        "delegator": "abc",
-        "pk": "abc",
-        "signature": "abc",
-        "signer": "abc"
-      }
-    ]
-  },
-  "acquireAsset": {
-    "chainId": "abc",
-    "delegator": "abc",
-    "from": "abc",
-    "nonce": "abc",
-    "pk": "abc",
-    "signature": "abc",
-    "signatures": [
-      {
-        "data": {
-          "typeUrl": "abc",
-          "value": "abc"
-        },
-        "delegator": "abc",
-        "pk": "abc",
-        "signature": "abc",
-        "signer": "abc"
-      }
-    ]
-  },
-  "delegateState": {
-    "address": "abc",
-    "context": {
-      "genesisTime": "2019-04-29T00:00:00.000Z",
-      "genesisTx": {
-        "code": "OK",
-        "hash": "abc",
-        "height": "abc",
-        "index": 123,
-        "tags": [
-          {
-            "key": "abc",
-            "value": "abc"
-          }
-        ],
-        "time": "2019-04-29T00:00:00.000Z",
-        "tx": {
-          "chainId": "abc",
-          "delegator": "abc",
-          "from": "abc",
-          "nonce": "abc",
-          "pk": "abc",
-          "signature": "abc",
-          "signatures": [
-            {
-              "data": {
-                "typeUrl": "abc",
-                "value": "abc"
-              },
-              "delegator": "abc",
-              "pk": "abc",
-              "signature": "abc",
-              "signer": "abc"
-            }
-          ]
-        }
-      },
-      "renaissanceTime": "2019-04-29T00:00:00.000Z",
-      "renaissanceTx": {
-        "code": "OK",
-        "hash": "abc",
-        "height": "abc",
-        "index": 123,
-        "tags": [
-          {
-            "key": "abc",
-            "value": "abc"
-          }
-        ],
-        "time": "2019-04-29T00:00:00.000Z",
-        "tx": {
-          "chainId": "abc",
-          "delegator": "abc",
-          "from": "abc",
-          "nonce": "abc",
-          "pk": "abc",
-          "signature": "abc",
-          "signatures": [
-            {
-              "data": {
-                "typeUrl": "abc",
-                "value": "abc"
-              },
-              "delegator": "abc",
-              "pk": "abc",
-              "signature": "abc",
-              "signer": "abc"
-            }
-          ]
-        }
-      }
-    },
-    "data": {
-      "typeUrl": "abc",
-      "value": "abc"
-    },
-    "ops": [
-      {
-        "key": "abc",
-        "value": {
-          "balance": "abc",
-          "balanceDelta": "abc",
-          "numTxs": "abc",
-          "numTxsDelta": "abc",
-          "rule": "abc"
-        }
-      }
-    ]
-  },
-  "revokeWithdraw": {
-    "chainId": "abc",
-    "delegator": "abc",
-    "from": "abc",
-    "nonce": "abc",
-    "pk": "abc",
-    "signature": "abc",
-    "signatures": [
-      {
-        "data": {
-          "typeUrl": "abc",
-          "value": "abc"
-        },
-        "delegator": "abc",
-        "pk": "abc",
-        "signature": "abc",
-        "signer": "abc"
-      }
-    ]
-  },
-  "updateAsset": {
-    "chainId": "abc",
-    "delegator": "abc",
-    "from": "abc",
-    "nonce": "abc",
-    "pk": "abc",
-    "signature": "abc",
-    "signatures": [
-      {
-        "data": {
-          "typeUrl": "abc",
-          "value": "abc"
-        },
-        "delegator": "abc",
-        "pk": "abc",
-        "signature": "abc",
-        "signer": "abc"
-      }
-    ]
-  },
-  "setupSwap": {
-    "chainId": "abc",
-    "delegator": "abc",
-    "from": "abc",
-    "nonce": "abc",
-    "pk": "abc",
-    "signature": "abc",
-    "signatures": [
-      {
-        "data": {
-          "typeUrl": "abc",
-          "value": "abc"
-        },
-        "delegator": "abc",
-        "pk": "abc",
-        "signature": "abc",
-        "signer": "abc"
-      }
-    ]
-  },
-  "declareFile": {
-    "chainId": "abc",
-    "delegator": "abc",
-    "from": "abc",
-    "nonce": "abc",
-    "pk": "abc",
-    "signature": "abc",
-    "signatures": [
-      {
-        "data": {
-          "typeUrl": "abc",
-          "value": "abc"
-        },
-        "delegator": "abc",
-        "pk": "abc",
-        "signature": "abc",
-        "signer": "abc"
-      }
-    ]
-  },
-  "revoke": {
-    "chainId": "abc",
-    "delegator": "abc",
-    "from": "abc",
-    "nonce": "abc",
-    "pk": "abc",
-    "signature": "abc",
-    "signatures": [
-      {
-        "data": {
-          "typeUrl": "abc",
-          "value": "abc"
-        },
-        "delegator": "abc",
-        "pk": "abc",
-        "signature": "abc",
-        "signer": "abc"
-      }
-    ]
-  },
-  "declare": {
-    "chainId": "abc",
-    "delegator": "abc",
-    "from": "abc",
-    "nonce": "abc",
-    "pk": "abc",
-    "signature": "abc",
-    "signatures": [
-      {
-        "data": {
-          "typeUrl": "abc",
-          "value": "abc"
-        },
-        "delegator": "abc",
-        "pk": "abc",
-        "signature": "abc",
-        "signer": "abc"
-      }
-    ]
-  },
-  "endBlock": {
-    "height": "abc"
   },
   "topic": "abc",
-  "depositToken": {
-    "chainId": "abc",
-    "delegator": "abc",
-    "from": "abc",
-    "nonce": "abc",
-    "pk": "abc",
-    "signature": "abc",
-    "signatures": [
-      {
-        "data": {
-          "typeUrl": "abc",
-          "value": "abc"
-        },
-        "delegator": "abc",
-        "pk": "abc",
-        "signature": "abc",
-        "signer": "abc"
-      }
-    ]
-  },
   "assetState": {
     "address": "abc",
     "consumedTime": "2019-04-29T00:00:00.000Z",
     "context": {
       "genesisTime": "2019-04-29T00:00:00.000Z",
       "genesisTx": {
-        "code": "OK",
+        "code": "INVALID_LOCK_STATUS",
         "hash": "abc",
         "height": "abc",
         "index": 123,
@@ -5932,7 +4970,7 @@ Checkout the following snippet for the format of ResponseSubscribe:
       },
       "renaissanceTime": "2019-04-29T00:00:00.000Z",
       "renaissanceTx": {
-        "code": "OK",
+        "code": "INVALID_LOCK_STATUS",
         "hash": "abc",
         "height": "abc",
         "index": 123,
@@ -6006,12 +5044,13 @@ Checkout the following snippet for the format of ResponseSubscribe:
     "transferrable": true,
     "ttl": 123
   },
-  "protocolState": {
+  "stakeState": {
     "address": "abc",
+    "balance": "abc",
     "context": {
       "genesisTime": "2019-04-29T00:00:00.000Z",
       "genesisTx": {
-        "code": "OK",
+        "code": "INVALID_LOCK_STATUS",
         "hash": "abc",
         "height": "abc",
         "index": 123,
@@ -6045,7 +5084,360 @@ Checkout the following snippet for the format of ResponseSubscribe:
       },
       "renaissanceTime": "2019-04-29T00:00:00.000Z",
       "renaissanceTx": {
-        "code": "OK",
+        "code": "INVALID_LOCK_STATUS",
+        "hash": "abc",
+        "height": "abc",
+        "index": 123,
+        "tags": [
+          {
+            "key": "abc",
+            "value": "abc"
+          }
+        ],
+        "time": "2019-04-29T00:00:00.000Z",
+        "tx": {
+          "chainId": "abc",
+          "delegator": "abc",
+          "from": "abc",
+          "nonce": "abc",
+          "pk": "abc",
+          "signature": "abc",
+          "signatures": [
+            {
+              "data": {
+                "typeUrl": "abc",
+                "value": "abc"
+              },
+              "delegator": "abc",
+              "pk": "abc",
+              "signature": "abc",
+              "signer": "abc"
+            }
+          ]
+        }
+      }
+    },
+    "data": {
+      "typeUrl": "abc",
+      "value": "abc"
+    },
+    "from": "abc",
+    "message": "abc",
+    "to": "abc"
+  },
+  "endBlock": {
+    "height": "abc"
+  },
+  "updateAsset": {
+    "chainId": "abc",
+    "delegator": "abc",
+    "from": "abc",
+    "nonce": "abc",
+    "pk": "abc",
+    "signature": "abc",
+    "signatures": [
+      {
+        "data": {
+          "typeUrl": "abc",
+          "value": "abc"
+        },
+        "delegator": "abc",
+        "pk": "abc",
+        "signature": "abc",
+        "signer": "abc"
+      }
+    ]
+  },
+  "revokeWithdraw": {
+    "chainId": "abc",
+    "delegator": "abc",
+    "from": "abc",
+    "nonce": "abc",
+    "pk": "abc",
+    "signature": "abc",
+    "signatures": [
+      {
+        "data": {
+          "typeUrl": "abc",
+          "value": "abc"
+        },
+        "delegator": "abc",
+        "pk": "abc",
+        "signature": "abc",
+        "signer": "abc"
+      }
+    ]
+  },
+  "code": "INVALID_LOCK_STATUS",
+  "withdrawToken": {
+    "chainId": "abc",
+    "delegator": "abc",
+    "from": "abc",
+    "nonce": "abc",
+    "pk": "abc",
+    "signature": "abc",
+    "signatures": [
+      {
+        "data": {
+          "typeUrl": "abc",
+          "value": "abc"
+        },
+        "delegator": "abc",
+        "pk": "abc",
+        "signature": "abc",
+        "signer": "abc"
+      }
+    ]
+  },
+  "updateConsensusParams": {
+    "chainId": "abc",
+    "delegator": "abc",
+    "from": "abc",
+    "nonce": "abc",
+    "pk": "abc",
+    "signature": "abc",
+    "signatures": [
+      {
+        "data": {
+          "typeUrl": "abc",
+          "value": "abc"
+        },
+        "delegator": "abc",
+        "pk": "abc",
+        "signature": "abc",
+        "signer": "abc"
+      }
+    ]
+  },
+  "accountMigrate": {
+    "chainId": "abc",
+    "delegator": "abc",
+    "from": "abc",
+    "nonce": "abc",
+    "pk": "abc",
+    "signature": "abc",
+    "signatures": [
+      {
+        "data": {
+          "typeUrl": "abc",
+          "value": "abc"
+        },
+        "delegator": "abc",
+        "pk": "abc",
+        "signature": "abc",
+        "signer": "abc"
+      }
+    ]
+  },
+  "upgradeNode": {
+    "chainId": "abc",
+    "delegator": "abc",
+    "from": "abc",
+    "nonce": "abc",
+    "pk": "abc",
+    "signature": "abc",
+    "signatures": [
+      {
+        "data": {
+          "typeUrl": "abc",
+          "value": "abc"
+        },
+        "delegator": "abc",
+        "pk": "abc",
+        "signature": "abc",
+        "signer": "abc"
+      }
+    ]
+  },
+  "delegateState": {
+    "address": "abc",
+    "context": {
+      "genesisTime": "2019-04-29T00:00:00.000Z",
+      "genesisTx": {
+        "code": "INVALID_LOCK_STATUS",
+        "hash": "abc",
+        "height": "abc",
+        "index": 123,
+        "tags": [
+          {
+            "key": "abc",
+            "value": "abc"
+          }
+        ],
+        "time": "2019-04-29T00:00:00.000Z",
+        "tx": {
+          "chainId": "abc",
+          "delegator": "abc",
+          "from": "abc",
+          "nonce": "abc",
+          "pk": "abc",
+          "signature": "abc",
+          "signatures": [
+            {
+              "data": {
+                "typeUrl": "abc",
+                "value": "abc"
+              },
+              "delegator": "abc",
+              "pk": "abc",
+              "signature": "abc",
+              "signer": "abc"
+            }
+          ]
+        }
+      },
+      "renaissanceTime": "2019-04-29T00:00:00.000Z",
+      "renaissanceTx": {
+        "code": "INVALID_LOCK_STATUS",
+        "hash": "abc",
+        "height": "abc",
+        "index": 123,
+        "tags": [
+          {
+            "key": "abc",
+            "value": "abc"
+          }
+        ],
+        "time": "2019-04-29T00:00:00.000Z",
+        "tx": {
+          "chainId": "abc",
+          "delegator": "abc",
+          "from": "abc",
+          "nonce": "abc",
+          "pk": "abc",
+          "signature": "abc",
+          "signatures": [
+            {
+              "data": {
+                "typeUrl": "abc",
+                "value": "abc"
+              },
+              "delegator": "abc",
+              "pk": "abc",
+              "signature": "abc",
+              "signer": "abc"
+            }
+          ]
+        }
+      }
+    },
+    "data": {
+      "typeUrl": "abc",
+      "value": "abc"
+    },
+    "ops": [
+      {
+        "key": "abc",
+        "value": {
+          "balance": "abc",
+          "balanceDelta": "abc",
+          "numTxs": "abc",
+          "numTxsDelta": "abc",
+          "rule": "abc"
+        }
+      }
+    ]
+  },
+  "setupSwap": {
+    "chainId": "abc",
+    "delegator": "abc",
+    "from": "abc",
+    "nonce": "abc",
+    "pk": "abc",
+    "signature": "abc",
+    "signatures": [
+      {
+        "data": {
+          "typeUrl": "abc",
+          "value": "abc"
+        },
+        "delegator": "abc",
+        "pk": "abc",
+        "signature": "abc",
+        "signer": "abc"
+      }
+    ]
+  },
+  "retrieveSwap": {
+    "chainId": "abc",
+    "delegator": "abc",
+    "from": "abc",
+    "nonce": "abc",
+    "pk": "abc",
+    "signature": "abc",
+    "signatures": [
+      {
+        "data": {
+          "typeUrl": "abc",
+          "value": "abc"
+        },
+        "delegator": "abc",
+        "pk": "abc",
+        "signature": "abc",
+        "signer": "abc"
+      }
+    ]
+  },
+  "acquireAsset": {
+    "chainId": "abc",
+    "delegator": "abc",
+    "from": "abc",
+    "nonce": "abc",
+    "pk": "abc",
+    "signature": "abc",
+    "signatures": [
+      {
+        "data": {
+          "typeUrl": "abc",
+          "value": "abc"
+        },
+        "delegator": "abc",
+        "pk": "abc",
+        "signature": "abc",
+        "signer": "abc"
+      }
+    ]
+  },
+  "protocolState": {
+    "address": "abc",
+    "context": {
+      "genesisTime": "2019-04-29T00:00:00.000Z",
+      "genesisTx": {
+        "code": "INVALID_LOCK_STATUS",
+        "hash": "abc",
+        "height": "abc",
+        "index": 123,
+        "tags": [
+          {
+            "key": "abc",
+            "value": "abc"
+          }
+        ],
+        "time": "2019-04-29T00:00:00.000Z",
+        "tx": {
+          "chainId": "abc",
+          "delegator": "abc",
+          "from": "abc",
+          "nonce": "abc",
+          "pk": "abc",
+          "signature": "abc",
+          "signatures": [
+            {
+              "data": {
+                "typeUrl": "abc",
+                "value": "abc"
+              },
+              "delegator": "abc",
+              "pk": "abc",
+              "signature": "abc",
+              "signer": "abc"
+            }
+          ]
+        }
+      },
+      "renaissanceTime": "2019-04-29T00:00:00.000Z",
+      "renaissanceTx": {
+        "code": "INVALID_LOCK_STATUS",
         "hash": "abc",
         "height": "abc",
         "index": 123,
@@ -6123,247 +5515,7 @@ Checkout the following snippet for the format of ResponseSubscribe:
     "rootHash": "abc",
     "status": "abc"
   },
-  "revokeSwap": {
-    "chainId": "abc",
-    "delegator": "abc",
-    "from": "abc",
-    "nonce": "abc",
-    "pk": "abc",
-    "signature": "abc",
-    "signatures": [
-      {
-        "data": {
-          "typeUrl": "abc",
-          "value": "abc"
-        },
-        "delegator": "abc",
-        "pk": "abc",
-        "signature": "abc",
-        "signer": "abc"
-      }
-    ]
-  },
-  "upgradeNode": {
-    "chainId": "abc",
-    "delegator": "abc",
-    "from": "abc",
-    "nonce": "abc",
-    "pk": "abc",
-    "signature": "abc",
-    "signatures": [
-      {
-        "data": {
-          "typeUrl": "abc",
-          "value": "abc"
-        },
-        "delegator": "abc",
-        "pk": "abc",
-        "signature": "abc",
-        "signer": "abc"
-      }
-    ]
-  },
-  "exchange": {
-    "chainId": "abc",
-    "delegator": "abc",
-    "from": "abc",
-    "nonce": "abc",
-    "pk": "abc",
-    "signature": "abc",
-    "signatures": [
-      {
-        "data": {
-          "typeUrl": "abc",
-          "value": "abc"
-        },
-        "delegator": "abc",
-        "pk": "abc",
-        "signature": "abc",
-        "signer": "abc"
-      }
-    ]
-  },
-  "stake": {
-    "chainId": "abc",
-    "delegator": "abc",
-    "from": "abc",
-    "nonce": "abc",
-    "pk": "abc",
-    "signature": "abc",
-    "signatures": [
-      {
-        "data": {
-          "typeUrl": "abc",
-          "value": "abc"
-        },
-        "delegator": "abc",
-        "pk": "abc",
-        "signature": "abc",
-        "signer": "abc"
-      }
-    ]
-  },
-  "delegate": {
-    "chainId": "abc",
-    "delegator": "abc",
-    "from": "abc",
-    "nonce": "abc",
-    "pk": "abc",
-    "signature": "abc",
-    "signatures": [
-      {
-        "data": {
-          "typeUrl": "abc",
-          "value": "abc"
-        },
-        "delegator": "abc",
-        "pk": "abc",
-        "signature": "abc",
-        "signer": "abc"
-      }
-    ]
-  },
-  "updateConsensusParams": {
-    "chainId": "abc",
-    "delegator": "abc",
-    "from": "abc",
-    "nonce": "abc",
-    "pk": "abc",
-    "signature": "abc",
-    "signatures": [
-      {
-        "data": {
-          "typeUrl": "abc",
-          "value": "abc"
-        },
-        "delegator": "abc",
-        "pk": "abc",
-        "signature": "abc",
-        "signer": "abc"
-      }
-    ]
-  },
-  "activateProtocol": {
-    "chainId": "abc",
-    "delegator": "abc",
-    "from": "abc",
-    "nonce": "abc",
-    "pk": "abc",
-    "signature": "abc",
-    "signatures": [
-      {
-        "data": {
-          "typeUrl": "abc",
-          "value": "abc"
-        },
-        "delegator": "abc",
-        "pk": "abc",
-        "signature": "abc",
-        "signer": "abc"
-      }
-    ]
-  },
-  "approveWithdraw": {
-    "chainId": "abc",
-    "delegator": "abc",
-    "from": "abc",
-    "nonce": "abc",
-    "pk": "abc",
-    "signature": "abc",
-    "signatures": [
-      {
-        "data": {
-          "typeUrl": "abc",
-          "value": "abc"
-        },
-        "delegator": "abc",
-        "pk": "abc",
-        "signature": "abc",
-        "signer": "abc"
-      }
-    ]
-  },
-  "consumeAsset": {
-    "chainId": "abc",
-    "delegator": "abc",
-    "from": "abc",
-    "nonce": "abc",
-    "pk": "abc",
-    "signature": "abc",
-    "signatures": [
-      {
-        "data": {
-          "typeUrl": "abc",
-          "value": "abc"
-        },
-        "delegator": "abc",
-        "pk": "abc",
-        "signature": "abc",
-        "signer": "abc"
-      }
-    ]
-  },
-  "confirm": {
-    "chainId": "abc",
-    "delegator": "abc",
-    "from": "abc",
-    "nonce": "abc",
-    "pk": "abc",
-    "signature": "abc",
-    "signatures": [
-      {
-        "data": {
-          "typeUrl": "abc",
-          "value": "abc"
-        },
-        "delegator": "abc",
-        "pk": "abc",
-        "signature": "abc",
-        "signer": "abc"
-      }
-    ]
-  },
-  "revokeDelegate": {
-    "chainId": "abc",
-    "delegator": "abc",
-    "from": "abc",
-    "nonce": "abc",
-    "pk": "abc",
-    "signature": "abc",
-    "signatures": [
-      {
-        "data": {
-          "typeUrl": "abc",
-          "value": "abc"
-        },
-        "delegator": "abc",
-        "pk": "abc",
-        "signature": "abc",
-        "signer": "abc"
-      }
-    ]
-  },
-  "deactivateProtocol": {
-    "chainId": "abc",
-    "delegator": "abc",
-    "from": "abc",
-    "nonce": "abc",
-    "pk": "abc",
-    "signature": "abc",
-    "signatures": [
-      {
-        "data": {
-          "typeUrl": "abc",
-          "value": "abc"
-        },
-        "delegator": "abc",
-        "pk": "abc",
-        "signature": "abc",
-        "signer": "abc"
-      }
-    ]
-  },
-  "consensusUpgrade": {
+  "declare": {
     "chainId": "abc",
     "delegator": "abc",
     "from": "abc",
@@ -6435,7 +5587,7 @@ Checkout the following snippet for the format of ResponseSubscribe:
           "context": {
             "genesisTime": "2019-04-29T00:00:00.000Z",
             "genesisTx": {
-              "code": "OK",
+              "code": "INVALID_LOCK_STATUS",
               "hash": "abc",
               "height": "abc",
               "index": 123,
@@ -6469,7 +5621,7 @@ Checkout the following snippet for the format of ResponseSubscribe:
             },
             "renaissanceTime": "2019-04-29T00:00:00.000Z",
             "renaissanceTx": {
-              "code": "OK",
+              "code": "INVALID_LOCK_STATUS",
               "hash": "abc",
               "height": "abc",
               "index": 123,
@@ -6571,58 +5723,7 @@ Checkout the following snippet for the format of ResponseSubscribe:
     },
     "version": "abc"
   },
-  "beginBlock": {
-    "byzantineValidators": [
-      {
-        "chainId": "abc",
-        "chainType": "abc",
-        "hash": "abc",
-        "originalTx": "abc",
-        "receiverAddress": "abc"
-      }
-    ],
-    "hash": "abc",
-    "header": {
-      "appHash": "abc",
-      "chainId": "abc",
-      "consensusHash": "abc",
-      "dataHash": "abc",
-      "evidenceHash": "abc",
-      "height": "abc",
-      "lastBlockId": {
-        "hash": "abc",
-        "partsHeader": {
-          "hash": "abc",
-          "total": 123
-        }
-      },
-      "lastCommitHash": "abc",
-      "lastResultsHash": "abc",
-      "nextValidatorsHash": "abc",
-      "numTxs": "abc",
-      "proposerAddress": "abc",
-      "time": "2019-04-29T00:00:00.000Z",
-      "totalTxs": "abc",
-      "validatorsHash": "abc",
-      "version": {
-        "app": "abc",
-        "block": "abc"
-      }
-    },
-    "lastCommitInfo": {
-      "round": 123,
-      "votes": [
-        {
-          "signedLastBlock": true,
-          "validator": {
-            "address": "abc",
-            "power": "abc"
-          }
-        }
-      ]
-    }
-  },
-  "accountMigrate": {
+  "activateProtocol": {
     "chainId": "abc",
     "delegator": "abc",
     "from": "abc",
@@ -6642,7 +5743,87 @@ Checkout the following snippet for the format of ResponseSubscribe:
       }
     ]
   },
-  "deployProtocol": {
+  "depositToken": {
+    "chainId": "abc",
+    "delegator": "abc",
+    "from": "abc",
+    "nonce": "abc",
+    "pk": "abc",
+    "signature": "abc",
+    "signatures": [
+      {
+        "data": {
+          "typeUrl": "abc",
+          "value": "abc"
+        },
+        "delegator": "abc",
+        "pk": "abc",
+        "signature": "abc",
+        "signer": "abc"
+      }
+    ]
+  },
+  "declareFile": {
+    "chainId": "abc",
+    "delegator": "abc",
+    "from": "abc",
+    "nonce": "abc",
+    "pk": "abc",
+    "signature": "abc",
+    "signatures": [
+      {
+        "data": {
+          "typeUrl": "abc",
+          "value": "abc"
+        },
+        "delegator": "abc",
+        "pk": "abc",
+        "signature": "abc",
+        "signer": "abc"
+      }
+    ]
+  },
+  "revokeDelegate": {
+    "chainId": "abc",
+    "delegator": "abc",
+    "from": "abc",
+    "nonce": "abc",
+    "pk": "abc",
+    "signature": "abc",
+    "signatures": [
+      {
+        "data": {
+          "typeUrl": "abc",
+          "value": "abc"
+        },
+        "delegator": "abc",
+        "pk": "abc",
+        "signature": "abc",
+        "signer": "abc"
+      }
+    ]
+  },
+  "exchange": {
+    "chainId": "abc",
+    "delegator": "abc",
+    "from": "abc",
+    "nonce": "abc",
+    "pk": "abc",
+    "signature": "abc",
+    "signatures": [
+      {
+        "data": {
+          "typeUrl": "abc",
+          "value": "abc"
+        },
+        "delegator": "abc",
+        "pk": "abc",
+        "signature": "abc",
+        "signer": "abc"
+      }
+    ]
+  },
+  "poke": {
     "chainId": "abc",
     "delegator": "abc",
     "from": "abc",
@@ -6668,7 +5849,7 @@ Checkout the following snippet for the format of ResponseSubscribe:
     "context": {
       "genesisTime": "2019-04-29T00:00:00.000Z",
       "genesisTx": {
-        "code": "OK",
+        "code": "INVALID_LOCK_STATUS",
         "hash": "abc",
         "height": "abc",
         "index": 123,
@@ -6702,7 +5883,7 @@ Checkout the following snippet for the format of ResponseSubscribe:
       },
       "renaissanceTime": "2019-04-29T00:00:00.000Z",
       "renaissanceTx": {
-        "code": "OK",
+        "code": "INVALID_LOCK_STATUS",
         "hash": "abc",
         "height": "abc",
         "index": 123,
@@ -6803,6 +5984,380 @@ Checkout the following snippet for the format of ResponseSubscribe:
       "maxItems": 123,
       "typeUrl": "abc"
     }
+  },
+  "delegate": {
+    "chainId": "abc",
+    "delegator": "abc",
+    "from": "abc",
+    "nonce": "abc",
+    "pk": "abc",
+    "signature": "abc",
+    "signatures": [
+      {
+        "data": {
+          "typeUrl": "abc",
+          "value": "abc"
+        },
+        "delegator": "abc",
+        "pk": "abc",
+        "signature": "abc",
+        "signer": "abc"
+      }
+    ]
+  },
+  "swapState": {
+    "address": "abc",
+    "assets": [
+      "abc"
+    ],
+    "context": {
+      "genesisTime": "2019-04-29T00:00:00.000Z",
+      "genesisTx": {
+        "code": "INVALID_LOCK_STATUS",
+        "hash": "abc",
+        "height": "abc",
+        "index": 123,
+        "tags": [
+          {
+            "key": "abc",
+            "value": "abc"
+          }
+        ],
+        "time": "2019-04-29T00:00:00.000Z",
+        "tx": {
+          "chainId": "abc",
+          "delegator": "abc",
+          "from": "abc",
+          "nonce": "abc",
+          "pk": "abc",
+          "signature": "abc",
+          "signatures": [
+            {
+              "data": {
+                "typeUrl": "abc",
+                "value": "abc"
+              },
+              "delegator": "abc",
+              "pk": "abc",
+              "signature": "abc",
+              "signer": "abc"
+            }
+          ]
+        }
+      },
+      "renaissanceTime": "2019-04-29T00:00:00.000Z",
+      "renaissanceTx": {
+        "code": "INVALID_LOCK_STATUS",
+        "hash": "abc",
+        "height": "abc",
+        "index": 123,
+        "tags": [
+          {
+            "key": "abc",
+            "value": "abc"
+          }
+        ],
+        "time": "2019-04-29T00:00:00.000Z",
+        "tx": {
+          "chainId": "abc",
+          "delegator": "abc",
+          "from": "abc",
+          "nonce": "abc",
+          "pk": "abc",
+          "signature": "abc",
+          "signatures": [
+            {
+              "data": {
+                "typeUrl": "abc",
+                "value": "abc"
+              },
+              "delegator": "abc",
+              "pk": "abc",
+              "signature": "abc",
+              "signer": "abc"
+            }
+          ]
+        }
+      }
+    },
+    "hash": "abc",
+    "hashkey": "abc",
+    "hashlock": "abc",
+    "locktime": 123,
+    "receiver": "abc",
+    "sender": "abc",
+    "value": "abc"
+  },
+  "updateValidator": {
+    "chainId": "abc",
+    "delegator": "abc",
+    "from": "abc",
+    "nonce": "abc",
+    "pk": "abc",
+    "signature": "abc",
+    "signatures": [
+      {
+        "data": {
+          "typeUrl": "abc",
+          "value": "abc"
+        },
+        "delegator": "abc",
+        "pk": "abc",
+        "signature": "abc",
+        "signer": "abc"
+      }
+    ]
+  },
+  "sysUpgrade": {
+    "chainId": "abc",
+    "delegator": "abc",
+    "from": "abc",
+    "nonce": "abc",
+    "pk": "abc",
+    "signature": "abc",
+    "signatures": [
+      {
+        "data": {
+          "typeUrl": "abc",
+          "value": "abc"
+        },
+        "delegator": "abc",
+        "pk": "abc",
+        "signature": "abc",
+        "signer": "abc"
+      }
+    ]
+  },
+  "deployProtocol": {
+    "chainId": "abc",
+    "delegator": "abc",
+    "from": "abc",
+    "nonce": "abc",
+    "pk": "abc",
+    "signature": "abc",
+    "signatures": [
+      {
+        "data": {
+          "typeUrl": "abc",
+          "value": "abc"
+        },
+        "delegator": "abc",
+        "pk": "abc",
+        "signature": "abc",
+        "signer": "abc"
+      }
+    ]
+  },
+  "confirm": {
+    "chainId": "abc",
+    "delegator": "abc",
+    "from": "abc",
+    "nonce": "abc",
+    "pk": "abc",
+    "signature": "abc",
+    "signatures": [
+      {
+        "data": {
+          "typeUrl": "abc",
+          "value": "abc"
+        },
+        "delegator": "abc",
+        "pk": "abc",
+        "signature": "abc",
+        "signer": "abc"
+      }
+    ]
+  },
+  "transfer": {
+    "chainId": "abc",
+    "delegator": "abc",
+    "from": "abc",
+    "nonce": "abc",
+    "pk": "abc",
+    "signature": "abc",
+    "signatures": [
+      {
+        "data": {
+          "typeUrl": "abc",
+          "value": "abc"
+        },
+        "delegator": "abc",
+        "pk": "abc",
+        "signature": "abc",
+        "signer": "abc"
+      }
+    ]
+  },
+  "createAsset": {
+    "chainId": "abc",
+    "delegator": "abc",
+    "from": "abc",
+    "nonce": "abc",
+    "pk": "abc",
+    "signature": "abc",
+    "signatures": [
+      {
+        "data": {
+          "typeUrl": "abc",
+          "value": "abc"
+        },
+        "delegator": "abc",
+        "pk": "abc",
+        "signature": "abc",
+        "signer": "abc"
+      }
+    ]
+  },
+  "consensusUpgrade": {
+    "chainId": "abc",
+    "delegator": "abc",
+    "from": "abc",
+    "nonce": "abc",
+    "pk": "abc",
+    "signature": "abc",
+    "signatures": [
+      {
+        "data": {
+          "typeUrl": "abc",
+          "value": "abc"
+        },
+        "delegator": "abc",
+        "pk": "abc",
+        "signature": "abc",
+        "signer": "abc"
+      }
+    ]
+  },
+  "revoke": {
+    "chainId": "abc",
+    "delegator": "abc",
+    "from": "abc",
+    "nonce": "abc",
+    "pk": "abc",
+    "signature": "abc",
+    "signatures": [
+      {
+        "data": {
+          "typeUrl": "abc",
+          "value": "abc"
+        },
+        "delegator": "abc",
+        "pk": "abc",
+        "signature": "abc",
+        "signer": "abc"
+      }
+    ]
+  },
+  "deactivateProtocol": {
+    "chainId": "abc",
+    "delegator": "abc",
+    "from": "abc",
+    "nonce": "abc",
+    "pk": "abc",
+    "signature": "abc",
+    "signatures": [
+      {
+        "data": {
+          "typeUrl": "abc",
+          "value": "abc"
+        },
+        "delegator": "abc",
+        "pk": "abc",
+        "signature": "abc",
+        "signer": "abc"
+      }
+    ]
+  },
+  "beginBlock": {
+    "byzantineValidators": [
+      {
+        "chainId": "abc",
+        "chainType": "abc",
+        "hash": "abc",
+        "originalTx": "abc",
+        "receiverAddress": "abc"
+      }
+    ],
+    "hash": "abc",
+    "header": {
+      "appHash": "abc",
+      "chainId": "abc",
+      "consensusHash": "abc",
+      "dataHash": "abc",
+      "evidenceHash": "abc",
+      "height": "abc",
+      "lastBlockId": {
+        "hash": "abc",
+        "partsHeader": {
+          "hash": "abc",
+          "total": 123
+        }
+      },
+      "lastCommitHash": "abc",
+      "lastResultsHash": "abc",
+      "nextValidatorsHash": "abc",
+      "numTxs": "abc",
+      "proposerAddress": "abc",
+      "time": "2019-04-29T00:00:00.000Z",
+      "totalTxs": "abc",
+      "validatorsHash": "abc",
+      "version": {
+        "app": "abc",
+        "block": "abc"
+      }
+    },
+    "lastCommitInfo": {
+      "round": 123,
+      "votes": [
+        {
+          "signedLastBlock": true,
+          "validator": {
+            "address": "abc",
+            "power": "abc"
+          }
+        }
+      ]
+    }
+  },
+  "revokeSwap": {
+    "chainId": "abc",
+    "delegator": "abc",
+    "from": "abc",
+    "nonce": "abc",
+    "pk": "abc",
+    "signature": "abc",
+    "signatures": [
+      {
+        "data": {
+          "typeUrl": "abc",
+          "value": "abc"
+        },
+        "delegator": "abc",
+        "pk": "abc",
+        "signature": "abc",
+        "signer": "abc"
+      }
+    ]
+  },
+  "approveWithdraw": {
+    "chainId": "abc",
+    "delegator": "abc",
+    "from": "abc",
+    "nonce": "abc",
+    "pk": "abc",
+    "signature": "abc",
+    "signatures": [
+      {
+        "data": {
+          "typeUrl": "abc",
+          "value": "abc"
+        },
+        "delegator": "abc",
+        "pk": "abc",
+        "signature": "abc",
+        "signer": "abc"
+      }
+    ]
   }
 }
 ```
@@ -6812,47 +6367,47 @@ Checkout the following snippet for the format of ResponseSubscribe:
 
 | Name                     | Type                                                    |
 | ------------------------ | ------------------------------------------------------- |
-| ...swapState             | [`SwapState`](#GraphQLClient.SwapState)                 |
-| ...poke                  | [`Transaction`](#GraphQLClient.Transaction)             |
-| ...transfer              | [`Transaction`](#GraphQLClient.Transaction)             |
-| ...stakeState            | [`StakeState`](#GraphQLClient.StakeState)               |
-| ...retrieveSwap          | [`Transaction`](#GraphQLClient.Transaction)             |
-| ...sysUpgrade            | [`Transaction`](#GraphQLClient.Transaction)             |
-| ...withdrawToken         | [`Transaction`](#GraphQLClient.Transaction)             |
-| ...code                  | `GraphQLClient.StatusCode`                              |
-| ...createAsset           | [`Transaction`](#GraphQLClient.Transaction)             |
-| ...updateValidator       | [`Transaction`](#GraphQLClient.Transaction)             |
-| ...acquireAsset          | [`Transaction`](#GraphQLClient.Transaction)             |
-| ...delegateState         | [`DelegateState`](#GraphQLClient.DelegateState)         |
-| ...revokeWithdraw        | [`Transaction`](#GraphQLClient.Transaction)             |
-| ...updateAsset           | [`Transaction`](#GraphQLClient.Transaction)             |
-| ...setupSwap             | [`Transaction`](#GraphQLClient.Transaction)             |
-| ...declareFile           | [`Transaction`](#GraphQLClient.Transaction)             |
-| ...revoke                | [`Transaction`](#GraphQLClient.Transaction)             |
-| ...declare               | [`Transaction`](#GraphQLClient.Transaction)             |
-| ...endBlock              | [`RequestEndBlock`](#GraphQLClient.RequestEndBlock)     |
-| topic                    | `string`                                                |
-| ...depositToken          | [`Transaction`](#GraphQLClient.Transaction)             |
-| ...assetState            | [`AssetState`](#GraphQLClient.AssetState)               |
-| ...protocolState         | [`ProtocolState`](#GraphQLClient.ProtocolState)         |
-| ...revokeSwap            | [`Transaction`](#GraphQLClient.Transaction)             |
-| ...upgradeNode           | [`Transaction`](#GraphQLClient.Transaction)             |
-| ...exchange              | [`Transaction`](#GraphQLClient.Transaction)             |
-| ...stake                 | [`Transaction`](#GraphQLClient.Transaction)             |
-| ...delegate              | [`Transaction`](#GraphQLClient.Transaction)             |
-| ...updateConsensusParams | [`Transaction`](#GraphQLClient.Transaction)             |
-| ...activateProtocol      | [`Transaction`](#GraphQLClient.Transaction)             |
-| ...approveWithdraw       | [`Transaction`](#GraphQLClient.Transaction)             |
 | ...consumeAsset          | [`Transaction`](#GraphQLClient.Transaction)             |
-| ...confirm               | [`Transaction`](#GraphQLClient.Transaction)             |
-| ...revokeDelegate        | [`Transaction`](#GraphQLClient.Transaction)             |
-| ...deactivateProtocol    | [`Transaction`](#GraphQLClient.Transaction)             |
-| ...consensusUpgrade      | [`Transaction`](#GraphQLClient.Transaction)             |
-| ...forgeState            | [`ForgeState`](#GraphQLClient.ForgeState)               |
-| ...beginBlock            | [`RequestBeginBlock`](#GraphQLClient.RequestBeginBlock) |
+| ...stake                 | [`Transaction`](#GraphQLClient.Transaction)             |
+| topic                    | `string`                                                |
+| ...assetState            | [`AssetState`](#GraphQLClient.AssetState)               |
+| ...stakeState            | [`StakeState`](#GraphQLClient.StakeState)               |
+| ...endBlock              | [`RequestEndBlock`](#GraphQLClient.RequestEndBlock)     |
+| ...updateAsset           | [`Transaction`](#GraphQLClient.Transaction)             |
+| ...revokeWithdraw        | [`Transaction`](#GraphQLClient.Transaction)             |
+| ...code                  | `GraphQLClient.StatusCode`                              |
+| ...withdrawToken         | [`Transaction`](#GraphQLClient.Transaction)             |
+| ...updateConsensusParams | [`Transaction`](#GraphQLClient.Transaction)             |
 | ...accountMigrate        | [`Transaction`](#GraphQLClient.Transaction)             |
-| ...deployProtocol        | [`Transaction`](#GraphQLClient.Transaction)             |
+| ...upgradeNode           | [`Transaction`](#GraphQLClient.Transaction)             |
+| ...delegateState         | [`DelegateState`](#GraphQLClient.DelegateState)         |
+| ...setupSwap             | [`Transaction`](#GraphQLClient.Transaction)             |
+| ...retrieveSwap          | [`Transaction`](#GraphQLClient.Transaction)             |
+| ...acquireAsset          | [`Transaction`](#GraphQLClient.Transaction)             |
+| ...protocolState         | [`ProtocolState`](#GraphQLClient.ProtocolState)         |
+| ...declare               | [`Transaction`](#GraphQLClient.Transaction)             |
+| ...forgeState            | [`ForgeState`](#GraphQLClient.ForgeState)               |
+| ...activateProtocol      | [`Transaction`](#GraphQLClient.Transaction)             |
+| ...depositToken          | [`Transaction`](#GraphQLClient.Transaction)             |
+| ...declareFile           | [`Transaction`](#GraphQLClient.Transaction)             |
+| ...revokeDelegate        | [`Transaction`](#GraphQLClient.Transaction)             |
+| ...exchange              | [`Transaction`](#GraphQLClient.Transaction)             |
+| ...poke                  | [`Transaction`](#GraphQLClient.Transaction)             |
 | ...accountState          | [`AccountState`](#GraphQLClient.AccountState)           |
+| ...delegate              | [`Transaction`](#GraphQLClient.Transaction)             |
+| ...swapState             | [`SwapState`](#GraphQLClient.SwapState)                 |
+| ...updateValidator       | [`Transaction`](#GraphQLClient.Transaction)             |
+| ...sysUpgrade            | [`Transaction`](#GraphQLClient.Transaction)             |
+| ...deployProtocol        | [`Transaction`](#GraphQLClient.Transaction)             |
+| ...confirm               | [`Transaction`](#GraphQLClient.Transaction)             |
+| ...transfer              | [`Transaction`](#GraphQLClient.Transaction)             |
+| ...createAsset           | [`Transaction`](#GraphQLClient.Transaction)             |
+| ...consensusUpgrade      | [`Transaction`](#GraphQLClient.Transaction)             |
+| ...revoke                | [`Transaction`](#GraphQLClient.Transaction)             |
+| ...deactivateProtocol    | [`Transaction`](#GraphQLClient.Transaction)             |
+| ...beginBlock            | [`RequestBeginBlock`](#GraphQLClient.RequestBeginBlock) |
+| ...revokeSwap            | [`Transaction`](#GraphQLClient.Transaction)             |
+| ...approveWithdraw       | [`Transaction`](#GraphQLClient.Transaction)             |
 
 ### GraphQLClient.ResponseUnsubscribe : `object`
 
@@ -6862,7 +6417,7 @@ Checkout the following snippet for the format of ResponseUnsubscribe:
 
 ```json
 {
-  "code": "OK"
+  "code": "INVALID_LOCK_STATUS"
 }
 ```
 
@@ -6984,17 +6539,6 @@ Structure of GraphQLClient.StakeContext
 | totalStakes             | `string`                                        |
 | totalUnstakes           | `string`                                        |
 
-### GraphQLClient.StakeDataType : `object`
-
-Structure of GraphQLClient.StakeDataType
-
-**Kind**: static typedef of [`GraphQLClient`](#GraphQLClient)  
-**Properties**
-
-| Name | Type     |
-| ---- | -------- |
-| type | `string` |
-
 ### GraphQLClient.StakeState : `object`
 
 Structure of GraphQLClient.StakeState
@@ -7036,33 +6580,6 @@ Structure of GraphQLClient.StakeSummaryEntry
 | -------- | --------------------------------------------- |
 | key      | `number`                                      |
 | ...value | [`StakeSummary`](#GraphQLClient.StakeSummary) |
-
-### GraphQLClient.StakeTx : `object`
-
-Structure of GraphQLClient.StakeTx
-
-Checkout the following snippet for the format of StakeTx:
-
-```json
-{
-  "data": {
-    "type": "abc"
-  },
-  "message": "abc",
-  "to": "abc",
-  "value": "abc"
-}
-```
-
-**Kind**: static typedef of [`GraphQLClient`](#GraphQLClient)  
-**Properties**
-
-| Name    | Type                                            |
-| ------- | ----------------------------------------------- |
-| ...data | [`StakeDataType`](#GraphQLClient.StakeDataType) |
-| message | `string`                                        |
-| to      | `string`                                        |
-| value   | `string`                                        |
 
 ### GraphQLClient.StateContext : `object`
 
@@ -7126,38 +6643,6 @@ Structure of GraphQLClient.SwapStatistics
 | lockedAssetsOut | `number` |
 | lockedValueIn   | `string` |
 | lockedValueOut  | `string` |
-
-### GraphQLClient.SysUpgradeTx : `object`
-
-Structure of GraphQLClient.SysUpgradeTx
-
-Checkout the following snippet for the format of SysUpgradeTx:
-
-```json
-{
-  "data": {
-    "typeUrl": "abc",
-    "value": "abc"
-  },
-  "gracePeriod": "abc",
-  "task": {
-    "actions": [
-      "BACKUP"
-    ],
-    "dataHash": "abc",
-    "type": "CONFIG_APP"
-  }
-}
-```
-
-**Kind**: static typedef of [`GraphQLClient`](#GraphQLClient)  
-**Properties**
-
-| Name        | Type                                        |
-| ----------- | ------------------------------------------- |
-| ...data     | [`Any`](#GraphQLClient.Any)                 |
-| gracePeriod | `string`                                    |
-| ...task     | [`UpgradeTask`](#GraphQLClient.UpgradeTask) |
 
 ### GraphQLClient.TasksEntry : `object`
 
@@ -7654,75 +7139,6 @@ Checkout the following snippet for the format of GetForgeStatsByHourParams:
 | ---- | -------- |
 | date | `string` |
 
-### GraphQLClient.GetProtocolStateParams : `object`
-
-Structure of GraphQLClient.GetProtocolStateParams
-
-Checkout the following snippet for the format of GetProtocolStateParams:
-
-```json
-{
-  "address": "abc",
-  "height": "abc",
-  "keys": [
-    "abc"
-  ]
-}
-```
-
-**Kind**: static typedef of [`GraphQLClient`](#GraphQLClient)  
-**Properties**
-
-| Name    | Type                              |
-| ------- | --------------------------------- |
-| address | `string`                          |
-| height  | `string`                          |
-| keys    | `Array.<...GraphQLClient.string>` |
-
-### GraphQLClient.GetProtocolsParams : `object`
-
-Structure of GraphQLClient.GetProtocolsParams
-
-Checkout the following snippet for the format of GetProtocolsParams:
-
-```json
-{
-  "address": "abc"
-}
-```
-
-**Kind**: static typedef of [`GraphQLClient`](#GraphQLClient)  
-**Properties**
-
-| Name    | Type     |
-| ------- | -------- |
-| address | `string` |
-
-### GraphQLClient.GetStakeStateParams : `object`
-
-Structure of GraphQLClient.GetStakeStateParams
-
-Checkout the following snippet for the format of GetStakeStateParams:
-
-```json
-{
-  "address": "abc",
-  "height": "abc",
-  "keys": [
-    "abc"
-  ]
-}
-```
-
-**Kind**: static typedef of [`GraphQLClient`](#GraphQLClient)  
-**Properties**
-
-| Name    | Type                              |
-| ------- | --------------------------------- |
-| address | `string`                          |
-| height  | `string`                          |
-| keys    | `Array.<...GraphQLClient.string>` |
-
 ### GraphQLClient.GetSwapStateParams : `object`
 
 Structure of GraphQLClient.GetSwapStateParams
@@ -8145,25 +7561,6 @@ Checkout the following snippet for the format of SubscribeParams:
 | [input.tx.signatures] | `array`                    | transaction signatures, should be set when it's a multisig transaction                        |
 | input.wallet          | `object`                   | the wallet used to sign the transaction, either a forge managed wallet or user managed wallet |
 | [input.signature]     | `string`                   | the signature of the tx, if this parameter exist, we will not sign the transaction            |
-
-### GraphQLClient.DeployProtocolTxInput : `Object`
-
-**Kind**: static typedef of [`GraphQLClient`](#GraphQLClient)  
-**Properties**
-
-| Name                  | Type                                                  | Description                                                                                   |
-| --------------------- | ----------------------------------------------------- | --------------------------------------------------------------------------------------------- |
-| input                 | `object`                                              |                                                                                               |
-| input.tx              | `object`                                              | data of the transaction                                                                       |
-| input.tx.itx          | [`DeployProtocolTx`](#GraphQLClient.DeployProtocolTx) | the actual transaction object                                                                 |
-| [input.tx.pk]         | `string`                                              | the sender pk                                                                                 |
-| [input.tx.from]       | `string`                                              | the sender address, can be derived from wallet                                                |
-| [input.tx.nonce]      | `number`                                              | the tx nonce, defaults to Date.now if not set                                                 |
-| [input.tx.chainId]    | `string`                                              | the chainId                                                                                   |
-| [input.tx.signature]  | `string`                                              | transaction signature                                                                         |
-| [input.tx.signatures] | `array`                                               | transaction signatures, should be set when it's a multisig transaction                        |
-| input.wallet          | `object`                                              | the wallet used to sign the transaction, either a forge managed wallet or user managed wallet |
-| [input.signature]     | `string`                                              | the signature of the tx, if this parameter exist, we will not sign the transaction            |
 
 ### GraphQLClient.DepositTokenTxInput : `Object`
 

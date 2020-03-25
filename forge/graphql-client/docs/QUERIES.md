@@ -1,6 +1,6 @@
 # Forge GraphQL API List
 
-> Updated on 2020-03-25T08:40:04.486Z
+> Updated on 2020-03-25T23:34:21.649Z
 
 
 ## Table of Contents
@@ -20,10 +20,7 @@
   * [getHealthStatus](#gethealthstatus)
   * [getNetInfo](#getnetinfo)
   * [getNodeInfo](#getnodeinfo)
-  * [getProtocolState](#getprotocolstate)
-  * [getProtocols](#getprotocols)
   * [getSimulatorStatus](#getsimulatorstatus)
-  * [getStakeState](#getstakestate)
   * [getSwapState](#getswapstate)
   * [getSwapStatistics](#getswapstatistics)
   * [getTx](#gettx)
@@ -363,6 +360,128 @@
               value
             }
           }
+          itx {
+            __typename
+            ... on RevokeSwapTx {
+              address
+              data {
+                typeUrl
+                value
+              }
+            }
+            ... on RetrieveSwapTx {
+              address
+              hashkey
+              data {
+                typeUrl
+                value
+              }
+            }
+            ... on SetupSwapTx {
+              assets
+              hashlock
+              locktime
+              receiver
+              value
+              data {
+                typeUrl
+                value
+              }
+            }
+            ... on UpgradeNodeTx {
+              height
+              override
+              version
+            }
+            ... on UpdateAssetTx {
+              address
+              moniker
+              data {
+                typeUrl
+                value
+              }
+            }
+            ... on TransferTx {
+              assets
+              to
+              value
+              data {
+                typeUrl
+                value
+              }
+            }
+            ... on PokeTx {
+              address
+              date
+              data {
+                typeUrl
+                value
+              }
+            }
+            ... on ExchangeTx {
+              expiredAt
+              to
+              data {
+                typeUrl
+                value
+              }
+              receiver {
+                assets
+                value
+              }
+              sender {
+                assets
+                value
+              }
+            }
+            ... on DeclareTx {
+              issuer
+              moniker
+              data {
+                typeUrl
+                value
+              }
+            }
+            ... on CreateAssetTx {
+              address
+              moniker
+              parent
+              readonly
+              transferrable
+              ttl
+              data {
+                typeUrl
+                value
+              }
+            }
+            ... on ConsumeAssetTx {
+              address
+              issuer
+              data {
+                typeUrl
+                value
+              }
+            }
+            ... on AcquireAssetTx {
+              to
+              data {
+                typeUrl
+                value
+              }
+              specs {
+                address
+                data
+              }
+            }
+            ... on AccountMigrateTx {
+              address
+              pk
+              data {
+                typeUrl
+                value
+              }
+            }
+          }
         }
       }
       lastBlockId {
@@ -398,6 +517,128 @@
             data {
               typeUrl
               value
+            }
+          }
+          itx {
+            __typename
+            ... on RevokeSwapTx {
+              address
+              data {
+                typeUrl
+                value
+              }
+            }
+            ... on RetrieveSwapTx {
+              address
+              hashkey
+              data {
+                typeUrl
+                value
+              }
+            }
+            ... on SetupSwapTx {
+              assets
+              hashlock
+              locktime
+              receiver
+              value
+              data {
+                typeUrl
+                value
+              }
+            }
+            ... on UpgradeNodeTx {
+              height
+              override
+              version
+            }
+            ... on UpdateAssetTx {
+              address
+              moniker
+              data {
+                typeUrl
+                value
+              }
+            }
+            ... on TransferTx {
+              assets
+              to
+              value
+              data {
+                typeUrl
+                value
+              }
+            }
+            ... on PokeTx {
+              address
+              date
+              data {
+                typeUrl
+                value
+              }
+            }
+            ... on ExchangeTx {
+              expiredAt
+              to
+              data {
+                typeUrl
+                value
+              }
+              receiver {
+                assets
+                value
+              }
+              sender {
+                assets
+                value
+              }
+            }
+            ... on DeclareTx {
+              issuer
+              moniker
+              data {
+                typeUrl
+                value
+              }
+            }
+            ... on CreateAssetTx {
+              address
+              moniker
+              parent
+              readonly
+              transferrable
+              ttl
+              data {
+                typeUrl
+                value
+              }
+            }
+            ... on ConsumeAssetTx {
+              address
+              issuer
+              data {
+                typeUrl
+                value
+              }
+            }
+            ... on AcquireAssetTx {
+              to
+              data {
+                typeUrl
+                value
+              }
+              specs {
+                address
+                data
+              }
+            }
+            ... on AccountMigrateTx {
+              address
+              pk
+              data {
+                typeUrl
+                value
+              }
             }
           }
         }
@@ -1013,163 +1254,6 @@ No arguments
 }
 ```
 
-### getProtocolState
-
-#### Arguments
-
-* **address**, optional, 
-* **height**, optional, 
-* **keys**, optional, 
-
-#### Result Format
-
-```graphql
-{
-  getProtocolState(address: "abc", height: "abc", keys: ["abc"]) {
-    code
-    state {
-      address
-      group
-      migratedFrom
-      migratedTo
-      rootHash
-      status
-      context {
-        genesisTime
-        renaissanceTime
-        genesisTx {
-          code
-          hash
-          height
-          index
-          time
-          tags {
-            key
-            value
-          }
-          tx {
-            chainId
-            delegator
-            from
-            itxJson
-            nonce
-            pk
-            signature
-            signatures {
-              delegator
-              pk
-              signature
-              signer
-              data {
-                typeUrl
-                value
-              }
-            }
-          }
-        }
-        renaissanceTx {
-          code
-          hash
-          height
-          index
-          time
-          tags {
-            key
-            value
-          }
-          tx {
-            chainId
-            delegator
-            from
-            itxJson
-            nonce
-            pk
-            signature
-            signatures {
-              delegator
-              pk
-              signature
-              signer
-              data {
-                typeUrl
-                value
-              }
-            }
-          }
-        }
-      }
-      data {
-        typeUrl
-        value
-      }
-      itx {
-        address
-        description
-        name
-        namespace
-        pipeline
-        proto
-        sources
-        tags
-        version
-        code {
-          binary
-          checksum
-        }
-        data {
-          typeUrl
-          value
-        }
-        typeUrls {
-          module
-          url
-        }
-      }
-    }
-  }
-}
-```
-
-### getProtocols
-
-#### Arguments
-
-* **address**, optional, 
-
-#### Result Format
-
-```graphql
-{
-  getProtocols(address: "abc") {
-    code
-    protocols {
-      address
-      description
-      group
-      installedAt
-      name
-      namespace
-      pipeline
-      proto
-      sources
-      version
-      code {
-        binary
-        checksum
-      }
-      data {
-        typeUrl
-        value
-      }
-      typeUrls {
-        module
-        url
-      }
-    }
-  }
-}
-```
-
 ### getSimulatorStatus
 
 #### Arguments
@@ -1183,99 +1267,6 @@ No arguments
   getSimulatorStatus {
     code
     result
-  }
-}
-```
-
-### getStakeState
-
-#### Arguments
-
-* **address**, optional, 
-* **height**, optional, 
-* **keys**, optional, 
-
-#### Result Format
-
-```graphql
-{
-  getStakeState(address: "abc", height: "abc", keys: ["abc"]) {
-    code
-    state {
-      address
-      balance
-      from
-      message
-      to
-      context {
-        genesisTime
-        renaissanceTime
-        genesisTx {
-          code
-          hash
-          height
-          index
-          time
-          tags {
-            key
-            value
-          }
-          tx {
-            chainId
-            delegator
-            from
-            itxJson
-            nonce
-            pk
-            signature
-            signatures {
-              delegator
-              pk
-              signature
-              signer
-              data {
-                typeUrl
-                value
-              }
-            }
-          }
-        }
-        renaissanceTx {
-          code
-          hash
-          height
-          index
-          time
-          tags {
-            key
-            value
-          }
-          tx {
-            chainId
-            delegator
-            from
-            itxJson
-            nonce
-            pk
-            signature
-            signatures {
-              delegator
-              pk
-              signature
-              signer
-              data {
-                typeUrl
-                value
-              }
-            }
-          }
-        }
-      }
-      data {
-        typeUrl
-        value
-      }
-    }
   }
 }
 ```
@@ -1436,6 +1427,128 @@ No arguments
             value
           }
         }
+        itx {
+          __typename
+          ... on RevokeSwapTx {
+            address
+            data {
+              typeUrl
+              value
+            }
+          }
+          ... on RetrieveSwapTx {
+            address
+            hashkey
+            data {
+              typeUrl
+              value
+            }
+          }
+          ... on SetupSwapTx {
+            assets
+            hashlock
+            locktime
+            receiver
+            value
+            data {
+              typeUrl
+              value
+            }
+          }
+          ... on UpgradeNodeTx {
+            height
+            override
+            version
+          }
+          ... on UpdateAssetTx {
+            address
+            moniker
+            data {
+              typeUrl
+              value
+            }
+          }
+          ... on TransferTx {
+            assets
+            to
+            value
+            data {
+              typeUrl
+              value
+            }
+          }
+          ... on PokeTx {
+            address
+            date
+            data {
+              typeUrl
+              value
+            }
+          }
+          ... on ExchangeTx {
+            expiredAt
+            to
+            data {
+              typeUrl
+              value
+            }
+            receiver {
+              assets
+              value
+            }
+            sender {
+              assets
+              value
+            }
+          }
+          ... on DeclareTx {
+            issuer
+            moniker
+            data {
+              typeUrl
+              value
+            }
+          }
+          ... on CreateAssetTx {
+            address
+            moniker
+            parent
+            readonly
+            transferrable
+            ttl
+            data {
+              typeUrl
+              value
+            }
+          }
+          ... on ConsumeAssetTx {
+            address
+            issuer
+            data {
+              typeUrl
+              value
+            }
+          }
+          ... on AcquireAssetTx {
+            to
+            data {
+              typeUrl
+              value
+            }
+            specs {
+              address
+              data
+            }
+          }
+          ... on AccountMigrateTx {
+            address
+            pk
+            data {
+              typeUrl
+              value
+            }
+          }
+        }
       }
     }
   }
@@ -1477,6 +1590,128 @@ No arguments
           data {
             typeUrl
             value
+          }
+        }
+        itx {
+          __typename
+          ... on RevokeSwapTx {
+            address
+            data {
+              typeUrl
+              value
+            }
+          }
+          ... on RetrieveSwapTx {
+            address
+            hashkey
+            data {
+              typeUrl
+              value
+            }
+          }
+          ... on SetupSwapTx {
+            assets
+            hashlock
+            locktime
+            receiver
+            value
+            data {
+              typeUrl
+              value
+            }
+          }
+          ... on UpgradeNodeTx {
+            height
+            override
+            version
+          }
+          ... on UpdateAssetTx {
+            address
+            moniker
+            data {
+              typeUrl
+              value
+            }
+          }
+          ... on TransferTx {
+            assets
+            to
+            value
+            data {
+              typeUrl
+              value
+            }
+          }
+          ... on PokeTx {
+            address
+            date
+            data {
+              typeUrl
+              value
+            }
+          }
+          ... on ExchangeTx {
+            expiredAt
+            to
+            data {
+              typeUrl
+              value
+            }
+            receiver {
+              assets
+              value
+            }
+            sender {
+              assets
+              value
+            }
+          }
+          ... on DeclareTx {
+            issuer
+            moniker
+            data {
+              typeUrl
+              value
+            }
+          }
+          ... on CreateAssetTx {
+            address
+            moniker
+            parent
+            readonly
+            transferrable
+            ttl
+            data {
+              typeUrl
+              value
+            }
+          }
+          ... on ConsumeAssetTx {
+            address
+            issuer
+            data {
+              typeUrl
+              value
+            }
+          }
+          ... on AcquireAssetTx {
+            to
+            data {
+              typeUrl
+              value
+            }
+            specs {
+              address
+              data
+            }
+          }
+          ... on AccountMigrateTx {
+            address
+            pk
+            data {
+              typeUrl
+              value
+            }
           }
         }
       }
@@ -1562,6 +1797,128 @@ No arguments
           data {
             typeUrl
             value
+          }
+        }
+        itx {
+          __typename
+          ... on RevokeSwapTx {
+            address
+            data {
+              typeUrl
+              value
+            }
+          }
+          ... on RetrieveSwapTx {
+            address
+            hashkey
+            data {
+              typeUrl
+              value
+            }
+          }
+          ... on SetupSwapTx {
+            assets
+            hashlock
+            locktime
+            receiver
+            value
+            data {
+              typeUrl
+              value
+            }
+          }
+          ... on UpgradeNodeTx {
+            height
+            override
+            version
+          }
+          ... on UpdateAssetTx {
+            address
+            moniker
+            data {
+              typeUrl
+              value
+            }
+          }
+          ... on TransferTx {
+            assets
+            to
+            value
+            data {
+              typeUrl
+              value
+            }
+          }
+          ... on PokeTx {
+            address
+            date
+            data {
+              typeUrl
+              value
+            }
+          }
+          ... on ExchangeTx {
+            expiredAt
+            to
+            data {
+              typeUrl
+              value
+            }
+            receiver {
+              assets
+              value
+            }
+            sender {
+              assets
+              value
+            }
+          }
+          ... on DeclareTx {
+            issuer
+            moniker
+            data {
+              typeUrl
+              value
+            }
+          }
+          ... on CreateAssetTx {
+            address
+            moniker
+            parent
+            readonly
+            transferrable
+            ttl
+            data {
+              typeUrl
+              value
+            }
+          }
+          ... on ConsumeAssetTx {
+            address
+            issuer
+            data {
+              typeUrl
+              value
+            }
+          }
+          ... on AcquireAssetTx {
+            to
+            data {
+              typeUrl
+              value
+            }
+            specs {
+              address
+              data
+            }
+          }
+          ... on AccountMigrateTx {
+            address
+            pk
+            data {
+              typeUrl
+              value
+            }
           }
         }
       }
@@ -1873,6 +2230,128 @@ No arguments
             value
           }
         }
+        itx {
+          __typename
+          ... on RevokeSwapTx {
+            address
+            data {
+              typeUrl
+              value
+            }
+          }
+          ... on RetrieveSwapTx {
+            address
+            hashkey
+            data {
+              typeUrl
+              value
+            }
+          }
+          ... on SetupSwapTx {
+            assets
+            hashlock
+            locktime
+            receiver
+            value
+            data {
+              typeUrl
+              value
+            }
+          }
+          ... on UpgradeNodeTx {
+            height
+            override
+            version
+          }
+          ... on UpdateAssetTx {
+            address
+            moniker
+            data {
+              typeUrl
+              value
+            }
+          }
+          ... on TransferTx {
+            assets
+            to
+            value
+            data {
+              typeUrl
+              value
+            }
+          }
+          ... on PokeTx {
+            address
+            date
+            data {
+              typeUrl
+              value
+            }
+          }
+          ... on ExchangeTx {
+            expiredAt
+            to
+            data {
+              typeUrl
+              value
+            }
+            receiver {
+              assets
+              value
+            }
+            sender {
+              assets
+              value
+            }
+          }
+          ... on DeclareTx {
+            issuer
+            moniker
+            data {
+              typeUrl
+              value
+            }
+          }
+          ... on CreateAssetTx {
+            address
+            moniker
+            parent
+            readonly
+            transferrable
+            ttl
+            data {
+              typeUrl
+              value
+            }
+          }
+          ... on ConsumeAssetTx {
+            address
+            issuer
+            data {
+              typeUrl
+              value
+            }
+          }
+          ... on AcquireAssetTx {
+            to
+            data {
+              typeUrl
+              value
+            }
+            specs {
+              address
+              data
+            }
+          }
+          ... on AccountMigrateTx {
+            address
+            pk
+            data {
+              typeUrl
+              value
+            }
+          }
+        }
       }
     }
   }
@@ -1912,6 +2391,128 @@ subscription {
         data {
           typeUrl
           value
+        }
+      }
+      itx {
+        __typename
+        ... on RevokeSwapTx {
+          address
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on RetrieveSwapTx {
+          address
+          hashkey
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on SetupSwapTx {
+          assets
+          hashlock
+          locktime
+          receiver
+          value
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on UpgradeNodeTx {
+          height
+          override
+          version
+        }
+        ... on UpdateAssetTx {
+          address
+          moniker
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on TransferTx {
+          assets
+          to
+          value
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on PokeTx {
+          address
+          date
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on ExchangeTx {
+          expiredAt
+          to
+          data {
+            typeUrl
+            value
+          }
+          receiver {
+            assets
+            value
+          }
+          sender {
+            assets
+            value
+          }
+        }
+        ... on DeclareTx {
+          issuer
+          moniker
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on CreateAssetTx {
+          address
+          moniker
+          parent
+          readonly
+          transferrable
+          ttl
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on ConsumeAssetTx {
+          address
+          issuer
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on AcquireAssetTx {
+          to
+          data {
+            typeUrl
+            value
+          }
+          specs {
+            address
+            data
+          }
+        }
+        ... on AccountMigrateTx {
+          address
+          pk
+          data {
+            typeUrl
+            value
+          }
         }
       }
     }
@@ -2053,6 +2654,128 @@ subscription {
           value
         }
       }
+      itx {
+        __typename
+        ... on RevokeSwapTx {
+          address
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on RetrieveSwapTx {
+          address
+          hashkey
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on SetupSwapTx {
+          assets
+          hashlock
+          locktime
+          receiver
+          value
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on UpgradeNodeTx {
+          height
+          override
+          version
+        }
+        ... on UpdateAssetTx {
+          address
+          moniker
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on TransferTx {
+          assets
+          to
+          value
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on PokeTx {
+          address
+          date
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on ExchangeTx {
+          expiredAt
+          to
+          data {
+            typeUrl
+            value
+          }
+          receiver {
+            assets
+            value
+          }
+          sender {
+            assets
+            value
+          }
+        }
+        ... on DeclareTx {
+          issuer
+          moniker
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on CreateAssetTx {
+          address
+          moniker
+          parent
+          readonly
+          transferrable
+          ttl
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on ConsumeAssetTx {
+          address
+          issuer
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on AcquireAssetTx {
+          to
+          data {
+            typeUrl
+            value
+          }
+          specs {
+            address
+            data
+          }
+        }
+        ... on AccountMigrateTx {
+          address
+          pk
+          data {
+            typeUrl
+            value
+          }
+        }
+      }
     }
     activateProtocol {
       chainId
@@ -2072,6 +2795,128 @@ subscription {
           value
         }
       }
+      itx {
+        __typename
+        ... on RevokeSwapTx {
+          address
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on RetrieveSwapTx {
+          address
+          hashkey
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on SetupSwapTx {
+          assets
+          hashlock
+          locktime
+          receiver
+          value
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on UpgradeNodeTx {
+          height
+          override
+          version
+        }
+        ... on UpdateAssetTx {
+          address
+          moniker
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on TransferTx {
+          assets
+          to
+          value
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on PokeTx {
+          address
+          date
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on ExchangeTx {
+          expiredAt
+          to
+          data {
+            typeUrl
+            value
+          }
+          receiver {
+            assets
+            value
+          }
+          sender {
+            assets
+            value
+          }
+        }
+        ... on DeclareTx {
+          issuer
+          moniker
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on CreateAssetTx {
+          address
+          moniker
+          parent
+          readonly
+          transferrable
+          ttl
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on ConsumeAssetTx {
+          address
+          issuer
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on AcquireAssetTx {
+          to
+          data {
+            typeUrl
+            value
+          }
+          specs {
+            address
+            data
+          }
+        }
+        ... on AccountMigrateTx {
+          address
+          pk
+          data {
+            typeUrl
+            value
+          }
+        }
+      }
     }
     approveWithdraw {
       chainId
@@ -2089,6 +2934,128 @@ subscription {
         data {
           typeUrl
           value
+        }
+      }
+      itx {
+        __typename
+        ... on RevokeSwapTx {
+          address
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on RetrieveSwapTx {
+          address
+          hashkey
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on SetupSwapTx {
+          assets
+          hashlock
+          locktime
+          receiver
+          value
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on UpgradeNodeTx {
+          height
+          override
+          version
+        }
+        ... on UpdateAssetTx {
+          address
+          moniker
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on TransferTx {
+          assets
+          to
+          value
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on PokeTx {
+          address
+          date
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on ExchangeTx {
+          expiredAt
+          to
+          data {
+            typeUrl
+            value
+          }
+          receiver {
+            assets
+            value
+          }
+          sender {
+            assets
+            value
+          }
+        }
+        ... on DeclareTx {
+          issuer
+          moniker
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on CreateAssetTx {
+          address
+          moniker
+          parent
+          readonly
+          transferrable
+          ttl
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on ConsumeAssetTx {
+          address
+          issuer
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on AcquireAssetTx {
+          to
+          data {
+            typeUrl
+            value
+          }
+          specs {
+            address
+            data
+          }
+        }
+        ... on AccountMigrateTx {
+          address
+          pk
+          data {
+            typeUrl
+            value
+          }
         }
       }
     }
@@ -2261,6 +3228,128 @@ subscription {
           value
         }
       }
+      itx {
+        __typename
+        ... on RevokeSwapTx {
+          address
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on RetrieveSwapTx {
+          address
+          hashkey
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on SetupSwapTx {
+          assets
+          hashlock
+          locktime
+          receiver
+          value
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on UpgradeNodeTx {
+          height
+          override
+          version
+        }
+        ... on UpdateAssetTx {
+          address
+          moniker
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on TransferTx {
+          assets
+          to
+          value
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on PokeTx {
+          address
+          date
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on ExchangeTx {
+          expiredAt
+          to
+          data {
+            typeUrl
+            value
+          }
+          receiver {
+            assets
+            value
+          }
+          sender {
+            assets
+            value
+          }
+        }
+        ... on DeclareTx {
+          issuer
+          moniker
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on CreateAssetTx {
+          address
+          moniker
+          parent
+          readonly
+          transferrable
+          ttl
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on ConsumeAssetTx {
+          address
+          issuer
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on AcquireAssetTx {
+          to
+          data {
+            typeUrl
+            value
+          }
+          specs {
+            address
+            data
+          }
+        }
+        ... on AccountMigrateTx {
+          address
+          pk
+          data {
+            typeUrl
+            value
+          }
+        }
+      }
     }
     consensusUpgrade {
       chainId
@@ -2278,6 +3367,128 @@ subscription {
         data {
           typeUrl
           value
+        }
+      }
+      itx {
+        __typename
+        ... on RevokeSwapTx {
+          address
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on RetrieveSwapTx {
+          address
+          hashkey
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on SetupSwapTx {
+          assets
+          hashlock
+          locktime
+          receiver
+          value
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on UpgradeNodeTx {
+          height
+          override
+          version
+        }
+        ... on UpdateAssetTx {
+          address
+          moniker
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on TransferTx {
+          assets
+          to
+          value
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on PokeTx {
+          address
+          date
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on ExchangeTx {
+          expiredAt
+          to
+          data {
+            typeUrl
+            value
+          }
+          receiver {
+            assets
+            value
+          }
+          sender {
+            assets
+            value
+          }
+        }
+        ... on DeclareTx {
+          issuer
+          moniker
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on CreateAssetTx {
+          address
+          moniker
+          parent
+          readonly
+          transferrable
+          ttl
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on ConsumeAssetTx {
+          address
+          issuer
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on AcquireAssetTx {
+          to
+          data {
+            typeUrl
+            value
+          }
+          specs {
+            address
+            data
+          }
+        }
+        ... on AccountMigrateTx {
+          address
+          pk
+          data {
+            typeUrl
+            value
+          }
         }
       }
     }
@@ -2299,6 +3510,128 @@ subscription {
           value
         }
       }
+      itx {
+        __typename
+        ... on RevokeSwapTx {
+          address
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on RetrieveSwapTx {
+          address
+          hashkey
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on SetupSwapTx {
+          assets
+          hashlock
+          locktime
+          receiver
+          value
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on UpgradeNodeTx {
+          height
+          override
+          version
+        }
+        ... on UpdateAssetTx {
+          address
+          moniker
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on TransferTx {
+          assets
+          to
+          value
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on PokeTx {
+          address
+          date
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on ExchangeTx {
+          expiredAt
+          to
+          data {
+            typeUrl
+            value
+          }
+          receiver {
+            assets
+            value
+          }
+          sender {
+            assets
+            value
+          }
+        }
+        ... on DeclareTx {
+          issuer
+          moniker
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on CreateAssetTx {
+          address
+          moniker
+          parent
+          readonly
+          transferrable
+          ttl
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on ConsumeAssetTx {
+          address
+          issuer
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on AcquireAssetTx {
+          to
+          data {
+            typeUrl
+            value
+          }
+          specs {
+            address
+            data
+          }
+        }
+        ... on AccountMigrateTx {
+          address
+          pk
+          data {
+            typeUrl
+            value
+          }
+        }
+      }
     }
     createAsset {
       chainId
@@ -2316,6 +3649,128 @@ subscription {
         data {
           typeUrl
           value
+        }
+      }
+      itx {
+        __typename
+        ... on RevokeSwapTx {
+          address
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on RetrieveSwapTx {
+          address
+          hashkey
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on SetupSwapTx {
+          assets
+          hashlock
+          locktime
+          receiver
+          value
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on UpgradeNodeTx {
+          height
+          override
+          version
+        }
+        ... on UpdateAssetTx {
+          address
+          moniker
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on TransferTx {
+          assets
+          to
+          value
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on PokeTx {
+          address
+          date
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on ExchangeTx {
+          expiredAt
+          to
+          data {
+            typeUrl
+            value
+          }
+          receiver {
+            assets
+            value
+          }
+          sender {
+            assets
+            value
+          }
+        }
+        ... on DeclareTx {
+          issuer
+          moniker
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on CreateAssetTx {
+          address
+          moniker
+          parent
+          readonly
+          transferrable
+          ttl
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on ConsumeAssetTx {
+          address
+          issuer
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on AcquireAssetTx {
+          to
+          data {
+            typeUrl
+            value
+          }
+          specs {
+            address
+            data
+          }
+        }
+        ... on AccountMigrateTx {
+          address
+          pk
+          data {
+            typeUrl
+            value
+          }
         }
       }
     }
@@ -2337,6 +3792,128 @@ subscription {
           value
         }
       }
+      itx {
+        __typename
+        ... on RevokeSwapTx {
+          address
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on RetrieveSwapTx {
+          address
+          hashkey
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on SetupSwapTx {
+          assets
+          hashlock
+          locktime
+          receiver
+          value
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on UpgradeNodeTx {
+          height
+          override
+          version
+        }
+        ... on UpdateAssetTx {
+          address
+          moniker
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on TransferTx {
+          assets
+          to
+          value
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on PokeTx {
+          address
+          date
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on ExchangeTx {
+          expiredAt
+          to
+          data {
+            typeUrl
+            value
+          }
+          receiver {
+            assets
+            value
+          }
+          sender {
+            assets
+            value
+          }
+        }
+        ... on DeclareTx {
+          issuer
+          moniker
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on CreateAssetTx {
+          address
+          moniker
+          parent
+          readonly
+          transferrable
+          ttl
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on ConsumeAssetTx {
+          address
+          issuer
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on AcquireAssetTx {
+          to
+          data {
+            typeUrl
+            value
+          }
+          specs {
+            address
+            data
+          }
+        }
+        ... on AccountMigrateTx {
+          address
+          pk
+          data {
+            typeUrl
+            value
+          }
+        }
+      }
     }
     declare {
       chainId
@@ -2356,6 +3933,128 @@ subscription {
           value
         }
       }
+      itx {
+        __typename
+        ... on RevokeSwapTx {
+          address
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on RetrieveSwapTx {
+          address
+          hashkey
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on SetupSwapTx {
+          assets
+          hashlock
+          locktime
+          receiver
+          value
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on UpgradeNodeTx {
+          height
+          override
+          version
+        }
+        ... on UpdateAssetTx {
+          address
+          moniker
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on TransferTx {
+          assets
+          to
+          value
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on PokeTx {
+          address
+          date
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on ExchangeTx {
+          expiredAt
+          to
+          data {
+            typeUrl
+            value
+          }
+          receiver {
+            assets
+            value
+          }
+          sender {
+            assets
+            value
+          }
+        }
+        ... on DeclareTx {
+          issuer
+          moniker
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on CreateAssetTx {
+          address
+          moniker
+          parent
+          readonly
+          transferrable
+          ttl
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on ConsumeAssetTx {
+          address
+          issuer
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on AcquireAssetTx {
+          to
+          data {
+            typeUrl
+            value
+          }
+          specs {
+            address
+            data
+          }
+        }
+        ... on AccountMigrateTx {
+          address
+          pk
+          data {
+            typeUrl
+            value
+          }
+        }
+      }
     }
     delegate {
       chainId
@@ -2373,6 +4072,128 @@ subscription {
         data {
           typeUrl
           value
+        }
+      }
+      itx {
+        __typename
+        ... on RevokeSwapTx {
+          address
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on RetrieveSwapTx {
+          address
+          hashkey
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on SetupSwapTx {
+          assets
+          hashlock
+          locktime
+          receiver
+          value
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on UpgradeNodeTx {
+          height
+          override
+          version
+        }
+        ... on UpdateAssetTx {
+          address
+          moniker
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on TransferTx {
+          assets
+          to
+          value
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on PokeTx {
+          address
+          date
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on ExchangeTx {
+          expiredAt
+          to
+          data {
+            typeUrl
+            value
+          }
+          receiver {
+            assets
+            value
+          }
+          sender {
+            assets
+            value
+          }
+        }
+        ... on DeclareTx {
+          issuer
+          moniker
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on CreateAssetTx {
+          address
+          moniker
+          parent
+          readonly
+          transferrable
+          ttl
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on ConsumeAssetTx {
+          address
+          issuer
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on AcquireAssetTx {
+          to
+          data {
+            typeUrl
+            value
+          }
+          specs {
+            address
+            data
+          }
+        }
+        ... on AccountMigrateTx {
+          address
+          pk
+          data {
+            typeUrl
+            value
+          }
         }
       }
     }
@@ -2475,6 +4296,128 @@ subscription {
           value
         }
       }
+      itx {
+        __typename
+        ... on RevokeSwapTx {
+          address
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on RetrieveSwapTx {
+          address
+          hashkey
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on SetupSwapTx {
+          assets
+          hashlock
+          locktime
+          receiver
+          value
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on UpgradeNodeTx {
+          height
+          override
+          version
+        }
+        ... on UpdateAssetTx {
+          address
+          moniker
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on TransferTx {
+          assets
+          to
+          value
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on PokeTx {
+          address
+          date
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on ExchangeTx {
+          expiredAt
+          to
+          data {
+            typeUrl
+            value
+          }
+          receiver {
+            assets
+            value
+          }
+          sender {
+            assets
+            value
+          }
+        }
+        ... on DeclareTx {
+          issuer
+          moniker
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on CreateAssetTx {
+          address
+          moniker
+          parent
+          readonly
+          transferrable
+          ttl
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on ConsumeAssetTx {
+          address
+          issuer
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on AcquireAssetTx {
+          to
+          data {
+            typeUrl
+            value
+          }
+          specs {
+            address
+            data
+          }
+        }
+        ... on AccountMigrateTx {
+          address
+          pk
+          data {
+            typeUrl
+            value
+          }
+        }
+      }
     }
     depositToken {
       chainId
@@ -2492,6 +4435,128 @@ subscription {
         data {
           typeUrl
           value
+        }
+      }
+      itx {
+        __typename
+        ... on RevokeSwapTx {
+          address
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on RetrieveSwapTx {
+          address
+          hashkey
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on SetupSwapTx {
+          assets
+          hashlock
+          locktime
+          receiver
+          value
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on UpgradeNodeTx {
+          height
+          override
+          version
+        }
+        ... on UpdateAssetTx {
+          address
+          moniker
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on TransferTx {
+          assets
+          to
+          value
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on PokeTx {
+          address
+          date
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on ExchangeTx {
+          expiredAt
+          to
+          data {
+            typeUrl
+            value
+          }
+          receiver {
+            assets
+            value
+          }
+          sender {
+            assets
+            value
+          }
+        }
+        ... on DeclareTx {
+          issuer
+          moniker
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on CreateAssetTx {
+          address
+          moniker
+          parent
+          readonly
+          transferrable
+          ttl
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on ConsumeAssetTx {
+          address
+          issuer
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on AcquireAssetTx {
+          to
+          data {
+            typeUrl
+            value
+          }
+          specs {
+            address
+            data
+          }
+        }
+        ... on AccountMigrateTx {
+          address
+          pk
+          data {
+            typeUrl
+            value
+          }
         }
       }
     }
@@ -2514,6 +4579,128 @@ subscription {
         data {
           typeUrl
           value
+        }
+      }
+      itx {
+        __typename
+        ... on RevokeSwapTx {
+          address
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on RetrieveSwapTx {
+          address
+          hashkey
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on SetupSwapTx {
+          assets
+          hashlock
+          locktime
+          receiver
+          value
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on UpgradeNodeTx {
+          height
+          override
+          version
+        }
+        ... on UpdateAssetTx {
+          address
+          moniker
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on TransferTx {
+          assets
+          to
+          value
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on PokeTx {
+          address
+          date
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on ExchangeTx {
+          expiredAt
+          to
+          data {
+            typeUrl
+            value
+          }
+          receiver {
+            assets
+            value
+          }
+          sender {
+            assets
+            value
+          }
+        }
+        ... on DeclareTx {
+          issuer
+          moniker
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on CreateAssetTx {
+          address
+          moniker
+          parent
+          readonly
+          transferrable
+          ttl
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on ConsumeAssetTx {
+          address
+          issuer
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on AcquireAssetTx {
+          to
+          data {
+            typeUrl
+            value
+          }
+          specs {
+            address
+            data
+          }
+        }
+        ... on AccountMigrateTx {
+          address
+          pk
+          data {
+            typeUrl
+            value
+          }
         }
       }
     }
@@ -2679,6 +4866,128 @@ subscription {
           value
         }
       }
+      itx {
+        __typename
+        ... on RevokeSwapTx {
+          address
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on RetrieveSwapTx {
+          address
+          hashkey
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on SetupSwapTx {
+          assets
+          hashlock
+          locktime
+          receiver
+          value
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on UpgradeNodeTx {
+          height
+          override
+          version
+        }
+        ... on UpdateAssetTx {
+          address
+          moniker
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on TransferTx {
+          assets
+          to
+          value
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on PokeTx {
+          address
+          date
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on ExchangeTx {
+          expiredAt
+          to
+          data {
+            typeUrl
+            value
+          }
+          receiver {
+            assets
+            value
+          }
+          sender {
+            assets
+            value
+          }
+        }
+        ... on DeclareTx {
+          issuer
+          moniker
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on CreateAssetTx {
+          address
+          moniker
+          parent
+          readonly
+          transferrable
+          ttl
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on ConsumeAssetTx {
+          address
+          issuer
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on AcquireAssetTx {
+          to
+          data {
+            typeUrl
+            value
+          }
+          specs {
+            address
+            data
+          }
+        }
+        ... on AccountMigrateTx {
+          address
+          pk
+          data {
+            typeUrl
+            value
+          }
+        }
+      }
     }
     protocolState {
       address
@@ -2755,6 +5064,29 @@ subscription {
         typeUrl
         value
       }
+      itx {
+        address
+        description
+        name
+        namespace
+        pipeline
+        proto
+        sources
+        tags
+        version
+        code {
+          binary
+          checksum
+        }
+        data {
+          typeUrl
+          value
+        }
+        typeUrls {
+          module
+          url
+        }
+      }
     }
     retrieveSwap {
       chainId
@@ -2772,6 +5104,128 @@ subscription {
         data {
           typeUrl
           value
+        }
+      }
+      itx {
+        __typename
+        ... on RevokeSwapTx {
+          address
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on RetrieveSwapTx {
+          address
+          hashkey
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on SetupSwapTx {
+          assets
+          hashlock
+          locktime
+          receiver
+          value
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on UpgradeNodeTx {
+          height
+          override
+          version
+        }
+        ... on UpdateAssetTx {
+          address
+          moniker
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on TransferTx {
+          assets
+          to
+          value
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on PokeTx {
+          address
+          date
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on ExchangeTx {
+          expiredAt
+          to
+          data {
+            typeUrl
+            value
+          }
+          receiver {
+            assets
+            value
+          }
+          sender {
+            assets
+            value
+          }
+        }
+        ... on DeclareTx {
+          issuer
+          moniker
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on CreateAssetTx {
+          address
+          moniker
+          parent
+          readonly
+          transferrable
+          ttl
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on ConsumeAssetTx {
+          address
+          issuer
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on AcquireAssetTx {
+          to
+          data {
+            typeUrl
+            value
+          }
+          specs {
+            address
+            data
+          }
+        }
+        ... on AccountMigrateTx {
+          address
+          pk
+          data {
+            typeUrl
+            value
+          }
         }
       }
     }
@@ -2793,6 +5247,128 @@ subscription {
           value
         }
       }
+      itx {
+        __typename
+        ... on RevokeSwapTx {
+          address
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on RetrieveSwapTx {
+          address
+          hashkey
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on SetupSwapTx {
+          assets
+          hashlock
+          locktime
+          receiver
+          value
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on UpgradeNodeTx {
+          height
+          override
+          version
+        }
+        ... on UpdateAssetTx {
+          address
+          moniker
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on TransferTx {
+          assets
+          to
+          value
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on PokeTx {
+          address
+          date
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on ExchangeTx {
+          expiredAt
+          to
+          data {
+            typeUrl
+            value
+          }
+          receiver {
+            assets
+            value
+          }
+          sender {
+            assets
+            value
+          }
+        }
+        ... on DeclareTx {
+          issuer
+          moniker
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on CreateAssetTx {
+          address
+          moniker
+          parent
+          readonly
+          transferrable
+          ttl
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on ConsumeAssetTx {
+          address
+          issuer
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on AcquireAssetTx {
+          to
+          data {
+            typeUrl
+            value
+          }
+          specs {
+            address
+            data
+          }
+        }
+        ... on AccountMigrateTx {
+          address
+          pk
+          data {
+            typeUrl
+            value
+          }
+        }
+      }
     }
     revokeSwap {
       chainId
@@ -2810,6 +5386,128 @@ subscription {
         data {
           typeUrl
           value
+        }
+      }
+      itx {
+        __typename
+        ... on RevokeSwapTx {
+          address
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on RetrieveSwapTx {
+          address
+          hashkey
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on SetupSwapTx {
+          assets
+          hashlock
+          locktime
+          receiver
+          value
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on UpgradeNodeTx {
+          height
+          override
+          version
+        }
+        ... on UpdateAssetTx {
+          address
+          moniker
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on TransferTx {
+          assets
+          to
+          value
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on PokeTx {
+          address
+          date
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on ExchangeTx {
+          expiredAt
+          to
+          data {
+            typeUrl
+            value
+          }
+          receiver {
+            assets
+            value
+          }
+          sender {
+            assets
+            value
+          }
+        }
+        ... on DeclareTx {
+          issuer
+          moniker
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on CreateAssetTx {
+          address
+          moniker
+          parent
+          readonly
+          transferrable
+          ttl
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on ConsumeAssetTx {
+          address
+          issuer
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on AcquireAssetTx {
+          to
+          data {
+            typeUrl
+            value
+          }
+          specs {
+            address
+            data
+          }
+        }
+        ... on AccountMigrateTx {
+          address
+          pk
+          data {
+            typeUrl
+            value
+          }
         }
       }
     }
@@ -2831,6 +5529,128 @@ subscription {
           value
         }
       }
+      itx {
+        __typename
+        ... on RevokeSwapTx {
+          address
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on RetrieveSwapTx {
+          address
+          hashkey
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on SetupSwapTx {
+          assets
+          hashlock
+          locktime
+          receiver
+          value
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on UpgradeNodeTx {
+          height
+          override
+          version
+        }
+        ... on UpdateAssetTx {
+          address
+          moniker
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on TransferTx {
+          assets
+          to
+          value
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on PokeTx {
+          address
+          date
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on ExchangeTx {
+          expiredAt
+          to
+          data {
+            typeUrl
+            value
+          }
+          receiver {
+            assets
+            value
+          }
+          sender {
+            assets
+            value
+          }
+        }
+        ... on DeclareTx {
+          issuer
+          moniker
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on CreateAssetTx {
+          address
+          moniker
+          parent
+          readonly
+          transferrable
+          ttl
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on ConsumeAssetTx {
+          address
+          issuer
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on AcquireAssetTx {
+          to
+          data {
+            typeUrl
+            value
+          }
+          specs {
+            address
+            data
+          }
+        }
+        ... on AccountMigrateTx {
+          address
+          pk
+          data {
+            typeUrl
+            value
+          }
+        }
+      }
     }
     setupSwap {
       chainId
@@ -2850,6 +5670,128 @@ subscription {
           value
         }
       }
+      itx {
+        __typename
+        ... on RevokeSwapTx {
+          address
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on RetrieveSwapTx {
+          address
+          hashkey
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on SetupSwapTx {
+          assets
+          hashlock
+          locktime
+          receiver
+          value
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on UpgradeNodeTx {
+          height
+          override
+          version
+        }
+        ... on UpdateAssetTx {
+          address
+          moniker
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on TransferTx {
+          assets
+          to
+          value
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on PokeTx {
+          address
+          date
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on ExchangeTx {
+          expiredAt
+          to
+          data {
+            typeUrl
+            value
+          }
+          receiver {
+            assets
+            value
+          }
+          sender {
+            assets
+            value
+          }
+        }
+        ... on DeclareTx {
+          issuer
+          moniker
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on CreateAssetTx {
+          address
+          moniker
+          parent
+          readonly
+          transferrable
+          ttl
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on ConsumeAssetTx {
+          address
+          issuer
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on AcquireAssetTx {
+          to
+          data {
+            typeUrl
+            value
+          }
+          specs {
+            address
+            data
+          }
+        }
+        ... on AccountMigrateTx {
+          address
+          pk
+          data {
+            typeUrl
+            value
+          }
+        }
+      }
     }
     stake {
       chainId
@@ -2867,6 +5809,128 @@ subscription {
         data {
           typeUrl
           value
+        }
+      }
+      itx {
+        __typename
+        ... on RevokeSwapTx {
+          address
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on RetrieveSwapTx {
+          address
+          hashkey
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on SetupSwapTx {
+          assets
+          hashlock
+          locktime
+          receiver
+          value
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on UpgradeNodeTx {
+          height
+          override
+          version
+        }
+        ... on UpdateAssetTx {
+          address
+          moniker
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on TransferTx {
+          assets
+          to
+          value
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on PokeTx {
+          address
+          date
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on ExchangeTx {
+          expiredAt
+          to
+          data {
+            typeUrl
+            value
+          }
+          receiver {
+            assets
+            value
+          }
+          sender {
+            assets
+            value
+          }
+        }
+        ... on DeclareTx {
+          issuer
+          moniker
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on CreateAssetTx {
+          address
+          moniker
+          parent
+          readonly
+          transferrable
+          ttl
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on ConsumeAssetTx {
+          address
+          issuer
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on AcquireAssetTx {
+          to
+          data {
+            typeUrl
+            value
+          }
+          specs {
+            address
+            data
+          }
+        }
+        ... on AccountMigrateTx {
+          address
+          pk
+          data {
+            typeUrl
+            value
+          }
         }
       }
     }
@@ -3038,6 +6102,128 @@ subscription {
           value
         }
       }
+      itx {
+        __typename
+        ... on RevokeSwapTx {
+          address
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on RetrieveSwapTx {
+          address
+          hashkey
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on SetupSwapTx {
+          assets
+          hashlock
+          locktime
+          receiver
+          value
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on UpgradeNodeTx {
+          height
+          override
+          version
+        }
+        ... on UpdateAssetTx {
+          address
+          moniker
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on TransferTx {
+          assets
+          to
+          value
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on PokeTx {
+          address
+          date
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on ExchangeTx {
+          expiredAt
+          to
+          data {
+            typeUrl
+            value
+          }
+          receiver {
+            assets
+            value
+          }
+          sender {
+            assets
+            value
+          }
+        }
+        ... on DeclareTx {
+          issuer
+          moniker
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on CreateAssetTx {
+          address
+          moniker
+          parent
+          readonly
+          transferrable
+          ttl
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on ConsumeAssetTx {
+          address
+          issuer
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on AcquireAssetTx {
+          to
+          data {
+            typeUrl
+            value
+          }
+          specs {
+            address
+            data
+          }
+        }
+        ... on AccountMigrateTx {
+          address
+          pk
+          data {
+            typeUrl
+            value
+          }
+        }
+      }
     }
     transfer {
       chainId
@@ -3055,6 +6241,128 @@ subscription {
         data {
           typeUrl
           value
+        }
+      }
+      itx {
+        __typename
+        ... on RevokeSwapTx {
+          address
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on RetrieveSwapTx {
+          address
+          hashkey
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on SetupSwapTx {
+          assets
+          hashlock
+          locktime
+          receiver
+          value
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on UpgradeNodeTx {
+          height
+          override
+          version
+        }
+        ... on UpdateAssetTx {
+          address
+          moniker
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on TransferTx {
+          assets
+          to
+          value
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on PokeTx {
+          address
+          date
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on ExchangeTx {
+          expiredAt
+          to
+          data {
+            typeUrl
+            value
+          }
+          receiver {
+            assets
+            value
+          }
+          sender {
+            assets
+            value
+          }
+        }
+        ... on DeclareTx {
+          issuer
+          moniker
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on CreateAssetTx {
+          address
+          moniker
+          parent
+          readonly
+          transferrable
+          ttl
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on ConsumeAssetTx {
+          address
+          issuer
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on AcquireAssetTx {
+          to
+          data {
+            typeUrl
+            value
+          }
+          specs {
+            address
+            data
+          }
+        }
+        ... on AccountMigrateTx {
+          address
+          pk
+          data {
+            typeUrl
+            value
+          }
         }
       }
     }
@@ -3076,6 +6384,128 @@ subscription {
           value
         }
       }
+      itx {
+        __typename
+        ... on RevokeSwapTx {
+          address
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on RetrieveSwapTx {
+          address
+          hashkey
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on SetupSwapTx {
+          assets
+          hashlock
+          locktime
+          receiver
+          value
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on UpgradeNodeTx {
+          height
+          override
+          version
+        }
+        ... on UpdateAssetTx {
+          address
+          moniker
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on TransferTx {
+          assets
+          to
+          value
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on PokeTx {
+          address
+          date
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on ExchangeTx {
+          expiredAt
+          to
+          data {
+            typeUrl
+            value
+          }
+          receiver {
+            assets
+            value
+          }
+          sender {
+            assets
+            value
+          }
+        }
+        ... on DeclareTx {
+          issuer
+          moniker
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on CreateAssetTx {
+          address
+          moniker
+          parent
+          readonly
+          transferrable
+          ttl
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on ConsumeAssetTx {
+          address
+          issuer
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on AcquireAssetTx {
+          to
+          data {
+            typeUrl
+            value
+          }
+          specs {
+            address
+            data
+          }
+        }
+        ... on AccountMigrateTx {
+          address
+          pk
+          data {
+            typeUrl
+            value
+          }
+        }
+      }
     }
     updateConsensusParams {
       chainId
@@ -3093,6 +6523,128 @@ subscription {
         data {
           typeUrl
           value
+        }
+      }
+      itx {
+        __typename
+        ... on RevokeSwapTx {
+          address
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on RetrieveSwapTx {
+          address
+          hashkey
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on SetupSwapTx {
+          assets
+          hashlock
+          locktime
+          receiver
+          value
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on UpgradeNodeTx {
+          height
+          override
+          version
+        }
+        ... on UpdateAssetTx {
+          address
+          moniker
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on TransferTx {
+          assets
+          to
+          value
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on PokeTx {
+          address
+          date
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on ExchangeTx {
+          expiredAt
+          to
+          data {
+            typeUrl
+            value
+          }
+          receiver {
+            assets
+            value
+          }
+          sender {
+            assets
+            value
+          }
+        }
+        ... on DeclareTx {
+          issuer
+          moniker
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on CreateAssetTx {
+          address
+          moniker
+          parent
+          readonly
+          transferrable
+          ttl
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on ConsumeAssetTx {
+          address
+          issuer
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on AcquireAssetTx {
+          to
+          data {
+            typeUrl
+            value
+          }
+          specs {
+            address
+            data
+          }
+        }
+        ... on AccountMigrateTx {
+          address
+          pk
+          data {
+            typeUrl
+            value
+          }
         }
       }
     }
@@ -3114,6 +6666,128 @@ subscription {
           value
         }
       }
+      itx {
+        __typename
+        ... on RevokeSwapTx {
+          address
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on RetrieveSwapTx {
+          address
+          hashkey
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on SetupSwapTx {
+          assets
+          hashlock
+          locktime
+          receiver
+          value
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on UpgradeNodeTx {
+          height
+          override
+          version
+        }
+        ... on UpdateAssetTx {
+          address
+          moniker
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on TransferTx {
+          assets
+          to
+          value
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on PokeTx {
+          address
+          date
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on ExchangeTx {
+          expiredAt
+          to
+          data {
+            typeUrl
+            value
+          }
+          receiver {
+            assets
+            value
+          }
+          sender {
+            assets
+            value
+          }
+        }
+        ... on DeclareTx {
+          issuer
+          moniker
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on CreateAssetTx {
+          address
+          moniker
+          parent
+          readonly
+          transferrable
+          ttl
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on ConsumeAssetTx {
+          address
+          issuer
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on AcquireAssetTx {
+          to
+          data {
+            typeUrl
+            value
+          }
+          specs {
+            address
+            data
+          }
+        }
+        ... on AccountMigrateTx {
+          address
+          pk
+          data {
+            typeUrl
+            value
+          }
+        }
+      }
     }
     upgradeNode {
       chainId
@@ -3133,6 +6807,128 @@ subscription {
           value
         }
       }
+      itx {
+        __typename
+        ... on RevokeSwapTx {
+          address
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on RetrieveSwapTx {
+          address
+          hashkey
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on SetupSwapTx {
+          assets
+          hashlock
+          locktime
+          receiver
+          value
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on UpgradeNodeTx {
+          height
+          override
+          version
+        }
+        ... on UpdateAssetTx {
+          address
+          moniker
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on TransferTx {
+          assets
+          to
+          value
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on PokeTx {
+          address
+          date
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on ExchangeTx {
+          expiredAt
+          to
+          data {
+            typeUrl
+            value
+          }
+          receiver {
+            assets
+            value
+          }
+          sender {
+            assets
+            value
+          }
+        }
+        ... on DeclareTx {
+          issuer
+          moniker
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on CreateAssetTx {
+          address
+          moniker
+          parent
+          readonly
+          transferrable
+          ttl
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on ConsumeAssetTx {
+          address
+          issuer
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on AcquireAssetTx {
+          to
+          data {
+            typeUrl
+            value
+          }
+          specs {
+            address
+            data
+          }
+        }
+        ... on AccountMigrateTx {
+          address
+          pk
+          data {
+            typeUrl
+            value
+          }
+        }
+      }
     }
     withdrawToken {
       chainId
@@ -3150,6 +6946,128 @@ subscription {
         data {
           typeUrl
           value
+        }
+      }
+      itx {
+        __typename
+        ... on RevokeSwapTx {
+          address
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on RetrieveSwapTx {
+          address
+          hashkey
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on SetupSwapTx {
+          assets
+          hashlock
+          locktime
+          receiver
+          value
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on UpgradeNodeTx {
+          height
+          override
+          version
+        }
+        ... on UpdateAssetTx {
+          address
+          moniker
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on TransferTx {
+          assets
+          to
+          value
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on PokeTx {
+          address
+          date
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on ExchangeTx {
+          expiredAt
+          to
+          data {
+            typeUrl
+            value
+          }
+          receiver {
+            assets
+            value
+          }
+          sender {
+            assets
+            value
+          }
+        }
+        ... on DeclareTx {
+          issuer
+          moniker
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on CreateAssetTx {
+          address
+          moniker
+          parent
+          readonly
+          transferrable
+          ttl
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on ConsumeAssetTx {
+          address
+          issuer
+          data {
+            typeUrl
+            value
+          }
+        }
+        ... on AcquireAssetTx {
+          to
+          data {
+            typeUrl
+            value
+          }
+          specs {
+            address
+            data
+          }
+        }
+        ... on AccountMigrateTx {
+          address
+          pk
+          data {
+            typeUrl
+            value
+          }
         }
       }
     }

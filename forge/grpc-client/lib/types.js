@@ -159,7 +159,7 @@
       }
     ],
     "code": 0,
-    "time": "2020-03-25T08:39:41.664Z"
+    "time": "2020-03-25T23:35:44.513Z"
   }
 }
 ```
@@ -193,7 +193,7 @@
   "block": {
     "height": 5,
     "numTxs": 2,
-    "time": "2020-03-25T08:39:41.660Z",
+    "time": "2020-03-25T23:35:44.507Z",
     "appHash": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
     "proposer": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
     "txs": [
@@ -247,7 +247,7 @@
           }
         ],
         "code": 0,
-        "time": "2020-03-25T08:39:41.660Z"
+        "time": "2020-03-25T23:35:44.507Z"
       },
       {
         "tx": {
@@ -299,7 +299,7 @@
           }
         ],
         "code": 0,
-        "time": "2020-03-25T08:39:41.660Z"
+        "time": "2020-03-25T23:35:44.507Z"
       }
     ],
     "totalTxs": 5,
@@ -354,7 +354,7 @@
           }
         ],
         "code": 0,
-        "time": "2020-03-25T08:39:41.660Z"
+        "time": "2020-03-25T23:35:44.507Z"
       },
       {
         "tx": {
@@ -406,7 +406,7 @@
           }
         ],
         "code": 0,
-        "time": "2020-03-25T08:39:41.660Z"
+        "time": "2020-03-25T23:35:44.507Z"
       }
     ],
     "txsHashes": [
@@ -493,7 +493,7 @@
     {
       "height": 5,
       "numTxs": 2,
-      "time": "2020-03-25T08:39:41.660Z",
+      "time": "2020-03-25T23:35:44.507Z",
       "appHash": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
       "proposer": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
       "totalTxs": 5,
@@ -526,7 +526,7 @@
     {
       "height": 5,
       "numTxs": 2,
-      "time": "2020-03-25T08:39:41.660Z",
+      "time": "2020-03-25T23:35:44.507Z",
       "appHash": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
       "proposer": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
       "totalTxs": 5,
@@ -687,8 +687,8 @@
     "context": {
       "genesisTx": "arcblock",
       "renaissanceTx": "arcblock",
-      "genesisTime": "2020-03-25T08:39:41.661Z",
-      "renaissanceTime": "2020-03-25T08:39:41.661Z"
+      "genesisTime": "2020-03-25T23:35:44.509Z",
+      "renaissanceTime": "2020-03-25T23:35:44.509Z"
     },
     "issuer": "arcblock",
     "migratedTo": [
@@ -791,7 +791,7 @@
     "readonly": true,
     "transferrable": true,
     "ttl": 2,
-    "consumedTime": "2020-03-25T08:39:41.661Z",
+    "consumedTime": "2020-03-25T23:35:44.510Z",
     "issuer": "arcblock",
     "parent": "arcblock",
     "stake": {
@@ -819,8 +819,8 @@
     "context": {
       "genesisTx": "arcblock",
       "renaissanceTx": "arcblock",
-      "genesisTime": "2020-03-25T08:39:41.661Z",
-      "renaissanceTime": "2020-03-25T08:39:41.661Z"
+      "genesisTime": "2020-03-25T23:35:44.510Z",
+      "renaissanceTime": "2020-03-25T23:35:44.510Z"
     },
     "data": {
       "type": "string",
@@ -834,158 +834,6 @@
  * @typedef {object} GRpcClient.ResponseGetAssetState
  * @prop {GRpcClient.StatusCode} code
  * @prop {GRpcClient.AssetState} state
- */
-
-/**
- * Structure of GRpcClient.RequestGetProtocolState
- *
-```javascript
-{
-  "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
-  "keys": [
-    "arcblock",
-    "arcblock"
-  ],
-  "height": 5
-}
-```
- *
- * @memberof GRpcClient
- * @typedef {object} GRpcClient.RequestGetProtocolState
- * @prop {string} address
- * @prop {Array<string>} keys
- * @prop {number} height
- */
-
-/**
- * Structure of GRpcClient.ResponseGetProtocolState
- *
-```javascript
-{
-  "code": 0,
-  "state": {
-    "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
-    "itx": {
-      "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
-      "name": "arcblock",
-      "version": 2,
-      "namespace": "arcblock",
-      "description": "arcblock",
-      "typeUrls": [
-        {
-          "url": "arcblock",
-          "module": "arcblock"
-        },
-        {
-          "url": "arcblock",
-          "module": "arcblock"
-        }
-      ],
-      "proto": "arcblock",
-      "pipeline": "arcblock",
-      "sources": [
-        "arcblock",
-        "arcblock"
-      ],
-      "code": [
-        {
-          "checksum": {},
-          "binary": {}
-        },
-        {
-          "checksum": {},
-          "binary": {}
-        }
-      ],
-      "tags": [
-        "arcblock",
-        "arcblock"
-      ],
-      "data": {
-        "type": "string",
-        "value": "ABCD 1234"
-      }
-    },
-    "rootHash": {},
-    "status": 0,
-    "migratedTo": [
-      "arcblock",
-      "arcblock"
-    ],
-    "migratedFrom": [
-      "arcblock",
-      "arcblock"
-    ],
-    "context": {
-      "genesisTx": "arcblock",
-      "renaissanceTx": "arcblock",
-      "genesisTime": "2020-03-25T08:39:41.662Z",
-      "renaissanceTime": "2020-03-25T08:39:41.662Z"
-    },
-    "data": {
-      "type": "string",
-      "value": "ABCD 1234"
-    }
-  }
-}
-```
- *
- * @memberof GRpcClient
- * @typedef {object} GRpcClient.ResponseGetProtocolState
- * @prop {GRpcClient.StatusCode} code
- * @prop {GRpcClient.ProtocolState} state
- */
-
-/**
- * Structure of GRpcClient.RequestGetStakeState
- *
-```javascript
-{
-  "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
-  "keys": [
-    "arcblock",
-    "arcblock"
-  ],
-  "height": 5
-}
-```
- *
- * @memberof GRpcClient
- * @typedef {object} GRpcClient.RequestGetStakeState
- * @prop {string} address
- * @prop {Array<string>} keys
- * @prop {number} height
- */
-
-/**
- * Structure of GRpcClient.ResponseGetStakeState
- *
-```javascript
-{
-  "code": 0,
-  "state": {
-    "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
-    "from": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
-    "to": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
-    "message": "arcblock",
-    "context": {
-      "genesisTx": "arcblock",
-      "renaissanceTx": "arcblock",
-      "genesisTime": "2020-03-25T08:39:41.662Z",
-      "renaissanceTime": "2020-03-25T08:39:41.662Z"
-    },
-    "data": {
-      "type": "string",
-      "value": "ABCD 1234"
-    }
-  }
-}
-```
- *
- * @memberof GRpcClient
- * @typedef {object} GRpcClient.ResponseGetStakeState
- * @prop {GRpcClient.StatusCode} code
- * @prop {GRpcClient.StakeState} state
  */
 
 /**
@@ -1064,8 +912,8 @@
         "context": {
           "genesisTx": "arcblock",
           "renaissanceTx": "arcblock",
-          "genesisTime": "2020-03-25T08:39:41.661Z",
-          "renaissanceTime": "2020-03-25T08:39:41.661Z"
+          "genesisTime": "2020-03-25T23:35:44.510Z",
+          "renaissanceTime": "2020-03-25T23:35:44.510Z"
         }
       }
     },
@@ -1191,8 +1039,8 @@
     "context": {
       "genesisTx": "arcblock",
       "renaissanceTx": "arcblock",
-      "genesisTime": "2020-03-25T08:39:41.662Z",
-      "renaissanceTime": "2020-03-25T08:39:41.662Z"
+      "genesisTime": "2020-03-25T23:35:44.510Z",
+      "renaissanceTime": "2020-03-25T23:35:44.510Z"
     }
   }
 }
@@ -1243,8 +1091,8 @@
     "context": {
       "genesisTx": "arcblock",
       "renaissanceTx": "arcblock",
-      "genesisTime": "2020-03-25T08:39:41.662Z",
-      "renaissanceTime": "2020-03-25T08:39:41.662Z"
+      "genesisTime": "2020-03-25T23:35:44.510Z",
+      "renaissanceTime": "2020-03-25T23:35:44.510Z"
     },
     "data": {
       "type": "string",
@@ -1258,94 +1106,6 @@
  * @typedef {object} GRpcClient.ResponseGetDelegateState
  * @prop {GRpcClient.StatusCode} code
  * @prop {GRpcClient.DelegateState} state
- */
-
-/**
- * Structure of GRpcClient.RequestStoreFile
- *
-```javascript
-{
-  "chunk": {}
-}
-```
- *
- * @memberof GRpcClient
- * @typedef {object} GRpcClient.RequestStoreFile
- * @prop {Uint8Array} chunk
- */
-
-/**
- * Structure of GRpcClient.ResponseStoreFile
- *
-```javascript
-{
-  "code": 0,
-  "hash": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55"
-}
-```
- *
- * @memberof GRpcClient
- * @typedef {object} GRpcClient.ResponseStoreFile
- * @prop {GRpcClient.StatusCode} code
- * @prop {string} hash
- */
-
-/**
- * Structure of GRpcClient.RequestLoadFile
- *
-```javascript
-{
-  "hash": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55"
-}
-```
- *
- * @memberof GRpcClient
- * @typedef {object} GRpcClient.RequestLoadFile
- * @prop {string} hash
- */
-
-/**
- * Structure of GRpcClient.ResponseLoadFile
- *
-```javascript
-{
-  "code": 0,
-  "chunk": {}
-}
-```
- *
- * @memberof GRpcClient
- * @typedef {object} GRpcClient.ResponseLoadFile
- * @prop {GRpcClient.StatusCode} code
- * @prop {Uint8Array} chunk
- */
-
-/**
- * Structure of GRpcClient.RequestPinFile
- *
-```javascript
-{
-  "hash": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55"
-}
-```
- *
- * @memberof GRpcClient
- * @typedef {object} GRpcClient.RequestPinFile
- * @prop {string} hash
- */
-
-/**
- * Structure of GRpcClient.ResponsePinFile
- *
-```javascript
-{
-  "code": 0
-}
-```
- *
- * @memberof GRpcClient
- * @typedef {object} GRpcClient.ResponsePinFile
- * @prop {GRpcClient.StatusCode} code
  */
 
 /**
@@ -1375,7 +1135,7 @@
     "appHash": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
     "blockHash": {},
     "blockHeight": 5,
-    "blockTime": "2020-03-25T08:39:41.660Z",
+    "blockTime": "2020-03-25T23:35:44.508Z",
     "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
     "votingPower": 5,
     "totalTxs": 5,
@@ -1424,7 +1184,7 @@
     "appHash": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
     "blockHash": {},
     "blockHeight": 5,
-    "blockTime": "2020-03-25T08:39:41.661Z",
+    "blockTime": "2020-03-25T23:35:44.508Z",
     "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
     "votingPower": 5,
     "totalTxs": 5,
@@ -1527,7 +1287,7 @@
         }
       ],
       "code": 0,
-      "time": "2020-03-25T08:39:41.661Z"
+      "time": "2020-03-25T23:35:44.508Z"
     },
     {
       "tx": {
@@ -1579,7 +1339,7 @@
         }
       ],
       "code": 0,
-      "time": "2020-03-25T08:39:41.661Z"
+      "time": "2020-03-25T23:35:44.508Z"
     }
   ]
 }
@@ -1875,18 +1635,14 @@
  * @prop {GRpcClient.Transaction} confirm
  * @prop {GRpcClient.Transaction} createAsset
  * @prop {GRpcClient.Transaction} exchange
- * @prop {GRpcClient.Transaction} revoke
  * @prop {GRpcClient.RequestBeginBlock} beginBlock
  * @prop {GRpcClient.RequestEndBlock} endBlock
  * @prop {GRpcClient.Transaction} declare
  * @prop {GRpcClient.Transaction} updateAsset
  * @prop {GRpcClient.Transaction} consensusUpgrade
- * @prop {GRpcClient.Transaction} declareFile
  * @prop {GRpcClient.Transaction} sysUpgrade
  * @prop {GRpcClient.Transaction} stake
  * @prop {GRpcClient.Transaction} delegate
- * @prop {GRpcClient.Transaction} activateProtocol
- * @prop {GRpcClient.Transaction} deactivateProtocol
  * @prop {GRpcClient.Transaction} revokeDelegate
  * @prop {GRpcClient.Transaction} depositToken
  * @prop {GRpcClient.Transaction} withdrawToken
@@ -1896,7 +1652,6 @@
  * @prop {GRpcClient.Transaction} revokeSwap
  * @prop {GRpcClient.Transaction} retrieveSwap
  * @prop {GRpcClient.Transaction} poke
- * @prop {GRpcClient.Transaction} deployProtocol
  * @prop {GRpcClient.Transaction} consumeAsset
  * @prop {GRpcClient.Transaction} acquireAsset
  * @prop {GRpcClient.Transaction} upgradeNode
@@ -1905,8 +1660,6 @@
  * @prop {GRpcClient.AccountState} accountState
  * @prop {GRpcClient.AssetState} assetState
  * @prop {GRpcClient.ForgeState} forgeState
- * @prop {GRpcClient.StakeState} stakeState
- * @prop {GRpcClient.ProtocolState} protocolState
  * @prop {GRpcClient.DelegateState} delegateState
  * @prop {GRpcClient.SwapState} swapState
  */
@@ -2822,8 +2575,8 @@
       "context": {
         "genesisTx": "arcblock",
         "renaissanceTx": "arcblock",
-        "genesisTime": "2020-03-25T08:39:41.663Z",
-        "renaissanceTime": "2020-03-25T08:39:41.663Z"
+        "genesisTime": "2020-03-25T23:35:44.511Z",
+        "renaissanceTime": "2020-03-25T23:35:44.511Z"
       }
     },
     {
@@ -2841,8 +2594,8 @@
       "context": {
         "genesisTx": "arcblock",
         "renaissanceTx": "arcblock",
-        "genesisTime": "2020-03-25T08:39:41.663Z",
-        "renaissanceTime": "2020-03-25T08:39:41.663Z"
+        "genesisTime": "2020-03-25T23:35:44.511Z",
+        "renaissanceTime": "2020-03-25T23:35:44.511Z"
       }
     }
   ]
@@ -4328,7 +4081,7 @@
       "arcblock"
     ]
   },
-  "expiredAt": "2020-03-25T08:39:41.666Z",
+  "expiredAt": "2020-03-25T23:35:44.515Z",
   "data": {
     "type": "string",
     "value": "ABCD 1234"
@@ -5009,36 +4762,6 @@
  *
  * @memberof GRpcClient
  * @function
- * @name GRpcClient#storeFile
- * @param {GRpcClient.RequestStoreFile} params
- * @returns {Promise.<GRpcClient.ResponseStoreFile>}
- */
-
-/**
- * Send gRPC call and return the result
- *
- * @memberof GRpcClient
- * @function
- * @name GRpcClient#loadFile
- * @param {GRpcClient.RequestLoadFile} params
- * @returns {EventEmitter} EventEmitter that emits `data` event when new data received, checkout {@link GRpcClient.ResponseLoadFile} for payload format.
- */
-
-/**
- * Send gRPC call and return the result
- *
- * @memberof GRpcClient
- * @function
- * @name GRpcClient#pinFile
- * @param {GRpcClient.RequestPinFile} params
- * @returns {Promise.<GRpcClient.ResponsePinFile>}
- */
-
-/**
- * Send gRPC call and return the result
- *
- * @memberof GRpcClient
- * @function
  * @name GRpcClient#getAccountState
  * @param {GRpcClient.RequestGetAccountState} params
  * @returns {EventEmitter} EventEmitter that emits `data` event when new data received, checkout {@link GRpcClient.ResponseGetAccountState} for payload format.
@@ -5062,26 +4785,6 @@
  * @name GRpcClient#getForgeState
  * @param {GRpcClient.RequestGetForgeState} params
  * @returns {Promise.<GRpcClient.ResponseGetForgeState>}
- */
-
-/**
- * Send gRPC call and return the result
- *
- * @memberof GRpcClient
- * @function
- * @name GRpcClient#getProtocolState
- * @param {GRpcClient.RequestGetProtocolState} params
- * @returns {EventEmitter} EventEmitter that emits `data` event when new data received, checkout {@link GRpcClient.ResponseGetProtocolState} for payload format.
- */
-
-/**
- * Send gRPC call and return the result
- *
- * @memberof GRpcClient
- * @function
- * @name GRpcClient#getStakeState
- * @param {GRpcClient.RequestGetStakeState} params
- * @returns {EventEmitter} EventEmitter that emits `data` event when new data received, checkout {@link GRpcClient.ResponseGetStakeState} for payload format.
  */
 
 /**
@@ -5415,33 +5118,6 @@
 
 /**
  * @memberof GRpcClient
- * @typedef {Object} GRpcClient.sendDeployProtocolTxInput
- * @prop {object} input
- * @prop {object} input.tx - data of the transaction
- * @prop {GRpcClient.sendDeployProtocolTx} input.tx.itx - the actual transaction object
- * @prop {string} [input.tx.pk] - the sender pk
- * @prop {string} [input.tx.from] - the sender address, can be derived from wallet
- * @prop {number} [input.tx.nonce] - the tx nonce, defaults to Date.now if not set
- * @prop {string} [input.tx.chainId] - the chainId
- * @prop {string} [input.tx.signature] - transaction signature
- * @prop {array} [input.tx.signatures] - transaction signatures, should be set when it's a multisig transaction
- * @prop {object} input.wallet - the wallet used to sign the transaction, either a forge managed wallet or user managed wallet
- * @prop {string} [input.signature] - the signature of the tx, if this parameter exist, we will not sign the transaction
- */
-
-/**
- * Send sendDeployProtocolTx transaction and get the hash, use {@link GRpcClient#getTx} to get transaction detail
- *
- * @memberof GRpcClient
- * @function
- * @name GRpcClient#7
- * @param {GRpcClient.sendDeployProtocolTxInput} params
- * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
- */
-
-
-/**
- * @memberof GRpcClient
  * @typedef {Object} GRpcClient.sendDepositTokenTxInput
  * @prop {object} input
  * @prop {object} input.tx - data of the transaction
@@ -5461,7 +5137,7 @@
  *
  * @memberof GRpcClient
  * @function
- * @name GRpcClient#8
+ * @name GRpcClient#7
  * @param {GRpcClient.sendDepositTokenTxInput} params
  * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
  */
@@ -5488,7 +5164,7 @@
  *
  * @memberof GRpcClient
  * @function
- * @name GRpcClient#9
+ * @name GRpcClient#8
  * @param {GRpcClient.sendExchangeTxInput} params
  * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
  */
@@ -5515,7 +5191,7 @@
  *
  * @memberof GRpcClient
  * @function
- * @name GRpcClient#10
+ * @name GRpcClient#9
  * @param {GRpcClient.sendPokeTxInput} params
  * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
  */
@@ -5542,7 +5218,7 @@
  *
  * @memberof GRpcClient
  * @function
- * @name GRpcClient#11
+ * @name GRpcClient#10
  * @param {GRpcClient.sendRefuelTxInput} params
  * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
  */
@@ -5569,7 +5245,7 @@
  *
  * @memberof GRpcClient
  * @function
- * @name GRpcClient#12
+ * @name GRpcClient#11
  * @param {GRpcClient.sendRetrieveSwapTxInput} params
  * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
  */
@@ -5596,7 +5272,7 @@
  *
  * @memberof GRpcClient
  * @function
- * @name GRpcClient#13
+ * @name GRpcClient#12
  * @param {GRpcClient.sendRevokeDelegateTxInput} params
  * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
  */
@@ -5623,7 +5299,7 @@
  *
  * @memberof GRpcClient
  * @function
- * @name GRpcClient#14
+ * @name GRpcClient#13
  * @param {GRpcClient.sendRevokeSwapTxInput} params
  * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
  */
@@ -5650,7 +5326,7 @@
  *
  * @memberof GRpcClient
  * @function
- * @name GRpcClient#15
+ * @name GRpcClient#14
  * @param {GRpcClient.sendRevokeWithdrawTxInput} params
  * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
  */
@@ -5677,7 +5353,7 @@
  *
  * @memberof GRpcClient
  * @function
- * @name GRpcClient#16
+ * @name GRpcClient#15
  * @param {GRpcClient.sendSetupSwapTxInput} params
  * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
  */
@@ -5704,7 +5380,7 @@
  *
  * @memberof GRpcClient
  * @function
- * @name GRpcClient#17
+ * @name GRpcClient#16
  * @param {GRpcClient.sendTransferTxInput} params
  * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
  */
@@ -5731,7 +5407,7 @@
  *
  * @memberof GRpcClient
  * @function
- * @name GRpcClient#18
+ * @name GRpcClient#17
  * @param {GRpcClient.sendUpdateAssetTxInput} params
  * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
  */
@@ -5758,7 +5434,7 @@
  *
  * @memberof GRpcClient
  * @function
- * @name GRpcClient#19
+ * @name GRpcClient#18
  * @param {GRpcClient.sendUpdateConsensusParamsTxInput} params
  * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
  */
@@ -5785,7 +5461,7 @@
  *
  * @memberof GRpcClient
  * @function
- * @name GRpcClient#20
+ * @name GRpcClient#19
  * @param {GRpcClient.sendUpdateValidatorTxInput} params
  * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
  */
@@ -5812,7 +5488,7 @@
  *
  * @memberof GRpcClient
  * @function
- * @name GRpcClient#21
+ * @name GRpcClient#20
  * @param {GRpcClient.sendUpgradeNodeTxInput} params
  * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
  */
@@ -5839,7 +5515,7 @@
  *
  * @memberof GRpcClient
  * @function
- * @name GRpcClient#22
+ * @name GRpcClient#21
  * @param {GRpcClient.sendWithdrawTokenTxInput} params
  * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
  */
@@ -5923,20 +5599,9 @@
 
 
 /**
- * Encode a encodeDeployProtocolTx transaction for later use
- *
- * @name GRpcClient#7
- * @function
- * @memberof GRpcClient
- * @param {GRpcClient.encodeDeployProtocolTxInput} params
- * @returns {Promise<GRpcClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
- */
-
-
-/**
  * Encode a encodeDepositTokenTx transaction for later use
  *
- * @name GRpcClient#8
+ * @name GRpcClient#7
  * @function
  * @memberof GRpcClient
  * @param {GRpcClient.encodeDepositTokenTxInput} params
@@ -5947,7 +5612,7 @@
 /**
  * Encode a encodeExchangeTx transaction for later use
  *
- * @name GRpcClient#9
+ * @name GRpcClient#8
  * @function
  * @memberof GRpcClient
  * @param {GRpcClient.encodeExchangeTxInput} params
@@ -5958,7 +5623,7 @@
 /**
  * Encode a encodePokeTx transaction for later use
  *
- * @name GRpcClient#10
+ * @name GRpcClient#9
  * @function
  * @memberof GRpcClient
  * @param {GRpcClient.encodePokeTxInput} params
@@ -5969,7 +5634,7 @@
 /**
  * Encode a encodeRefuelTx transaction for later use
  *
- * @name GRpcClient#11
+ * @name GRpcClient#10
  * @function
  * @memberof GRpcClient
  * @param {GRpcClient.encodeRefuelTxInput} params
@@ -5980,7 +5645,7 @@
 /**
  * Encode a encodeRetrieveSwapTx transaction for later use
  *
- * @name GRpcClient#12
+ * @name GRpcClient#11
  * @function
  * @memberof GRpcClient
  * @param {GRpcClient.encodeRetrieveSwapTxInput} params
@@ -5991,7 +5656,7 @@
 /**
  * Encode a encodeRevokeDelegateTx transaction for later use
  *
- * @name GRpcClient#13
+ * @name GRpcClient#12
  * @function
  * @memberof GRpcClient
  * @param {GRpcClient.encodeRevokeDelegateTxInput} params
@@ -6002,7 +5667,7 @@
 /**
  * Encode a encodeRevokeSwapTx transaction for later use
  *
- * @name GRpcClient#14
+ * @name GRpcClient#13
  * @function
  * @memberof GRpcClient
  * @param {GRpcClient.encodeRevokeSwapTxInput} params
@@ -6013,7 +5678,7 @@
 /**
  * Encode a encodeRevokeWithdrawTx transaction for later use
  *
- * @name GRpcClient#15
+ * @name GRpcClient#14
  * @function
  * @memberof GRpcClient
  * @param {GRpcClient.encodeRevokeWithdrawTxInput} params
@@ -6024,7 +5689,7 @@
 /**
  * Encode a encodeSetupSwapTx transaction for later use
  *
- * @name GRpcClient#16
+ * @name GRpcClient#15
  * @function
  * @memberof GRpcClient
  * @param {GRpcClient.encodeSetupSwapTxInput} params
@@ -6035,7 +5700,7 @@
 /**
  * Encode a encodeTransferTx transaction for later use
  *
- * @name GRpcClient#17
+ * @name GRpcClient#16
  * @function
  * @memberof GRpcClient
  * @param {GRpcClient.encodeTransferTxInput} params
@@ -6046,7 +5711,7 @@
 /**
  * Encode a encodeUpdateAssetTx transaction for later use
  *
- * @name GRpcClient#18
+ * @name GRpcClient#17
  * @function
  * @memberof GRpcClient
  * @param {GRpcClient.encodeUpdateAssetTxInput} params
@@ -6057,7 +5722,7 @@
 /**
  * Encode a encodeUpdateConsensusParamsTx transaction for later use
  *
- * @name GRpcClient#19
+ * @name GRpcClient#18
  * @function
  * @memberof GRpcClient
  * @param {GRpcClient.encodeUpdateConsensusParamsTxInput} params
@@ -6068,7 +5733,7 @@
 /**
  * Encode a encodeUpdateValidatorTx transaction for later use
  *
- * @name GRpcClient#20
+ * @name GRpcClient#19
  * @function
  * @memberof GRpcClient
  * @param {GRpcClient.encodeUpdateValidatorTxInput} params
@@ -6079,7 +5744,7 @@
 /**
  * Encode a encodeUpgradeNodeTx transaction for later use
  *
- * @name GRpcClient#21
+ * @name GRpcClient#20
  * @function
  * @memberof GRpcClient
  * @param {GRpcClient.encodeUpgradeNodeTxInput} params
@@ -6090,7 +5755,7 @@
 /**
  * Encode a encodeWithdrawTokenTx transaction for later use
  *
- * @name GRpcClient#22
+ * @name GRpcClient#21
  * @function
  * @memberof GRpcClient
  * @param {GRpcClient.encodeWithdrawTokenTxInput} params

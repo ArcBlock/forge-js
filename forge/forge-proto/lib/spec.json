@@ -366,64 +366,6 @@
             }
           }
         },
-        "RequestGetProtocolState": {
-          "fields": {
-            "address": {
-              "type": "string",
-              "id": 1
-            },
-            "keys": {
-              "rule": "repeated",
-              "type": "string",
-              "id": 2
-            },
-            "height": {
-              "type": "uint64",
-              "id": 3
-            }
-          }
-        },
-        "ResponseGetProtocolState": {
-          "fields": {
-            "code": {
-              "type": "StatusCode",
-              "id": 1
-            },
-            "state": {
-              "type": "ProtocolState",
-              "id": 2
-            }
-          }
-        },
-        "RequestGetStakeState": {
-          "fields": {
-            "address": {
-              "type": "string",
-              "id": 1
-            },
-            "keys": {
-              "rule": "repeated",
-              "type": "string",
-              "id": 2
-            },
-            "height": {
-              "type": "uint64",
-              "id": 3
-            }
-          }
-        },
-        "ResponseGetStakeState": {
-          "fields": {
-            "code": {
-              "type": "StatusCode",
-              "id": 1
-            },
-            "state": {
-              "type": "StakeState",
-              "id": 2
-            }
-          }
-        },
         "RequestGetForgeState": {
           "fields": {
             "keys": {
@@ -504,62 +446,6 @@
             "state": {
               "type": "DelegateState",
               "id": 2
-            }
-          }
-        },
-        "RequestStoreFile": {
-          "fields": {
-            "chunk": {
-              "type": "bytes",
-              "id": 1
-            }
-          }
-        },
-        "ResponseStoreFile": {
-          "fields": {
-            "code": {
-              "type": "StatusCode",
-              "id": 1
-            },
-            "hash": {
-              "type": "string",
-              "id": 2
-            }
-          }
-        },
-        "RequestLoadFile": {
-          "fields": {
-            "hash": {
-              "type": "string",
-              "id": 1
-            }
-          }
-        },
-        "ResponseLoadFile": {
-          "fields": {
-            "code": {
-              "type": "StatusCode",
-              "id": 1
-            },
-            "chunk": {
-              "type": "bytes",
-              "id": 2
-            }
-          }
-        },
-        "RequestPinFile": {
-          "fields": {
-            "hash": {
-              "type": "string",
-              "id": 1
-            }
-          }
-        },
-        "ResponsePinFile": {
-          "fields": {
-            "code": {
-              "type": "StatusCode",
-              "id": 1
             }
           }
         },
@@ -694,18 +580,14 @@
                 "confirm",
                 "createAsset",
                 "exchange",
-                "revoke",
                 "beginBlock",
                 "endBlock",
                 "declare",
                 "updateAsset",
                 "consensusUpgrade",
-                "declareFile",
                 "sysUpgrade",
                 "stake",
                 "delegate",
-                "activateProtocol",
-                "deactivateProtocol",
                 "revokeDelegate",
                 "depositToken",
                 "withdrawToken",
@@ -715,7 +597,6 @@
                 "revokeSwap",
                 "retrieveSwap",
                 "poke",
-                "deployProtocol",
                 "consumeAsset",
                 "acquireAsset",
                 "upgradeNode",
@@ -724,8 +605,6 @@
                 "accountState",
                 "assetState",
                 "forgeState",
-                "stakeState",
-                "protocolState",
                 "delegateState",
                 "swapState"
               ]
@@ -760,13 +639,6 @@
               "type": "Transaction",
               "id": 7
             },
-            "revoke": {
-              "type": "Transaction",
-              "id": 8,
-              "options": {
-                "deprecated": true
-              }
-            },
             "beginBlock": {
               "type": "abci_vendor.RequestBeginBlock",
               "id": 16
@@ -787,13 +659,6 @@
               "type": "Transaction",
               "id": 21
             },
-            "declareFile": {
-              "type": "Transaction",
-              "id": 22,
-              "options": {
-                "deprecated": true
-              }
-            },
             "sysUpgrade": {
               "type": "Transaction",
               "id": 23
@@ -805,20 +670,6 @@
             "delegate": {
               "type": "Transaction",
               "id": 25
-            },
-            "activateProtocol": {
-              "type": "Transaction",
-              "id": 26,
-              "options": {
-                "deprecated": true
-              }
-            },
-            "deactivateProtocol": {
-              "type": "Transaction",
-              "id": 27,
-              "options": {
-                "deprecated": true
-              }
             },
             "revokeDelegate": {
               "type": "Transaction",
@@ -856,10 +707,6 @@
               "type": "Transaction",
               "id": 36
             },
-            "deployProtocol": {
-              "type": "Transaction",
-              "id": 37
-            },
             "consumeAsset": {
               "type": "Transaction",
               "id": 38
@@ -891,14 +738,6 @@
             "forgeState": {
               "type": "ForgeState",
               "id": 131
-            },
-            "stakeState": {
-              "type": "StakeState",
-              "id": 132
-            },
-            "protocolState": {
-              "type": "ProtocolState",
-              "id": 133
             },
             "delegateState": {
               "type": "DelegateState",
@@ -4066,22 +3905,7 @@
           }
         },
         "FileRpc": {
-          "methods": {
-            "store_file": {
-              "requestType": "RequestStoreFile",
-              "requestStream": true,
-              "responseType": "ResponseStoreFile"
-            },
-            "load_file": {
-              "requestType": "RequestLoadFile",
-              "responseType": "ResponseLoadFile",
-              "responseStream": true
-            },
-            "pin_file": {
-              "requestType": "RequestPinFile",
-              "responseType": "ResponsePinFile"
-            }
-          }
+          "methods": {}
         },
         "StateRpc": {
           "methods": {
@@ -4100,18 +3924,6 @@
             "get_forge_state": {
               "requestType": "RequestGetForgeState",
               "responseType": "ResponseGetForgeState"
-            },
-            "get_protocol_state": {
-              "requestType": "RequestGetProtocolState",
-              "requestStream": true,
-              "responseType": "ResponseGetProtocolState",
-              "responseStream": true
-            },
-            "get_stake_state": {
-              "requestType": "RequestGetStakeState",
-              "requestStream": true,
-              "responseType": "ResponseGetStakeState",
-              "responseStream": true
             },
             "get_swap_state": {
               "requestType": "RequestGetSwapState",

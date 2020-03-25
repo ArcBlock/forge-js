@@ -68,14 +68,10 @@ getValidatorsInfo(request: forge_abi.RequestGetValidatorsInfo): GRpcClient.Unary
 getConfig(request: forge_abi.RequestGetConfig): GRpcClient.UnaryResult<forge_abi.ResponseGetConfig>;
 subscribe(request: forge_abi.RequestSubscribe): GRpcClient.StreamResult<forge_abi.ResponseSubscribe>;
 unsubscribe(request: forge_abi.RequestUnsubscribe): GRpcClient.UnaryResult<forge_abi.ResponseUnsubscribe>;
-storeFile(request: forge_abi.RequestStoreFile | Array<forge_abi.RequestStoreFile>): GRpcClient.UnaryResult<forge_abi.ResponseStoreFile>;
-loadFile(request: forge_abi.RequestLoadFile): GRpcClient.StreamResult<forge_abi.ResponseLoadFile>;
-pinFile(request: forge_abi.RequestPinFile): GRpcClient.UnaryResult<forge_abi.ResponsePinFile>;
+
 getAccountState(request: forge_abi.RequestGetAccountState | Array<forge_abi.RequestGetAccountState>): GRpcClient.StreamResult<forge_abi.ResponseGetAccountState>;
 getAssetState(request: forge_abi.RequestGetAssetState | Array<forge_abi.RequestGetAssetState>): GRpcClient.StreamResult<forge_abi.ResponseGetAssetState>;
 getForgeState(request: forge_abi.RequestGetForgeState): GRpcClient.UnaryResult<forge_abi.ResponseGetForgeState>;
-getProtocolState(request: forge_abi.RequestGetProtocolState | Array<forge_abi.RequestGetProtocolState>): GRpcClient.StreamResult<forge_abi.ResponseGetProtocolState>;
-getStakeState(request: forge_abi.RequestGetStakeState | Array<forge_abi.RequestGetStakeState>): GRpcClient.StreamResult<forge_abi.ResponseGetStakeState>;
 getSwapState(request: forge_abi.RequestGetSwapState | Array<forge_abi.RequestGetSwapState>): GRpcClient.StreamResult<forge_abi.ResponseGetSwapState>;
 getDelegateState(request: forge_abi.RequestGetDelegateState | Array<forge_abi.RequestGetDelegateState>): GRpcClient.StreamResult<forge_abi.ResponseGetDelegateState>;
 declareNode(request: forge_abi.RequestDeclareNode): GRpcClient.UnaryResult<forge_abi.ResponseDeclareNode>;
@@ -97,7 +93,6 @@ encodeConsumeAssetTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<G
 encodeCreateAssetTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.ResponseSendTx>;
 encodeDeclareTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.ResponseSendTx>;
 encodeDelegateTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.ResponseSendTx>;
-encodeDeployProtocolTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.ResponseSendTx>;
 encodeDepositTokenTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.ResponseSendTx>;
 encodeExchangeTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.ResponseSendTx>;
 encodePokeTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.ResponseSendTx>;
@@ -120,7 +115,6 @@ sendConsumeAssetTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRp
 sendCreateAssetTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.EncodeTxResult>;
 sendDeclareTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.EncodeTxResult>;
 sendDelegateTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.EncodeTxResult>;
-sendDeployProtocolTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.EncodeTxResult>;
 sendDepositTokenTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.EncodeTxResult>;
 sendExchangeTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.EncodeTxResult>;
 sendPokeTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.EncodeTxResult>;
@@ -143,7 +137,6 @@ signConsumeAssetTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRp
 signCreateAssetTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.Transaction>;
 signDeclareTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.Transaction>;
 signDelegateTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.Transaction>;
-signDeployProtocolTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.Transaction>;
 signDepositTokenTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.Transaction>;
 signExchangeTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.Transaction>;
 signPokeTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.Transaction>;
@@ -401,28 +394,6 @@ export interface ResponseGetAssetState {
   state: forge_abi.AssetState;
 }
 
-export interface RequestGetProtocolState {
-  address: string;
-  keys: Array<string>;
-  height: number;
-}
-
-export interface ResponseGetProtocolState {
-  code: forge_abi.StatusCode;
-  state: forge_abi.ProtocolState;
-}
-
-export interface RequestGetStakeState {
-  address: string;
-  keys: Array<string>;
-  height: number;
-}
-
-export interface ResponseGetStakeState {
-  code: forge_abi.StatusCode;
-  state: forge_abi.StakeState;
-}
-
 export interface RequestGetForgeState {
   keys: Array<string>;
   height: number;
@@ -453,32 +424,6 @@ export interface RequestGetDelegateState {
 export interface ResponseGetDelegateState {
   code: forge_abi.StatusCode;
   state: forge_abi.DelegateState;
-}
-
-export interface RequestStoreFile {
-  chunk: Uint8Array;
-}
-
-export interface ResponseStoreFile {
-  code: forge_abi.StatusCode;
-  hash: string;
-}
-
-export interface RequestLoadFile {
-  hash: string;
-}
-
-export interface ResponseLoadFile {
-  code: forge_abi.StatusCode;
-  chunk: Uint8Array;
-}
-
-export interface RequestPinFile {
-  hash: string;
-}
-
-export interface ResponsePinFile {
-  code: forge_abi.StatusCode;
 }
 
 export interface RequestGetChainInfo {
@@ -550,18 +495,14 @@ export interface ResponseSubscribe {
   confirm: forge_abi.Transaction;
   createAsset: forge_abi.Transaction;
   exchange: forge_abi.Transaction;
-  revoke: forge_abi.Transaction;
   beginBlock: abci_vendor.RequestBeginBlock;
   endBlock: abci_vendor.RequestEndBlock;
   declare: forge_abi.Transaction;
   updateAsset: forge_abi.Transaction;
   consensusUpgrade: forge_abi.Transaction;
-  declareFile: forge_abi.Transaction;
   sysUpgrade: forge_abi.Transaction;
   stake: forge_abi.Transaction;
   delegate: forge_abi.Transaction;
-  activateProtocol: forge_abi.Transaction;
-  deactivateProtocol: forge_abi.Transaction;
   revokeDelegate: forge_abi.Transaction;
   depositToken: forge_abi.Transaction;
   withdrawToken: forge_abi.Transaction;
@@ -571,7 +512,6 @@ export interface ResponseSubscribe {
   revokeSwap: forge_abi.Transaction;
   retrieveSwap: forge_abi.Transaction;
   poke: forge_abi.Transaction;
-  deployProtocol: forge_abi.Transaction;
   consumeAsset: forge_abi.Transaction;
   acquireAsset: forge_abi.Transaction;
   upgradeNode: forge_abi.Transaction;
@@ -580,8 +520,6 @@ export interface ResponseSubscribe {
   accountState: forge_abi.AccountState;
   assetState: forge_abi.AssetState;
   forgeState: forge_abi.ForgeState;
-  stakeState: forge_abi.StakeState;
-  protocolState: forge_abi.ProtocolState;
   delegateState: forge_abi.DelegateState;
   swapState: forge_abi.SwapState;
 }

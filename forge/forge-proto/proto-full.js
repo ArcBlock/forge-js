@@ -1,4 +1,4 @@
-// Auto generated code (2020-03-25T08:39:06.055Z), DO NOT EDIT
+// Auto generated code (2020-03-25T23:21:59.704Z), DO NOT EDIT
 const rpcPb = require('./lib/rpc_pb.js');
 const servicePb = require('./lib/service_pb.js');
 const statePb = require('./lib/state_pb.js');
