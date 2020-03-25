@@ -180,9 +180,6 @@ declare interface ForgeSDK {
   createAssetFactory(params: object, extra: any): Promise<string>;
   acquireAsset(params: object, extra: any): Promise<string>;
   upgradeNode(params: object, extra: any): Promise<string>;
-  deployContract(params: object, extra: any): Promise<string>;
-  activateContract(params: object, extra: any): Promise<string>;
-  deactivateContract(params: object, extra: any): Promise<string>;
   setupSwap(params: object, extra: any): Promise<string>;
   retrieveSwap(params: object, extra: any): Promise<string>;
   revokeSwap(params: object, extra: any): Promise<string>;
@@ -197,84 +194,10 @@ declare interface ForgeSDK {
   generateSubscriptionFns(): void;
   generateMutationFns(): void;
 
-  sendRevokeSwapTx(param: GraphQLClient.TxParam<GraphQLClient.RevokeSwapTx>): Promise<GraphQLClient.ResponseSendTx>;
-sendWithdrawTokenTx(param: GraphQLClient.TxParam<GraphQLClient.WithdrawTokenTx>): Promise<GraphQLClient.ResponseSendTx>;
-sendSetupSwapTx(param: GraphQLClient.TxParam<GraphQLClient.SetupSwapTx>): Promise<GraphQLClient.ResponseSendTx>;
-sendAccountMigrateTx(param: GraphQLClient.TxParam<GraphQLClient.AccountMigrateTx>): Promise<GraphQLClient.ResponseSendTx>;
-sendDeactivateProtocolTx(param: GraphQLClient.TxParam<GraphQLClient.DeactivateProtocolTx>): Promise<GraphQLClient.ResponseSendTx>;
-sendDepositTokenTx(param: GraphQLClient.TxParam<GraphQLClient.DepositTokenTx>): Promise<GraphQLClient.ResponseSendTx>;
-sendCreateAssetTx(param: GraphQLClient.TxParam<GraphQLClient.CreateAssetTx>): Promise<GraphQLClient.ResponseSendTx>;
-sendPokeTx(param: GraphQLClient.TxParam<GraphQLClient.PokeTx>): Promise<GraphQLClient.ResponseSendTx>;
-sendTransferTx(param: GraphQLClient.TxParam<GraphQLClient.TransferTx>): Promise<GraphQLClient.ResponseSendTx>;
-sendRetrieveSwapTx(param: GraphQLClient.TxParam<GraphQLClient.RetrieveSwapTx>): Promise<GraphQLClient.ResponseSendTx>;
-sendConsumeAssetTx(param: GraphQLClient.TxParam<GraphQLClient.ConsumeAssetTx>): Promise<GraphQLClient.ResponseSendTx>;
-sendAcquireAssetTx(param: GraphQLClient.TxParam<GraphQLClient.AcquireAssetTx>): Promise<GraphQLClient.ResponseSendTx>;
-sendApproveWithdrawTx(param: GraphQLClient.TxParam<GraphQLClient.ApproveWithdrawTx>): Promise<GraphQLClient.ResponseSendTx>;
-sendDeployProtocolTx(param: GraphQLClient.TxParam<GraphQLClient.DeployProtocolTx>): Promise<GraphQLClient.ResponseSendTx>;
-sendUpdateAssetTx(param: GraphQLClient.TxParam<GraphQLClient.UpdateAssetTx>): Promise<GraphQLClient.ResponseSendTx>;
-sendDeclareTx(param: GraphQLClient.TxParam<GraphQLClient.DeclareTx>): Promise<GraphQLClient.ResponseSendTx>;
-sendRefuelTx(param: GraphQLClient.TxParam<GraphQLClient.RefuelTx>): Promise<GraphQLClient.ResponseSendTx>;
-sendActivateProtocolTx(param: GraphQLClient.TxParam<GraphQLClient.ActivateProtocolTx>): Promise<GraphQLClient.ResponseSendTx>;
-sendUpgradeNodeTx(param: GraphQLClient.TxParam<GraphQLClient.UpgradeNodeTx>): Promise<GraphQLClient.ResponseSendTx>;
-sendUpdateValidatorTx(param: GraphQLClient.TxParam<GraphQLClient.UpdateValidatorTx>): Promise<GraphQLClient.ResponseSendTx>;
-sendUpdateConsensusParamsTx(param: GraphQLClient.TxParam<GraphQLClient.UpdateConsensusParamsTx>): Promise<GraphQLClient.ResponseSendTx>;
-sendRevokeDelegateTx(param: GraphQLClient.TxParam<GraphQLClient.RevokeDelegateTx>): Promise<GraphQLClient.ResponseSendTx>;
-sendExchangeTx(param: GraphQLClient.TxParam<GraphQLClient.ExchangeTx>): Promise<GraphQLClient.ResponseSendTx>;
-sendDelegateTx(param: GraphQLClient.TxParam<GraphQLClient.DelegateTx>): Promise<GraphQLClient.ResponseSendTx>;
-sendRevokeWithdrawTx(param: GraphQLClient.TxParam<GraphQLClient.RevokeWithdrawTx>): Promise<GraphQLClient.ResponseSendTx>;
-  encodeRevokeSwapTx(param: GraphQLClient.TxParam<GraphQLClient.RevokeSwapTx>): Promise<GraphQLClient.EncodeTxResult>;
-encodeWithdrawTokenTx(param: GraphQLClient.TxParam<GraphQLClient.WithdrawTokenTx>): Promise<GraphQLClient.EncodeTxResult>;
-encodeSetupSwapTx(param: GraphQLClient.TxParam<GraphQLClient.SetupSwapTx>): Promise<GraphQLClient.EncodeTxResult>;
-encodeAccountMigrateTx(param: GraphQLClient.TxParam<GraphQLClient.AccountMigrateTx>): Promise<GraphQLClient.EncodeTxResult>;
-encodeDeactivateProtocolTx(param: GraphQLClient.TxParam<GraphQLClient.DeactivateProtocolTx>): Promise<GraphQLClient.EncodeTxResult>;
-encodeDepositTokenTx(param: GraphQLClient.TxParam<GraphQLClient.DepositTokenTx>): Promise<GraphQLClient.EncodeTxResult>;
-encodeCreateAssetTx(param: GraphQLClient.TxParam<GraphQLClient.CreateAssetTx>): Promise<GraphQLClient.EncodeTxResult>;
-encodePokeTx(param: GraphQLClient.TxParam<GraphQLClient.PokeTx>): Promise<GraphQLClient.EncodeTxResult>;
-encodeTransferTx(param: GraphQLClient.TxParam<GraphQLClient.TransferTx>): Promise<GraphQLClient.EncodeTxResult>;
-encodeRetrieveSwapTx(param: GraphQLClient.TxParam<GraphQLClient.RetrieveSwapTx>): Promise<GraphQLClient.EncodeTxResult>;
-encodeConsumeAssetTx(param: GraphQLClient.TxParam<GraphQLClient.ConsumeAssetTx>): Promise<GraphQLClient.EncodeTxResult>;
-encodeAcquireAssetTx(param: GraphQLClient.TxParam<GraphQLClient.AcquireAssetTx>): Promise<GraphQLClient.EncodeTxResult>;
-encodeApproveWithdrawTx(param: GraphQLClient.TxParam<GraphQLClient.ApproveWithdrawTx>): Promise<GraphQLClient.EncodeTxResult>;
-encodeDeployProtocolTx(param: GraphQLClient.TxParam<GraphQLClient.DeployProtocolTx>): Promise<GraphQLClient.EncodeTxResult>;
-encodeUpdateAssetTx(param: GraphQLClient.TxParam<GraphQLClient.UpdateAssetTx>): Promise<GraphQLClient.EncodeTxResult>;
-encodeDeclareTx(param: GraphQLClient.TxParam<GraphQLClient.DeclareTx>): Promise<GraphQLClient.EncodeTxResult>;
-encodeRefuelTx(param: GraphQLClient.TxParam<GraphQLClient.RefuelTx>): Promise<GraphQLClient.EncodeTxResult>;
-encodeActivateProtocolTx(param: GraphQLClient.TxParam<GraphQLClient.ActivateProtocolTx>): Promise<GraphQLClient.EncodeTxResult>;
-encodeUpgradeNodeTx(param: GraphQLClient.TxParam<GraphQLClient.UpgradeNodeTx>): Promise<GraphQLClient.EncodeTxResult>;
-encodeUpdateValidatorTx(param: GraphQLClient.TxParam<GraphQLClient.UpdateValidatorTx>): Promise<GraphQLClient.EncodeTxResult>;
-encodeUpdateConsensusParamsTx(param: GraphQLClient.TxParam<GraphQLClient.UpdateConsensusParamsTx>): Promise<GraphQLClient.EncodeTxResult>;
-encodeRevokeDelegateTx(param: GraphQLClient.TxParam<GraphQLClient.RevokeDelegateTx>): Promise<GraphQLClient.EncodeTxResult>;
-encodeExchangeTx(param: GraphQLClient.TxParam<GraphQLClient.ExchangeTx>): Promise<GraphQLClient.EncodeTxResult>;
-encodeDelegateTx(param: GraphQLClient.TxParam<GraphQLClient.DelegateTx>): Promise<GraphQLClient.EncodeTxResult>;
-encodeRevokeWithdrawTx(param: GraphQLClient.TxParam<GraphQLClient.RevokeWithdrawTx>): Promise<GraphQLClient.EncodeTxResult>;
-  signRevokeSwapTx(param: GraphQLClient.TxParam<GraphQLClient.RevokeSwapTx>): Promise<GraphQLClient.Transaction>;
-signWithdrawTokenTx(param: GraphQLClient.TxParam<GraphQLClient.WithdrawTokenTx>): Promise<GraphQLClient.Transaction>;
-signSetupSwapTx(param: GraphQLClient.TxParam<GraphQLClient.SetupSwapTx>): Promise<GraphQLClient.Transaction>;
-signAccountMigrateTx(param: GraphQLClient.TxParam<GraphQLClient.AccountMigrateTx>): Promise<GraphQLClient.Transaction>;
-signDeactivateProtocolTx(param: GraphQLClient.TxParam<GraphQLClient.DeactivateProtocolTx>): Promise<GraphQLClient.Transaction>;
-signDepositTokenTx(param: GraphQLClient.TxParam<GraphQLClient.DepositTokenTx>): Promise<GraphQLClient.Transaction>;
-signCreateAssetTx(param: GraphQLClient.TxParam<GraphQLClient.CreateAssetTx>): Promise<GraphQLClient.Transaction>;
-signPokeTx(param: GraphQLClient.TxParam<GraphQLClient.PokeTx>): Promise<GraphQLClient.Transaction>;
-signTransferTx(param: GraphQLClient.TxParam<GraphQLClient.TransferTx>): Promise<GraphQLClient.Transaction>;
-signRetrieveSwapTx(param: GraphQLClient.TxParam<GraphQLClient.RetrieveSwapTx>): Promise<GraphQLClient.Transaction>;
-signConsumeAssetTx(param: GraphQLClient.TxParam<GraphQLClient.ConsumeAssetTx>): Promise<GraphQLClient.Transaction>;
-signAcquireAssetTx(param: GraphQLClient.TxParam<GraphQLClient.AcquireAssetTx>): Promise<GraphQLClient.Transaction>;
-signApproveWithdrawTx(param: GraphQLClient.TxParam<GraphQLClient.ApproveWithdrawTx>): Promise<GraphQLClient.Transaction>;
-signDeployProtocolTx(param: GraphQLClient.TxParam<GraphQLClient.DeployProtocolTx>): Promise<GraphQLClient.Transaction>;
-signUpdateAssetTx(param: GraphQLClient.TxParam<GraphQLClient.UpdateAssetTx>): Promise<GraphQLClient.Transaction>;
-signDeclareTx(param: GraphQLClient.TxParam<GraphQLClient.DeclareTx>): Promise<GraphQLClient.Transaction>;
-signRefuelTx(param: GraphQLClient.TxParam<GraphQLClient.RefuelTx>): Promise<GraphQLClient.Transaction>;
-signActivateProtocolTx(param: GraphQLClient.TxParam<GraphQLClient.ActivateProtocolTx>): Promise<GraphQLClient.Transaction>;
-signUpgradeNodeTx(param: GraphQLClient.TxParam<GraphQLClient.UpgradeNodeTx>): Promise<GraphQLClient.Transaction>;
-signUpdateValidatorTx(param: GraphQLClient.TxParam<GraphQLClient.UpdateValidatorTx>): Promise<GraphQLClient.Transaction>;
-signUpdateConsensusParamsTx(param: GraphQLClient.TxParam<GraphQLClient.UpdateConsensusParamsTx>): Promise<GraphQLClient.Transaction>;
-signRevokeDelegateTx(param: GraphQLClient.TxParam<GraphQLClient.RevokeDelegateTx>): Promise<GraphQLClient.Transaction>;
-signExchangeTx(param: GraphQLClient.TxParam<GraphQLClient.ExchangeTx>): Promise<GraphQLClient.Transaction>;
-signDelegateTx(param: GraphQLClient.TxParam<GraphQLClient.DelegateTx>): Promise<GraphQLClient.Transaction>;
-signRevokeWithdrawTx(param: GraphQLClient.TxParam<GraphQLClient.RevokeWithdrawTx>): Promise<GraphQLClient.Transaction>;
-  multiSignExchangeTx(param: GraphQLClient.TxParam<GraphQLClient.ExchangeTx>): Promise<GraphQLClient.Transaction>;
-multiSignConsumeAssetTx(param: GraphQLClient.TxParam<GraphQLClient.ConsumeAssetTx>): Promise<GraphQLClient.Transaction>;
-multiSignDeclareTx(param: GraphQLClient.TxParam<GraphQLClient.DeclareTx>): Promise<GraphQLClient.Transaction>;
+  
+  
+  
+  
   getAccountState(params: GraphQLClient.GetAccountStateParams): GraphQLClient.QueryResult<GraphQLClient.ResponseGetAccountState>
 getAssetState(params: GraphQLClient.GetAssetStateParams): GraphQLClient.QueryResult<GraphQLClient.ResponseGetAssetState>
 getBlock(params: GraphQLClient.GetBlockParams): GraphQLClient.QueryResult<GraphQLClient.ResponseGetBlock>
@@ -411,76 +334,76 @@ export enum RoleType {
 }
 
 export enum StatusCode {
-  PROTOCOL_NOT_ACTIVATED,
-  ACCOUNT_MIGRATED,
-  INVALID_DEPOSIT_TARGET,
-  INSUFFICIENT_DELEGATION,
-  INSUFFICIENT_GAS,
-  INVALID_TX,
-  INVALID_WALLET,
-  INVALID_SIGNER_STATE,
-  INVALID_SWAP,
-  INVALID_PASSPHRASE,
-  RPC_CONNECTION_ERROR,
-  INVALID_FORGE_STATE,
-  INVALID_RECEIVER_STATE,
-  UNTRANSFERRABLE_ASSET,
-  NOENT,
-  INVALID_WITHDRAW_TX,
-  READONLY_ASSET,
-  INVALID_LOCK_STATUS,
-  INVALID_DELEGATION_TYPE_URL,
-  UNSUPPORTED_TX,
-  INVALID_ASSET,
-  SENDER_WITHDRAW_ITEMS_FULL,
-  EXPIRED_WALLET_TOKEN,
-  INVALID_DELEGATION_RULE,
-  EXPIRED_TX,
-  CONSENSUS_RPC_ERROR,
-  TOO_MANY_TXS,
-  EXPIRED_ASSET,
-  INTERNAL,
-  INVALID_EXPIRY_DATE,
-  STORAGE_RPC_ERROR,
-  INVALID_NONCE,
-  INVALID_CANDIDATE_STATE,
-  CONSUMED_ASSET,
-  WITHDRAW_ITEM_MISSING,
-  INVALID_SENDER_STATE,
-  INVALID_SIGNATURE,
-  INVALID_OWNER,
-  INVALID_CHAIN_TYPE,
-  INVALID_MULTISIG,
-  PROTOCOL_NOT_RUNNING,
-  INSUFFICIENT_FUND,
-  INVALID_TIME,
-  INVALID_WITHDRAWER,
-  UNSUPPORTED_STAKE,
-  INVALID_MONIKER,
-  INVALID_STAKE_STATE,
-  INVALID_SUBSCRIBE,
-  TIMEOUT,
-  BANNED_UNSTAKE,
-  INVALID_TX_SIZE,
-  INVALID_REQUEST,
-  PROTOCOL_NOT_PAUSED,
-  INVALID_DELEGATION,
-  INVALID_DEPOSIT_VALUE,
-  VALIDATOR_NOT_FOUND,
-  INVALID_CHAIN_ID,
-  INVALID_DEPOSIT,
-  INVALID_DID_TYPE,
-  INSUFFICIENT_DATA,
   INVALID_DEACTIVATION,
+  INSUFFICIENT_GAS,
+  INVALID_DEPOSIT_TARGET,
   EXCEED_DEPOSIT_CAP,
-  INVALID_CUSTODIAN,
+  INVALID_REQUEST,
+  INVALID_DELEGATION_TYPE_URL,
+  INVALID_SIGNATURE,
+  EXPIRED_ASSET,
+  INVALID_OWNER,
+  INVALID_NONCE,
+  UNSUPPORTED_STAKE,
+  INVALID_FORGE_STATE,
+  SENDER_WITHDRAW_ITEMS_FULL,
+  PROTOCOL_NOT_RUNNING,
+  INVALID_CHAIN_ID,
+  VALIDATOR_NOT_FOUND,
+  INVALID_PASSPHRASE,
   FORBIDDEN,
-  OK,
+  ACCOUNT_MIGRATED,
+  RPC_CONNECTION_ERROR,
+  READONLY_ASSET,
+  INVALID_TX_SIZE,
+  INVALID_DEPOSIT,
+  PROTOCOL_NOT_PAUSED,
+  INVALID_SUBSCRIBE,
+  INVALID_DEPOSIT_VALUE,
+  INVALID_TIME,
+  INVALID_DID_TYPE,
+  INVALID_TX,
+  CONSUMED_ASSET,
+  PROTOCOL_NOT_ACTIVATED,
+  TOO_MANY_TXS,
+  WITHDRAW_ITEM_MISSING,
+  INVALID_DELEGATION_RULE,
+  UNTRANSFERRABLE_ASSET,
+  INTERNAL,
+  INVALID_SIGNER_STATE,
   SENDER_NOT_AUTHORIZED,
+  INVALID_DELEGATION,
+  INVALID_RECEIVER_STATE,
+  UNSUPPORTED_TX,
+  NOENT,
+  INVALID_WALLET,
+  EXPIRED_TX,
+  INVALID_CHAIN_TYPE,
+  VALIDATOR_NOT_CHANGED,
+  INVALID_WITHDRAW_TX,
+  INVALID_STAKE_STATE,
+  TIMEOUT,
+  INVALID_LOCK_STATUS,
+  INVALID_WITHDRAWER,
+  INVALID_MULTISIG,
   INVALID_HASHKEY,
   INSUFFICIENT_STAKE,
-  VALIDATOR_NOT_CHANGED,
   INVALID_DEPOSITOR,
+  INVALID_ASSET,
+  INSUFFICIENT_DATA,
+  BANNED_UNSTAKE,
+  CONSENSUS_RPC_ERROR,
+  INSUFFICIENT_FUND,
+  INVALID_MONIKER,
+  INVALID_SWAP,
+  INSUFFICIENT_DELEGATION,
+  INVALID_EXPIRY_DATE,
+  INVALID_CUSTODIAN,
+  OK,
+  INVALID_CANDIDATE_STATE,
+  INVALID_SENDER_STATE,
+  STORAGE_RPC_ERROR,
+  EXPIRED_WALLET_TOKEN,
 }
 
 export enum UpgradeAction {
@@ -1289,47 +1212,47 @@ export interface ResponseStopSimulator {
 }
 
 export interface ResponseSubscribe {
-  upgradeNode: GraphQLClient.Transaction;
-  activateProtocol: GraphQLClient.Transaction;
   depositToken: GraphQLClient.Transaction;
-  createAsset: GraphQLClient.Transaction;
-  beginBlock: GraphQLClient.RequestBeginBlock;
-  delegate: GraphQLClient.Transaction;
-  accountState: GraphQLClient.AccountState;
-  deployProtocol: GraphQLClient.Transaction;
-  declare: GraphQLClient.Transaction;
-  withdrawToken: GraphQLClient.Transaction;
-  sysUpgrade: GraphQLClient.Transaction;
-  code: GraphQLClient.StatusCode;
-  retrieveSwap: GraphQLClient.Transaction;
-  acquireAsset: GraphQLClient.Transaction;
-  accountMigrate: GraphQLClient.Transaction;
-  revokeSwap: GraphQLClient.Transaction;
-  updateConsensusParams: GraphQLClient.Transaction;
-  updateValidator: GraphQLClient.Transaction;
-  updateAsset: GraphQLClient.Transaction;
-  stakeState: GraphQLClient.StakeState;
+  revokeDelegate: GraphQLClient.Transaction;
   topic: string;
-  swapState: GraphQLClient.SwapState;
-  declareFile: GraphQLClient.Transaction;
-  revokeWithdraw: GraphQLClient.Transaction;
+  accountState: GraphQLClient.AccountState;
+  delegate: GraphQLClient.Transaction;
+  accountMigrate: GraphQLClient.Transaction;
+  code: GraphQLClient.StatusCode;
   forgeState: GraphQLClient.ForgeState;
-  delegateState: GraphQLClient.DelegateState;
-  consumeAsset: GraphQLClient.Transaction;
+  deactivateProtocol: GraphQLClient.Transaction;
+  beginBlock: GraphQLClient.RequestBeginBlock;
+  retrieveSwap: GraphQLClient.Transaction;
   protocolState: GraphQLClient.ProtocolState;
   consensusUpgrade: GraphQLClient.Transaction;
-  transfer: GraphQLClient.Transaction;
-  exchange: GraphQLClient.Transaction;
-  endBlock: GraphQLClient.RequestEndBlock;
+  withdrawToken: GraphQLClient.Transaction;
+  declareFile: GraphQLClient.Transaction;
   approveWithdraw: GraphQLClient.Transaction;
-  deactivateProtocol: GraphQLClient.Transaction;
+  delegateState: GraphQLClient.DelegateState;
+  transfer: GraphQLClient.Transaction;
+  declare: GraphQLClient.Transaction;
+  stakeState: GraphQLClient.StakeState;
+  updateConsensusParams: GraphQLClient.Transaction;
   revoke: GraphQLClient.Transaction;
-  stake: GraphQLClient.Transaction;
-  revokeDelegate: GraphQLClient.Transaction;
-  confirm: GraphQLClient.Transaction;
-  setupSwap: GraphQLClient.Transaction;
-  poke: GraphQLClient.Transaction;
+  revokeSwap: GraphQLClient.Transaction;
+  exchange: GraphQLClient.Transaction;
+  updateAsset: GraphQLClient.Transaction;
+  swapState: GraphQLClient.SwapState;
   assetState: GraphQLClient.AssetState;
+  stake: GraphQLClient.Transaction;
+  createAsset: GraphQLClient.Transaction;
+  setupSwap: GraphQLClient.Transaction;
+  upgradeNode: GraphQLClient.Transaction;
+  confirm: GraphQLClient.Transaction;
+  revokeWithdraw: GraphQLClient.Transaction;
+  deployProtocol: GraphQLClient.Transaction;
+  sysUpgrade: GraphQLClient.Transaction;
+  updateValidator: GraphQLClient.Transaction;
+  activateProtocol: GraphQLClient.Transaction;
+  endBlock: GraphQLClient.RequestEndBlock;
+  acquireAsset: GraphQLClient.Transaction;
+  poke: GraphQLClient.Transaction;
+  consumeAsset: GraphQLClient.Transaction;
 }
 
 export interface ResponseUnsubscribe {

@@ -157,9 +157,6 @@ declare class GraphQLClient {
   createAssetFactory(params: object, extra: any): Promise<string>;
   acquireAsset(params: object, extra: any): Promise<string>;
   upgradeNode(params: object, extra: any): Promise<string>;
-  deployContract(params: object, extra: any): Promise<string>;
-  activateContract(params: object, extra: any): Promise<string>;
-  deactivateContract(params: object, extra: any): Promise<string>;
   setupSwap(params: object, extra: any): Promise<string>;
   retrieveSwap(params: object, extra: any): Promise<string>;
   revokeSwap(params: object, extra: any): Promise<string>;

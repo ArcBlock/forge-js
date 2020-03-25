@@ -35,9 +35,6 @@ Please note that, due to internal implementation of google-protobuf, all `repeat
     * [.createAssetFactory(params, extra)](#GRpcClient+createAssetFactory) ⇒ <code>Promise</code>
     * [.acquireAsset(params, extra)](#GRpcClient+acquireAsset) ⇒ <code>Promise</code>
     * [.upgradeNode(params, extra)](#GRpcClient+upgradeNode) ⇒ <code>Promise</code>
-    * [.deployContract(params, extra)](#GRpcClient+deployContract) ⇒ <code>Promise</code>
-    * [.activateContract(params, extra)](#GRpcClient+activateContract) ⇒ <code>Promise</code>
-    * [.deactivateContract(params, extra)](#GRpcClient+deactivateContract) ⇒ <code>Promise</code>
     * [.setupSwap(params, extra)](#GRpcClient+setupSwap) ⇒ <code>Promise</code>
     * [.retrieveSwap(params, extra)](#GRpcClient+retrieveSwap) ⇒ <code>Promise</code>
     * [.revokeSwap(params, extra)](#GRpcClient+revokeSwap) ⇒ <code>Promise</code>
@@ -698,57 +695,6 @@ Do an on-chain upgrade, should be used with forge-cli
 | params.delegator | <code>string</code>       | who authorized this transaction                              |
 | params.wallet    | <code>WalletObject</code> | the wallet to sign the transaction                           |
 | extra            | <code>object</code>       | other param to underlying client implementation              |
-
-<a name="GRpcClient+deployContract"></a>
-
-### gRpcClient.deployContract(params, extra) ⇒ <code>Promise</code>
-
-Deploy a contract to a running chain node, requires moderator privilege
-
-**Kind**: instance method of [<code>GRpcClient</code>](#GRpcClient)  
-**Returns**: <code>Promise</code> - the `transactionHash` once resolved  
-
-| Param            | Type                      | Description                                                 |
-| ---------------- | ------------------------- | ----------------------------------------------------------- |
-| params           | <code>object</code>       |                                                             |
-| params.payload   | <code>object</code>       | the contract payload, usually from `forge contract:compile` |
-| params.delegator | <code>string</code>       | who authorized this transaction                             |
-| params.wallet    | <code>WalletObject</code> | the wallet to sign the transaction                          |
-| extra            | <code>object</code>       | other param to underlying client implementation             |
-
-<a name="GRpcClient+activateContract"></a>
-
-### gRpcClient.activateContract(params, extra) ⇒ <code>Promise</code>
-
-Activate an previously paused/disabled contract
-
-**Kind**: instance method of [<code>GRpcClient</code>](#GRpcClient)  
-**Returns**: <code>Promise</code> - the `transactionHash` once resolved  
-
-| Param            | Type                      | Description                                     |
-| ---------------- | ------------------------- | ----------------------------------------------- |
-| params           | <code>object</code>       |                                                 |
-| params.address   | <code>string</code>       | the contract address to activate                |
-| params.delegator | <code>string</code>       | who authorized this transaction                 |
-| params.wallet    | <code>WalletObject</code> | the wallet to sign the transaction              |
-| extra            | <code>object</code>       | other param to underlying client implementation |
-
-<a name="GRpcClient+deactivateContract"></a>
-
-### gRpcClient.deactivateContract(params, extra) ⇒ <code>Promise</code>
-
-Deactivate an previously running/enabled contract
-
-**Kind**: instance method of [<code>GRpcClient</code>](#GRpcClient)  
-**Returns**: <code>Promise</code> - the `transactionHash` once resolved  
-
-| Param            | Type                      | Description                                     |
-| ---------------- | ------------------------- | ----------------------------------------------- |
-| params           | <code>object</code>       |                                                 |
-| params.address   | <code>string</code>       | the contract address to deactivate              |
-| params.delegator | <code>string</code>       | who authorized this transaction                 |
-| params.wallet    | <code>WalletObject</code> | the wallet to sign the transaction              |
-| extra            | <code>object</code>       | other param to underlying client implementation |
 
 <a name="GRpcClient+setupSwap"></a>
 
@@ -2123,7 +2069,7 @@ Structure of GRpcClient.ResponseGetTx
       }
     ],
     "code": 0,
-    "time": "2020-03-25T07:53:41.128Z"
+    "time": "2020-03-25T08:01:46.093Z"
   }
 }
 ```
@@ -2167,7 +2113,7 @@ Structure of GRpcClient.ResponseGetBlock
   "block": {
     "height": 5,
     "numTxs": 2,
-    "time": "2020-03-25T07:53:41.122Z",
+    "time": "2020-03-25T08:01:46.088Z",
     "appHash": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
     "proposer": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
     "txs": [
@@ -2221,7 +2167,7 @@ Structure of GRpcClient.ResponseGetBlock
           }
         ],
         "code": 0,
-        "time": "2020-03-25T07:53:41.122Z"
+        "time": "2020-03-25T08:01:46.089Z"
       },
       {
         "tx": {
@@ -2273,7 +2219,7 @@ Structure of GRpcClient.ResponseGetBlock
           }
         ],
         "code": 0,
-        "time": "2020-03-25T07:53:41.122Z"
+        "time": "2020-03-25T08:01:46.089Z"
       }
     ],
     "totalTxs": 5,
@@ -2328,7 +2274,7 @@ Structure of GRpcClient.ResponseGetBlock
           }
         ],
         "code": 0,
-        "time": "2020-03-25T07:53:41.122Z"
+        "time": "2020-03-25T08:01:46.089Z"
       },
       {
         "tx": {
@@ -2380,7 +2326,7 @@ Structure of GRpcClient.ResponseGetBlock
           }
         ],
         "code": 0,
-        "time": "2020-03-25T07:53:41.122Z"
+        "time": "2020-03-25T08:01:46.089Z"
       }
     ],
     "txsHashes": [
@@ -2477,7 +2423,7 @@ Structure of GRpcClient.ResponseGetBlocks
     {
       "height": 5,
       "numTxs": 2,
-      "time": "2020-03-25T07:53:41.122Z",
+      "time": "2020-03-25T08:01:46.089Z",
       "appHash": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
       "proposer": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
       "totalTxs": 5,
@@ -2510,7 +2456,7 @@ Structure of GRpcClient.ResponseGetBlocks
     {
       "height": 5,
       "numTxs": 2,
-      "time": "2020-03-25T07:53:41.123Z",
+      "time": "2020-03-25T08:01:46.089Z",
       "appHash": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
       "proposer": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
       "totalTxs": 5,
@@ -2691,8 +2637,8 @@ Structure of GRpcClient.ResponseGetAccountState
     "context": {
       "genesisTx": "arcblock",
       "renaissanceTx": "arcblock",
-      "genesisTime": "2020-03-25T07:53:41.124Z",
-      "renaissanceTime": "2020-03-25T07:53:41.124Z"
+      "genesisTime": "2020-03-25T08:01:46.090Z",
+      "renaissanceTime": "2020-03-25T08:01:46.090Z"
     },
     "issuer": "arcblock",
     "migratedTo": [
@@ -2805,7 +2751,7 @@ Structure of GRpcClient.ResponseGetAssetState
     "readonly": true,
     "transferrable": true,
     "ttl": 2,
-    "consumedTime": "2020-03-25T07:53:41.124Z",
+    "consumedTime": "2020-03-25T08:01:46.090Z",
     "issuer": "arcblock",
     "parent": "arcblock",
     "stake": {
@@ -2833,8 +2779,8 @@ Structure of GRpcClient.ResponseGetAssetState
     "context": {
       "genesisTx": "arcblock",
       "renaissanceTx": "arcblock",
-      "genesisTime": "2020-03-25T07:53:41.124Z",
-      "renaissanceTime": "2020-03-25T07:53:41.124Z"
+      "genesisTime": "2020-03-25T08:01:46.090Z",
+      "renaissanceTime": "2020-03-25T08:01:46.090Z"
     },
     "data": {
       "type": "string",
@@ -2943,8 +2889,8 @@ Structure of GRpcClient.ResponseGetProtocolState
     "context": {
       "genesisTx": "arcblock",
       "renaissanceTx": "arcblock",
-      "genesisTime": "2020-03-25T07:53:41.125Z",
-      "renaissanceTime": "2020-03-25T07:53:41.125Z"
+      "genesisTime": "2020-03-25T08:01:46.091Z",
+      "renaissanceTime": "2020-03-25T08:01:46.091Z"
     },
     "data": {
       "type": "string",
@@ -3005,8 +2951,8 @@ Structure of GRpcClient.ResponseGetStakeState
     "context": {
       "genesisTx": "arcblock",
       "renaissanceTx": "arcblock",
-      "genesisTime": "2020-03-25T07:53:41.125Z",
-      "renaissanceTime": "2020-03-25T07:53:41.125Z"
+      "genesisTime": "2020-03-25T08:01:46.091Z",
+      "renaissanceTime": "2020-03-25T08:01:46.091Z"
     },
     "data": {
       "type": "string",
@@ -3108,8 +3054,8 @@ Structure of GRpcClient.ResponseGetForgeState
         "context": {
           "genesisTx": "arcblock",
           "renaissanceTx": "arcblock",
-          "genesisTime": "2020-03-25T07:53:41.124Z",
-          "renaissanceTime": "2020-03-25T07:53:41.124Z"
+          "genesisTime": "2020-03-25T08:01:46.090Z",
+          "renaissanceTime": "2020-03-25T08:01:46.090Z"
         }
       }
     },
@@ -3245,8 +3191,8 @@ Structure of GRpcClient.ResponseGetSwapState
     "context": {
       "genesisTx": "arcblock",
       "renaissanceTx": "arcblock",
-      "genesisTime": "2020-03-25T07:53:41.125Z",
-      "renaissanceTime": "2020-03-25T07:53:41.125Z"
+      "genesisTime": "2020-03-25T08:01:46.091Z",
+      "renaissanceTime": "2020-03-25T08:01:46.091Z"
     }
   }
 }
@@ -3307,8 +3253,8 @@ Structure of GRpcClient.ResponseGetDelegateState
     "context": {
       "genesisTx": "arcblock",
       "renaissanceTx": "arcblock",
-      "genesisTime": "2020-03-25T07:53:41.125Z",
-      "renaissanceTime": "2020-03-25T07:53:41.125Z"
+      "genesisTime": "2020-03-25T08:01:46.091Z",
+      "renaissanceTime": "2020-03-25T08:01:46.091Z"
     },
     "data": {
       "type": "string",
@@ -3473,7 +3419,7 @@ Structure of GRpcClient.ResponseGetChainInfo
     "appHash": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
     "blockHash": {},
     "blockHeight": 5,
-    "blockTime": "2020-03-25T07:53:41.123Z",
+    "blockTime": "2020-03-25T08:01:46.089Z",
     "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
     "votingPower": 5,
     "totalTxs": 5,
@@ -3526,7 +3472,7 @@ Structure of GRpcClient.ResponseGetNodeInfo
     "appHash": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
     "blockHash": {},
     "blockHeight": 5,
-    "blockTime": "2020-03-25T07:53:41.123Z",
+    "blockTime": "2020-03-25T08:01:46.089Z",
     "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
     "votingPower": 5,
     "totalTxs": 5,
@@ -3639,7 +3585,7 @@ Structure of GRpcClient.ResponseSearch
         }
       ],
       "code": 0,
-      "time": "2020-03-25T07:53:41.123Z"
+      "time": "2020-03-25T08:01:46.090Z"
     },
     {
       "tx": {
@@ -3691,7 +3637,7 @@ Structure of GRpcClient.ResponseSearch
         }
       ],
       "code": 0,
-      "time": "2020-03-25T07:53:41.123Z"
+      "time": "2020-03-25T08:01:46.090Z"
     }
   ]
 }
@@ -5082,8 +5028,8 @@ Structure of GRpcClient.ResponseListSwap
       "context": {
         "genesisTx": "arcblock",
         "renaissanceTx": "arcblock",
-        "genesisTime": "2020-03-25T07:53:41.127Z",
-        "renaissanceTime": "2020-03-25T07:53:41.127Z"
+        "genesisTime": "2020-03-25T08:01:46.092Z",
+        "renaissanceTime": "2020-03-25T08:01:46.092Z"
       }
     },
     {
@@ -5101,8 +5047,8 @@ Structure of GRpcClient.ResponseListSwap
       "context": {
         "genesisTx": "arcblock",
         "renaissanceTx": "arcblock",
-        "genesisTime": "2020-03-25T07:53:41.127Z",
-        "renaissanceTime": "2020-03-25T07:53:41.127Z"
+        "genesisTime": "2020-03-25T08:01:46.092Z",
+        "renaissanceTime": "2020-03-25T08:01:46.092Z"
       }
     }
   ]
@@ -7027,7 +6973,7 @@ Structure of GRpcClient.ExchangeTx
       "arcblock"
     ]
   },
-  "expiredAt": "2020-03-25T07:53:41.131Z",
+  "expiredAt": "2020-03-25T08:01:46.095Z",
   "data": {
     "type": "string",
     "value": "ABCD 1234"
