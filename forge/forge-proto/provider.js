@@ -206,7 +206,9 @@ module.exports = function createProvider(proto, json, urls = {}) {
      */
     messages,
 
-    transactions: enums.SupportedTxs.filter(x => ['DeployProtocolTx'].includes(x) === false),
+    transactions: enums.SupportedTxs.filter(
+      x => ['DeployProtocolTx', 'ActivateProtocolTx', 'DeactivateProtocolTx'].includes(x) === false
+    ),
     multiSignTxs: ['ExchangeTx', 'ConsumeAssetTx', 'DeclareTx', 'DeclareNodeTx'].filter(x => enums.SupportedTxs.includes(x)), // prettier-ignore
 
     stakes: enums.SupportedStakes,
