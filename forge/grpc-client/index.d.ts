@@ -45,9 +45,6 @@ consumeAsset(params: object, extra: any): Promise<string>;
 createAssetFactory(params: object, extra: any): Promise<string>;
 acquireAsset(params: object, extra: any): Promise<string>;
 upgradeNode(params: object, extra: any): Promise<string>;
-deployContract(params: object, extra: any): Promise<string>;
-activateContract(params: object, extra: any): Promise<string>;
-deactivateContract(params: object, extra: any): Promise<string>;
 setupSwap(params: object, extra: any): Promise<string>;
 retrieveSwap(params: object, extra: any): Promise<string>;
 revokeSwap(params: object, extra: any): Promise<string>;
@@ -71,14 +68,10 @@ getValidatorsInfo(request: forge_abi.RequestGetValidatorsInfo): GRpcClient.Unary
 getConfig(request: forge_abi.RequestGetConfig): GRpcClient.UnaryResult<forge_abi.ResponseGetConfig>;
 subscribe(request: forge_abi.RequestSubscribe): GRpcClient.StreamResult<forge_abi.ResponseSubscribe>;
 unsubscribe(request: forge_abi.RequestUnsubscribe): GRpcClient.UnaryResult<forge_abi.ResponseUnsubscribe>;
-storeFile(request: forge_abi.RequestStoreFile | Array<forge_abi.RequestStoreFile>): GRpcClient.UnaryResult<forge_abi.ResponseStoreFile>;
-loadFile(request: forge_abi.RequestLoadFile): GRpcClient.StreamResult<forge_abi.ResponseLoadFile>;
-pinFile(request: forge_abi.RequestPinFile): GRpcClient.UnaryResult<forge_abi.ResponsePinFile>;
+
 getAccountState(request: forge_abi.RequestGetAccountState | Array<forge_abi.RequestGetAccountState>): GRpcClient.StreamResult<forge_abi.ResponseGetAccountState>;
 getAssetState(request: forge_abi.RequestGetAssetState | Array<forge_abi.RequestGetAssetState>): GRpcClient.StreamResult<forge_abi.ResponseGetAssetState>;
 getForgeState(request: forge_abi.RequestGetForgeState): GRpcClient.UnaryResult<forge_abi.ResponseGetForgeState>;
-getProtocolState(request: forge_abi.RequestGetProtocolState | Array<forge_abi.RequestGetProtocolState>): GRpcClient.StreamResult<forge_abi.ResponseGetProtocolState>;
-getStakeState(request: forge_abi.RequestGetStakeState | Array<forge_abi.RequestGetStakeState>): GRpcClient.StreamResult<forge_abi.ResponseGetStakeState>;
 getSwapState(request: forge_abi.RequestGetSwapState | Array<forge_abi.RequestGetSwapState>): GRpcClient.StreamResult<forge_abi.ResponseGetSwapState>;
 getDelegateState(request: forge_abi.RequestGetDelegateState | Array<forge_abi.RequestGetDelegateState>): GRpcClient.StreamResult<forge_abi.ResponseGetDelegateState>;
 declareNode(request: forge_abi.RequestDeclareNode): GRpcClient.UnaryResult<forge_abi.ResponseDeclareNode>;
@@ -93,87 +86,72 @@ listBlocks(request: forge_abi.RequestListBlocks): GRpcClient.UnaryResult<forge_a
 getHealthStatus(request: forge_abi.RequestGetHealthStatus): GRpcClient.UnaryResult<forge_abi.ResponseGetHealthStatus>;
 listSwap(request: forge_abi.RequestListSwap): GRpcClient.UnaryResult<forge_abi.ResponseListSwap>;
 getSwapStatistics(request: forge_abi.RequestGetSwapStatistics): GRpcClient.UnaryResult<forge_abi.ResponseGetSwapStatistics>;
-encodeConsensusUpgradeTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.ResponseSendTx>;
-encodeDeployProtocolTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.ResponseSendTx>;
-encodeSysUpgradeTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.ResponseSendTx>;
-encodeWithdrawTokenTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.ResponseSendTx>;
-encodeTransferTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.ResponseSendTx>;
 encodeAccountMigrateTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.ResponseSendTx>;
-encodeDeclareTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.ResponseSendTx>;
-encodeRevokeDelegateTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.ResponseSendTx>;
-encodeDeactivateProtocolTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.ResponseSendTx>;
-encodeRevokeWithdrawTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.ResponseSendTx>;
-encodeCreateAssetTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.ResponseSendTx>;
-encodeRetrieveSwapTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.ResponseSendTx>;
-encodeConsumeAssetTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.ResponseSendTx>;
-encodePokeTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.ResponseSendTx>;
-encodeUpdateAssetTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.ResponseSendTx>;
-encodeExchangeTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.ResponseSendTx>;
-encodeUpdateConsensusParamsTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.ResponseSendTx>;
-encodeRevokeSwapTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.ResponseSendTx>;
-encodeActivateProtocolTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.ResponseSendTx>;
-encodeApproveWithdrawTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.ResponseSendTx>;
-encodeUpgradeNodeTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.ResponseSendTx>;
-encodeUpdateValidatorTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.ResponseSendTx>;
 encodeAcquireAssetTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.ResponseSendTx>;
+encodeApproveWithdrawTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.ResponseSendTx>;
+encodeConsumeAssetTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.ResponseSendTx>;
+encodeCreateAssetTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.ResponseSendTx>;
+encodeDeclareTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.ResponseSendTx>;
 encodeDelegateTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.ResponseSendTx>;
 encodeDepositTokenTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.ResponseSendTx>;
-encodeSetupSwapTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.ResponseSendTx>;
+encodeExchangeTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.ResponseSendTx>;
+encodePokeTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.ResponseSendTx>;
 encodeRefuelTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.ResponseSendTx>;
-sendConsensusUpgradeTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.EncodeTxResult>;
-sendDeployProtocolTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.EncodeTxResult>;
-sendSysUpgradeTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.EncodeTxResult>;
-sendWithdrawTokenTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.EncodeTxResult>;
-sendTransferTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.EncodeTxResult>;
+encodeRetrieveSwapTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.ResponseSendTx>;
+encodeRevokeDelegateTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.ResponseSendTx>;
+encodeRevokeSwapTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.ResponseSendTx>;
+encodeRevokeWithdrawTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.ResponseSendTx>;
+encodeSetupSwapTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.ResponseSendTx>;
+encodeTransferTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.ResponseSendTx>;
+encodeUpdateAssetTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.ResponseSendTx>;
+encodeUpdateConsensusParamsTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.ResponseSendTx>;
+encodeUpdateValidatorTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.ResponseSendTx>;
+encodeUpgradeNodeTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.ResponseSendTx>;
+encodeWithdrawTokenTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.ResponseSendTx>;
 sendAccountMigrateTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.EncodeTxResult>;
-sendDeclareTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.EncodeTxResult>;
-sendRevokeDelegateTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.EncodeTxResult>;
-sendDeactivateProtocolTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.EncodeTxResult>;
-sendRevokeWithdrawTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.EncodeTxResult>;
-sendCreateAssetTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.EncodeTxResult>;
-sendRetrieveSwapTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.EncodeTxResult>;
-sendConsumeAssetTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.EncodeTxResult>;
-sendPokeTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.EncodeTxResult>;
-sendUpdateAssetTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.EncodeTxResult>;
-sendExchangeTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.EncodeTxResult>;
-sendUpdateConsensusParamsTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.EncodeTxResult>;
-sendRevokeSwapTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.EncodeTxResult>;
-sendActivateProtocolTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.EncodeTxResult>;
-sendApproveWithdrawTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.EncodeTxResult>;
-sendUpgradeNodeTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.EncodeTxResult>;
-sendUpdateValidatorTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.EncodeTxResult>;
 sendAcquireAssetTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.EncodeTxResult>;
+sendApproveWithdrawTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.EncodeTxResult>;
+sendConsumeAssetTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.EncodeTxResult>;
+sendCreateAssetTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.EncodeTxResult>;
+sendDeclareTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.EncodeTxResult>;
 sendDelegateTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.EncodeTxResult>;
 sendDepositTokenTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.EncodeTxResult>;
-sendSetupSwapTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.EncodeTxResult>;
+sendExchangeTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.EncodeTxResult>;
+sendPokeTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.EncodeTxResult>;
 sendRefuelTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.EncodeTxResult>;
-signConsensusUpgradeTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.Transaction>;
-signDeployProtocolTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.Transaction>;
-signSysUpgradeTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.Transaction>;
-signWithdrawTokenTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.Transaction>;
-signTransferTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.Transaction>;
+sendRetrieveSwapTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.EncodeTxResult>;
+sendRevokeDelegateTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.EncodeTxResult>;
+sendRevokeSwapTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.EncodeTxResult>;
+sendRevokeWithdrawTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.EncodeTxResult>;
+sendSetupSwapTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.EncodeTxResult>;
+sendTransferTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.EncodeTxResult>;
+sendUpdateAssetTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.EncodeTxResult>;
+sendUpdateConsensusParamsTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.EncodeTxResult>;
+sendUpdateValidatorTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.EncodeTxResult>;
+sendUpgradeNodeTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.EncodeTxResult>;
+sendWithdrawTokenTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.EncodeTxResult>;
 signAccountMigrateTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.Transaction>;
-signDeclareTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.Transaction>;
-signRevokeDelegateTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.Transaction>;
-signDeactivateProtocolTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.Transaction>;
-signRevokeWithdrawTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.Transaction>;
-signCreateAssetTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.Transaction>;
-signRetrieveSwapTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.Transaction>;
-signConsumeAssetTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.Transaction>;
-signPokeTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.Transaction>;
-signUpdateAssetTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.Transaction>;
-signExchangeTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.Transaction>;
-signUpdateConsensusParamsTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.Transaction>;
-signRevokeSwapTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.Transaction>;
-signActivateProtocolTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.Transaction>;
-signApproveWithdrawTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.Transaction>;
-signUpgradeNodeTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.Transaction>;
-signUpdateValidatorTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.Transaction>;
 signAcquireAssetTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.Transaction>;
+signApproveWithdrawTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.Transaction>;
+signConsumeAssetTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.Transaction>;
+signCreateAssetTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.Transaction>;
+signDeclareTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.Transaction>;
 signDelegateTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.Transaction>;
 signDepositTokenTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.Transaction>;
-signSetupSwapTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.Transaction>;
+signExchangeTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.Transaction>;
+signPokeTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.Transaction>;
 signRefuelTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.Transaction>;
+signRetrieveSwapTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.Transaction>;
+signRevokeDelegateTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.Transaction>;
+signRevokeSwapTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.Transaction>;
+signRevokeWithdrawTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.Transaction>;
+signSetupSwapTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.Transaction>;
+signTransferTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.Transaction>;
+signUpdateAssetTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.Transaction>;
+signUpdateConsensusParamsTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.Transaction>;
+signUpdateValidatorTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.Transaction>;
+signUpgradeNodeTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.Transaction>;
+signWithdrawTokenTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.Transaction>;
 multiSignExchangeTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.Transaction>;
 multiSignConsumeAssetTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.Transaction>;
 multiSignDeclareTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.Transaction>;
@@ -255,7 +233,6 @@ export enum StatusCode {
   FORBIDDEN = 403,
   INTERNAL = 500,
   TIMEOUT = 504,
-  DUPLICATE_TETHER = 48,
 }
 
 export enum KeyType {
@@ -291,7 +268,6 @@ export enum RoleType {
   ROLE_GROUP = 9,
   ROLE_TX = 10,
   ROLE_ANY = 63,
-  ROLE_TETHER = 11,
 }
 
 export enum UpgradeType {
@@ -418,28 +394,6 @@ export interface ResponseGetAssetState {
   state: forge_abi.AssetState;
 }
 
-export interface RequestGetProtocolState {
-  address: string;
-  keys: Array<string>;
-  height: number;
-}
-
-export interface ResponseGetProtocolState {
-  code: forge_abi.StatusCode;
-  state: forge_abi.ProtocolState;
-}
-
-export interface RequestGetStakeState {
-  address: string;
-  keys: Array<string>;
-  height: number;
-}
-
-export interface ResponseGetStakeState {
-  code: forge_abi.StatusCode;
-  state: forge_abi.StakeState;
-}
-
 export interface RequestGetForgeState {
   keys: Array<string>;
   height: number;
@@ -470,32 +424,6 @@ export interface RequestGetDelegateState {
 export interface ResponseGetDelegateState {
   code: forge_abi.StatusCode;
   state: forge_abi.DelegateState;
-}
-
-export interface RequestStoreFile {
-  chunk: Uint8Array;
-}
-
-export interface ResponseStoreFile {
-  code: forge_abi.StatusCode;
-  hash: string;
-}
-
-export interface RequestLoadFile {
-  hash: string;
-}
-
-export interface ResponseLoadFile {
-  code: forge_abi.StatusCode;
-  chunk: Uint8Array;
-}
-
-export interface RequestPinFile {
-  hash: string;
-}
-
-export interface ResponsePinFile {
-  code: forge_abi.StatusCode;
 }
 
 export interface RequestGetChainInfo {
@@ -567,18 +495,14 @@ export interface ResponseSubscribe {
   confirm: forge_abi.Transaction;
   createAsset: forge_abi.Transaction;
   exchange: forge_abi.Transaction;
-  revoke: forge_abi.Transaction;
   beginBlock: abci_vendor.RequestBeginBlock;
   endBlock: abci_vendor.RequestEndBlock;
   declare: forge_abi.Transaction;
   updateAsset: forge_abi.Transaction;
   consensusUpgrade: forge_abi.Transaction;
-  declareFile: forge_abi.Transaction;
   sysUpgrade: forge_abi.Transaction;
   stake: forge_abi.Transaction;
   delegate: forge_abi.Transaction;
-  activateProtocol: forge_abi.Transaction;
-  deactivateProtocol: forge_abi.Transaction;
   revokeDelegate: forge_abi.Transaction;
   depositToken: forge_abi.Transaction;
   withdrawToken: forge_abi.Transaction;
@@ -588,7 +512,6 @@ export interface ResponseSubscribe {
   revokeSwap: forge_abi.Transaction;
   retrieveSwap: forge_abi.Transaction;
   poke: forge_abi.Transaction;
-  deployProtocol: forge_abi.Transaction;
   consumeAsset: forge_abi.Transaction;
   acquireAsset: forge_abi.Transaction;
   upgradeNode: forge_abi.Transaction;
@@ -597,8 +520,6 @@ export interface ResponseSubscribe {
   accountState: forge_abi.AccountState;
   assetState: forge_abi.AssetState;
   forgeState: forge_abi.ForgeState;
-  stakeState: forge_abi.StakeState;
-  protocolState: forge_abi.ProtocolState;
   delegateState: forge_abi.DelegateState;
   swapState: forge_abi.SwapState;
 }
@@ -1116,9 +1037,6 @@ export interface TokenSwapConfig {
   revokeCommissionRate: number;
   minCommission: forge_abi.BigUint;
   maxCommission: forge_abi.BigUint;
-  withdrawInterval: number;
-  commission: forge_abi.BigUint;
-  revokeCommission: number;
 }
 
 export interface Evidence {
@@ -1267,6 +1185,18 @@ export interface DelegateState {
   data: google.protobuf.Any;
 }
 
+export interface AssetFactoryState {
+  description: string;
+  limit: number;
+  price: forge_abi.BigUint;
+  template: string;
+  allowedSpecArgs: Array<string>;
+  assetName: string;
+  attributes: forge_abi.AssetAttributes;
+  numCreated: number;
+  data: google.protobuf.Any;
+}
+
 export interface CodeInfo {
   checksum: Uint8Array;
   binary: Uint8Array;
@@ -1292,18 +1222,175 @@ export interface DeployProtocolTx {
   data: google.protobuf.Any;
 }
 
-export interface ConsensusUpgradeTx {
-  validators: Array<forge_abi.Validator>;
-  maxBytes: number;
-  maxGas: number;
-  maxValidators: number;
-  maxCandidates: number;
+export interface AccountMigrateTx {
+  pk: Uint8Array;
+  type: forge_abi.WalletType;
+  address: string;
   data: google.protobuf.Any;
 }
 
-export interface SysUpgradeTx {
-  task: forge_abi.UpgradeTask;
-  gracePeriod: number;
+export interface DeclareTx {
+  moniker: string;
+  issuer: string;
+  data: google.protobuf.Any;
+}
+
+export interface DelegateTx {
+  address: string;
+  to: string;
+  ops: Array<forge_abi.DelegateOp>;
+  data: google.protobuf.Any;
+}
+
+export interface DelegateOp {
+  typeUrl: string;
+  rules: Array<string>;
+}
+
+export interface RevokeDelegateTx {
+  address: string;
+  to: string;
+  typeUrls: Array<string>;
+  data: google.protobuf.Any;
+}
+
+export interface AssetSpec {
+  address: string;
+  data: string;
+}
+
+export interface AcquireAssetTx {
+  to: string;
+  specs: Array<forge_abi.AssetSpec>;
+  data: google.protobuf.Any;
+}
+
+export interface ConsumeAssetTx {
+  issuer: string;
+  address: string;
+  data: google.protobuf.Any;
+}
+
+export interface CreateAssetTx {
+  moniker: string;
+  data: google.protobuf.Any;
+  readonly: boolean;
+  transferrable: boolean;
+  ttl: number;
+  parent: string;
+  address: string;
+}
+
+export interface AssetAttributes {
+  transferrable: boolean;
+  ttl: number;
+}
+
+export interface AssetFactory {
+  description: string;
+  limit: number;
+  price: forge_abi.BigUint;
+  template: string;
+  allowedSpecArgs: Array<string>;
+  assetName: string;
+  attributes: forge_abi.AssetAttributes;
+  data: google.protobuf.Any;
+}
+
+export interface UpdateAssetTx {
+  address: string;
+  moniker: string;
+  data: google.protobuf.Any;
+}
+
+export interface UpdateConsensusParamsTx {
+  delegateConfig: forge_abi.DelegateConfig;
+  declareConfig: forge_abi.DeclareConfig;
+  tokenSwapConfig: forge_abi.TokenSwapConfig;
+  moderatorConfig: forge_abi.AccountConfig;
+}
+
+export interface UpdateValidatorTx {
+  candidates: Array<forge_abi.Validator>;
+  data: google.protobuf.Any;
+}
+
+export interface UpgradeNodeTx {
+  height: number;
+  version: string;
+  override: boolean;
+}
+
+export interface PokeTx {
+  date: string;
+  address: string;
+  data: google.protobuf.Any;
+}
+
+export interface RefuelTx {
+  date: string;
+  data: google.protobuf.Any;
+}
+
+export interface RetrieveSwapTx {
+  address: string;
+  hashkey: Uint8Array;
+  data: google.protobuf.Any;
+}
+
+export interface RevokeSwapTx {
+  address: string;
+  data: google.protobuf.Any;
+}
+
+export interface SetupSwapTx {
+  value: forge_abi.BigUint;
+  assets: Array<string>;
+  receiver: string;
+  hashlock: Uint8Array;
+  locktime: number;
+  data: google.protobuf.Any;
+}
+
+export interface ApproveWithdrawTx {
+  withdrawTxHash: string;
+  evidence: forge_abi.Evidence;
+}
+
+export interface DepositTokenTx {
+  value: forge_abi.BigUint;
+  address: string;
+  evidence: forge_abi.Evidence;
+}
+
+export interface RevokeWithdrawTx {
+  withdrawTxHash: string;
+}
+
+export interface WithdrawTokenTx {
+  value: forge_abi.BigUint;
+  to: string;
+  chainType: string;
+  chainId: string;
+}
+
+export interface ExchangeInfo {
+  value: forge_abi.BigUint;
+  assets: Array<string>;
+}
+
+export interface ExchangeTx {
+  to: string;
+  sender: forge_abi.ExchangeInfo;
+  receiver: forge_abi.ExchangeInfo;
+  expiredAt: google.protobuf.Timestamp;
+  data: google.protobuf.Any;
+}
+
+export interface TransferTx {
+  to: string;
+  value: forge_abi.BigUint;
+  assets: Array<string>;
   data: google.protobuf.Any;
 }
 
@@ -1469,199 +1556,6 @@ export interface RangeFilter {
 
 
 
-
-export interface AccountMigrateTx {
-  pk: Uint8Array;
-  type: forge_abi.WalletType;
-  address: string;
-  data: google.protobuf.Any;
-}
-
-export interface AssetSpec {
-  address: string;
-  data: string;
-}
-
-export interface AcquireAssetTx {
-  to: string;
-  specs: Array<forge_abi.AssetSpec>;
-  data: google.protobuf.Any;
-}
-
-export interface ActivateProtocolTx {
-  address: string;
-  data: google.protobuf.Any;
-}
-
-export interface ApproveWithdrawTx {
-  withdrawTxHash: string;
-  evidence: forge_abi.Evidence;
-}
-
-export interface ConsumeAssetTx {
-  issuer: string;
-  address: string;
-  data: google.protobuf.Any;
-}
-
-export interface CreateAssetTx {
-  moniker: string;
-  data: google.protobuf.Any;
-  readonly: boolean;
-  transferrable: boolean;
-  ttl: number;
-  parent: string;
-  address: string;
-}
-
-export interface AssetAttributes {
-  transferrable: boolean;
-  ttl: number;
-}
-
-export interface AssetFactory {
-  description: string;
-  limit: number;
-  price: forge_abi.BigUint;
-  template: string;
-  allowedSpecArgs: Array<string>;
-  assetName: string;
-  attributes: forge_abi.AssetAttributes;
-  data: google.protobuf.Any;
-}
-
-export interface AssetFactoryState {
-  description: string;
-  limit: number;
-  price: forge_abi.BigUint;
-  template: string;
-  allowedSpecArgs: Array<string>;
-  assetName: string;
-  attributes: forge_abi.AssetAttributes;
-  numCreated: number;
-  data: google.protobuf.Any;
-}
-
-export interface DeactivateProtocolTx {
-  address: string;
-  data: google.protobuf.Any;
-}
-
-export interface DeclareTx {
-  moniker: string;
-  issuer: string;
-  data: google.protobuf.Any;
-}
-
-export interface DelegateTx {
-  address: string;
-  to: string;
-  ops: Array<forge_abi.DelegateOp>;
-  data: google.protobuf.Any;
-}
-
-export interface DelegateOp {
-  typeUrl: string;
-  rules: Array<string>;
-}
-
-export interface DepositTokenTx {
-  value: forge_abi.BigUint;
-  address: string;
-  evidence: forge_abi.Evidence;
-}
-
-export interface ExchangeInfo {
-  value: forge_abi.BigUint;
-  assets: Array<string>;
-}
-
-export interface ExchangeTx {
-  to: string;
-  sender: forge_abi.ExchangeInfo;
-  receiver: forge_abi.ExchangeInfo;
-  expiredAt: google.protobuf.Timestamp;
-  data: google.protobuf.Any;
-}
-
-export interface PokeTx {
-  date: string;
-  address: string;
-  data: google.protobuf.Any;
-}
-
-export interface RefuelTx {
-  date: string;
-  data: google.protobuf.Any;
-}
-
-export interface RetrieveSwapTx {
-  address: string;
-  hashkey: Uint8Array;
-  data: google.protobuf.Any;
-}
-
-export interface RevokeDelegateTx {
-  address: string;
-  to: string;
-  typeUrls: Array<string>;
-  data: google.protobuf.Any;
-}
-
-export interface RevokeSwapTx {
-  address: string;
-  data: google.protobuf.Any;
-}
-
-export interface RevokeWithdrawTx {
-  withdrawTxHash: string;
-}
-
-export interface SetupSwapTx {
-  value: forge_abi.BigUint;
-  assets: Array<string>;
-  receiver: string;
-  hashlock: Uint8Array;
-  locktime: number;
-  data: google.protobuf.Any;
-}
-
-export interface TransferTx {
-  to: string;
-  value: forge_abi.BigUint;
-  assets: Array<string>;
-  data: google.protobuf.Any;
-}
-
-export interface UpdateAssetTx {
-  address: string;
-  moniker: string;
-  data: google.protobuf.Any;
-}
-
-export interface UpdateConsensusParamsTx {
-  delegateConfig: forge_abi.DelegateConfig;
-  declareConfig: forge_abi.DeclareConfig;
-  tokenSwapConfig: forge_abi.TokenSwapConfig;
-}
-
-export interface UpdateValidatorTx {
-  candidates: Array<forge_abi.Validator>;
-  data: google.protobuf.Any;
-}
-
-export interface UpgradeNodeTx {
-  height: number;
-  version: string;
-  override: boolean;
-}
-
-export interface WithdrawTokenTx {
-  value: forge_abi.BigUint;
-  to: string;
-  chainType: string;
-  chainId: string;
-}
 }
 
 declare namespace google.protobuf {

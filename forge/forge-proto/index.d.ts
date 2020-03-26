@@ -76,7 +76,6 @@ export enum StatusCode {
   FORBIDDEN = 403,
   INTERNAL = 500,
   TIMEOUT = 504,
-  DUPLICATE_TETHER = 48,
 }
 
 export enum KeyType {
@@ -112,7 +111,6 @@ export enum RoleType {
   ROLE_GROUP = 9,
   ROLE_TX = 10,
   ROLE_ANY = 63,
-  ROLE_TETHER = 11,
 }
 
 export enum UpgradeType {
@@ -177,33 +175,29 @@ export enum Validity {
 }
 
 export enum SupportedTxs {
-    0 = ConsensusUpgradeTx,
-  1 = DeployProtocolTx,
-  2 = SysUpgradeTx,
-  3 = WithdrawTokenTx,
-  4 = TransferTx,
-  5 = AccountMigrateTx,
-  6 = DeclareTx,
-  7 = RevokeDelegateTx,
-  8 = DeactivateProtocolTx,
-  9 = RevokeWithdrawTx,
-  10 = CreateAssetTx,
-  11 = RetrieveSwapTx,
-  12 = ConsumeAssetTx,
-  13 = PokeTx,
-  14 = UpdateAssetTx,
-  15 = ExchangeTx,
-  16 = UpdateConsensusParamsTx,
-  17 = RevokeSwapTx,
-  18 = ActivateProtocolTx,
-  19 = ApproveWithdrawTx,
-  20 = UpgradeNodeTx,
-  21 = UpdateValidatorTx,
-  22 = AcquireAssetTx,
-  23 = DelegateTx,
-  24 = DepositTokenTx,
-  25 = SetupSwapTx,
-  26 = RefuelTx,
+    0 = AccountMigrateTx,
+  1 = AcquireAssetTx,
+  2 = ApproveWithdrawTx,
+  3 = ConsumeAssetTx,
+  4 = CreateAssetTx,
+  5 = DeclareTx,
+  6 = DelegateTx,
+  7 = DeployProtocolTx,
+  8 = DepositTokenTx,
+  9 = ExchangeTx,
+  10 = PokeTx,
+  11 = RefuelTx,
+  12 = RetrieveSwapTx,
+  13 = RevokeDelegateTx,
+  14 = RevokeSwapTx,
+  15 = RevokeWithdrawTx,
+  16 = SetupSwapTx,
+  17 = TransferTx,
+  18 = UpdateAssetTx,
+  19 = UpdateConsensusParamsTx,
+  20 = UpdateValidatorTx,
+  21 = UpgradeNodeTx,
+  22 = WithdrawTokenTx,
 }
 
 export enum SupportedStakes {
@@ -272,7 +266,6 @@ export enum StatusCode {
   45 = INVALID_DEPOSIT_TARGET,
   46 = INVALID_DEPOSITOR,
   47 = INVALID_WITHDRAWER,
-  48 = DUPLICATE_TETHER,
   49 = INVALID_EXPIRY_DATE,
   50 = INVALID_DEPOSIT,
   51 = INVALID_CUSTODIAN,
@@ -335,7 +328,6 @@ export enum RoleType {
   8 = ROLE_VALIDATOR,
   9 = ROLE_GROUP,
   10 = ROLE_TX,
-  11 = ROLE_TETHER,
   63 = ROLE_ANY,
 }
 

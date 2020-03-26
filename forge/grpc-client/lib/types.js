@@ -1,3 +1,4 @@
+
 /**
  * Structure of GRpcClient.TxEncodeOutput
  *
@@ -6,6 +7,7 @@
  * @property {object} object - the transaction object, human readable
  * @property {buffer} buffer - the transaction binary presentation, can be used to signing, encoding to other formats
  */
+
 
 /**
  * Structure of GRpcClient.RequestSendTx
@@ -157,7 +159,7 @@
       }
     ],
     "code": 0,
-    "time": "2020-01-11T02:02:54.432Z"
+    "time": "2020-03-25T23:35:44.513Z"
   }
 }
 ```
@@ -191,7 +193,7 @@
   "block": {
     "height": 5,
     "numTxs": 2,
-    "time": "2020-01-11T02:02:54.427Z",
+    "time": "2020-03-25T23:35:44.507Z",
     "appHash": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
     "proposer": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
     "txs": [
@@ -245,7 +247,7 @@
           }
         ],
         "code": 0,
-        "time": "2020-01-11T02:02:54.427Z"
+        "time": "2020-03-25T23:35:44.507Z"
       },
       {
         "tx": {
@@ -297,7 +299,7 @@
           }
         ],
         "code": 0,
-        "time": "2020-01-11T02:02:54.428Z"
+        "time": "2020-03-25T23:35:44.507Z"
       }
     ],
     "totalTxs": 5,
@@ -352,7 +354,7 @@
           }
         ],
         "code": 0,
-        "time": "2020-01-11T02:02:54.428Z"
+        "time": "2020-03-25T23:35:44.507Z"
       },
       {
         "tx": {
@@ -404,7 +406,7 @@
           }
         ],
         "code": 0,
-        "time": "2020-01-11T02:02:54.428Z"
+        "time": "2020-03-25T23:35:44.507Z"
       }
     ],
     "txsHashes": [
@@ -491,7 +493,7 @@
     {
       "height": 5,
       "numTxs": 2,
-      "time": "2020-01-11T02:02:54.428Z",
+      "time": "2020-03-25T23:35:44.507Z",
       "appHash": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
       "proposer": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
       "totalTxs": 5,
@@ -524,7 +526,7 @@
     {
       "height": 5,
       "numTxs": 2,
-      "time": "2020-01-11T02:02:54.428Z",
+      "time": "2020-03-25T23:35:44.507Z",
       "appHash": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
       "proposer": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
       "totalTxs": 5,
@@ -685,8 +687,8 @@
     "context": {
       "genesisTx": "arcblock",
       "renaissanceTx": "arcblock",
-      "genesisTime": "2020-01-11T02:02:54.429Z",
-      "renaissanceTime": "2020-01-11T02:02:54.429Z"
+      "genesisTime": "2020-03-25T23:35:44.509Z",
+      "renaissanceTime": "2020-03-25T23:35:44.509Z"
     },
     "issuer": "arcblock",
     "migratedTo": [
@@ -789,7 +791,7 @@
     "readonly": true,
     "transferrable": true,
     "ttl": 2,
-    "consumedTime": "2020-01-11T02:02:54.429Z",
+    "consumedTime": "2020-03-25T23:35:44.510Z",
     "issuer": "arcblock",
     "parent": "arcblock",
     "stake": {
@@ -817,8 +819,8 @@
     "context": {
       "genesisTx": "arcblock",
       "renaissanceTx": "arcblock",
-      "genesisTime": "2020-01-11T02:02:54.429Z",
-      "renaissanceTime": "2020-01-11T02:02:54.429Z"
+      "genesisTime": "2020-03-25T23:35:44.510Z",
+      "renaissanceTime": "2020-03-25T23:35:44.510Z"
     },
     "data": {
       "type": "string",
@@ -832,158 +834,6 @@
  * @typedef {object} GRpcClient.ResponseGetAssetState
  * @prop {GRpcClient.StatusCode} code
  * @prop {GRpcClient.AssetState} state
- */
-
-/**
- * Structure of GRpcClient.RequestGetProtocolState
- *
-```javascript
-{
-  "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
-  "keys": [
-    "arcblock",
-    "arcblock"
-  ],
-  "height": 5
-}
-```
- *
- * @memberof GRpcClient
- * @typedef {object} GRpcClient.RequestGetProtocolState
- * @prop {string} address
- * @prop {Array<string>} keys
- * @prop {number} height
- */
-
-/**
- * Structure of GRpcClient.ResponseGetProtocolState
- *
-```javascript
-{
-  "code": 0,
-  "state": {
-    "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
-    "itx": {
-      "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
-      "name": "arcblock",
-      "version": 2,
-      "namespace": "arcblock",
-      "description": "arcblock",
-      "typeUrls": [
-        {
-          "url": "arcblock",
-          "module": "arcblock"
-        },
-        {
-          "url": "arcblock",
-          "module": "arcblock"
-        }
-      ],
-      "proto": "arcblock",
-      "pipeline": "arcblock",
-      "sources": [
-        "arcblock",
-        "arcblock"
-      ],
-      "code": [
-        {
-          "checksum": {},
-          "binary": {}
-        },
-        {
-          "checksum": {},
-          "binary": {}
-        }
-      ],
-      "tags": [
-        "arcblock",
-        "arcblock"
-      ],
-      "data": {
-        "type": "string",
-        "value": "ABCD 1234"
-      }
-    },
-    "rootHash": {},
-    "status": 0,
-    "migratedTo": [
-      "arcblock",
-      "arcblock"
-    ],
-    "migratedFrom": [
-      "arcblock",
-      "arcblock"
-    ],
-    "context": {
-      "genesisTx": "arcblock",
-      "renaissanceTx": "arcblock",
-      "genesisTime": "2020-01-11T02:02:54.430Z",
-      "renaissanceTime": "2020-01-11T02:02:54.430Z"
-    },
-    "data": {
-      "type": "string",
-      "value": "ABCD 1234"
-    }
-  }
-}
-```
- *
- * @memberof GRpcClient
- * @typedef {object} GRpcClient.ResponseGetProtocolState
- * @prop {GRpcClient.StatusCode} code
- * @prop {GRpcClient.ProtocolState} state
- */
-
-/**
- * Structure of GRpcClient.RequestGetStakeState
- *
-```javascript
-{
-  "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
-  "keys": [
-    "arcblock",
-    "arcblock"
-  ],
-  "height": 5
-}
-```
- *
- * @memberof GRpcClient
- * @typedef {object} GRpcClient.RequestGetStakeState
- * @prop {string} address
- * @prop {Array<string>} keys
- * @prop {number} height
- */
-
-/**
- * Structure of GRpcClient.ResponseGetStakeState
- *
-```javascript
-{
-  "code": 0,
-  "state": {
-    "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
-    "from": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
-    "to": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
-    "message": "arcblock",
-    "context": {
-      "genesisTx": "arcblock",
-      "renaissanceTx": "arcblock",
-      "genesisTime": "2020-01-11T02:02:54.430Z",
-      "renaissanceTime": "2020-01-11T02:02:54.430Z"
-    },
-    "data": {
-      "type": "string",
-      "value": "ABCD 1234"
-    }
-  }
-}
-```
- *
- * @memberof GRpcClient
- * @typedef {object} GRpcClient.ResponseGetStakeState
- * @prop {GRpcClient.StatusCode} code
- * @prop {GRpcClient.StakeState} state
  */
 
 /**
@@ -1062,8 +912,8 @@
         "context": {
           "genesisTx": "arcblock",
           "renaissanceTx": "arcblock",
-          "genesisTime": "2020-01-11T02:02:54.429Z",
-          "renaissanceTime": "2020-01-11T02:02:54.429Z"
+          "genesisTime": "2020-03-25T23:35:44.510Z",
+          "renaissanceTime": "2020-03-25T23:35:44.510Z"
         }
       }
     },
@@ -1131,9 +981,7 @@
     "tokenSwapConfig": {
       "commissionHolderAddress": "arcblock",
       "commissionRate": 2,
-      "revokeCommissionRate": 2,
-      "withdrawInterval": 2,
-      "revokeCommission": 2
+      "revokeCommissionRate": 2
     },
     "data": {
       "type": "string",
@@ -1191,8 +1039,8 @@
     "context": {
       "genesisTx": "arcblock",
       "renaissanceTx": "arcblock",
-      "genesisTime": "2020-01-11T02:02:54.430Z",
-      "renaissanceTime": "2020-01-11T02:02:54.430Z"
+      "genesisTime": "2020-03-25T23:35:44.510Z",
+      "renaissanceTime": "2020-03-25T23:35:44.510Z"
     }
   }
 }
@@ -1243,8 +1091,8 @@
     "context": {
       "genesisTx": "arcblock",
       "renaissanceTx": "arcblock",
-      "genesisTime": "2020-01-11T02:02:54.430Z",
-      "renaissanceTime": "2020-01-11T02:02:54.430Z"
+      "genesisTime": "2020-03-25T23:35:44.510Z",
+      "renaissanceTime": "2020-03-25T23:35:44.510Z"
     },
     "data": {
       "type": "string",
@@ -1258,94 +1106,6 @@
  * @typedef {object} GRpcClient.ResponseGetDelegateState
  * @prop {GRpcClient.StatusCode} code
  * @prop {GRpcClient.DelegateState} state
- */
-
-/**
- * Structure of GRpcClient.RequestStoreFile
- *
-```javascript
-{
-  "chunk": {}
-}
-```
- *
- * @memberof GRpcClient
- * @typedef {object} GRpcClient.RequestStoreFile
- * @prop {Uint8Array} chunk
- */
-
-/**
- * Structure of GRpcClient.ResponseStoreFile
- *
-```javascript
-{
-  "code": 0,
-  "hash": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55"
-}
-```
- *
- * @memberof GRpcClient
- * @typedef {object} GRpcClient.ResponseStoreFile
- * @prop {GRpcClient.StatusCode} code
- * @prop {string} hash
- */
-
-/**
- * Structure of GRpcClient.RequestLoadFile
- *
-```javascript
-{
-  "hash": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55"
-}
-```
- *
- * @memberof GRpcClient
- * @typedef {object} GRpcClient.RequestLoadFile
- * @prop {string} hash
- */
-
-/**
- * Structure of GRpcClient.ResponseLoadFile
- *
-```javascript
-{
-  "code": 0,
-  "chunk": {}
-}
-```
- *
- * @memberof GRpcClient
- * @typedef {object} GRpcClient.ResponseLoadFile
- * @prop {GRpcClient.StatusCode} code
- * @prop {Uint8Array} chunk
- */
-
-/**
- * Structure of GRpcClient.RequestPinFile
- *
-```javascript
-{
-  "hash": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55"
-}
-```
- *
- * @memberof GRpcClient
- * @typedef {object} GRpcClient.RequestPinFile
- * @prop {string} hash
- */
-
-/**
- * Structure of GRpcClient.ResponsePinFile
- *
-```javascript
-{
-  "code": 0
-}
-```
- *
- * @memberof GRpcClient
- * @typedef {object} GRpcClient.ResponsePinFile
- * @prop {GRpcClient.StatusCode} code
  */
 
 /**
@@ -1375,7 +1135,7 @@
     "appHash": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
     "blockHash": {},
     "blockHeight": 5,
-    "blockTime": "2020-01-11T02:02:54.428Z",
+    "blockTime": "2020-03-25T23:35:44.508Z",
     "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
     "votingPower": 5,
     "totalTxs": 5,
@@ -1424,7 +1184,7 @@
     "appHash": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
     "blockHash": {},
     "blockHeight": 5,
-    "blockTime": "2020-01-11T02:02:54.428Z",
+    "blockTime": "2020-03-25T23:35:44.508Z",
     "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
     "votingPower": 5,
     "totalTxs": 5,
@@ -1527,7 +1287,7 @@
         }
       ],
       "code": 0,
-      "time": "2020-01-11T02:02:54.428Z"
+      "time": "2020-03-25T23:35:44.508Z"
     },
     {
       "tx": {
@@ -1579,7 +1339,7 @@
         }
       ],
       "code": 0,
-      "time": "2020-01-11T02:02:54.428Z"
+      "time": "2020-03-25T23:35:44.508Z"
     }
   ]
 }
@@ -1875,18 +1635,14 @@
  * @prop {GRpcClient.Transaction} confirm
  * @prop {GRpcClient.Transaction} createAsset
  * @prop {GRpcClient.Transaction} exchange
- * @prop {GRpcClient.Transaction} revoke
  * @prop {GRpcClient.RequestBeginBlock} beginBlock
  * @prop {GRpcClient.RequestEndBlock} endBlock
  * @prop {GRpcClient.Transaction} declare
  * @prop {GRpcClient.Transaction} updateAsset
  * @prop {GRpcClient.Transaction} consensusUpgrade
- * @prop {GRpcClient.Transaction} declareFile
  * @prop {GRpcClient.Transaction} sysUpgrade
  * @prop {GRpcClient.Transaction} stake
  * @prop {GRpcClient.Transaction} delegate
- * @prop {GRpcClient.Transaction} activateProtocol
- * @prop {GRpcClient.Transaction} deactivateProtocol
  * @prop {GRpcClient.Transaction} revokeDelegate
  * @prop {GRpcClient.Transaction} depositToken
  * @prop {GRpcClient.Transaction} withdrawToken
@@ -1896,7 +1652,6 @@
  * @prop {GRpcClient.Transaction} revokeSwap
  * @prop {GRpcClient.Transaction} retrieveSwap
  * @prop {GRpcClient.Transaction} poke
- * @prop {GRpcClient.Transaction} deployProtocol
  * @prop {GRpcClient.Transaction} consumeAsset
  * @prop {GRpcClient.Transaction} acquireAsset
  * @prop {GRpcClient.Transaction} upgradeNode
@@ -1905,8 +1660,6 @@
  * @prop {GRpcClient.AccountState} accountState
  * @prop {GRpcClient.AssetState} assetState
  * @prop {GRpcClient.ForgeState} forgeState
- * @prop {GRpcClient.StakeState} stakeState
- * @prop {GRpcClient.ProtocolState} protocolState
  * @prop {GRpcClient.DelegateState} delegateState
  * @prop {GRpcClient.SwapState} swapState
  */
@@ -2822,8 +2575,8 @@
       "context": {
         "genesisTx": "arcblock",
         "renaissanceTx": "arcblock",
-        "genesisTime": "2020-01-11T02:02:54.431Z",
-        "renaissanceTime": "2020-01-11T02:02:54.431Z"
+        "genesisTime": "2020-03-25T23:35:44.511Z",
+        "renaissanceTime": "2020-03-25T23:35:44.511Z"
       }
     },
     {
@@ -2841,8 +2594,8 @@
       "context": {
         "genesisTx": "arcblock",
         "renaissanceTx": "arcblock",
-        "genesisTime": "2020-01-11T02:02:54.431Z",
-        "renaissanceTime": "2020-01-11T02:02:54.431Z"
+        "genesisTime": "2020-03-25T23:35:44.511Z",
+        "renaissanceTime": "2020-03-25T23:35:44.511Z"
       }
     }
   ]
@@ -3475,9 +3228,6 @@
  * @prop {number} revokeCommissionRate
  * @prop {GRpcClient.BigUint} minCommission
  * @prop {GRpcClient.BigUint} maxCommission
- * @prop {number} withdrawInterval
- * @prop {GRpcClient.BigUint} commission
- * @prop {number} revokeCommission
  */
 
 /**
@@ -3683,6 +3433,22 @@
  */
 
 /**
+ * Structure of GRpcClient.AssetFactoryState
+ *
+ * @memberof GRpcClient
+ * @typedef {object} GRpcClient.AssetFactoryState
+ * @prop {string} description
+ * @prop {number} limit
+ * @prop {GRpcClient.BigUint} price
+ * @prop {string} template
+ * @prop {Array<string>} allowedSpecArgs
+ * @prop {string} assetName
+ * @prop {GRpcClient.AssetAttributes} attributes
+ * @prop {number} numCreated
+ * @prop {GRpcClient.Any} data
+ */
+
+/**
  * Structure of GRpcClient.CodeInfo
  *
  * @memberof GRpcClient
@@ -3764,11 +3530,303 @@
  */
 
 /**
- * Structure of GRpcClient.ConsensusUpgradeTx
+ * Structure of GRpcClient.AccountMigrateTx
  *
 ```javascript
 {
-  "validators": [
+  "pk": {},
+  "type": {
+    "pk": 0,
+    "hash": 0,
+    "address": 0,
+    "role": 0
+  },
+  "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
+  "data": {
+    "type": "string",
+    "value": "ABCD 1234"
+  }
+}
+```
+ *
+ * @memberof GRpcClient
+ * @typedef {object} GRpcClient.AccountMigrateTx
+ * @prop {Uint8Array} pk
+ * @prop {GRpcClient.WalletType} type
+ * @prop {string} address
+ * @prop {GRpcClient.Any} data
+ */
+
+/**
+ * Structure of GRpcClient.DeclareTx
+ *
+```javascript
+{
+  "moniker": "arcblock",
+  "issuer": "arcblock",
+  "data": {
+    "type": "string",
+    "value": "ABCD 1234"
+  }
+}
+```
+ *
+ * @memberof GRpcClient
+ * @typedef {object} GRpcClient.DeclareTx
+ * @prop {string} moniker
+ * @prop {string} issuer
+ * @prop {GRpcClient.Any} data
+ */
+
+/**
+ * Structure of GRpcClient.DelegateTx
+ *
+```javascript
+{
+  "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
+  "to": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
+  "ops": [
+    {
+      "typeUrl": "arcblock",
+      "rules": [
+        "arcblock",
+        "arcblock"
+      ]
+    },
+    {
+      "typeUrl": "arcblock",
+      "rules": [
+        "arcblock",
+        "arcblock"
+      ]
+    }
+  ],
+  "data": {
+    "type": "string",
+    "value": "ABCD 1234"
+  }
+}
+```
+ *
+ * @memberof GRpcClient
+ * @typedef {object} GRpcClient.DelegateTx
+ * @prop {string} address
+ * @prop {string} to
+ * @prop {Array<GRpcClient.DelegateOp>} ops
+ * @prop {GRpcClient.Any} data
+ */
+
+/**
+ * Structure of GRpcClient.DelegateOp
+ *
+ * @memberof GRpcClient
+ * @typedef {object} GRpcClient.DelegateOp
+ * @prop {string} typeUrl
+ * @prop {Array<string>} rules
+ */
+
+/**
+ * Structure of GRpcClient.RevokeDelegateTx
+ *
+```javascript
+{
+  "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
+  "to": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
+  "typeUrls": [
+    "arcblock",
+    "arcblock"
+  ],
+  "data": {
+    "type": "string",
+    "value": "ABCD 1234"
+  }
+}
+```
+ *
+ * @memberof GRpcClient
+ * @typedef {object} GRpcClient.RevokeDelegateTx
+ * @prop {string} address
+ * @prop {string} to
+ * @prop {Array<string>} typeUrls
+ * @prop {GRpcClient.Any} data
+ */
+
+/**
+ * Structure of GRpcClient.AssetSpec
+ *
+ * @memberof GRpcClient
+ * @typedef {object} GRpcClient.AssetSpec
+ * @prop {string} address
+ * @prop {string} data
+ */
+
+/**
+ * Structure of GRpcClient.AcquireAssetTx
+ *
+```javascript
+{
+  "to": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
+  "specs": [
+    {
+      "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
+      "data": "arcblock"
+    },
+    {
+      "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
+      "data": "arcblock"
+    }
+  ],
+  "data": {
+    "type": "string",
+    "value": "ABCD 1234"
+  }
+}
+```
+ *
+ * @memberof GRpcClient
+ * @typedef {object} GRpcClient.AcquireAssetTx
+ * @prop {string} to
+ * @prop {Array<GRpcClient.AssetSpec>} specs
+ * @prop {GRpcClient.Any} data
+ */
+
+/**
+ * Structure of GRpcClient.ConsumeAssetTx
+ *
+```javascript
+{
+  "issuer": "arcblock",
+  "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
+  "data": {
+    "type": "string",
+    "value": "ABCD 1234"
+  }
+}
+```
+ *
+ * @memberof GRpcClient
+ * @typedef {object} GRpcClient.ConsumeAssetTx
+ * @prop {string} issuer
+ * @prop {string} address
+ * @prop {GRpcClient.Any} data
+ */
+
+/**
+ * Structure of GRpcClient.CreateAssetTx
+ *
+```javascript
+{
+  "moniker": "arcblock",
+  "data": {
+    "type": "string",
+    "value": "ABCD 1234"
+  },
+  "readonly": true,
+  "transferrable": true,
+  "ttl": 2,
+  "parent": "arcblock",
+  "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55"
+}
+```
+ *
+ * @memberof GRpcClient
+ * @typedef {object} GRpcClient.CreateAssetTx
+ * @prop {string} moniker
+ * @prop {GRpcClient.Any} data
+ * @prop {boolean} readonly
+ * @prop {boolean} transferrable
+ * @prop {number} ttl
+ * @prop {string} parent
+ * @prop {string} address
+ */
+
+/**
+ * Structure of GRpcClient.AssetAttributes
+ *
+ * @memberof GRpcClient
+ * @typedef {object} GRpcClient.AssetAttributes
+ * @prop {boolean} transferrable
+ * @prop {number} ttl
+ */
+
+/**
+ * Structure of GRpcClient.AssetFactory
+ *
+ * @memberof GRpcClient
+ * @typedef {object} GRpcClient.AssetFactory
+ * @prop {string} description
+ * @prop {number} limit
+ * @prop {GRpcClient.BigUint} price
+ * @prop {string} template
+ * @prop {Array<string>} allowedSpecArgs
+ * @prop {string} assetName
+ * @prop {GRpcClient.AssetAttributes} attributes
+ * @prop {GRpcClient.Any} data
+ */
+
+/**
+ * Structure of GRpcClient.UpdateAssetTx
+ *
+```javascript
+{
+  "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
+  "moniker": "arcblock",
+  "data": {
+    "type": "string",
+    "value": "ABCD 1234"
+  }
+}
+```
+ *
+ * @memberof GRpcClient
+ * @typedef {object} GRpcClient.UpdateAssetTx
+ * @prop {string} address
+ * @prop {string} moniker
+ * @prop {GRpcClient.Any} data
+ */
+
+/**
+ * Structure of GRpcClient.UpdateConsensusParamsTx
+ *
+```javascript
+{
+  "delegateConfig": {
+    "deltaInterval": 2,
+    "typeUrls": [
+      "arcblock",
+      "arcblock"
+    ]
+  },
+  "declareConfig": {
+    "restricted": true,
+    "hierarchy": 2
+  },
+  "tokenSwapConfig": {
+    "commissionHolderAddress": "arcblock",
+    "commissionRate": 2,
+    "revokeCommissionRate": 2
+  },
+  "moderatorConfig": {
+    "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
+    "pk": {}
+  }
+}
+```
+ *
+ * @memberof GRpcClient
+ * @typedef {object} GRpcClient.UpdateConsensusParamsTx
+ * @prop {GRpcClient.DelegateConfig} delegateConfig
+ * @prop {GRpcClient.DeclareConfig} declareConfig
+ * @prop {GRpcClient.TokenSwapConfig} tokenSwapConfig
+ * @prop {GRpcClient.AccountConfig} moderatorConfig
+ */
+
+/**
+ * Structure of GRpcClient.UpdateValidatorTx
+ *
+```javascript
+{
+  "candidates": [
     {
       "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
       "power": 5
@@ -3778,10 +3836,6 @@
       "power": 5
     }
   ],
-  "maxBytes": 5,
-  "maxGas": 4,
-  "maxValidators": 2,
-  "maxCandidates": 2,
   "data": {
     "type": "string",
     "value": "ABCD 1234"
@@ -3790,29 +3844,36 @@
 ```
  *
  * @memberof GRpcClient
- * @typedef {object} GRpcClient.ConsensusUpgradeTx
- * @prop {Array<GRpcClient.Validator>} validators
- * @prop {number} maxBytes
- * @prop {number} maxGas
- * @prop {number} maxValidators
- * @prop {number} maxCandidates
+ * @typedef {object} GRpcClient.UpdateValidatorTx
+ * @prop {Array<GRpcClient.Validator>} candidates
  * @prop {GRpcClient.Any} data
  */
 
 /**
- * Structure of GRpcClient.SysUpgradeTx
+ * Structure of GRpcClient.UpgradeNodeTx
  *
 ```javascript
 {
-  "task": {
-    "type": 0,
-    "dataHash": "arcblock",
-    "actions": [
-      null,
-      null
-    ]
-  },
-  "gracePeriod": 5,
+  "height": 5,
+  "version": "arcblock",
+  "override": true
+}
+```
+ *
+ * @memberof GRpcClient
+ * @typedef {object} GRpcClient.UpgradeNodeTx
+ * @prop {number} height
+ * @prop {string} version
+ * @prop {boolean} override
+ */
+
+/**
+ * Structure of GRpcClient.PokeTx
+ *
+```javascript
+{
+  "date": "arcblock",
+  "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
   "data": {
     "type": "string",
     "value": "ABCD 1234"
@@ -3821,9 +3882,244 @@
 ```
  *
  * @memberof GRpcClient
- * @typedef {object} GRpcClient.SysUpgradeTx
- * @prop {GRpcClient.UpgradeTask} task
- * @prop {number} gracePeriod
+ * @typedef {object} GRpcClient.PokeTx
+ * @prop {string} date
+ * @prop {string} address
+ * @prop {GRpcClient.Any} data
+ */
+
+/**
+ * Structure of GRpcClient.RefuelTx
+ *
+```javascript
+{
+  "date": "arcblock",
+  "data": {
+    "type": "string",
+    "value": "ABCD 1234"
+  }
+}
+```
+ *
+ * @memberof GRpcClient
+ * @typedef {object} GRpcClient.RefuelTx
+ * @prop {string} date
+ * @prop {GRpcClient.Any} data
+ */
+
+/**
+ * Structure of GRpcClient.RetrieveSwapTx
+ *
+```javascript
+{
+  "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
+  "hashkey": {},
+  "data": {
+    "type": "string",
+    "value": "ABCD 1234"
+  }
+}
+```
+ *
+ * @memberof GRpcClient
+ * @typedef {object} GRpcClient.RetrieveSwapTx
+ * @prop {string} address
+ * @prop {Uint8Array} hashkey
+ * @prop {GRpcClient.Any} data
+ */
+
+/**
+ * Structure of GRpcClient.RevokeSwapTx
+ *
+```javascript
+{
+  "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
+  "data": {
+    "type": "string",
+    "value": "ABCD 1234"
+  }
+}
+```
+ *
+ * @memberof GRpcClient
+ * @typedef {object} GRpcClient.RevokeSwapTx
+ * @prop {string} address
+ * @prop {GRpcClient.Any} data
+ */
+
+/**
+ * Structure of GRpcClient.SetupSwapTx
+ *
+```javascript
+{
+  "assets": [
+    "arcblock",
+    "arcblock"
+  ],
+  "receiver": "arcblock",
+  "hashlock": {},
+  "locktime": 2,
+  "data": {
+    "type": "string",
+    "value": "ABCD 1234"
+  }
+}
+```
+ *
+ * @memberof GRpcClient
+ * @typedef {object} GRpcClient.SetupSwapTx
+ * @prop {GRpcClient.BigUint} value
+ * @prop {Array<string>} assets
+ * @prop {string} receiver
+ * @prop {Uint8Array} hashlock
+ * @prop {number} locktime
+ * @prop {GRpcClient.Any} data
+ */
+
+/**
+ * Structure of GRpcClient.ApproveWithdrawTx
+ *
+```javascript
+{
+  "withdrawTxHash": "arcblock",
+  "evidence": {
+    "hash": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
+    "chainType": "arcblock",
+    "chainId": "arcblock",
+    "originalTx": {},
+    "receiverAddress": "arcblock"
+  }
+}
+```
+ *
+ * @memberof GRpcClient
+ * @typedef {object} GRpcClient.ApproveWithdrawTx
+ * @prop {string} withdrawTxHash
+ * @prop {GRpcClient.Evidence} evidence
+ */
+
+/**
+ * Structure of GRpcClient.DepositTokenTx
+ *
+```javascript
+{
+  "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
+  "evidence": {
+    "hash": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
+    "chainType": "arcblock",
+    "chainId": "arcblock",
+    "originalTx": {},
+    "receiverAddress": "arcblock"
+  }
+}
+```
+ *
+ * @memberof GRpcClient
+ * @typedef {object} GRpcClient.DepositTokenTx
+ * @prop {GRpcClient.BigUint} value
+ * @prop {string} address
+ * @prop {GRpcClient.Evidence} evidence
+ */
+
+/**
+ * Structure of GRpcClient.RevokeWithdrawTx
+ *
+```javascript
+{
+  "withdrawTxHash": "arcblock"
+}
+```
+ *
+ * @memberof GRpcClient
+ * @typedef {object} GRpcClient.RevokeWithdrawTx
+ * @prop {string} withdrawTxHash
+ */
+
+/**
+ * Structure of GRpcClient.WithdrawTokenTx
+ *
+```javascript
+{
+  "to": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
+  "chainType": "arcblock",
+  "chainId": "arcblock"
+}
+```
+ *
+ * @memberof GRpcClient
+ * @typedef {object} GRpcClient.WithdrawTokenTx
+ * @prop {GRpcClient.BigUint} value
+ * @prop {string} to
+ * @prop {string} chainType
+ * @prop {string} chainId
+ */
+
+/**
+ * Structure of GRpcClient.ExchangeInfo
+ *
+ * @memberof GRpcClient
+ * @typedef {object} GRpcClient.ExchangeInfo
+ * @prop {GRpcClient.BigUint} value
+ * @prop {Array<string>} assets
+ */
+
+/**
+ * Structure of GRpcClient.ExchangeTx
+ *
+```javascript
+{
+  "to": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
+  "sender": {
+    "assets": [
+      "arcblock",
+      "arcblock"
+    ]
+  },
+  "receiver": {
+    "assets": [
+      "arcblock",
+      "arcblock"
+    ]
+  },
+  "expiredAt": "2020-03-25T23:35:44.515Z",
+  "data": {
+    "type": "string",
+    "value": "ABCD 1234"
+  }
+}
+```
+ *
+ * @memberof GRpcClient
+ * @typedef {object} GRpcClient.ExchangeTx
+ * @prop {string} to
+ * @prop {GRpcClient.ExchangeInfo} sender
+ * @prop {GRpcClient.ExchangeInfo} receiver
+ * @prop {GRpcClient.Timestamp} expiredAt
+ * @prop {GRpcClient.Any} data
+ */
+
+/**
+ * Structure of GRpcClient.TransferTx
+ *
+```javascript
+{
+  "to": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
+  "assets": [
+    "arcblock",
+    "arcblock"
+  ],
+  "data": {
+    "type": "string",
+    "value": "ABCD 1234"
+  }
+}
+```
+ *
+ * @memberof GRpcClient
+ * @typedef {object} GRpcClient.TransferTx
+ * @prop {string} to
+ * @prop {GRpcClient.BigUint} value
+ * @prop {Array<string>} assets
  * @prop {GRpcClient.Any} data
  */
 
@@ -3862,6 +4158,7 @@
  * @prop {string} startDateTime
  * @prop {string} endDateTime
  */
+
 
 /**
  * Structure of GRpcClient.AddressFilter
@@ -4035,6 +4332,7 @@
  * @prop {string} abciInfo
  */
 
+
 /**
  * Structure of GRpcClient.ValidityFilter
  *
@@ -4052,650 +4350,6 @@
  * @prop {number} to
  */
 
-/**
- * Structure of GRpcClient.AccountMigrateTx
- *
-```javascript
-{
-  "pk": {},
-  "type": {
-    "pk": 0,
-    "hash": 0,
-    "address": 0,
-    "role": 0
-  },
-  "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
-  "data": {
-    "type": "string",
-    "value": "ABCD 1234"
-  }
-}
-```
- *
- * @memberof GRpcClient
- * @typedef {object} GRpcClient.AccountMigrateTx
- * @prop {Uint8Array} pk
- * @prop {GRpcClient.WalletType} type
- * @prop {string} address
- * @prop {GRpcClient.Any} data
- */
-
-/**
- * Structure of GRpcClient.AssetSpec
- *
- * @memberof GRpcClient
- * @typedef {object} GRpcClient.AssetSpec
- * @prop {string} address
- * @prop {string} data
- */
-
-/**
- * Structure of GRpcClient.AcquireAssetTx
- *
-```javascript
-{
-  "to": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
-  "specs": [
-    {
-      "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
-      "data": "arcblock"
-    },
-    {
-      "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
-      "data": "arcblock"
-    }
-  ],
-  "data": {
-    "type": "string",
-    "value": "ABCD 1234"
-  }
-}
-```
- *
- * @memberof GRpcClient
- * @typedef {object} GRpcClient.AcquireAssetTx
- * @prop {string} to
- * @prop {Array<GRpcClient.AssetSpec>} specs
- * @prop {GRpcClient.Any} data
- */
-
-/**
- * Structure of GRpcClient.ActivateProtocolTx
- *
-```javascript
-{
-  "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
-  "data": {
-    "type": "string",
-    "value": "ABCD 1234"
-  }
-}
-```
- *
- * @memberof GRpcClient
- * @typedef {object} GRpcClient.ActivateProtocolTx
- * @prop {string} address
- * @prop {GRpcClient.Any} data
- */
-
-/**
- * Structure of GRpcClient.ApproveWithdrawTx
- *
-```javascript
-{
-  "withdrawTxHash": "arcblock",
-  "evidence": {
-    "hash": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
-    "chainType": "arcblock",
-    "chainId": "arcblock",
-    "originalTx": {},
-    "receiverAddress": "arcblock"
-  }
-}
-```
- *
- * @memberof GRpcClient
- * @typedef {object} GRpcClient.ApproveWithdrawTx
- * @prop {string} withdrawTxHash
- * @prop {GRpcClient.Evidence} evidence
- */
-
-/**
- * Structure of GRpcClient.ConsumeAssetTx
- *
-```javascript
-{
-  "issuer": "arcblock",
-  "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
-  "data": {
-    "type": "string",
-    "value": "ABCD 1234"
-  }
-}
-```
- *
- * @memberof GRpcClient
- * @typedef {object} GRpcClient.ConsumeAssetTx
- * @prop {string} issuer
- * @prop {string} address
- * @prop {GRpcClient.Any} data
- */
-
-/**
- * Structure of GRpcClient.CreateAssetTx
- *
-```javascript
-{
-  "moniker": "arcblock",
-  "data": {
-    "type": "string",
-    "value": "ABCD 1234"
-  },
-  "readonly": true,
-  "transferrable": true,
-  "ttl": 2,
-  "parent": "arcblock",
-  "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55"
-}
-```
- *
- * @memberof GRpcClient
- * @typedef {object} GRpcClient.CreateAssetTx
- * @prop {string} moniker
- * @prop {GRpcClient.Any} data
- * @prop {boolean} readonly
- * @prop {boolean} transferrable
- * @prop {number} ttl
- * @prop {string} parent
- * @prop {string} address
- */
-
-/**
- * Structure of GRpcClient.AssetAttributes
- *
- * @memberof GRpcClient
- * @typedef {object} GRpcClient.AssetAttributes
- * @prop {boolean} transferrable
- * @prop {number} ttl
- */
-
-/**
- * Structure of GRpcClient.AssetFactory
- *
- * @memberof GRpcClient
- * @typedef {object} GRpcClient.AssetFactory
- * @prop {string} description
- * @prop {number} limit
- * @prop {GRpcClient.BigUint} price
- * @prop {string} template
- * @prop {Array<string>} allowedSpecArgs
- * @prop {string} assetName
- * @prop {GRpcClient.AssetAttributes} attributes
- * @prop {GRpcClient.Any} data
- */
-
-/**
- * Structure of GRpcClient.AssetFactoryState
- *
- * @memberof GRpcClient
- * @typedef {object} GRpcClient.AssetFactoryState
- * @prop {string} description
- * @prop {number} limit
- * @prop {GRpcClient.BigUint} price
- * @prop {string} template
- * @prop {Array<string>} allowedSpecArgs
- * @prop {string} assetName
- * @prop {GRpcClient.AssetAttributes} attributes
- * @prop {number} numCreated
- * @prop {GRpcClient.Any} data
- */
-
-/**
- * Structure of GRpcClient.DeactivateProtocolTx
- *
-```javascript
-{
-  "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
-  "data": {
-    "type": "string",
-    "value": "ABCD 1234"
-  }
-}
-```
- *
- * @memberof GRpcClient
- * @typedef {object} GRpcClient.DeactivateProtocolTx
- * @prop {string} address
- * @prop {GRpcClient.Any} data
- */
-
-/**
- * Structure of GRpcClient.DeclareTx
- *
-```javascript
-{
-  "moniker": "arcblock",
-  "issuer": "arcblock",
-  "data": {
-    "type": "string",
-    "value": "ABCD 1234"
-  }
-}
-```
- *
- * @memberof GRpcClient
- * @typedef {object} GRpcClient.DeclareTx
- * @prop {string} moniker
- * @prop {string} issuer
- * @prop {GRpcClient.Any} data
- */
-
-/**
- * Structure of GRpcClient.DelegateTx
- *
-```javascript
-{
-  "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
-  "to": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
-  "ops": [
-    {
-      "typeUrl": "arcblock",
-      "rules": [
-        "arcblock",
-        "arcblock"
-      ]
-    },
-    {
-      "typeUrl": "arcblock",
-      "rules": [
-        "arcblock",
-        "arcblock"
-      ]
-    }
-  ],
-  "data": {
-    "type": "string",
-    "value": "ABCD 1234"
-  }
-}
-```
- *
- * @memberof GRpcClient
- * @typedef {object} GRpcClient.DelegateTx
- * @prop {string} address
- * @prop {string} to
- * @prop {Array<GRpcClient.DelegateOp>} ops
- * @prop {GRpcClient.Any} data
- */
-
-/**
- * Structure of GRpcClient.DelegateOp
- *
- * @memberof GRpcClient
- * @typedef {object} GRpcClient.DelegateOp
- * @prop {string} typeUrl
- * @prop {Array<string>} rules
- */
-
-/**
- * Structure of GRpcClient.DepositTokenTx
- *
-```javascript
-{
-  "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
-  "evidence": {
-    "hash": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
-    "chainType": "arcblock",
-    "chainId": "arcblock",
-    "originalTx": {},
-    "receiverAddress": "arcblock"
-  }
-}
-```
- *
- * @memberof GRpcClient
- * @typedef {object} GRpcClient.DepositTokenTx
- * @prop {GRpcClient.BigUint} value
- * @prop {string} address
- * @prop {GRpcClient.Evidence} evidence
- */
-
-/**
- * Structure of GRpcClient.ExchangeInfo
- *
- * @memberof GRpcClient
- * @typedef {object} GRpcClient.ExchangeInfo
- * @prop {GRpcClient.BigUint} value
- * @prop {Array<string>} assets
- */
-
-/**
- * Structure of GRpcClient.ExchangeTx
- *
-```javascript
-{
-  "to": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
-  "sender": {
-    "assets": [
-      "arcblock",
-      "arcblock"
-    ]
-  },
-  "receiver": {
-    "assets": [
-      "arcblock",
-      "arcblock"
-    ]
-  },
-  "expiredAt": "2020-01-11T02:02:54.435Z",
-  "data": {
-    "type": "string",
-    "value": "ABCD 1234"
-  }
-}
-```
- *
- * @memberof GRpcClient
- * @typedef {object} GRpcClient.ExchangeTx
- * @prop {string} to
- * @prop {GRpcClient.ExchangeInfo} sender
- * @prop {GRpcClient.ExchangeInfo} receiver
- * @prop {GRpcClient.Timestamp} expiredAt
- * @prop {GRpcClient.Any} data
- */
-
-/**
- * Structure of GRpcClient.PokeTx
- *
-```javascript
-{
-  "date": "arcblock",
-  "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
-  "data": {
-    "type": "string",
-    "value": "ABCD 1234"
-  }
-}
-```
- *
- * @memberof GRpcClient
- * @typedef {object} GRpcClient.PokeTx
- * @prop {string} date
- * @prop {string} address
- * @prop {GRpcClient.Any} data
- */
-
-/**
- * Structure of GRpcClient.RefuelTx
- *
-```javascript
-{
-  "date": "arcblock",
-  "data": {
-    "type": "string",
-    "value": "ABCD 1234"
-  }
-}
-```
- *
- * @memberof GRpcClient
- * @typedef {object} GRpcClient.RefuelTx
- * @prop {string} date
- * @prop {GRpcClient.Any} data
- */
-
-/**
- * Structure of GRpcClient.RetrieveSwapTx
- *
-```javascript
-{
-  "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
-  "hashkey": {},
-  "data": {
-    "type": "string",
-    "value": "ABCD 1234"
-  }
-}
-```
- *
- * @memberof GRpcClient
- * @typedef {object} GRpcClient.RetrieveSwapTx
- * @prop {string} address
- * @prop {Uint8Array} hashkey
- * @prop {GRpcClient.Any} data
- */
-
-/**
- * Structure of GRpcClient.RevokeDelegateTx
- *
-```javascript
-{
-  "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
-  "to": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
-  "typeUrls": [
-    "arcblock",
-    "arcblock"
-  ],
-  "data": {
-    "type": "string",
-    "value": "ABCD 1234"
-  }
-}
-```
- *
- * @memberof GRpcClient
- * @typedef {object} GRpcClient.RevokeDelegateTx
- * @prop {string} address
- * @prop {string} to
- * @prop {Array<string>} typeUrls
- * @prop {GRpcClient.Any} data
- */
-
-/**
- * Structure of GRpcClient.RevokeSwapTx
- *
-```javascript
-{
-  "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
-  "data": {
-    "type": "string",
-    "value": "ABCD 1234"
-  }
-}
-```
- *
- * @memberof GRpcClient
- * @typedef {object} GRpcClient.RevokeSwapTx
- * @prop {string} address
- * @prop {GRpcClient.Any} data
- */
-
-/**
- * Structure of GRpcClient.RevokeWithdrawTx
- *
-```javascript
-{
-  "withdrawTxHash": "arcblock"
-}
-```
- *
- * @memberof GRpcClient
- * @typedef {object} GRpcClient.RevokeWithdrawTx
- * @prop {string} withdrawTxHash
- */
-
-/**
- * Structure of GRpcClient.SetupSwapTx
- *
-```javascript
-{
-  "assets": [
-    "arcblock",
-    "arcblock"
-  ],
-  "receiver": "arcblock",
-  "hashlock": {},
-  "locktime": 2,
-  "data": {
-    "type": "string",
-    "value": "ABCD 1234"
-  }
-}
-```
- *
- * @memberof GRpcClient
- * @typedef {object} GRpcClient.SetupSwapTx
- * @prop {GRpcClient.BigUint} value
- * @prop {Array<string>} assets
- * @prop {string} receiver
- * @prop {Uint8Array} hashlock
- * @prop {number} locktime
- * @prop {GRpcClient.Any} data
- */
-
-/**
- * Structure of GRpcClient.TransferTx
- *
-```javascript
-{
-  "to": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
-  "assets": [
-    "arcblock",
-    "arcblock"
-  ],
-  "data": {
-    "type": "string",
-    "value": "ABCD 1234"
-  }
-}
-```
- *
- * @memberof GRpcClient
- * @typedef {object} GRpcClient.TransferTx
- * @prop {string} to
- * @prop {GRpcClient.BigUint} value
- * @prop {Array<string>} assets
- * @prop {GRpcClient.Any} data
- */
-
-/**
- * Structure of GRpcClient.UpdateAssetTx
- *
-```javascript
-{
-  "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
-  "moniker": "arcblock",
-  "data": {
-    "type": "string",
-    "value": "ABCD 1234"
-  }
-}
-```
- *
- * @memberof GRpcClient
- * @typedef {object} GRpcClient.UpdateAssetTx
- * @prop {string} address
- * @prop {string} moniker
- * @prop {GRpcClient.Any} data
- */
-
-/**
- * Structure of GRpcClient.UpdateConsensusParamsTx
- *
-```javascript
-{
-  "delegateConfig": {
-    "deltaInterval": 2,
-    "typeUrls": [
-      "arcblock",
-      "arcblock"
-    ]
-  },
-  "declareConfig": {
-    "restricted": true,
-    "hierarchy": 2
-  },
-  "tokenSwapConfig": {
-    "commissionHolderAddress": "arcblock",
-    "commissionRate": 2,
-    "revokeCommissionRate": 2,
-    "withdrawInterval": 2,
-    "revokeCommission": 2
-  }
-}
-```
- *
- * @memberof GRpcClient
- * @typedef {object} GRpcClient.UpdateConsensusParamsTx
- * @prop {GRpcClient.DelegateConfig} delegateConfig
- * @prop {GRpcClient.DeclareConfig} declareConfig
- * @prop {GRpcClient.TokenSwapConfig} tokenSwapConfig
- */
-
-/**
- * Structure of GRpcClient.UpdateValidatorTx
- *
-```javascript
-{
-  "candidates": [
-    {
-      "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
-      "power": 5
-    },
-    {
-      "address": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
-      "power": 5
-    }
-  ],
-  "data": {
-    "type": "string",
-    "value": "ABCD 1234"
-  }
-}
-```
- *
- * @memberof GRpcClient
- * @typedef {object} GRpcClient.UpdateValidatorTx
- * @prop {Array<GRpcClient.Validator>} candidates
- * @prop {GRpcClient.Any} data
- */
-
-/**
- * Structure of GRpcClient.UpgradeNodeTx
- *
-```javascript
-{
-  "height": 5,
-  "version": "arcblock",
-  "override": true
-}
-```
- *
- * @memberof GRpcClient
- * @typedef {object} GRpcClient.UpgradeNodeTx
- * @prop {number} height
- * @prop {string} version
- * @prop {boolean} override
- */
-
-/**
- * Structure of GRpcClient.WithdrawTokenTx
- *
-```javascript
-{
-  "to": "F2D072CBD4954A20F26280730795D91AC1039996CEB6E24A31E9CE548DCB5E55",
-  "chainType": "arcblock",
-  "chainId": "arcblock"
-}
-```
- *
- * @memberof GRpcClient
- * @typedef {object} GRpcClient.WithdrawTokenTx
- * @prop {GRpcClient.BigUint} value
- * @prop {string} to
- * @prop {string} chainType
- * @prop {string} chainId
- */
 
 /**
  * Structure of GRpcClient.Timestamp
@@ -5108,36 +4762,6 @@
  *
  * @memberof GRpcClient
  * @function
- * @name GRpcClient#storeFile
- * @param {GRpcClient.RequestStoreFile} params
- * @returns {Promise.<GRpcClient.ResponseStoreFile>}
- */
-
-/**
- * Send gRPC call and return the result
- *
- * @memberof GRpcClient
- * @function
- * @name GRpcClient#loadFile
- * @param {GRpcClient.RequestLoadFile} params
- * @returns {EventEmitter} EventEmitter that emits `data` event when new data received, checkout {@link GRpcClient.ResponseLoadFile} for payload format.
- */
-
-/**
- * Send gRPC call and return the result
- *
- * @memberof GRpcClient
- * @function
- * @name GRpcClient#pinFile
- * @param {GRpcClient.RequestPinFile} params
- * @returns {Promise.<GRpcClient.ResponsePinFile>}
- */
-
-/**
- * Send gRPC call and return the result
- *
- * @memberof GRpcClient
- * @function
  * @name GRpcClient#getAccountState
  * @param {GRpcClient.RequestGetAccountState} params
  * @returns {EventEmitter} EventEmitter that emits `data` event when new data received, checkout {@link GRpcClient.ResponseGetAccountState} for payload format.
@@ -5161,26 +4785,6 @@
  * @name GRpcClient#getForgeState
  * @param {GRpcClient.RequestGetForgeState} params
  * @returns {Promise.<GRpcClient.ResponseGetForgeState>}
- */
-
-/**
- * Send gRPC call and return the result
- *
- * @memberof GRpcClient
- * @function
- * @name GRpcClient#getProtocolState
- * @param {GRpcClient.RequestGetProtocolState} params
- * @returns {EventEmitter} EventEmitter that emits `data` event when new data received, checkout {@link GRpcClient.ResponseGetProtocolState} for payload format.
- */
-
-/**
- * Send gRPC call and return the result
- *
- * @memberof GRpcClient
- * @function
- * @name GRpcClient#getStakeState
- * @param {GRpcClient.RequestGetStakeState} params
- * @returns {EventEmitter} EventEmitter that emits `data` event when new data received, checkout {@link GRpcClient.ResponseGetStakeState} for payload format.
  */
 
 /**
@@ -5325,136 +4929,6 @@
 
 /**
  * @memberof GRpcClient
- * @typedef {Object} GRpcClient.sendConsensusUpgradeTxInput
- * @prop {object} input
- * @prop {object} input.tx - data of the transaction
- * @prop {GRpcClient.sendConsensusUpgradeTx} input.tx.itx - the actual transaction object
- * @prop {string} [input.tx.pk] - the sender pk
- * @prop {string} [input.tx.from] - the sender address, can be derived from wallet
- * @prop {number} [input.tx.nonce] - the tx nonce, defaults to Date.now if not set
- * @prop {string} [input.tx.chainId] - the chainId
- * @prop {string} [input.tx.signature] - transaction signature
- * @prop {array} [input.tx.signatures] - transaction signatures, should be set when it's a multisig transaction
- * @prop {object} input.wallet - the wallet used to sign the transaction, either a forge managed wallet or user managed wallet
- * @prop {string} [input.signature] - the signature of the tx, if this parameter exist, we will not sign the transaction
- */
-
-/**
- * Send sendConsensusUpgradeTx transaction and get the hash, use {@link GRpcClient#getTx} to get transaction detail
- *
- * @memberof GRpcClient
- * @function
- * @name GRpcClient#0
- * @param {GRpcClient.sendConsensusUpgradeTxInput} params
- * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
- */
-
-/**
- * @memberof GRpcClient
- * @typedef {Object} GRpcClient.sendDeployProtocolTxInput
- * @prop {object} input
- * @prop {object} input.tx - data of the transaction
- * @prop {GRpcClient.sendDeployProtocolTx} input.tx.itx - the actual transaction object
- * @prop {string} [input.tx.pk] - the sender pk
- * @prop {string} [input.tx.from] - the sender address, can be derived from wallet
- * @prop {number} [input.tx.nonce] - the tx nonce, defaults to Date.now if not set
- * @prop {string} [input.tx.chainId] - the chainId
- * @prop {string} [input.tx.signature] - transaction signature
- * @prop {array} [input.tx.signatures] - transaction signatures, should be set when it's a multisig transaction
- * @prop {object} input.wallet - the wallet used to sign the transaction, either a forge managed wallet or user managed wallet
- * @prop {string} [input.signature] - the signature of the tx, if this parameter exist, we will not sign the transaction
- */
-
-/**
- * Send sendDeployProtocolTx transaction and get the hash, use {@link GRpcClient#getTx} to get transaction detail
- *
- * @memberof GRpcClient
- * @function
- * @name GRpcClient#1
- * @param {GRpcClient.sendDeployProtocolTxInput} params
- * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
- */
-
-/**
- * @memberof GRpcClient
- * @typedef {Object} GRpcClient.sendSysUpgradeTxInput
- * @prop {object} input
- * @prop {object} input.tx - data of the transaction
- * @prop {GRpcClient.sendSysUpgradeTx} input.tx.itx - the actual transaction object
- * @prop {string} [input.tx.pk] - the sender pk
- * @prop {string} [input.tx.from] - the sender address, can be derived from wallet
- * @prop {number} [input.tx.nonce] - the tx nonce, defaults to Date.now if not set
- * @prop {string} [input.tx.chainId] - the chainId
- * @prop {string} [input.tx.signature] - transaction signature
- * @prop {array} [input.tx.signatures] - transaction signatures, should be set when it's a multisig transaction
- * @prop {object} input.wallet - the wallet used to sign the transaction, either a forge managed wallet or user managed wallet
- * @prop {string} [input.signature] - the signature of the tx, if this parameter exist, we will not sign the transaction
- */
-
-/**
- * Send sendSysUpgradeTx transaction and get the hash, use {@link GRpcClient#getTx} to get transaction detail
- *
- * @memberof GRpcClient
- * @function
- * @name GRpcClient#2
- * @param {GRpcClient.sendSysUpgradeTxInput} params
- * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
- */
-
-/**
- * @memberof GRpcClient
- * @typedef {Object} GRpcClient.sendWithdrawTokenTxInput
- * @prop {object} input
- * @prop {object} input.tx - data of the transaction
- * @prop {GRpcClient.sendWithdrawTokenTx} input.tx.itx - the actual transaction object
- * @prop {string} [input.tx.pk] - the sender pk
- * @prop {string} [input.tx.from] - the sender address, can be derived from wallet
- * @prop {number} [input.tx.nonce] - the tx nonce, defaults to Date.now if not set
- * @prop {string} [input.tx.chainId] - the chainId
- * @prop {string} [input.tx.signature] - transaction signature
- * @prop {array} [input.tx.signatures] - transaction signatures, should be set when it's a multisig transaction
- * @prop {object} input.wallet - the wallet used to sign the transaction, either a forge managed wallet or user managed wallet
- * @prop {string} [input.signature] - the signature of the tx, if this parameter exist, we will not sign the transaction
- */
-
-/**
- * Send sendWithdrawTokenTx transaction and get the hash, use {@link GRpcClient#getTx} to get transaction detail
- *
- * @memberof GRpcClient
- * @function
- * @name GRpcClient#3
- * @param {GRpcClient.sendWithdrawTokenTxInput} params
- * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
- */
-
-/**
- * @memberof GRpcClient
- * @typedef {Object} GRpcClient.sendTransferTxInput
- * @prop {object} input
- * @prop {object} input.tx - data of the transaction
- * @prop {GRpcClient.sendTransferTx} input.tx.itx - the actual transaction object
- * @prop {string} [input.tx.pk] - the sender pk
- * @prop {string} [input.tx.from] - the sender address, can be derived from wallet
- * @prop {number} [input.tx.nonce] - the tx nonce, defaults to Date.now if not set
- * @prop {string} [input.tx.chainId] - the chainId
- * @prop {string} [input.tx.signature] - transaction signature
- * @prop {array} [input.tx.signatures] - transaction signatures, should be set when it's a multisig transaction
- * @prop {object} input.wallet - the wallet used to sign the transaction, either a forge managed wallet or user managed wallet
- * @prop {string} [input.signature] - the signature of the tx, if this parameter exist, we will not sign the transaction
- */
-
-/**
- * Send sendTransferTx transaction and get the hash, use {@link GRpcClient#getTx} to get transaction detail
- *
- * @memberof GRpcClient
- * @function
- * @name GRpcClient#4
- * @param {GRpcClient.sendTransferTxInput} params
- * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
- */
-
-/**
- * @memberof GRpcClient
  * @typedef {Object} GRpcClient.sendAccountMigrateTxInput
  * @prop {object} input
  * @prop {object} input.tx - data of the transaction
@@ -5474,17 +4948,18 @@
  *
  * @memberof GRpcClient
  * @function
- * @name GRpcClient#5
+ * @name GRpcClient#0
  * @param {GRpcClient.sendAccountMigrateTxInput} params
  * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
  */
 
+
 /**
  * @memberof GRpcClient
- * @typedef {Object} GRpcClient.sendDeclareTxInput
+ * @typedef {Object} GRpcClient.sendAcquireAssetTxInput
  * @prop {object} input
  * @prop {object} input.tx - data of the transaction
- * @prop {GRpcClient.sendDeclareTx} input.tx.itx - the actual transaction object
+ * @prop {GRpcClient.sendAcquireAssetTx} input.tx.itx - the actual transaction object
  * @prop {string} [input.tx.pk] - the sender pk
  * @prop {string} [input.tx.from] - the sender address, can be derived from wallet
  * @prop {number} [input.tx.nonce] - the tx nonce, defaults to Date.now if not set
@@ -5496,21 +4971,22 @@
  */
 
 /**
- * Send sendDeclareTx transaction and get the hash, use {@link GRpcClient#getTx} to get transaction detail
+ * Send sendAcquireAssetTx transaction and get the hash, use {@link GRpcClient#getTx} to get transaction detail
  *
  * @memberof GRpcClient
  * @function
- * @name GRpcClient#6
- * @param {GRpcClient.sendDeclareTxInput} params
+ * @name GRpcClient#1
+ * @param {GRpcClient.sendAcquireAssetTxInput} params
  * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
  */
 
+
 /**
  * @memberof GRpcClient
- * @typedef {Object} GRpcClient.sendRevokeDelegateTxInput
+ * @typedef {Object} GRpcClient.sendApproveWithdrawTxInput
  * @prop {object} input
  * @prop {object} input.tx - data of the transaction
- * @prop {GRpcClient.sendRevokeDelegateTx} input.tx.itx - the actual transaction object
+ * @prop {GRpcClient.sendApproveWithdrawTx} input.tx.itx - the actual transaction object
  * @prop {string} [input.tx.pk] - the sender pk
  * @prop {string} [input.tx.from] - the sender address, can be derived from wallet
  * @prop {number} [input.tx.nonce] - the tx nonce, defaults to Date.now if not set
@@ -5522,21 +4998,22 @@
  */
 
 /**
- * Send sendRevokeDelegateTx transaction and get the hash, use {@link GRpcClient#getTx} to get transaction detail
+ * Send sendApproveWithdrawTx transaction and get the hash, use {@link GRpcClient#getTx} to get transaction detail
  *
  * @memberof GRpcClient
  * @function
- * @name GRpcClient#7
- * @param {GRpcClient.sendRevokeDelegateTxInput} params
+ * @name GRpcClient#2
+ * @param {GRpcClient.sendApproveWithdrawTxInput} params
  * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
  */
 
+
 /**
  * @memberof GRpcClient
- * @typedef {Object} GRpcClient.sendDeactivateProtocolTxInput
+ * @typedef {Object} GRpcClient.sendConsumeAssetTxInput
  * @prop {object} input
  * @prop {object} input.tx - data of the transaction
- * @prop {GRpcClient.sendDeactivateProtocolTx} input.tx.itx - the actual transaction object
+ * @prop {GRpcClient.sendConsumeAssetTx} input.tx.itx - the actual transaction object
  * @prop {string} [input.tx.pk] - the sender pk
  * @prop {string} [input.tx.from] - the sender address, can be derived from wallet
  * @prop {number} [input.tx.nonce] - the tx nonce, defaults to Date.now if not set
@@ -5548,40 +5025,15 @@
  */
 
 /**
- * Send sendDeactivateProtocolTx transaction and get the hash, use {@link GRpcClient#getTx} to get transaction detail
+ * Send sendConsumeAssetTx transaction and get the hash, use {@link GRpcClient#getTx} to get transaction detail
  *
  * @memberof GRpcClient
  * @function
- * @name GRpcClient#8
- * @param {GRpcClient.sendDeactivateProtocolTxInput} params
+ * @name GRpcClient#3
+ * @param {GRpcClient.sendConsumeAssetTxInput} params
  * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
  */
 
-/**
- * @memberof GRpcClient
- * @typedef {Object} GRpcClient.sendRevokeWithdrawTxInput
- * @prop {object} input
- * @prop {object} input.tx - data of the transaction
- * @prop {GRpcClient.sendRevokeWithdrawTx} input.tx.itx - the actual transaction object
- * @prop {string} [input.tx.pk] - the sender pk
- * @prop {string} [input.tx.from] - the sender address, can be derived from wallet
- * @prop {number} [input.tx.nonce] - the tx nonce, defaults to Date.now if not set
- * @prop {string} [input.tx.chainId] - the chainId
- * @prop {string} [input.tx.signature] - transaction signature
- * @prop {array} [input.tx.signatures] - transaction signatures, should be set when it's a multisig transaction
- * @prop {object} input.wallet - the wallet used to sign the transaction, either a forge managed wallet or user managed wallet
- * @prop {string} [input.signature] - the signature of the tx, if this parameter exist, we will not sign the transaction
- */
-
-/**
- * Send sendRevokeWithdrawTx transaction and get the hash, use {@link GRpcClient#getTx} to get transaction detail
- *
- * @memberof GRpcClient
- * @function
- * @name GRpcClient#9
- * @param {GRpcClient.sendRevokeWithdrawTxInput} params
- * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
- */
 
 /**
  * @memberof GRpcClient
@@ -5604,10 +5056,173 @@
  *
  * @memberof GRpcClient
  * @function
- * @name GRpcClient#10
+ * @name GRpcClient#4
  * @param {GRpcClient.sendCreateAssetTxInput} params
  * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
  */
+
+
+/**
+ * @memberof GRpcClient
+ * @typedef {Object} GRpcClient.sendDeclareTxInput
+ * @prop {object} input
+ * @prop {object} input.tx - data of the transaction
+ * @prop {GRpcClient.sendDeclareTx} input.tx.itx - the actual transaction object
+ * @prop {string} [input.tx.pk] - the sender pk
+ * @prop {string} [input.tx.from] - the sender address, can be derived from wallet
+ * @prop {number} [input.tx.nonce] - the tx nonce, defaults to Date.now if not set
+ * @prop {string} [input.tx.chainId] - the chainId
+ * @prop {string} [input.tx.signature] - transaction signature
+ * @prop {array} [input.tx.signatures] - transaction signatures, should be set when it's a multisig transaction
+ * @prop {object} input.wallet - the wallet used to sign the transaction, either a forge managed wallet or user managed wallet
+ * @prop {string} [input.signature] - the signature of the tx, if this parameter exist, we will not sign the transaction
+ */
+
+/**
+ * Send sendDeclareTx transaction and get the hash, use {@link GRpcClient#getTx} to get transaction detail
+ *
+ * @memberof GRpcClient
+ * @function
+ * @name GRpcClient#5
+ * @param {GRpcClient.sendDeclareTxInput} params
+ * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
+ */
+
+
+/**
+ * @memberof GRpcClient
+ * @typedef {Object} GRpcClient.sendDelegateTxInput
+ * @prop {object} input
+ * @prop {object} input.tx - data of the transaction
+ * @prop {GRpcClient.sendDelegateTx} input.tx.itx - the actual transaction object
+ * @prop {string} [input.tx.pk] - the sender pk
+ * @prop {string} [input.tx.from] - the sender address, can be derived from wallet
+ * @prop {number} [input.tx.nonce] - the tx nonce, defaults to Date.now if not set
+ * @prop {string} [input.tx.chainId] - the chainId
+ * @prop {string} [input.tx.signature] - transaction signature
+ * @prop {array} [input.tx.signatures] - transaction signatures, should be set when it's a multisig transaction
+ * @prop {object} input.wallet - the wallet used to sign the transaction, either a forge managed wallet or user managed wallet
+ * @prop {string} [input.signature] - the signature of the tx, if this parameter exist, we will not sign the transaction
+ */
+
+/**
+ * Send sendDelegateTx transaction and get the hash, use {@link GRpcClient#getTx} to get transaction detail
+ *
+ * @memberof GRpcClient
+ * @function
+ * @name GRpcClient#6
+ * @param {GRpcClient.sendDelegateTxInput} params
+ * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
+ */
+
+
+/**
+ * @memberof GRpcClient
+ * @typedef {Object} GRpcClient.sendDepositTokenTxInput
+ * @prop {object} input
+ * @prop {object} input.tx - data of the transaction
+ * @prop {GRpcClient.sendDepositTokenTx} input.tx.itx - the actual transaction object
+ * @prop {string} [input.tx.pk] - the sender pk
+ * @prop {string} [input.tx.from] - the sender address, can be derived from wallet
+ * @prop {number} [input.tx.nonce] - the tx nonce, defaults to Date.now if not set
+ * @prop {string} [input.tx.chainId] - the chainId
+ * @prop {string} [input.tx.signature] - transaction signature
+ * @prop {array} [input.tx.signatures] - transaction signatures, should be set when it's a multisig transaction
+ * @prop {object} input.wallet - the wallet used to sign the transaction, either a forge managed wallet or user managed wallet
+ * @prop {string} [input.signature] - the signature of the tx, if this parameter exist, we will not sign the transaction
+ */
+
+/**
+ * Send sendDepositTokenTx transaction and get the hash, use {@link GRpcClient#getTx} to get transaction detail
+ *
+ * @memberof GRpcClient
+ * @function
+ * @name GRpcClient#7
+ * @param {GRpcClient.sendDepositTokenTxInput} params
+ * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
+ */
+
+
+/**
+ * @memberof GRpcClient
+ * @typedef {Object} GRpcClient.sendExchangeTxInput
+ * @prop {object} input
+ * @prop {object} input.tx - data of the transaction
+ * @prop {GRpcClient.sendExchangeTx} input.tx.itx - the actual transaction object
+ * @prop {string} [input.tx.pk] - the sender pk
+ * @prop {string} [input.tx.from] - the sender address, can be derived from wallet
+ * @prop {number} [input.tx.nonce] - the tx nonce, defaults to Date.now if not set
+ * @prop {string} [input.tx.chainId] - the chainId
+ * @prop {string} [input.tx.signature] - transaction signature
+ * @prop {array} [input.tx.signatures] - transaction signatures, should be set when it's a multisig transaction
+ * @prop {object} input.wallet - the wallet used to sign the transaction, either a forge managed wallet or user managed wallet
+ * @prop {string} [input.signature] - the signature of the tx, if this parameter exist, we will not sign the transaction
+ */
+
+/**
+ * Send sendExchangeTx transaction and get the hash, use {@link GRpcClient#getTx} to get transaction detail
+ *
+ * @memberof GRpcClient
+ * @function
+ * @name GRpcClient#8
+ * @param {GRpcClient.sendExchangeTxInput} params
+ * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
+ */
+
+
+/**
+ * @memberof GRpcClient
+ * @typedef {Object} GRpcClient.sendPokeTxInput
+ * @prop {object} input
+ * @prop {object} input.tx - data of the transaction
+ * @prop {GRpcClient.sendPokeTx} input.tx.itx - the actual transaction object
+ * @prop {string} [input.tx.pk] - the sender pk
+ * @prop {string} [input.tx.from] - the sender address, can be derived from wallet
+ * @prop {number} [input.tx.nonce] - the tx nonce, defaults to Date.now if not set
+ * @prop {string} [input.tx.chainId] - the chainId
+ * @prop {string} [input.tx.signature] - transaction signature
+ * @prop {array} [input.tx.signatures] - transaction signatures, should be set when it's a multisig transaction
+ * @prop {object} input.wallet - the wallet used to sign the transaction, either a forge managed wallet or user managed wallet
+ * @prop {string} [input.signature] - the signature of the tx, if this parameter exist, we will not sign the transaction
+ */
+
+/**
+ * Send sendPokeTx transaction and get the hash, use {@link GRpcClient#getTx} to get transaction detail
+ *
+ * @memberof GRpcClient
+ * @function
+ * @name GRpcClient#9
+ * @param {GRpcClient.sendPokeTxInput} params
+ * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
+ */
+
+
+/**
+ * @memberof GRpcClient
+ * @typedef {Object} GRpcClient.sendRefuelTxInput
+ * @prop {object} input
+ * @prop {object} input.tx - data of the transaction
+ * @prop {GRpcClient.sendRefuelTx} input.tx.itx - the actual transaction object
+ * @prop {string} [input.tx.pk] - the sender pk
+ * @prop {string} [input.tx.from] - the sender address, can be derived from wallet
+ * @prop {number} [input.tx.nonce] - the tx nonce, defaults to Date.now if not set
+ * @prop {string} [input.tx.chainId] - the chainId
+ * @prop {string} [input.tx.signature] - transaction signature
+ * @prop {array} [input.tx.signatures] - transaction signatures, should be set when it's a multisig transaction
+ * @prop {object} input.wallet - the wallet used to sign the transaction, either a forge managed wallet or user managed wallet
+ * @prop {string} [input.signature] - the signature of the tx, if this parameter exist, we will not sign the transaction
+ */
+
+/**
+ * Send sendRefuelTx transaction and get the hash, use {@link GRpcClient#getTx} to get transaction detail
+ *
+ * @memberof GRpcClient
+ * @function
+ * @name GRpcClient#10
+ * @param {GRpcClient.sendRefuelTxInput} params
+ * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
+ */
+
 
 /**
  * @memberof GRpcClient
@@ -5635,12 +5250,13 @@
  * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
  */
 
+
 /**
  * @memberof GRpcClient
- * @typedef {Object} GRpcClient.sendConsumeAssetTxInput
+ * @typedef {Object} GRpcClient.sendRevokeDelegateTxInput
  * @prop {object} input
  * @prop {object} input.tx - data of the transaction
- * @prop {GRpcClient.sendConsumeAssetTx} input.tx.itx - the actual transaction object
+ * @prop {GRpcClient.sendRevokeDelegateTx} input.tx.itx - the actual transaction object
  * @prop {string} [input.tx.pk] - the sender pk
  * @prop {string} [input.tx.from] - the sender address, can be derived from wallet
  * @prop {number} [input.tx.nonce] - the tx nonce, defaults to Date.now if not set
@@ -5652,118 +5268,15 @@
  */
 
 /**
- * Send sendConsumeAssetTx transaction and get the hash, use {@link GRpcClient#getTx} to get transaction detail
+ * Send sendRevokeDelegateTx transaction and get the hash, use {@link GRpcClient#getTx} to get transaction detail
  *
  * @memberof GRpcClient
  * @function
  * @name GRpcClient#12
- * @param {GRpcClient.sendConsumeAssetTxInput} params
+ * @param {GRpcClient.sendRevokeDelegateTxInput} params
  * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
  */
 
-/**
- * @memberof GRpcClient
- * @typedef {Object} GRpcClient.sendPokeTxInput
- * @prop {object} input
- * @prop {object} input.tx - data of the transaction
- * @prop {GRpcClient.sendPokeTx} input.tx.itx - the actual transaction object
- * @prop {string} [input.tx.pk] - the sender pk
- * @prop {string} [input.tx.from] - the sender address, can be derived from wallet
- * @prop {number} [input.tx.nonce] - the tx nonce, defaults to Date.now if not set
- * @prop {string} [input.tx.chainId] - the chainId
- * @prop {string} [input.tx.signature] - transaction signature
- * @prop {array} [input.tx.signatures] - transaction signatures, should be set when it's a multisig transaction
- * @prop {object} input.wallet - the wallet used to sign the transaction, either a forge managed wallet or user managed wallet
- * @prop {string} [input.signature] - the signature of the tx, if this parameter exist, we will not sign the transaction
- */
-
-/**
- * Send sendPokeTx transaction and get the hash, use {@link GRpcClient#getTx} to get transaction detail
- *
- * @memberof GRpcClient
- * @function
- * @name GRpcClient#13
- * @param {GRpcClient.sendPokeTxInput} params
- * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
- */
-
-/**
- * @memberof GRpcClient
- * @typedef {Object} GRpcClient.sendUpdateAssetTxInput
- * @prop {object} input
- * @prop {object} input.tx - data of the transaction
- * @prop {GRpcClient.sendUpdateAssetTx} input.tx.itx - the actual transaction object
- * @prop {string} [input.tx.pk] - the sender pk
- * @prop {string} [input.tx.from] - the sender address, can be derived from wallet
- * @prop {number} [input.tx.nonce] - the tx nonce, defaults to Date.now if not set
- * @prop {string} [input.tx.chainId] - the chainId
- * @prop {string} [input.tx.signature] - transaction signature
- * @prop {array} [input.tx.signatures] - transaction signatures, should be set when it's a multisig transaction
- * @prop {object} input.wallet - the wallet used to sign the transaction, either a forge managed wallet or user managed wallet
- * @prop {string} [input.signature] - the signature of the tx, if this parameter exist, we will not sign the transaction
- */
-
-/**
- * Send sendUpdateAssetTx transaction and get the hash, use {@link GRpcClient#getTx} to get transaction detail
- *
- * @memberof GRpcClient
- * @function
- * @name GRpcClient#14
- * @param {GRpcClient.sendUpdateAssetTxInput} params
- * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
- */
-
-/**
- * @memberof GRpcClient
- * @typedef {Object} GRpcClient.sendExchangeTxInput
- * @prop {object} input
- * @prop {object} input.tx - data of the transaction
- * @prop {GRpcClient.sendExchangeTx} input.tx.itx - the actual transaction object
- * @prop {string} [input.tx.pk] - the sender pk
- * @prop {string} [input.tx.from] - the sender address, can be derived from wallet
- * @prop {number} [input.tx.nonce] - the tx nonce, defaults to Date.now if not set
- * @prop {string} [input.tx.chainId] - the chainId
- * @prop {string} [input.tx.signature] - transaction signature
- * @prop {array} [input.tx.signatures] - transaction signatures, should be set when it's a multisig transaction
- * @prop {object} input.wallet - the wallet used to sign the transaction, either a forge managed wallet or user managed wallet
- * @prop {string} [input.signature] - the signature of the tx, if this parameter exist, we will not sign the transaction
- */
-
-/**
- * Send sendExchangeTx transaction and get the hash, use {@link GRpcClient#getTx} to get transaction detail
- *
- * @memberof GRpcClient
- * @function
- * @name GRpcClient#15
- * @param {GRpcClient.sendExchangeTxInput} params
- * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
- */
-
-/**
- * @memberof GRpcClient
- * @typedef {Object} GRpcClient.sendUpdateConsensusParamsTxInput
- * @prop {object} input
- * @prop {object} input.tx - data of the transaction
- * @prop {GRpcClient.sendUpdateConsensusParamsTx} input.tx.itx - the actual transaction object
- * @prop {string} [input.tx.pk] - the sender pk
- * @prop {string} [input.tx.from] - the sender address, can be derived from wallet
- * @prop {number} [input.tx.nonce] - the tx nonce, defaults to Date.now if not set
- * @prop {string} [input.tx.chainId] - the chainId
- * @prop {string} [input.tx.signature] - transaction signature
- * @prop {array} [input.tx.signatures] - transaction signatures, should be set when it's a multisig transaction
- * @prop {object} input.wallet - the wallet used to sign the transaction, either a forge managed wallet or user managed wallet
- * @prop {string} [input.signature] - the signature of the tx, if this parameter exist, we will not sign the transaction
- */
-
-/**
- * Send sendUpdateConsensusParamsTx transaction and get the hash, use {@link GRpcClient#getTx} to get transaction detail
- *
- * @memberof GRpcClient
- * @function
- * @name GRpcClient#16
- * @param {GRpcClient.sendUpdateConsensusParamsTxInput} params
- * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
- */
 
 /**
  * @memberof GRpcClient
@@ -5786,17 +5299,18 @@
  *
  * @memberof GRpcClient
  * @function
- * @name GRpcClient#17
+ * @name GRpcClient#13
  * @param {GRpcClient.sendRevokeSwapTxInput} params
  * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
  */
 
+
 /**
  * @memberof GRpcClient
- * @typedef {Object} GRpcClient.sendActivateProtocolTxInput
+ * @typedef {Object} GRpcClient.sendRevokeWithdrawTxInput
  * @prop {object} input
  * @prop {object} input.tx - data of the transaction
- * @prop {GRpcClient.sendActivateProtocolTx} input.tx.itx - the actual transaction object
+ * @prop {GRpcClient.sendRevokeWithdrawTx} input.tx.itx - the actual transaction object
  * @prop {string} [input.tx.pk] - the sender pk
  * @prop {string} [input.tx.from] - the sender address, can be derived from wallet
  * @prop {number} [input.tx.nonce] - the tx nonce, defaults to Date.now if not set
@@ -5808,21 +5322,130 @@
  */
 
 /**
- * Send sendActivateProtocolTx transaction and get the hash, use {@link GRpcClient#getTx} to get transaction detail
+ * Send sendRevokeWithdrawTx transaction and get the hash, use {@link GRpcClient#getTx} to get transaction detail
+ *
+ * @memberof GRpcClient
+ * @function
+ * @name GRpcClient#14
+ * @param {GRpcClient.sendRevokeWithdrawTxInput} params
+ * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
+ */
+
+
+/**
+ * @memberof GRpcClient
+ * @typedef {Object} GRpcClient.sendSetupSwapTxInput
+ * @prop {object} input
+ * @prop {object} input.tx - data of the transaction
+ * @prop {GRpcClient.sendSetupSwapTx} input.tx.itx - the actual transaction object
+ * @prop {string} [input.tx.pk] - the sender pk
+ * @prop {string} [input.tx.from] - the sender address, can be derived from wallet
+ * @prop {number} [input.tx.nonce] - the tx nonce, defaults to Date.now if not set
+ * @prop {string} [input.tx.chainId] - the chainId
+ * @prop {string} [input.tx.signature] - transaction signature
+ * @prop {array} [input.tx.signatures] - transaction signatures, should be set when it's a multisig transaction
+ * @prop {object} input.wallet - the wallet used to sign the transaction, either a forge managed wallet or user managed wallet
+ * @prop {string} [input.signature] - the signature of the tx, if this parameter exist, we will not sign the transaction
+ */
+
+/**
+ * Send sendSetupSwapTx transaction and get the hash, use {@link GRpcClient#getTx} to get transaction detail
+ *
+ * @memberof GRpcClient
+ * @function
+ * @name GRpcClient#15
+ * @param {GRpcClient.sendSetupSwapTxInput} params
+ * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
+ */
+
+
+/**
+ * @memberof GRpcClient
+ * @typedef {Object} GRpcClient.sendTransferTxInput
+ * @prop {object} input
+ * @prop {object} input.tx - data of the transaction
+ * @prop {GRpcClient.sendTransferTx} input.tx.itx - the actual transaction object
+ * @prop {string} [input.tx.pk] - the sender pk
+ * @prop {string} [input.tx.from] - the sender address, can be derived from wallet
+ * @prop {number} [input.tx.nonce] - the tx nonce, defaults to Date.now if not set
+ * @prop {string} [input.tx.chainId] - the chainId
+ * @prop {string} [input.tx.signature] - transaction signature
+ * @prop {array} [input.tx.signatures] - transaction signatures, should be set when it's a multisig transaction
+ * @prop {object} input.wallet - the wallet used to sign the transaction, either a forge managed wallet or user managed wallet
+ * @prop {string} [input.signature] - the signature of the tx, if this parameter exist, we will not sign the transaction
+ */
+
+/**
+ * Send sendTransferTx transaction and get the hash, use {@link GRpcClient#getTx} to get transaction detail
+ *
+ * @memberof GRpcClient
+ * @function
+ * @name GRpcClient#16
+ * @param {GRpcClient.sendTransferTxInput} params
+ * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
+ */
+
+
+/**
+ * @memberof GRpcClient
+ * @typedef {Object} GRpcClient.sendUpdateAssetTxInput
+ * @prop {object} input
+ * @prop {object} input.tx - data of the transaction
+ * @prop {GRpcClient.sendUpdateAssetTx} input.tx.itx - the actual transaction object
+ * @prop {string} [input.tx.pk] - the sender pk
+ * @prop {string} [input.tx.from] - the sender address, can be derived from wallet
+ * @prop {number} [input.tx.nonce] - the tx nonce, defaults to Date.now if not set
+ * @prop {string} [input.tx.chainId] - the chainId
+ * @prop {string} [input.tx.signature] - transaction signature
+ * @prop {array} [input.tx.signatures] - transaction signatures, should be set when it's a multisig transaction
+ * @prop {object} input.wallet - the wallet used to sign the transaction, either a forge managed wallet or user managed wallet
+ * @prop {string} [input.signature] - the signature of the tx, if this parameter exist, we will not sign the transaction
+ */
+
+/**
+ * Send sendUpdateAssetTx transaction and get the hash, use {@link GRpcClient#getTx} to get transaction detail
+ *
+ * @memberof GRpcClient
+ * @function
+ * @name GRpcClient#17
+ * @param {GRpcClient.sendUpdateAssetTxInput} params
+ * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
+ */
+
+
+/**
+ * @memberof GRpcClient
+ * @typedef {Object} GRpcClient.sendUpdateConsensusParamsTxInput
+ * @prop {object} input
+ * @prop {object} input.tx - data of the transaction
+ * @prop {GRpcClient.sendUpdateConsensusParamsTx} input.tx.itx - the actual transaction object
+ * @prop {string} [input.tx.pk] - the sender pk
+ * @prop {string} [input.tx.from] - the sender address, can be derived from wallet
+ * @prop {number} [input.tx.nonce] - the tx nonce, defaults to Date.now if not set
+ * @prop {string} [input.tx.chainId] - the chainId
+ * @prop {string} [input.tx.signature] - transaction signature
+ * @prop {array} [input.tx.signatures] - transaction signatures, should be set when it's a multisig transaction
+ * @prop {object} input.wallet - the wallet used to sign the transaction, either a forge managed wallet or user managed wallet
+ * @prop {string} [input.signature] - the signature of the tx, if this parameter exist, we will not sign the transaction
+ */
+
+/**
+ * Send sendUpdateConsensusParamsTx transaction and get the hash, use {@link GRpcClient#getTx} to get transaction detail
  *
  * @memberof GRpcClient
  * @function
  * @name GRpcClient#18
- * @param {GRpcClient.sendActivateProtocolTxInput} params
+ * @param {GRpcClient.sendUpdateConsensusParamsTxInput} params
  * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
  */
 
+
 /**
  * @memberof GRpcClient
- * @typedef {Object} GRpcClient.sendApproveWithdrawTxInput
+ * @typedef {Object} GRpcClient.sendUpdateValidatorTxInput
  * @prop {object} input
  * @prop {object} input.tx - data of the transaction
- * @prop {GRpcClient.sendApproveWithdrawTx} input.tx.itx - the actual transaction object
+ * @prop {GRpcClient.sendUpdateValidatorTx} input.tx.itx - the actual transaction object
  * @prop {string} [input.tx.pk] - the sender pk
  * @prop {string} [input.tx.from] - the sender address, can be derived from wallet
  * @prop {number} [input.tx.nonce] - the tx nonce, defaults to Date.now if not set
@@ -5834,14 +5457,15 @@
  */
 
 /**
- * Send sendApproveWithdrawTx transaction and get the hash, use {@link GRpcClient#getTx} to get transaction detail
+ * Send sendUpdateValidatorTx transaction and get the hash, use {@link GRpcClient#getTx} to get transaction detail
  *
  * @memberof GRpcClient
  * @function
  * @name GRpcClient#19
- * @param {GRpcClient.sendApproveWithdrawTxInput} params
+ * @param {GRpcClient.sendUpdateValidatorTxInput} params
  * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
  */
+
 
 /**
  * @memberof GRpcClient
@@ -5869,12 +5493,13 @@
  * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
  */
 
+
 /**
  * @memberof GRpcClient
- * @typedef {Object} GRpcClient.sendUpdateValidatorTxInput
+ * @typedef {Object} GRpcClient.sendWithdrawTokenTxInput
  * @prop {object} input
  * @prop {object} input.tx - data of the transaction
- * @prop {GRpcClient.sendUpdateValidatorTx} input.tx.itx - the actual transaction object
+ * @prop {GRpcClient.sendWithdrawTokenTx} input.tx.itx - the actual transaction object
  * @prop {string} [input.tx.pk] - the sender pk
  * @prop {string} [input.tx.from] - the sender address, can be derived from wallet
  * @prop {number} [input.tx.nonce] - the tx nonce, defaults to Date.now if not set
@@ -5886,254 +5511,136 @@
  */
 
 /**
- * Send sendUpdateValidatorTx transaction and get the hash, use {@link GRpcClient#getTx} to get transaction detail
+ * Send sendWithdrawTokenTx transaction and get the hash, use {@link GRpcClient#getTx} to get transaction detail
  *
  * @memberof GRpcClient
  * @function
  * @name GRpcClient#21
- * @param {GRpcClient.sendUpdateValidatorTxInput} params
+ * @param {GRpcClient.sendWithdrawTokenTxInput} params
  * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
  */
 
-/**
- * @memberof GRpcClient
- * @typedef {Object} GRpcClient.sendAcquireAssetTxInput
- * @prop {object} input
- * @prop {object} input.tx - data of the transaction
- * @prop {GRpcClient.sendAcquireAssetTx} input.tx.itx - the actual transaction object
- * @prop {string} [input.tx.pk] - the sender pk
- * @prop {string} [input.tx.from] - the sender address, can be derived from wallet
- * @prop {number} [input.tx.nonce] - the tx nonce, defaults to Date.now if not set
- * @prop {string} [input.tx.chainId] - the chainId
- * @prop {string} [input.tx.signature] - transaction signature
- * @prop {array} [input.tx.signatures] - transaction signatures, should be set when it's a multisig transaction
- * @prop {object} input.wallet - the wallet used to sign the transaction, either a forge managed wallet or user managed wallet
- * @prop {string} [input.signature] - the signature of the tx, if this parameter exist, we will not sign the transaction
- */
-
-/**
- * Send sendAcquireAssetTx transaction and get the hash, use {@link GRpcClient#getTx} to get transaction detail
- *
- * @memberof GRpcClient
- * @function
- * @name GRpcClient#22
- * @param {GRpcClient.sendAcquireAssetTxInput} params
- * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
- */
-
-/**
- * @memberof GRpcClient
- * @typedef {Object} GRpcClient.sendDelegateTxInput
- * @prop {object} input
- * @prop {object} input.tx - data of the transaction
- * @prop {GRpcClient.sendDelegateTx} input.tx.itx - the actual transaction object
- * @prop {string} [input.tx.pk] - the sender pk
- * @prop {string} [input.tx.from] - the sender address, can be derived from wallet
- * @prop {number} [input.tx.nonce] - the tx nonce, defaults to Date.now if not set
- * @prop {string} [input.tx.chainId] - the chainId
- * @prop {string} [input.tx.signature] - transaction signature
- * @prop {array} [input.tx.signatures] - transaction signatures, should be set when it's a multisig transaction
- * @prop {object} input.wallet - the wallet used to sign the transaction, either a forge managed wallet or user managed wallet
- * @prop {string} [input.signature] - the signature of the tx, if this parameter exist, we will not sign the transaction
- */
-
-/**
- * Send sendDelegateTx transaction and get the hash, use {@link GRpcClient#getTx} to get transaction detail
- *
- * @memberof GRpcClient
- * @function
- * @name GRpcClient#23
- * @param {GRpcClient.sendDelegateTxInput} params
- * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
- */
-
-/**
- * @memberof GRpcClient
- * @typedef {Object} GRpcClient.sendDepositTokenTxInput
- * @prop {object} input
- * @prop {object} input.tx - data of the transaction
- * @prop {GRpcClient.sendDepositTokenTx} input.tx.itx - the actual transaction object
- * @prop {string} [input.tx.pk] - the sender pk
- * @prop {string} [input.tx.from] - the sender address, can be derived from wallet
- * @prop {number} [input.tx.nonce] - the tx nonce, defaults to Date.now if not set
- * @prop {string} [input.tx.chainId] - the chainId
- * @prop {string} [input.tx.signature] - transaction signature
- * @prop {array} [input.tx.signatures] - transaction signatures, should be set when it's a multisig transaction
- * @prop {object} input.wallet - the wallet used to sign the transaction, either a forge managed wallet or user managed wallet
- * @prop {string} [input.signature] - the signature of the tx, if this parameter exist, we will not sign the transaction
- */
-
-/**
- * Send sendDepositTokenTx transaction and get the hash, use {@link GRpcClient#getTx} to get transaction detail
- *
- * @memberof GRpcClient
- * @function
- * @name GRpcClient#24
- * @param {GRpcClient.sendDepositTokenTxInput} params
- * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
- */
-
-/**
- * @memberof GRpcClient
- * @typedef {Object} GRpcClient.sendSetupSwapTxInput
- * @prop {object} input
- * @prop {object} input.tx - data of the transaction
- * @prop {GRpcClient.sendSetupSwapTx} input.tx.itx - the actual transaction object
- * @prop {string} [input.tx.pk] - the sender pk
- * @prop {string} [input.tx.from] - the sender address, can be derived from wallet
- * @prop {number} [input.tx.nonce] - the tx nonce, defaults to Date.now if not set
- * @prop {string} [input.tx.chainId] - the chainId
- * @prop {string} [input.tx.signature] - transaction signature
- * @prop {array} [input.tx.signatures] - transaction signatures, should be set when it's a multisig transaction
- * @prop {object} input.wallet - the wallet used to sign the transaction, either a forge managed wallet or user managed wallet
- * @prop {string} [input.signature] - the signature of the tx, if this parameter exist, we will not sign the transaction
- */
-
-/**
- * Send sendSetupSwapTx transaction and get the hash, use {@link GRpcClient#getTx} to get transaction detail
- *
- * @memberof GRpcClient
- * @function
- * @name GRpcClient#25
- * @param {GRpcClient.sendSetupSwapTxInput} params
- * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
- */
-
-/**
- * @memberof GRpcClient
- * @typedef {Object} GRpcClient.sendRefuelTxInput
- * @prop {object} input
- * @prop {object} input.tx - data of the transaction
- * @prop {GRpcClient.sendRefuelTx} input.tx.itx - the actual transaction object
- * @prop {string} [input.tx.pk] - the sender pk
- * @prop {string} [input.tx.from] - the sender address, can be derived from wallet
- * @prop {number} [input.tx.nonce] - the tx nonce, defaults to Date.now if not set
- * @prop {string} [input.tx.chainId] - the chainId
- * @prop {string} [input.tx.signature] - transaction signature
- * @prop {array} [input.tx.signatures] - transaction signatures, should be set when it's a multisig transaction
- * @prop {object} input.wallet - the wallet used to sign the transaction, either a forge managed wallet or user managed wallet
- * @prop {string} [input.signature] - the signature of the tx, if this parameter exist, we will not sign the transaction
- */
-
-/**
- * Send sendRefuelTx transaction and get the hash, use {@link GRpcClient#getTx} to get transaction detail
- *
- * @memberof GRpcClient
- * @function
- * @name GRpcClient#26
- * @param {GRpcClient.sendRefuelTxInput} params
- * @returns {Promise<string>} returns transaction hash if success, otherwise error was thrown
- */
-
-/**
- * Encode a encodeConsensusUpgradeTx transaction for later use
- *
- * @name GRpcClient#0
- * @function
- * @memberof GRpcClient
- * @param {GRpcClient.encodeConsensusUpgradeTxInput} params
- * @returns {Promise<GRpcClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
- */
-
-/**
- * Encode a encodeDeployProtocolTx transaction for later use
- *
- * @name GRpcClient#1
- * @function
- * @memberof GRpcClient
- * @param {GRpcClient.encodeDeployProtocolTxInput} params
- * @returns {Promise<GRpcClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
- */
-
-/**
- * Encode a encodeSysUpgradeTx transaction for later use
- *
- * @name GRpcClient#2
- * @function
- * @memberof GRpcClient
- * @param {GRpcClient.encodeSysUpgradeTxInput} params
- * @returns {Promise<GRpcClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
- */
-
-/**
- * Encode a encodeWithdrawTokenTx transaction for later use
- *
- * @name GRpcClient#3
- * @function
- * @memberof GRpcClient
- * @param {GRpcClient.encodeWithdrawTokenTxInput} params
- * @returns {Promise<GRpcClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
- */
-
-/**
- * Encode a encodeTransferTx transaction for later use
- *
- * @name GRpcClient#4
- * @function
- * @memberof GRpcClient
- * @param {GRpcClient.encodeTransferTxInput} params
- * @returns {Promise<GRpcClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
- */
 
 /**
  * Encode a encodeAccountMigrateTx transaction for later use
  *
- * @name GRpcClient#5
+ * @name GRpcClient#0
  * @function
  * @memberof GRpcClient
  * @param {GRpcClient.encodeAccountMigrateTxInput} params
  * @returns {Promise<GRpcClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
  */
 
+
+/**
+ * Encode a encodeAcquireAssetTx transaction for later use
+ *
+ * @name GRpcClient#1
+ * @function
+ * @memberof GRpcClient
+ * @param {GRpcClient.encodeAcquireAssetTxInput} params
+ * @returns {Promise<GRpcClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
+ */
+
+
+/**
+ * Encode a encodeApproveWithdrawTx transaction for later use
+ *
+ * @name GRpcClient#2
+ * @function
+ * @memberof GRpcClient
+ * @param {GRpcClient.encodeApproveWithdrawTxInput} params
+ * @returns {Promise<GRpcClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
+ */
+
+
+/**
+ * Encode a encodeConsumeAssetTx transaction for later use
+ *
+ * @name GRpcClient#3
+ * @function
+ * @memberof GRpcClient
+ * @param {GRpcClient.encodeConsumeAssetTxInput} params
+ * @returns {Promise<GRpcClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
+ */
+
+
+/**
+ * Encode a encodeCreateAssetTx transaction for later use
+ *
+ * @name GRpcClient#4
+ * @function
+ * @memberof GRpcClient
+ * @param {GRpcClient.encodeCreateAssetTxInput} params
+ * @returns {Promise<GRpcClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
+ */
+
+
 /**
  * Encode a encodeDeclareTx transaction for later use
  *
- * @name GRpcClient#6
+ * @name GRpcClient#5
  * @function
  * @memberof GRpcClient
  * @param {GRpcClient.encodeDeclareTxInput} params
  * @returns {Promise<GRpcClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
  */
 
+
 /**
- * Encode a encodeRevokeDelegateTx transaction for later use
+ * Encode a encodeDelegateTx transaction for later use
+ *
+ * @name GRpcClient#6
+ * @function
+ * @memberof GRpcClient
+ * @param {GRpcClient.encodeDelegateTxInput} params
+ * @returns {Promise<GRpcClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
+ */
+
+
+/**
+ * Encode a encodeDepositTokenTx transaction for later use
  *
  * @name GRpcClient#7
  * @function
  * @memberof GRpcClient
- * @param {GRpcClient.encodeRevokeDelegateTxInput} params
+ * @param {GRpcClient.encodeDepositTokenTxInput} params
  * @returns {Promise<GRpcClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
  */
 
+
 /**
- * Encode a encodeDeactivateProtocolTx transaction for later use
+ * Encode a encodeExchangeTx transaction for later use
  *
  * @name GRpcClient#8
  * @function
  * @memberof GRpcClient
- * @param {GRpcClient.encodeDeactivateProtocolTxInput} params
+ * @param {GRpcClient.encodeExchangeTxInput} params
  * @returns {Promise<GRpcClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
  */
 
+
 /**
- * Encode a encodeRevokeWithdrawTx transaction for later use
+ * Encode a encodePokeTx transaction for later use
  *
  * @name GRpcClient#9
  * @function
  * @memberof GRpcClient
- * @param {GRpcClient.encodeRevokeWithdrawTxInput} params
+ * @param {GRpcClient.encodePokeTxInput} params
  * @returns {Promise<GRpcClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
  */
 
+
 /**
- * Encode a encodeCreateAssetTx transaction for later use
+ * Encode a encodeRefuelTx transaction for later use
  *
  * @name GRpcClient#10
  * @function
  * @memberof GRpcClient
- * @param {GRpcClient.encodeCreateAssetTxInput} params
+ * @param {GRpcClient.encodeRefuelTxInput} params
  * @returns {Promise<GRpcClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
  */
+
 
 /**
  * Encode a encodeRetrieveSwapTx transaction for later use
@@ -6145,85 +5652,94 @@
  * @returns {Promise<GRpcClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
  */
 
+
 /**
- * Encode a encodeConsumeAssetTx transaction for later use
+ * Encode a encodeRevokeDelegateTx transaction for later use
  *
  * @name GRpcClient#12
  * @function
  * @memberof GRpcClient
- * @param {GRpcClient.encodeConsumeAssetTxInput} params
+ * @param {GRpcClient.encodeRevokeDelegateTxInput} params
  * @returns {Promise<GRpcClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
  */
 
-/**
- * Encode a encodePokeTx transaction for later use
- *
- * @name GRpcClient#13
- * @function
- * @memberof GRpcClient
- * @param {GRpcClient.encodePokeTxInput} params
- * @returns {Promise<GRpcClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
- */
-
-/**
- * Encode a encodeUpdateAssetTx transaction for later use
- *
- * @name GRpcClient#14
- * @function
- * @memberof GRpcClient
- * @param {GRpcClient.encodeUpdateAssetTxInput} params
- * @returns {Promise<GRpcClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
- */
-
-/**
- * Encode a encodeExchangeTx transaction for later use
- *
- * @name GRpcClient#15
- * @function
- * @memberof GRpcClient
- * @param {GRpcClient.encodeExchangeTxInput} params
- * @returns {Promise<GRpcClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
- */
-
-/**
- * Encode a encodeUpdateConsensusParamsTx transaction for later use
- *
- * @name GRpcClient#16
- * @function
- * @memberof GRpcClient
- * @param {GRpcClient.encodeUpdateConsensusParamsTxInput} params
- * @returns {Promise<GRpcClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
- */
 
 /**
  * Encode a encodeRevokeSwapTx transaction for later use
  *
- * @name GRpcClient#17
+ * @name GRpcClient#13
  * @function
  * @memberof GRpcClient
  * @param {GRpcClient.encodeRevokeSwapTxInput} params
  * @returns {Promise<GRpcClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
  */
 
+
 /**
- * Encode a encodeActivateProtocolTx transaction for later use
+ * Encode a encodeRevokeWithdrawTx transaction for later use
+ *
+ * @name GRpcClient#14
+ * @function
+ * @memberof GRpcClient
+ * @param {GRpcClient.encodeRevokeWithdrawTxInput} params
+ * @returns {Promise<GRpcClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
+ */
+
+
+/**
+ * Encode a encodeSetupSwapTx transaction for later use
+ *
+ * @name GRpcClient#15
+ * @function
+ * @memberof GRpcClient
+ * @param {GRpcClient.encodeSetupSwapTxInput} params
+ * @returns {Promise<GRpcClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
+ */
+
+
+/**
+ * Encode a encodeTransferTx transaction for later use
+ *
+ * @name GRpcClient#16
+ * @function
+ * @memberof GRpcClient
+ * @param {GRpcClient.encodeTransferTxInput} params
+ * @returns {Promise<GRpcClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
+ */
+
+
+/**
+ * Encode a encodeUpdateAssetTx transaction for later use
+ *
+ * @name GRpcClient#17
+ * @function
+ * @memberof GRpcClient
+ * @param {GRpcClient.encodeUpdateAssetTxInput} params
+ * @returns {Promise<GRpcClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
+ */
+
+
+/**
+ * Encode a encodeUpdateConsensusParamsTx transaction for later use
  *
  * @name GRpcClient#18
  * @function
  * @memberof GRpcClient
- * @param {GRpcClient.encodeActivateProtocolTxInput} params
+ * @param {GRpcClient.encodeUpdateConsensusParamsTxInput} params
  * @returns {Promise<GRpcClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
  */
 
+
 /**
- * Encode a encodeApproveWithdrawTx transaction for later use
+ * Encode a encodeUpdateValidatorTx transaction for later use
  *
  * @name GRpcClient#19
  * @function
  * @memberof GRpcClient
- * @param {GRpcClient.encodeApproveWithdrawTxInput} params
+ * @param {GRpcClient.encodeUpdateValidatorTxInput} params
  * @returns {Promise<GRpcClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
  */
+
 
 /**
  * Encode a encodeUpgradeNodeTx transaction for later use
@@ -6235,62 +5751,13 @@
  * @returns {Promise<GRpcClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
  */
 
+
 /**
- * Encode a encodeUpdateValidatorTx transaction for later use
+ * Encode a encodeWithdrawTokenTx transaction for later use
  *
  * @name GRpcClient#21
  * @function
  * @memberof GRpcClient
- * @param {GRpcClient.encodeUpdateValidatorTxInput} params
- * @returns {Promise<GRpcClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
- */
-
-/**
- * Encode a encodeAcquireAssetTx transaction for later use
- *
- * @name GRpcClient#22
- * @function
- * @memberof GRpcClient
- * @param {GRpcClient.encodeAcquireAssetTxInput} params
- * @returns {Promise<GRpcClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
- */
-
-/**
- * Encode a encodeDelegateTx transaction for later use
- *
- * @name GRpcClient#23
- * @function
- * @memberof GRpcClient
- * @param {GRpcClient.encodeDelegateTxInput} params
- * @returns {Promise<GRpcClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
- */
-
-/**
- * Encode a encodeDepositTokenTx transaction for later use
- *
- * @name GRpcClient#24
- * @function
- * @memberof GRpcClient
- * @param {GRpcClient.encodeDepositTokenTxInput} params
- * @returns {Promise<GRpcClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
- */
-
-/**
- * Encode a encodeSetupSwapTx transaction for later use
- *
- * @name GRpcClient#25
- * @function
- * @memberof GRpcClient
- * @param {GRpcClient.encodeSetupSwapTxInput} params
- * @returns {Promise<GRpcClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
- */
-
-/**
- * Encode a encodeRefuelTx transaction for later use
- *
- * @name GRpcClient#26
- * @function
- * @memberof GRpcClient
- * @param {GRpcClient.encodeRefuelTxInput} params
+ * @param {GRpcClient.encodeWithdrawTokenTxInput} params
  * @returns {Promise<GRpcClient.TxEncodeOutput>} result - we provide two formats of the encoding result, binary presentation and human readable object
  */

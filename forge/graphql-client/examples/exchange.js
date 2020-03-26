@@ -49,6 +49,7 @@ const sleep = timeout => new Promise(resolve => setTimeout(resolve, timeout));
 
     // 2.1 receiver checkin
     await client.checkin({ wallet: receiver });
+    await sleep(3000);
 
     // 3. create asset for sender
     let assetAddress;

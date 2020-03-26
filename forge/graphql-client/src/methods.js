@@ -282,48 +282,6 @@
  */
 
 /**
- * Deploy a contract to a running chain node, requires moderator privilege
- *
- * @memberof GraphQLClient
- * @function
- * @name GraphQLClient#deployContract
- * @param {object} params
- * @param {object} params.payload - the contract payload, usually from `forge contract:compile`
- * @param {string} params.delegator - who authorized this transaction
- * @param {WalletObject} params.wallet - the wallet to sign the transaction
- * @param {object} extra - other param to underlying client implementation
- * @returns {Promise} the `transactionHash` once resolved
- */
-
-/**
- * Activate an previously paused/disabled contract
- *
- * @memberof GraphQLClient
- * @function
- * @name GraphQLClient#activateContract
- * @param {object} params
- * @param {string} params.address - the contract address to activate
- * @param {string} params.delegator - who authorized this transaction
- * @param {WalletObject} params.wallet - the wallet to sign the transaction
- * @param {object} extra - other param to underlying client implementation
- * @returns {Promise} the `transactionHash` once resolved
- */
-
-/**
- * Deactivate an previously running/enabled contract
- *
- * @memberof GraphQLClient
- * @function
- * @name GraphQLClient#deactivateContract
- * @param {object} params
- * @param {string} params.address - the contract address to deactivate
- * @param {string} params.delegator - who authorized this transaction
- * @param {WalletObject} params.wallet - the wallet to sign the transaction
- * @param {object} extra - other param to underlying client implementation
- * @returns {Promise} the `transactionHash` once resolved
- */
-
-/**
  * Setup a swap that's used to accomplish cross-chain operations
  *
  * @memberof GraphQLClient

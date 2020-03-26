@@ -36,6 +36,7 @@ const sleep = timeout => new Promise(resolve => setTimeout(resolve, timeout));
       `${endpoint}/node/explorer/accounts/${receiver.toAddress()}`
     );
     console.log('view receiver tx', `${endpoint}/node/explorer/txs/${hash}`);
+    await sleep(3000);
 
     // 3. create asset for sender
     let assetAddress;

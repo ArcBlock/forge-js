@@ -61,9 +61,6 @@ let vendorTypeFiles = files.filter(
 let vendorServiceFiles = files.filter(x => /^vendor_/.test(x) && /_grpc_pb\.js$/.test(x));
 
 if (mode === 'lite') {
-  forgeTypeFiles = forgeTypeFiles.filter(
-    x => /_tx_pb\.js$/.test(x) || ['type_pb.js', 'enum_pb.js'].includes(x)
-  );
   forgeServiceFiles = [];
   vendorServiceFiles = [];
 } else {
