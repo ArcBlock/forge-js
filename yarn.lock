@@ -2,10 +2,10 @@
 # yarn lockfile v1
 
 
-"@arcblock/sdk-util@^0.25.0":
-  version "0.25.0"
-  resolved "https://registry.npm.taobao.org/@arcblock/sdk-util/download/@arcblock/sdk-util-0.25.0.tgz#2967dc0798dde110f31491fe567e9eef68ee41bc"
-  integrity sha1-KWfcB5jd4RDzFJH+Vn6e72juQbw=
+"@arcblock/sdk-util@^0.26.0":
+  version "0.26.0"
+  resolved "https://registry.npm.taobao.org/@arcblock/sdk-util/download/@arcblock/sdk-util-0.26.0.tgz#6e3a90484e75f2dd5b8e4a30bf14276f3f4b9ae7"
+  integrity sha1-bjqQSE518t1bjkowvxQnbz9Lmuc=
   dependencies:
     axios "^0.19.0"
     debug "^4.1.1"

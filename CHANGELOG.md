@@ -1,3 +1,8 @@
+## 1.2.1 (March 30, 2020)
+
+- [skip travis] update publish script
+- update readme
+
 ## 1.2.0 (March 25, 2020)
 
 - chore: rerun upgrade script
