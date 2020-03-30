@@ -26,7 +26,7 @@ if [ "$changed" != "" ]; then
 
   # update readme
   node tools/update-readme.js
-  git commit -am 'update readme'
+  git commit -am '[skip travis] update readme'
   git push origin master
 fi
 
