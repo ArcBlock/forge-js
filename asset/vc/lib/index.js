@@ -10,7 +10,7 @@ const cloneDeep = require('lodash/cloneDeep');
 const { types } = require('@arcblock/mcrypto');
 const { fromPublicKey } = require('@arcblock/forge-wallet');
 const { toTypeInfo, isValid, isFromPublicKey, fromPublicKeyHash } = require('@arcblock/did');
-const { toBase58, toBase64, fromBase64 } = require('@arcblock/forge-util');
+const { toBase58, toBase64, fromBase64, fromBase58 } = require('@arcblock/forge-util');
 
 // eslint-disable-next-line
 const debug = require('debug')(require('../package.json').name);
@@ -165,7 +165,45 @@ function verify({ vc, ownerDid, trustedIssuers }) {
   return true;
 }
 
+/**
+ * Verify that the Presentation is valid
+ *  - It is signed by VC's owner
+ *  - It contain chanllege
+ *  - It has valid signature by the issuer
+ *  - It is not expired
+ *
+ * @param {object} presentation - the presentation object
+ * @param {Array} trustedIssuers - list of issuer did
+ * @param {String} challenge - Random byte you want
+ * @throws {Error}
+ * @returns {boolean}
+ */
+function verifyPresentation({ presentation, trustedIssuers, challenge }) {
+  if (!presentation.challenge || challenge !== presentation.challenge) {
+    throw Error('unsafe response');
+  }
+  const vcArray = Array.isArray(presentation.verifiableCredential)
+    ? presentation.verifiableCredential
+    : [presentation.verifiableCredential];
+  const proofArray = Array.isArray(presentation.proof) ? presentation.proof : [presentation.proof];
+  const clone = cloneDeep(presentation);
+  delete clone.proof;
+  vcArray.forEach(vcString => {
+    const vc = JSON.parse(vcString);
+    const proof = proofArray.find(tmpProof => isFromPublicKey(vc.credentialSubject.id, tmpProof.pk));
+    if (!proof) throw Error('VC cannot be proof');
+    const signature = proof.jws;
+    const recipience = fromPublicKey(fromBase58(proof.pk), toTypeInfo(vc.credentialSubject.id));
+    if (recipience.verify(stringify(clone), fromBase64(signature)) !== true) {
+      throw Error('presentation signature not valid');
+    }
+    verify({ vc, ownerDid: vc.credentialSubject.id, trustedIssuers });
+  });
+  return true;
+}
+
 module.exports = {
   create,
   verify,
+  verifyPresentation,
 };

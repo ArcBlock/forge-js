@@ -1,3 +1,8 @@
+## 1.2.2 (March 31, 2020)
+
+- verify presentation
+- [skip travis] update readme
+
 ## 1.2.1 (March 30, 2020)
 
 - [skip travis] update publish script
