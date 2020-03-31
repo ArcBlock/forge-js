@@ -190,17 +190,8 @@ function verifyPresentation({ presentation, trustedIssuers, challenge }) {
   delete clone.proof;
   vcArray.forEach(vcString => {
     const vc = JSON.parse(vcString);
-    let canProof = false;
-    let proof = '';
-    for (let i = 0; i < proofArray.length; i++) {
-      const tmpProof = proofArray[i];
-      canProof = isFromPublicKey(vc.credentialSubject.id, tmpProof.pk);
-      if (canProof) {
-        proof = tmpProof;
-        break;
-      }
-    }
-    if (!canProof) throw Error('VC cannot be proof');
+    const proof = proofArray.find(tmpProof => isFromPublicKey(vc.credentialSubject.id, tmpProof.pk));
+    if (!proof) throw Error('VC cannot be proof');
     const signature = proof.jws;
     const recipience = fromPublicKey(fromBase58(proof.pk), toTypeInfo(vc.credentialSubject.id));
     if (recipience.verify(stringify(clone), fromBase64(signature)) !== true) {
