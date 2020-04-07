@@ -1,3 +1,8 @@
+## 1.2.3 (April 07, 2020)
+
+- fix: store extra params in auth storage to get smaller qrcode url
+- [skip travis] update readme
+
 ## 1.2.2 (March 31, 2020)
 
 - verify presentation
