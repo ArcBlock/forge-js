@@ -1,8 +1,6 @@
 /* eslint-disable no-console */
 const { fromRandom } = require('@arcblock/forge-wallet');
 const { fromTokenToUnit } = require('@arcblock/forge-util');
-// eslint-disable-next-line import/no-extraneous-dependencies
-const { verifyAccountAsync } = require('@arcblock/tx-util');
 
 const GraphQLClient = require('../');
 
