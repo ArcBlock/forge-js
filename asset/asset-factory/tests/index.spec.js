@@ -1,6 +1,8 @@
 const ForgeSDK = require('@arcblock/forge-sdk');
 const { fromRandom } = require('@arcblock/forge-wallet');
 const { verify } = require('@arcblock/vc');
+// eslint-disable-next-line import/no-extraneous-dependencies
+const { verifyAccountAsync } = require('@arcblock/tx-util');
 
 const AssetIssuer = require('../lib/issuer');
 const AssetRecipient = require('../lib/recipient');
@@ -21,14 +23,17 @@ const factory = new AssetFactory({
   },
 });
 
-const sleep = timeout => new Promise(resolve => setTimeout(resolve, timeout));
-
 beforeAll(async () => {
   ForgeSDK.connect(chainHost, { chainId, name: chainId });
-  await ForgeSDK.declare({ moniker: 'asset_factory_issuer', wallet: issuer });
-  await ForgeSDK.declare({ moniker: 'asset_factory_owner', wallet: owner });
-  await sleep(3000);
-});
+  await Promise.all([
+    ForgeSDK.declare({ moniker: 'asset_factory_issuer', wallet: issuer }),
+    ForgeSDK.declare({ moniker: 'asset_factory_owner', wallet: owner }),
+  ]);
+  await Promise.all([
+    verifyAccountAsync({ chainId, chainHost, address: issuer.toAddress() }),
+    verifyAccountAsync({ chainId, chainHost, address: owner.toAddress() }),
+  ]);
+}, 20000);
 
 describe('AssetFactory.createTicket', () => {
   test('should be a function', () => {
@@ -62,7 +67,7 @@ describe('AssetFactory.createTicket', () => {
     expect(asset).toBeTruthy();
     expect(asset.address).toBeTruthy();
     expect(asset.data.value.signature).toBeTruthy();
-  });
+  }, 20000);
 });
 
 describe('AssetFactory.createCoupon', () => {
@@ -88,7 +93,7 @@ describe('AssetFactory.createCoupon', () => {
     expect(asset).toBeTruthy();
     expect(asset.address).toBeTruthy();
     expect(asset.data.value.signature).toBeTruthy();
-  });
+  }, 20000);
 });
 
 describe('AssetFactory.createCertificate', () => {
@@ -118,7 +123,7 @@ describe('AssetFactory.createCertificate', () => {
     expect(asset).toBeTruthy();
     expect(asset.address).toBeTruthy();
     expect(asset.data.value.signature).toBeTruthy();
-  });
+  }, 20000);
 });
 
 describe('AssetFactory.createBadge', () => {
@@ -159,5 +164,5 @@ describe('AssetFactory.createBadge', () => {
 
     const vc = factory.getVCBody(asset);
     expect(verify({ vc, ownerDid: owner.toAddress(), trustedIssuers: issuer.toAddress() })).toBeTruthy();
-  });
+  }, 20000);
 });
