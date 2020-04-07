@@ -1,7 +1,7 @@
 {
   "name": "@arcblock/forge-sdk",
   "description": "Forge javascript SDK packages all-in-one",
-  "version": "1.2.1",
+  "version": "1.2.3",
   "author": {
     "name": "wangshijun",
     "email": "shijun@arcblock.io",
@@ -19,7 +19,7 @@
     "@arcblock/forge-message": "^1.2.0",
     "@arcblock/forge-util": "^1.0.33",
     "@arcblock/forge-wallet": "^1.0.39",
-    "@arcblock/graphql-client": "^1.2.1",
+    "@arcblock/graphql-client": "^1.2.3",
     "@arcblock/grpc-client": "^1.2.0",
     "debug": "^4.1.1",
     "react-app-polyfill": "^1.0.1"
