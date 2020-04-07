@@ -172,7 +172,7 @@ class WalletAuthenticator extends BaseAuthenticator {
         delete x.chainInfo;
         return x;
       }),
-      url: `${this.baseUrl}${pathname}?${qs.stringify(Object.assign({ [this.tokenKey]: context.token }, extraParams))}`,
+      url: `${this.baseUrl}${pathname}?${qs.stringify({ [this.tokenKey]: context.token })}`,
     };
 
     debug('sign.context', context);
