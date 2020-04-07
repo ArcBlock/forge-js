@@ -159,7 +159,7 @@ describe('GraphQLClient', () => {
       // 2. declare receiver
       hash = await client.declare({ moniker: 'receiver', wallet: receiver });
       expect(hash).toBeTruthy();
-      await sleep(3000);
+      await sleep(5000);
 
       hash = await client.checkin({ wallet: receiver });
       expect(hash).toBeTruthy();
@@ -178,7 +178,7 @@ describe('GraphQLClient', () => {
         },
         wallet: sender,
       });
-      await sleep(3000);
+      await sleep(5000);
       expect(assetAddress).toBeTruthy();
 
       const options = { ignoreFields: [/\.withdrawItems/, /\.items/] };
@@ -218,5 +218,5 @@ describe('GraphQLClient', () => {
       console.error(err.errors);
       expect(err).toBeFalsy();
     }
-  }, 10000);
+  }, 12000);
 });
