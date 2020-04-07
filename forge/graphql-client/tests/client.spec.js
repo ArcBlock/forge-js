@@ -1,20 +1,23 @@
 /* eslint-disable no-console */
 const { fromRandom } = require('@arcblock/forge-wallet');
-const { fromTokenToUnit } = require('@arcblock/forge-util');
+// eslint-disable-next-line import/no-extraneous-dependencies
+const { verifyAccountAsync, verifyTxAsync } = require('@arcblock/tx-util');
 
 const GraphQLClient = require('../');
-
-const sleep = timeout => new Promise(resolve => setTimeout(resolve, timeout));
 
 describe('GraphQLClient', () => {
   test('should be a function', () => {
     expect(typeof GraphQLClient).toEqual('function');
   });
 
-  let client = new GraphQLClient('https://playground.network.arcblockio.cn/api');
+  let chainId = 'playground';
+  let chainHost = 'https://playground.network.arcblockio.cn/api';
   if (process.env.CI) {
-    client = new GraphQLClient('https://zinc.abtnetwork.io/api');
+    chainId = 'zinc-2019-05-17';
+    chainHost = 'https://zinc.abtnetwork.io/api';
   }
+  const client = new GraphQLClient(chainHost);
+
   test('should have alias methods', () => {
     expect(typeof client.checkin).toEqual('function');
     expect(typeof client.transfer).toEqual('function');
@@ -157,15 +160,20 @@ describe('GraphQLClient', () => {
         client.declare({ moniker: 'sender', wallet: sender }),
         client.declare({ moniker: 'receiver', wallet: receiver }),
       ]);
-      await sleep(6000);
       expect(hash1).toBeTruthy();
       expect(hash2).toBeTruthy();
 
-      const hash = await client.checkin({ wallet: receiver });
-      expect(hash).toBeTruthy();
+      await Promise.all([
+        verifyAccountAsync({ chainId, chainHost, address: sender.toAddress() }),
+        verifyAccountAsync({ chainId, chainHost, address: receiver.toAddress() }),
+      ]);
+
+      const hash3 = await client.checkin({ wallet: receiver });
+      await verifyTxAsync({ chainId, chainHost, hash: hash3 });
+      expect(hash3).toBeTruthy();
 
       // 3. create asset for sender
-      const [, assetAddress] = await client.createAsset({
+      const [hash4, assetAddress] = await client.createAsset({
         moniker: 'asset',
         readonly: true,
         transferrable: true,
@@ -178,7 +186,7 @@ describe('GraphQLClient', () => {
         },
         wallet: sender,
       });
-      await sleep(6000);
+      await verifyTxAsync({ chainId, chainHost, hash: hash4 });
       expect(assetAddress).toBeTruthy();
 
       const options = { ignoreFields: [/\.withdrawItems/, /\.items/] };
@@ -195,7 +203,7 @@ describe('GraphQLClient', () => {
             assets: [assetAddress],
           },
           receiver: {
-            value: fromTokenToUnit(5),
+            value: await client.fromTokenToUnit(5),
           },
         },
       };
@@ -210,13 +218,14 @@ describe('GraphQLClient', () => {
       });
 
       // 4.3 Send the exchange tx
-      await client.sendExchangeTx({
+      const hash5 = await client.sendExchangeTx({
         tx: encoded2,
         wallet: sender,
       });
+      await verifyTxAsync({ chainId, chainHost, hash: hash5 });
     } catch (err) {
       console.error(err.errors);
       expect(err).toBeFalsy();
     }
-  }, 20000);
+  }, 30000);
 });
