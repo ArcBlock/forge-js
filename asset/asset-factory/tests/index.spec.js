@@ -27,7 +27,7 @@ beforeAll(async () => {
   ForgeSDK.connect(chainHost, { chainId, name: chainId });
   await ForgeSDK.declare({ moniker: 'asset_factory_issuer', wallet: issuer });
   await ForgeSDK.declare({ moniker: 'asset_factory_owner', wallet: owner });
-  await sleep(5000);
+  await sleep(3000);
 });
 
 describe('AssetFactory.createTicket', () => {
