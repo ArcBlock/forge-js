@@ -1,6 +1,8 @@
 /* eslint-disable no-console */
 const { fromRandom } = require('@arcblock/forge-wallet');
 const { fromTokenToUnit } = require('@arcblock/forge-util');
+// eslint-disable-next-line import/no-extraneous-dependencies
+const { verifyAccountAsync } = require('@arcblock/tx-util');
 
 const GraphQLClient = require('../');
 
@@ -153,15 +155,15 @@ describe('GraphQLClient', () => {
       const receiver = fromRandom();
 
       // 1. declare sender
-      let hash = await client.declare({ moniker: 'sender', wallet: sender });
-      expect(hash).toBeTruthy();
+      const [hash1, hash2] = await Promise.all([
+        client.declare({ moniker: 'sender', wallet: sender }),
+        client.declare({ moniker: 'receiver', wallet: receiver }),
+      ]);
+      await sleep(6000);
+      expect(hash1).toBeTruthy();
+      expect(hash2).toBeTruthy();
 
-      // 2. declare receiver
-      hash = await client.declare({ moniker: 'receiver', wallet: receiver });
-      expect(hash).toBeTruthy();
-      await sleep(5000);
-
-      hash = await client.checkin({ wallet: receiver });
+      const hash = await client.checkin({ wallet: receiver });
       expect(hash).toBeTruthy();
 
       // 3. create asset for sender
@@ -178,7 +180,7 @@ describe('GraphQLClient', () => {
         },
         wallet: sender,
       });
-      await sleep(5000);
+      await sleep(6000);
       expect(assetAddress).toBeTruthy();
 
       const options = { ignoreFields: [/\.withdrawItems/, /\.items/] };
@@ -218,5 +220,5 @@ describe('GraphQLClient', () => {
       console.error(err.errors);
       expect(err).toBeFalsy();
     }
-  }, 12000);
+  }, 20000);
 });
