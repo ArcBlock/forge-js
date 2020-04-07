@@ -165,16 +165,18 @@ module.exports = function createHandlers({
     });
   }
 
-  const createExtraParams = (locale, params) =>
-    Object.assign(
+  const createExtraParams = (locale, params, extra = {}) => {
+    const finalParams = Object.assign({}, params, extra || {});
+    return Object.assign(
       { locale, action },
-      Object.keys(params)
+      Object.keys(finalParams)
         .filter(x => !['userDid', 'userInfo', 'userSession', 'appSession', 'userPk', 'token'].includes(x))
         .reduce((obj, x) => {
-          obj[x] = params[x];
+          obj[x] = finalParams[x];
           return obj;
         }, {})
     );
+  };
 
   const onProcessError = ({ req, res, stage, err }) => {
     const { token, store } = req.context || {};
@@ -190,6 +192,7 @@ module.exports = function createHandlers({
   // For web app
   const generateActionToken = async (req, res) => {
     try {
+      const params = Object.assign({}, req.body, req.query, req.params);
       const sessionDid = get(req, sessionDidKey);
       const token = sha3(tokenGenerator({ req, action, pathname }))
         .replace(/^0x/, '')
@@ -201,7 +204,7 @@ module.exports = function createHandlers({
       // Since the did of logged in user may be different of the auth did
       // We should store the sessionDid in token storage for possible usage
       const challenge = getStepChallenge();
-      await tokenStorage.update(token, { currentStep: 0, sessionDid, challenge });
+      await tokenStorage.update(token, { currentStep: 0, sessionDid, challenge, extraParams: params });
       // debug('generate token', { action, pathname, token, sessionDid });
 
       res.json({
@@ -209,7 +212,7 @@ module.exports = function createHandlers({
         url: authenticator.uri({
           token,
           pathname: preparePathname(getPathName(pathname, req), req),
-          query: req.query,
+          query: {},
         }),
       });
     } catch (err) {
@@ -252,7 +255,7 @@ module.exports = function createHandlers({
             token,
             sessionDid: store.sessionDid,
             userDid: store.did,
-            extraParams: createExtraParams(locale, params),
+            extraParams: createExtraParams(locale, params, store.extraParams),
           });
         }
 
@@ -296,7 +299,7 @@ module.exports = function createHandlers({
   // Only check userDid and userPk if we have done auth principal
   const checkUser = async ({ context, userDid, userPk }) => {
     const { locale, token, store, shouldCheckUser } = context;
-    debug('checkUser', { userDid, userPk, store, shouldCheckUser });
+    // debug('checkUser', { userDid, userPk, store, shouldCheckUser });
 
     // Only check userDid and userPk if we have done auth principal
     if (shouldCheckUser) {
@@ -321,7 +324,8 @@ module.exports = function createHandlers({
   const onAuthRequest = async (req, res) => {
     const { locale, token, store, params, wallet } = req.context;
     const { userDid, userPk } = params;
-    // debug('onAuthRequest.context', req.context);
+    // debug('onAuthRequest.store', store ? store.extraParams : {});
+    // debug('onAuthRequest.extra', createExtraParams(locale, params, store ? store.extraParams : {}));
 
     const error = await checkUser({ context: req.context, userDid, userPk });
     if (error) {
@@ -347,7 +351,7 @@ module.exports = function createHandlers({
             },
             claims: store ? steps[store.currentStep] : steps[0],
             pathname: preparePathname(getPathName(pathname, req), req),
-            extraParams: createExtraParams(locale, params),
+            extraParams: createExtraParams(locale, params, store ? store.extraParams : {}),
             challenge: store ? store.challenge : '',
           })
         )
@@ -390,7 +394,7 @@ module.exports = function createHandlers({
         walletOS: wallet.os,
         claims: claimResponse,
         storage: tokenStorage,
-        extraParams: createExtraParams(locale, params),
+        extraParams: createExtraParams(locale, params, store ? store.extraParams : {}),
       };
 
       if (userAction === 'declineAuth') {
@@ -455,7 +459,7 @@ module.exports = function createHandlers({
                 },
                 claims: steps[nextStep],
                 pathname: preparePathname(getPathName(pathname, req), req),
-                extraParams: createExtraParams(locale, params),
+                extraParams: createExtraParams(locale, params, store.extraParams || {}),
                 challenge: nextChallenge,
               })
             );
@@ -500,7 +504,7 @@ module.exports = function createHandlers({
         const claim = await authenticator.getClaimInfo({
           claim: steps[0].authPrincipal,
           context: { sessionDid: store.sessionDid },
-          extraParams: createExtraParams(locale, params),
+          extraParams: createExtraParams(locale, params, store ? store.extraParams : {}),
         });
 
         if (!claim) {

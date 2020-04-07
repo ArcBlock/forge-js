@@ -1,3 +1,5 @@
+/* eslint-disable no-shadow */
+const ForgeSDK = require('@arcblock/forge-sdk');
 const { verifyTx, verifyAccount, verifyAsset } = require('../lib');
 const { verifyTxAsync, verifyAccountAsync, verifyAssetAsync } = require('../lib');
 
@@ -63,4 +65,18 @@ describe('#createVerifier', () => {
     expect(data.state).toBeTruthy();
     expect(data.state.address).toEqual(asset);
   });
+
+  test.only('should verify tx and account dynamic', async () => {
+    const wallet = ForgeSDK.Wallet.fromRandom();
+    const chainId = 'zinc-2019-05-17';
+    const chainHost = 'https://zinc.abtnetwork.io/api';
+    ForgeSDK.connect(chainHost, { name: 'zinc', chainId });
+    const hash = await ForgeSDK.declare({ moniker: 'test', wallet }, { conn: 'zinc' });
+    const [res1, res2] = await Promise.all([
+      verifyTxAsync({ hash, chainId, chainHost }),
+      verifyAccountAsync({ address: wallet.toAddress(), chainId, chainHost }),
+    ]);
+    expect(res1).toBeTruthy();
+    expect(res2).toBeTruthy();
+  }, 30000);
 });

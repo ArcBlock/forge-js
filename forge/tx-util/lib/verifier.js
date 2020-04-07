@@ -23,7 +23,7 @@ const create = ({ key, label, fn, validate }) => params => {
 
   const param = params[key];
   const events = new EventEmitter();
-  let retryCount = -1;
+  let retryCount = 0;
 
   const doCheck = async () => {
     if (retryCount > maxRetry) {
@@ -77,18 +77,10 @@ const create = ({ key, label, fn, validate }) => params => {
     return false;
   };
 
-  events.start = () => {
-    doCheck().then(verified => {
-      if (!verified) {
-        setTimeout(doCheck, checkInterval);
-      }
-    });
-  };
+  events.start = doCheck;
 
   if (autoStart) {
-    setTimeout(() => {
-      events.start();
-    }, 0);
+    doCheck();
   }
 
   return events;

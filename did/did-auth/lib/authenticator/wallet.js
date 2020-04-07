@@ -157,6 +157,9 @@ class WalletAuthenticator extends BaseAuthenticator {
    * @returns {object} { appPk, authInfo }
    */
   async sign({ context, claims, pathname = '', challenge = '', extraParams = {} }) {
+    // debug('sign.context', context);
+    // debug('sign.params', extraParams);
+
     const claimsInfo = await this.genRequestedClaims({ claims, context, extraParams });
     const chainInfoParams = Object.assign({}, context, extraParams);
 
@@ -172,12 +175,10 @@ class WalletAuthenticator extends BaseAuthenticator {
         delete x.chainInfo;
         return x;
       }),
-      url: `${this.baseUrl}${pathname}?${qs.stringify(Object.assign({ [this.tokenKey]: context.token }, extraParams))}`,
+      url: `${this.baseUrl}${pathname}?${qs.stringify({ [this.tokenKey]: context.token })}`,
     };
 
-    debug('sign.context', context);
-    debug('sign.params', extraParams);
-    debug('sign.payload', payload);
+    // debug('sign.payload', payload);
 
     return {
       appPk: this.appPk,

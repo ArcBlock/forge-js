@@ -191,7 +191,7 @@ class AtomicSwapHandlers extends BaseHandler {
       throw new Error('onComplete callback is required to attach swap handlers');
     }
 
-    const { prefix, swapKey } = this.options;
+    const { prefix, swapKey, tokenKey } = this.options;
 
     // pathname for abt wallet, which will be included for authenticator signing
     const authPath = `${prefix}/${action}/auth`;
@@ -200,7 +200,10 @@ class AtomicSwapHandlers extends BaseHandler {
 
     // Shared middleware that ensure a valid swap id exists in the url
     const ensureSwap = async (req, res, next) => {
-      const traceId = req.query[swapKey] || req.params[swapKey];
+      const token = req.query[tokenKey];
+      const store = token ? await this.tokenStorage.read(token) : null;
+      const traceIdFromToken = store ? store.extraParams[swapKey] : null;
+      const traceId = traceIdFromToken || req.query[swapKey] || req.params[swapKey];
 
       if (!traceId) {
         return res.json({ error: 'Swap ID is required to start' });
@@ -323,7 +326,7 @@ class AtomicSwapHandlers extends BaseHandler {
             }),
           },
           pathname: preparePathname(retrievePath, req),
-          extraParams: createExtraParams(locale, params),
+          extraParams: createExtraParams(locale, params, store ? store.extraParams : {}),
         });
 
         res.jsonp(authInfo);
