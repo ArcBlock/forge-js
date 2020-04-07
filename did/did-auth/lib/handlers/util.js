@@ -165,16 +165,18 @@ module.exports = function createHandlers({
     });
   }
 
-  const createExtraParams = (locale, params, extra = {}) =>
-    Object.assign(
+  const createExtraParams = (locale, params, extra = {}) => {
+    const finalParams = Object.assign({}, params, extra || {});
+    return Object.assign(
       { locale, action },
-      Object.keys(Object.assign({}, params, extra || {}))
+      Object.keys(finalParams)
         .filter(x => !['userDid', 'userInfo', 'userSession', 'appSession', 'userPk', 'token'].includes(x))
         .reduce((obj, x) => {
-          obj[x] = params[x];
+          obj[x] = finalParams[x];
           return obj;
         }, {})
     );
+  };
 
   const onProcessError = ({ req, res, stage, err }) => {
     const { token, store } = req.context || {};
@@ -210,7 +212,7 @@ module.exports = function createHandlers({
         url: authenticator.uri({
           token,
           pathname: preparePathname(getPathName(pathname, req), req),
-          query: req.query,
+          query: {},
         }),
       });
     } catch (err) {
@@ -297,7 +299,7 @@ module.exports = function createHandlers({
   // Only check userDid and userPk if we have done auth principal
   const checkUser = async ({ context, userDid, userPk }) => {
     const { locale, token, store, shouldCheckUser } = context;
-    debug('checkUser', { userDid, userPk, store, shouldCheckUser });
+    // debug('checkUser', { userDid, userPk, store, shouldCheckUser });
 
     // Only check userDid and userPk if we have done auth principal
     if (shouldCheckUser) {
@@ -322,7 +324,8 @@ module.exports = function createHandlers({
   const onAuthRequest = async (req, res) => {
     const { locale, token, store, params, wallet } = req.context;
     const { userDid, userPk } = params;
-    // debug('onAuthRequest.context', req.context);
+    // debug('onAuthRequest.store', store ? store.extraParams : {});
+    // debug('onAuthRequest.extra', createExtraParams(locale, params, store ? store.extraParams : {}));
 
     const error = await checkUser({ context: req.context, userDid, userPk });
     if (error) {
