@@ -1,7 +1,7 @@
 {
   "name": "@arcblock/did-auth",
   "description": "Helper function to setup DID authentication support on a node.js web server",
-  "version": "1.2.3",
+  "version": "1.2.4",
   "author": {
     "name": "wangshijun",
     "email": "shijun@arcblock.io",
