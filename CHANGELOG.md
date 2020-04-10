@@ -1,3 +1,7 @@
+## 1.2.4 (April 10, 2020)
+
+- [skip travis] update readme
+
 ## 1.2.3 (April 07, 2020)
 
 - fix: store extra params in auth storage to get smaller qrcode url
