@@ -1,3 +1,8 @@
+## 1.2.5 (April 13, 2020)
+
+- chore: make jwt sign compatible with forge-web
+- [skip travis] update readme
+
 ## 1.2.4 (April 10, 2020)
 
 - [skip travis] update readme
