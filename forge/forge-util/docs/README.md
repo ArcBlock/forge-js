@@ -152,7 +152,7 @@ Should be called to get utf8 from it's hex representation
 
 ### hexToNumber(value) ⇒ `Number`
 
-Converts value to it's number representation
+Converts value to number representation
 
 **Kind**: static method  
 **Access**: public  

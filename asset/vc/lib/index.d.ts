@@ -26,7 +26,21 @@ declare function create(T100: _Lib.T101): any;
  * @returns {boolean}
  */
 declare function verify(T102: any): boolean;
-declare const _Lib: _Lib.T103;
+/**
+ * Verify that the Presentation is valid
+ *  - It is signed by VC's owner
+ *  - It contain chanllege
+ *  - It has valid signature by the issuer
+ *  - It is not expired
+ *
+ * @param {object} presentation - the presentation object
+ * @param {Array} trustedIssuers - list of issuer did
+ * @param {String} challenge - Random byte you want
+ * @throws {Error}
+ * @returns {boolean}
+ */
+declare function verifyPresentation(T103: any): boolean;
+declare const _Lib: _Lib.T104;
 declare namespace _Lib {
   export interface T101 {
     type: string;
@@ -35,9 +49,10 @@ declare namespace _Lib {
     issuanceDate: Date;
     expirationDate: Date;
   }
-  export interface T103 {
+  export interface T104 {
     create: typeof create;
     verify: typeof verify;
+    verifyPresentation: typeof verifyPresentation;
   }
 }
 export = _Lib;
