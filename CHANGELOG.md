@@ -1,3 +1,11 @@
+## 1.2.6 (April 14, 2020)
+
+- chore: update docs
+- feat: add nedb storage implementation for agent-auth
+- feat: add nedb storage implementation for atomic-swap
+- feat: add nedb storage implementation for did-auth
+- [skip travis] update readme
+
 ## 1.2.5 (April 13, 2020)
 
 - chore: make jwt sign compatible with forge-web
