@@ -12,7 +12,6 @@ const debug = require('debug')(require('../package.json').name);
 
 const AssetIssuer = require('./issuer');
 const AssetRecipient = require('./recipient');
-const { AssetStatus, AssetType } = require('./enum');
 
 /**
  * Used to create standard asset on forge powered blockchain
@@ -82,28 +81,34 @@ class AssetFactory {
       }
     });
 
+    if (!(data.recipient instanceof AssetRecipient)) {
+      throw new Error(`Invalid recipient field when creating ${type} asset`);
+    }
+
     if (!(data.host instanceof AssetIssuer)) {
       throw new Error('Invalid host field when creating ticket asset');
     }
 
-    const { name, description, location, host, startTime, endTime } = data;
-    const payload = {
-      type: AssetType.ticket,
-      status: AssetStatus.normal,
-      issuer: this.issuer.toJSON(),
-      display: this._createDisplay(display),
-      data: {
+    const { name, description, location, host, recipient, type, startTime, endTime, display: innerDisplay = '' } = data;
+
+    const vc = create({
+      type: [type || 'NFTTicket', 'VerifiableCredential'],
+      issuer: {
+        wallet: host.wallet,
+        name: host.name,
+      },
+      subject: {
+        id: recipient.wallet.toAddress(),
         name,
         description,
         location,
-        host: host.toJSON(),
-        startTime: +new Date(startTime),
-        endTime: +new Date(endTime),
+        display: this._createDisplay(display || innerDisplay),
       },
-    };
-
-    debug('createTicket.payload', payload);
-    return this.createSignedAsset(payload, attributes);
+      issuanceDate: +new Date(startTime),
+      expirationDate: +new Date(endTime),
+    });
+    debug('createTicket.vc', vc);
+    return this.createSignedAsset(vc, attributes);
   }
 
   /**
@@ -146,25 +151,41 @@ class AssetFactory {
       }
     });
 
-    const { name, description, ratio, amount, minAmount, startTime, expireTime } = data;
-    const payload = {
-      type: AssetType.coupon,
-      status: AssetStatus.normal,
-      issuer: this.issuer.toJSON(),
-      display: this._createDisplay(display),
-      data: {
+    const {
+      name,
+      description,
+      ratio,
+      amount,
+      location,
+      minAmount,
+      startTime,
+      expireTime,
+      type,
+      recipient,
+      display: innerDisplay = '',
+    } = data;
+
+    const vc = create({
+      type: [type || 'NFTCoupon', 'VerifiableCredential'],
+      issuer: {
+        wallet: this.issuer.wallet,
+        name: this.issuer.name,
+      },
+      subject: {
+        id: recipient.wallet.toAddress(),
         name,
         description,
+        location,
         ratio,
         amount,
         minAmount,
-        startTime,
-        expireTime,
+        display: this._createDisplay(display || innerDisplay),
       },
-    };
-    debug('createCoupon.payload', payload);
-
-    return this.createSignedAsset(payload, attributes);
+      issuanceDate: +new Date(startTime),
+      expirationDate: +new Date(expireTime),
+    });
+    debug('createTicket.coupon', vc);
+    return this.createSignedAsset(vc, attributes);
   }
 
   /**
@@ -284,25 +305,26 @@ class AssetFactory {
       throw new Error(`Invalid recipient field when creating ${type} asset`);
     }
 
-    const { name, description, reason, logoUrl, recipient, issueTime, expireTime } = data;
-    const payload = {
-      type: AssetType[type],
-      status: AssetStatus.normal,
-      issuer: this.issuer.toJSON(),
-      display: this._createDisplay(display),
-      data: {
+    const { name, description, reason, logoUrl, recipient, issueTime, expireTime, display: innerDisplay = '' } = data;
+    const vc = create({
+      type: [type || 'NFTCertificate', 'VerifiableCredential'],
+      issuer: {
+        wallet: this.wallet,
+        name: this.issuer.name,
+      },
+      subject: {
+        id: recipient.wallet.toAddress(),
         name,
         description,
         reason,
         logoUrl,
-        recipient: recipient.toJSON(),
-        issueTime,
-        expireTime,
+        display: this._createDisplay(display || innerDisplay),
       },
-    };
-    debug('createCertificate.payload', payload);
-
-    return this.createSignedAsset(payload, attributes);
+      issuanceDate: +new Date(issueTime),
+      expirationDate: +new Date(expireTime),
+    });
+    debug('createCert.vc', vc);
+    return this.createSignedAsset(vc, attributes);
   }
 
   getVCBody(asset) {
