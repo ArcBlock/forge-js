@@ -1,7 +1,7 @@
 {
   "name": "@arcblock/did-agent-storage-mongo",
   "description": "Storage engine that uses mongodb for did-auth",
-  "version": "1.0.13",
+  "version": "1.2.6",
   "author": "wangshijun <shijun@arcblock.io> (https://ocap.arcblock.io)",
   "bugs": {
     "url": "https://github.com/ArcBlock/forge-js/issues",
