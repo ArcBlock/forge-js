@@ -204,7 +204,7 @@ const hexToUtf8 = hex => {
 };
 
 /**
- * Converts value to it's number representation
+ * Converts value to number representation
  *
  * @public
  * @static

@@ -28,34 +28,28 @@ declare class DidAgentStorage extends EventEmitter {
   listByApp(appDid: any): void;
   listByAgent(agentDid: any): void;
 }
-declare class MongoAgentStorage extends DidAgentStorage {
-  collectionName: string;
+declare class DiskAgentStorage extends DidAgentStorage {
   options: _Lib.T100;
+  db: any;
   /**
-   * Creates an instance of MongoAgentStorage.
+   * Creates an instance of DiskAgentStorage.
    *
    * @class
    * @param {Object} options { collection, url }
    * @param {string} options.url - mongodb connection string
    * @param {string} [options.collection='did_agent_authorizations'] - which collection to store agent authorizations
    */
-  constructor(options: _Lib.T100);
-  connectionFailed(err: any): void;
-  handleNewConnectionAsync(client: any): void;
-  changeState(newState: any): void;
-  setCollection(collection: any): this;
-  collectionReady(): any;
-  read(authorizeId: any): any;
-  create(authorizeId: any, payloads: any): any;
-  update(authorizeId: any, updates: any): any;
-  delete(authorizeId: any): any;
-  clear(): any;
-  listByOwner(ownerDid: any): any;
-  listByApp(appDid: any): any;
-  listByAgent(agentDid: any): any;
-  close(): void;
+  constructor(options?: _Lib.T100);
+  read(authorizeId: any): Promise<any>;
+  create(authorizeId: any, payloads: any): Promise<any>;
+  update(authorizeId: any, updates: any): Promise<any>;
+  delete(authorizeId: any): Promise<any>;
+  clear(): Promise<any>;
+  listByOwner(ownerDid: any): Promise<any>;
+  listByApp(appDid: any): Promise<any>;
+  listByAgent(agentDid: any): Promise<any>;
 }
-declare const _Lib: typeof MongoAgentStorage;
+declare const _Lib: typeof DiskAgentStorage;
 declare namespace _Lib {
   export interface T100 {
     url: string;
