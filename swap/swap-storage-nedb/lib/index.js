@@ -17,7 +17,7 @@ class DiskSwapStorage extends StorageInterface {
     super(options);
 
     if (!options.dbPath) {
-      throw new Error('DiskAuthStorage requires a valid dbPath option to initialize');
+      throw new Error('DiskSwapStorage requires a valid dbPath option to initialize');
     }
 
     this.options = options;
