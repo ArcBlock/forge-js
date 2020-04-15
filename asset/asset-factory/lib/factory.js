@@ -206,7 +206,7 @@ class AssetFactory {
    * @memberof AssetFactory
    */
   async createCertificate({ display = '', data = {}, attributes = {} }) {
-    return this._createCert({ data, display, attributes, type: 'certificate' });
+    return this._createCert({ data, display, attributes, type: 'NFTCertificate' });
   }
 
   /**

@@ -22,11 +22,6 @@ function createCertSvg({ data }) {
       throw new Error(`Missing required field ${x} when creating  cert display`);
     }
   });
-
-  if (!(data.recipient instanceof AssetRecipient)) {
-    throw new Error('Invalid recipient field when creating cert svg');
-  }
-
   return `<svg width="1122px" height="390px" viewBox="0 0 374 130" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
   <desc>
     ${data.name}

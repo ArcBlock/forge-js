@@ -11,6 +11,7 @@ const AssetType = Object.freeze({
   other: 127,
 });
 
+
 const AssetStatus = Object.freeze({
   normal: 0,
   consumed: 1,
