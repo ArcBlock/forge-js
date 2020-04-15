@@ -1,7 +1,7 @@
 
 ## [**@arcblock/forge-util**](https://github.com/arcblock/forge-util)
 
-Contains utility functions to help developers manipulate encoding/decoding/formatting/bignumber
+Contains utility functions to help developers manipulate blockchain related encoding/decoding/formatting
 
 **Example**  
 

@@ -1,3 +1,7 @@
+## 1.2.7 (April 15, 2020)
+
+- [skip travis] update readme
+
 ## 1.2.6 (April 14, 2020)
 
 - chore: update docs

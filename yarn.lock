@@ -2,14 +2,14 @@
 # yarn lockfile v1
 
 
-"@arcblock/sdk-util@^0.26.0":
-  version "0.26.0"
-  resolved "https://registry.npm.taobao.org/@arcblock/sdk-util/download/@arcblock/sdk-util-0.26.0.tgz#6e3a90484e75f2dd5b8e4a30bf14276f3f4b9ae7"
-  integrity sha1-bjqQSE518t1bjkowvxQnbz9Lmuc=
+"@arcblock/sdk-util@^0.28.0":
+  version "0.28.0"
+  resolved "https://registry.yarnpkg.com/@arcblock/sdk-util/-/sdk-util-0.28.0.tgz#e842a3c8f7b74adee906eab17fddc86f053e0721"
+  integrity sha512-y+iEyFnKp4jILqVgYUnkOzRuBGkSa+c130YagZ9ZJrKVNZkUVF3p7CSKxIcasHwRBYo87r+juWj/PutfvNyyXg==
   dependencies:
     axios "^0.19.0"
     debug "^4.1.1"
-    graphql "^14.1.1"
+    graphql "^15.0.0"
     lodash.get "^4.4.2"
     lodash.set "^4.3.2"
 
@@ -3295,7 +3295,7 @@ debug@3.1.0, debug@=3.1.0:
   dependencies:
     ms "2.0.0"
 
-debug@^3.0.0, debug@^3.1.0:
+debug@^3.1.0:
   version "3.2.6"
   resolved "https://registry.npmjs.org/debug/-/debug-3.2.6.tgz#e83d17de16d8a7efb7717edbe5fb10135eee629b"
   dependencies:
@@ -4743,18 +4743,10 @@ graphql-request@^1.8.2:
   dependencies:
     cross-fetch "2.2.2"
 
-graphql@^14.1.1:
-  version "14.1.1"
-  resolved "https://registry.npmjs.org/graphql/-/graphql-14.1.1.tgz#d5d77df4b19ef41538d7215d1e7a28834619fac0"
-  dependencies:
-    iterall "^1.2.2"
-
-graphql@^14.3.1:
-  version "14.3.1"
-  resolved "https://registry.npmjs.org/graphql/-/graphql-14.3.1.tgz#b3aa50e61a841ada3c1f9ccda101c483f8e8c807"
-  integrity sha512-FZm7kAa3FqKdXy8YSSpAoTtyDFMIYSpCDOr+3EqlI1bxmtHu+Vv/I2vrSeT1sBOEnEniX3uo4wFhFdS/8XN6gA==
-  dependencies:
-    iterall "^1.2.2"
+graphql@^15.0.0:
+  version "15.0.0"
+  resolved "https://registry.yarnpkg.com/graphql/-/graphql-15.0.0.tgz#042a5eb5e2506a2e2111ce41eb446a8e570b8be9"
+  integrity sha512-ZyVO1xIF9F+4cxfkdhOJINM+51B06Friuv4M66W7HzUOeFd+vNzUn4vtswYINPi6sysjf1M2Ri/rwZALqgwbaQ==
 
 growly@^1.3.0:
   version "1.3.0"
@@ -5672,10 +5664,6 @@ istanbul-reports@^2.1.1:
   resolved "https://registry.npmjs.org/istanbul-reports/-/istanbul-reports-2.1.1.tgz#72ef16b4ecb9a4a7bd0e2001e00f95d1eec8afa9"
   dependencies:
     handlebars "^4.1.0"
-
-iterall@^1.2.2:
-  version "1.2.2"
-  resolved "https://registry.npmjs.org/iterall/-/iterall-1.2.2.tgz#92d70deb8028e0c39ff3164fdbf4d8b088130cd7"
 
 j2d@^1.0.3-dev:
   version "1.0.3-dev"
@@ -6826,13 +6814,6 @@ loader-utils@^1.1.0:
     big.js "^5.2.2"
     emojis-list "^2.0.0"
     json5 "^1.0.1"
-
-local-or-home-npmrc@^1.1.0:
-  version "1.1.0"
-  resolved "https://registry.npmjs.org/local-or-home-npmrc/-/local-or-home-npmrc-1.1.0.tgz#aa64339349861947662c9da5167e4ff07233abd3"
-  dependencies:
-    pkg-dir "^2.0.0"
-    user-home "^2.0.0"
 
 localforage@^1.3.0:
   version "1.7.3"
@@ -8989,12 +8970,6 @@ regexpu-core@^2.0.0:
     regjsgen "^0.2.0"
     regjsparser "^0.1.4"
 
-registry-url@^4.0.0:
-  version "4.0.0"
-  resolved "https://registry.npmjs.org/registry-url/-/registry-url-4.0.0.tgz#7dc344ef0f1496fc95a6ad04ccb9a491df11c025"
-  dependencies:
-    rc "^1.2.7"
-
 regjsgen@^0.2.0:
   version "0.2.0"
   resolved "https://registry.npmjs.org/regjsgen/-/regjsgen-0.2.0.tgz#6c016adeac554f75823fe37ac05b92d5a4edb1f7"
@@ -10108,14 +10083,6 @@ serve-static@1.14.1:
 set-blocking@^2.0.0, set-blocking@~2.0.0:
   version "2.0.0"
   resolved "https://registry.npmjs.org/set-blocking/-/set-blocking-2.0.0.tgz#045f9782d011ae9a6803ddd382b24392b3d890f7"
-
-set-npm-auth-token-for-ci@^2.0.13:
-  version "2.0.13"
-  resolved "https://registry.npmjs.org/set-npm-auth-token-for-ci/-/set-npm-auth-token-for-ci-2.0.13.tgz#5a63e028372d45694c41113208c597b4a894390d"
-  dependencies:
-    debug "^3.0.0"
-    local-or-home-npmrc "^1.1.0"
-    registry-url "^4.0.0"
 
 set-value@^0.4.3:
   version "0.4.3"
@@ -11288,12 +11255,6 @@ use@^3.1.0:
 user-home@^1.1.1:
   version "1.1.1"
   resolved "https://registry.npmjs.org/user-home/-/user-home-1.1.1.tgz#2b5be23a32b63a7c9deb8d0f28d485724a3df190"
-
-user-home@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.npmjs.org/user-home/-/user-home-2.0.0.tgz#9c70bfd8169bc1dcbf48604e0f04b8b49cde9e9f"
-  dependencies:
-    os-homedir "^1.0.0"
 
 utf8@^3.0.0:
   version "3.0.0"
