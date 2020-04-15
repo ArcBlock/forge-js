@@ -1,7 +1,7 @@
 {
   "name": "@arcblock/did-auth-storage",
   "description": "Storage interface for did-auth",
-  "version": "1.0.13",
+  "version": "1.2.7",
   "author": "wangshijun <shijun@arcblock.io> (https://ocap.arcblock.io)",
   "bugs": {
     "url": "https://github.com/ArcBlock/forge-js/issues",
