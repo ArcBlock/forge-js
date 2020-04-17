@@ -1,8 +1,8 @@
 const ForgeSDK = require('@arcblock/forge-sdk');
 
-module.exports = class AssetIssuer {
+module.exports = class NFTIssuer {
   /**
-   * Creates an instance of AssetIssuer.
+   * Creates an instance of NFTIssuer.
    *
    * @param {object} attributes
    * @param {WalletObject} attributes.wallet - wallet

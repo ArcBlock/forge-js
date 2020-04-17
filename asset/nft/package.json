@@ -1,5 +1,5 @@
 {
-  "name": "@arcblock/asset-factory",
+  "name": "@arcblock/nft",
   "description": "Utility to create standard asset on forge powered blockchain",
   "version": "1.2.7",
   "author": {
@@ -39,7 +39,7 @@
       ]
     ]
   },
-  "homepage": "https://github.com/ArcBlock/forge-js/tree/master/asset/asset-factory",
+  "homepage": "https://github.com/ArcBlock/forge-js/tree/master/asset/nft",
   "keywords": [
     "forge",
     "blockchain",
@@ -54,7 +54,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/ArcBlock/forge-js/tree/master/asset/asset-factory"
+    "url": "https://github.com/ArcBlock/forge-js/tree/master/asset/nft"
   },
   "scripts": {
     "lint": "eslint lib tests",

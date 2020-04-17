@@ -1,5 +1,5 @@
 ---
-title: '@arcblock/asset-factory'
+title: '@arcblock/nft'
 description: 'Utility to create standard asset on forge powered blockchain'
 keywords: 'forge, sdk, javascript'
 author: 'wangshijun'
@@ -8,7 +8,3 @@ layout: 'documentation'
 tags:
   - 'forge'
 ---
-
-
-
-  

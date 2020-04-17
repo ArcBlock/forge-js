@@ -4,16 +4,16 @@ const { verify } = require('@arcblock/vc');
 // eslint-disable-next-line import/no-extraneous-dependencies
 const { verifyAccountAsync } = require('@arcblock/tx-util');
 
-const AssetIssuer = require('../lib/issuer');
-const AssetRecipient = require('../lib/recipient');
-const AssetFactory = require('../lib/factory');
+const NFTIssuer = require('../lib/issuer');
+const NFTRecipient = require('../lib/recipient');
+const NFTFactory = require('../lib/factory');
 const { createSvgDisplay } = require('../lib/display');
 
 const chainId = 'zinc-2019-05-17';
 const chainHost = 'https://zinc.abtnetwork.io/api';
 const issuer = fromRandom();
 const owner = fromRandom();
-const factory = new AssetFactory({
+const factory = new NFTFactory({
   chainId,
   chainHost,
   wallet: issuer,
@@ -36,7 +36,7 @@ beforeAll(async () => {
   ]);
 }, 20000);
 
-describe('AssetFactory.createTicket', () => {
+describe('NFTFactory.createTicket', () => {
   test('should be a function', () => {
     expect(typeof factory.createTicket).toEqual('function');
   });
@@ -50,13 +50,13 @@ describe('AssetFactory.createTicket', () => {
         location: '北京市朝阳区青年路朝阳大悦城万达影院',
         startTime: Date.now(),
         endTime: Date.now() + 24 * 60 * 60 * 1000,
-        host: new AssetIssuer({
+        host: new NFTIssuer({
           wallet: issuer,
           name: '万达影城',
           logo: 'https://www.baidu.com',
           url: 'https://www.baidu.com',
         }),
-        recipient: new AssetRecipient({
+        recipient: new NFTRecipient({
           wallet: owner,
           name: '王仕军',
           location: '北京市朝阳区',
@@ -71,7 +71,7 @@ describe('AssetFactory.createTicket', () => {
   }, 20000);
 });
 
-describe('AssetFactory.createCoupon', () => {
+describe('NFTFactory.createCoupon', () => {
   test.only('create svg', () => {
     // tslint:disable-next-line:max-line-length
     const svg = createSvgDisplay(
@@ -105,7 +105,7 @@ describe('AssetFactory.createCoupon', () => {
   }, 20000);
 });
 
-describe('AssetFactory.createCertificate', () => {
+describe('NFTFactory.createCertificate', () => {
   test('should be a function', () => {
     expect(typeof factory.createCertificate).toEqual('function');
   });
@@ -120,7 +120,7 @@ describe('AssetFactory.createCertificate', () => {
         logoUrl: 'https://www.arcblock.io',
         issueTime: Date.now(),
         expireTime: Date.now() + 360 * 100 * 60 * 60 * 1000,
-        recipient: new AssetRecipient({
+        recipient: new NFTRecipient({
           wallet: owner,
           name: '王仕军',
           location: '北京市朝阳区',
@@ -135,7 +135,7 @@ describe('AssetFactory.createCertificate', () => {
   }, 20000);
 });
 
-describe('AssetFactory.createBadge', () => {
+describe('NFTFactory.createBadge', () => {
   test('should be a function', () => {
     expect(typeof factory.createBadge).toEqual('function');
   });
@@ -154,11 +154,11 @@ describe('AssetFactory.createBadge', () => {
         type: 'WalletPlaygroundAchievement',
         display: 'abc',
 
-        host: new AssetIssuer({
+        host: new NFTIssuer({
           wallet: owner,
           name: 'ArcBlock',
         }),
-        recipient: new AssetRecipient({
+        recipient: new NFTRecipient({
           wallet: owner,
           name: '王仕军',
           location: '北京市朝阳区',

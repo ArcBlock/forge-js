@@ -1,4 +1,4 @@
-const AssetType = Object.freeze({
+const NFTType = Object.freeze({
   ticket: 0,
   coupon: 1,
   certificate: 2,
@@ -11,12 +11,11 @@ const AssetType = Object.freeze({
   other: 127,
 });
 
-
-const AssetStatus = Object.freeze({
+const NFTStatus = Object.freeze({
   normal: 0,
   consumed: 1,
   invalid: 2,
   expired: 3,
 });
 
-module.exports = { AssetType, AssetStatus };
+module.exports = { NFTType, NFTStatus };

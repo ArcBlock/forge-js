@@ -10,43 +10,43 @@ const stringify = require('json-stable-stringify');
 const { create } = require('@arcblock/vc');
 const debug = require('debug')(require('../package.json').name);
 
-const AssetIssuer = require('./issuer');
-const AssetRecipient = require('./recipient');
+const NFTIssuer = require('./issuer');
+const NFTRecipient = require('./recipient');
 
 /**
  * Used to create standard asset on forge powered blockchain
  * All assets are signed assets, eg, the asset data are self approvable
  *
- * @class AssetFactory
+ * @class NFTFactory
  */
-class AssetFactory {
+class NFTFactory {
   /**
-   * Creates an instance of AssetFactory.
+   * Creates an instance of NFTFactory.
    * @param {object} params
    * @param {string} params.chainId - on which chain to create wallet
    * @param {string} params.chainHost - on which chain to create wallet
    * @param {WalletObject} params.wallet - issuer wallet
    * @param {object} params.issuer - issuer attributes, such as name, url and logo
-   * @memberof AssetFactory
+   * @memberof NFTFactory
    */
   constructor({ chainId, chainHost, wallet, issuer }) {
     if (!chainId) {
-      throw new Error('AssetFactory requires valid chainId');
+      throw new Error('NFTFactory requires valid chainId');
     }
     if (!chainHost) {
-      throw new Error('AssetFactory requires valid chainId');
+      throw new Error('NFTFactory requires valid chainId');
     }
 
     ForgeSDK.connect(chainHost, { chainId, name: chainId });
 
     if (isValid(wallet) === false) {
-      throw new Error('AssetFactory requires valid wallet issuer');
+      throw new Error('NFTFactory requires valid wallet issuer');
     }
 
     this.chainId = chainId;
     this.chainHost = chainHost;
     this.wallet = wallet;
-    this.issuer = new AssetIssuer(Object.assign({ wallet }, issuer));
+    this.issuer = new NFTIssuer(Object.assign({ wallet }, issuer));
   }
 
   /**
@@ -58,12 +58,12 @@ class AssetFactory {
    * @param {string} params.data.name - ticket name
    * @param {string} params.data.description - ticket description
    * @param {string} params.data.location - event location
-   * @param {AssetIssuer} params.data.host - event host
+   * @param {NFTIssuer} params.data.host - event host
    * @param {number} params.data.startTime - event start time
    * @param {number} params.data.endTime - event end time
    * @param {object} params.attributes - asset attributes
    * @returns {Promise} - the `[asset, hash]` on resolved
-   * @memberof AssetFactory
+   * @memberof NFTFactory
    */
   async createTicket({ display = '', data = {}, attributes = {} }) {
     const requiredFields = ['name', 'description', 'location', 'host'];
@@ -81,11 +81,11 @@ class AssetFactory {
       }
     });
 
-    if (!(data.recipient instanceof AssetRecipient)) {
+    if (!(data.recipient instanceof NFTRecipient)) {
       throw new Error(`Invalid recipient field when creating ${type} asset`);
     }
 
-    if (!(data.host instanceof AssetIssuer)) {
+    if (!(data.host instanceof NFTIssuer)) {
       throw new Error('Invalid host field when creating ticket asset');
     }
 
@@ -126,7 +126,7 @@ class AssetFactory {
    * @param {number} params.data.endTime - event end time
    * @param {object} params.attributes - asset attributes
    * @returns {Promise} - the `[asset, hash]` on resolved
-   * @memberof AssetFactory
+   * @memberof NFTFactory
    */
   async createCoupon({ display = '', data = {}, attributes = {} }) {
     const requiredFields = ['name', 'description'];
@@ -198,12 +198,12 @@ class AssetFactory {
    * @param {string} params.data.description - certificate description
    * @param {string} params.data.reason - certificate reason
    * @param {string} params.data.logoUrl - certificate logo
-   * @param {AssetRecipient} params.data.recipient - certificate recipient
+   * @param {NFTRecipient} params.data.recipient - certificate recipient
    * @param {number} params.data.issueTime - when was certificate issued
    * @param {number} params.data.expireTime - when will certificate expire
    * @param {object} params.attributes - asset attributes
    * @returns {Promise} - the `[asset, hash]` on resolved
-   * @memberof AssetFactory
+   * @memberof NFTFactory
    */
   async createCertificate({ display = '', data = {}, attributes = {} }) {
     return this._createCert({ data, display, attributes, type: 'NFTCertificate' });
@@ -217,10 +217,10 @@ class AssetFactory {
    * @param {object} params.data - asset payload
    * @param {string} params.data.name - certificate name
    * @param {string} params.data.description - certificate description
-   * @param {AssetRecipient} params.data.recipient - certificate recipient
+   * @param {NFTRecipient} params.data.recipient - certificate recipient
    * @param {object} params.attributes - asset attributes
    * @returns {Promise} - the `[asset, hash]` on resolved
-   * @memberof AssetFactory
+   * @memberof NFTFactory
    */
   async createBadge({ display = '', data = {}, attributes = {} }) {
     const { name, recipient, description, display: innerDisplay = '', type } = data;
@@ -301,7 +301,7 @@ class AssetFactory {
       }
     });
 
-    if (!(data.recipient instanceof AssetRecipient)) {
+    if (!(data.recipient instanceof NFTRecipient)) {
       throw new Error(`Invalid recipient field when creating ${type} asset`);
     }
 
@@ -345,4 +345,4 @@ class AssetFactory {
   }
 }
 
-module.exports = AssetFactory;
+module.exports = NFTFactory;

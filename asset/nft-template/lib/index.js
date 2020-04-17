@@ -4,7 +4,6 @@
  *
  * @module @arcblock/nft-template
  */
-const AssetRecipient = require('@arcblock/asset-factory');
 const pako = require('pako');
 const { toBase64 } = require('@arcblock/forge-util');
 /*
@@ -59,7 +58,7 @@ function createCertSvg({ data }) {
     <g id="surface1">
       <use xlink:href="#surface4"/>
     </g>
-   
+
   </g>
 </svg>
   `;
