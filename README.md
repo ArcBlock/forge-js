@@ -24,7 +24,7 @@
 [![docs](https://img.shields.io/badge/powered%20by-arcblock-green.svg)](https://docs.arcblock.io)
 [![Gitter](https://badges.gitter.im/ArcBlock/community.svg)](https://gitter.im/ArcBlock/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
-> Last updated at 4/17/2020, 6:55:31 AM
+> Last updated at 4/17/2020, 9:14:29 AM
 
 Javascript SDK for [forge](https://docs.arcblock.io/forge/latest/), which is an awesome framework to write distributed blockchain applications.
 
@@ -61,7 +61,8 @@ Javascript SDK for [forge](https://docs.arcblock.io/forge/latest/), which is an 
 - [swap-storage-memory <img src="https://img.shields.io/npm/v/@arcblock/swap-storage-memory.svg" alt="Version">](https://www.npmjs.com/package/@arcblock/swap-storage-memory)
 - [swap-storage-mongo <img src="https://img.shields.io/npm/v/@arcblock/swap-storage-mongo.svg" alt="Version">](https://www.npmjs.com/package/@arcblock/swap-storage-mongo)
 - [swap-storage-nedb <img src="https://img.shields.io/npm/v/@arcblock/swap-storage-nedb.svg" alt="Version">](https://www.npmjs.com/package/@arcblock/swap-storage-nedb)
-- [asset-factory <img src="https://img.shields.io/npm/v/@arcblock/asset-factory.svg" alt="Version">](https://www.npmjs.com/package/@arcblock/asset-factory)
+- [nft <img src="https://img.shields.io/npm/v/@arcblock/nft.svg" alt="Version">](https://www.npmjs.com/package/@arcblock/nft)
+- [nft-template <img src="https://img.shields.io/npm/v/@arcblock/nft-template.svg" alt="Version">](https://www.npmjs.com/package/@arcblock/nft-template)
 - [vc <img src="https://img.shields.io/npm/v/@arcblock/vc.svg" alt="Version">](https://www.npmjs.com/package/@arcblock/vc)
 
 ## Install
