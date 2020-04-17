@@ -24,7 +24,7 @@
 [![docs](https://img.shields.io/badge/powered%20by-arcblock-green.svg)](https://docs.arcblock.io)
 [![Gitter](https://badges.gitter.im/ArcBlock/community.svg)](https://gitter.im/ArcBlock/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
-> Last updated at 4/17/2020, 9:14:29 AM
+> Last updated at 4/17/2020, 9:27:56 AM
 
 Javascript SDK for [forge](https://docs.arcblock.io/forge/latest/), which is an awesome framework to write distributed blockchain applications.
 
