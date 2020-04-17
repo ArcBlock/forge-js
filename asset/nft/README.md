@@ -1,4 +1,4 @@
-![asset-factory](https://www.arcblock.io/.netlify/functions/badge/?text=asset-factory)
+![nft](https://www.arcblock.io/.netlify/functions/badge/?text=nft)
 
 [![styled with prettier](https://img.shields.io/badge/styled_with-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
 [![docs](https://img.shields.io/badge/powered%20by-arcblock-green.svg)](https://docs.arcblock.io)
@@ -17,9 +17,9 @@
 ## Install
 
 ```sh
-npm install @arcblock/asset-factory
+npm install @arcblock/nft
 // or
-yarn add @arcblock/asset-factory
+yarn add @arcblock/nft
 ```
 
 
@@ -27,10 +27,10 @@ yarn add @arcblock/asset-factory
 
 ```js
 const ForgeSDK = require('@arcblock/forge-sdk');
-const { AssetFactory, AssetIssuer } = require('@arcblock/asset-factory');
+const { NFTFactory, NFTIssuer } = require('@arcblock/nft');
 
 const wallet = ForgeSDK.Wallet.fromRandom();
-const factory = new AssetFactory({
+const factory = new NFTFactory({
   chainId: 'zinc-2019-05-17',
   chainHost: 'https://zinc.abtnetwork.io/api',
   wallet,
@@ -49,7 +49,7 @@ const [asset, hash] = await factory.createTicket({
     location: '北京市朝阳区青年路朝阳大悦城万达影院',
     startTime: Date.now(),
     endTime: Date.now() + 24 * 60 * 60 * 1000,
-    host: new AssetIssuer({
+    host: new NFTIssuer({
       wallet,
       name: '万达影城',
       logo: 'https://www.baidu.com',

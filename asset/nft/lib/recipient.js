@@ -1,8 +1,8 @@
 const ForgeSDK = require('@arcblock/forge-sdk');
 
-module.exports = class AssetRecipient {
+module.exports = class NFTRecipient {
   /**
-   * Creates an instance of AssetRecipient.
+   * Creates an instance of NFTRecipient.
    *
    * @param {object} attributes
    * @param {WalletObject} attributes.wallet - wallet

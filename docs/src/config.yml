@@ -36,7 +36,7 @@ categories:
           - /did-auth
       'Asset':
         links:
-          - /asset-factory
+          - /nft
           - /vc
       'Misc':
         links:

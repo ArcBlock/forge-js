@@ -1,10 +1,10 @@
 // Generate by [js2dts@0.3.3](https://github.com/whxaxes/js2dts#readme)
 
-declare class AssetIssuer {
+declare class NFTIssuer {
   wallet: any;
-  attributes: _Lib.T104;
+  attributes: _Lib.T102;
   /**
-   * Creates an instance of AssetIssuer.
+   * Creates an instance of NFTIssuer.
    *
    * @param {object} attributes
    * @param {WalletObject} attributes.wallet - wallet
@@ -12,44 +12,44 @@ declare class AssetIssuer {
    * @param {string} attributes.url - issuer website
    * @param {string} attributes.logo -  issuer logo image url or logo base64
    */
-  constructor(T102: _Lib.T103);
-  toJSON(): _Lib.T105 & _Lib.T104;
+  constructor(T100: _Lib.T101);
+  toJSON(): _Lib.T103 & _Lib.T102;
 }
-declare class AssetRecipient {
+declare class NFTRecipient {
   wallet: any;
-  attributes: _Lib.T108;
+  attributes: _Lib.T106;
   /**
-   * Creates an instance of AssetRecipient.
+   * Creates an instance of NFTRecipient.
    *
    * @param {object} attributes
    * @param {WalletObject} attributes.wallet - wallet
    * @param {string} attributes.name - recipient name
    * @param {string} attributes.location - recipient website
    */
-  constructor(T106: _Lib.T107);
-  toJSON(): _Lib.T105 & _Lib.T108;
+  constructor(T104: _Lib.T105);
+  toJSON(): _Lib.T103 & _Lib.T106;
 }
 /**
  * Used to create standard asset on forge powered blockchain
  * All assets are signed assets, eg, the asset data are self approvable
  *
- * @class AssetFactory
+ * @class NFTFactory
  */
-declare class AssetFactory {
+declare class NFTFactory {
   chainId: string;
   chainHost: string;
   wallet: any;
-  issuer: AssetIssuer;
+  issuer: NFTIssuer;
   /**
-   * Creates an instance of AssetFactory.
+   * Creates an instance of NFTFactory.
    * @param {object} params
    * @param {string} params.chainId - on which chain to create wallet
    * @param {string} params.chainHost - on which chain to create wallet
    * @param {WalletObject} params.wallet - issuer wallet
    * @param {object} params.issuer - issuer attributes, such as name, url and logo
-   * @memberof AssetFactory
+   * @memberof NFTFactory
    */
-  constructor(T109: _Lib.T110);
+  constructor(T107: _Lib.T108);
   /**
    * Create a ticket
    *
@@ -59,14 +59,14 @@ declare class AssetFactory {
    * @param {string} params.data.name - ticket name
    * @param {string} params.data.description - ticket description
    * @param {string} params.data.location - event location
-   * @param {AssetIssuer} params.data.host - event host
+   * @param {NFTIssuer} params.data.host - event host
    * @param {number} params.data.startTime - event start time
    * @param {number} params.data.endTime - event end time
    * @param {object} params.attributes - asset attributes
    * @returns {Promise} - the `[asset, hash]` on resolved
-   * @memberof AssetFactory
+   * @memberof NFTFactory
    */
-  createTicket(T111: _Lib.T113): Promise<any>;
+  createTicket(T109: _Lib.T111): Promise<any>;
   /**
    * Create a coupon asset
    *
@@ -82,9 +82,9 @@ declare class AssetFactory {
    * @param {number} params.data.endTime - event end time
    * @param {object} params.attributes - asset attributes
    * @returns {Promise} - the `[asset, hash]` on resolved
-   * @memberof AssetFactory
+   * @memberof NFTFactory
    */
-  createCoupon(T114: _Lib.T116): Promise<any>;
+  createCoupon(T112: _Lib.T114): Promise<any>;
   /**
    * Create a coupon asset
    *
@@ -95,14 +95,14 @@ declare class AssetFactory {
    * @param {string} params.data.description - certificate description
    * @param {string} params.data.reason - certificate reason
    * @param {string} params.data.logoUrl - certificate logo
-   * @param {AssetRecipient} params.data.recipient - certificate recipient
+   * @param {NFTRecipient} params.data.recipient - certificate recipient
    * @param {number} params.data.issueTime - when was certificate issued
    * @param {number} params.data.expireTime - when will certificate expire
    * @param {object} params.attributes - asset attributes
    * @returns {Promise} - the `[asset, hash]` on resolved
-   * @memberof AssetFactory
+   * @memberof NFTFactory
    */
-  createCertificate(T117: _Lib.T119): Promise<any>;
+  createCertificate(T115: _Lib.T117): Promise<any>;
   /**
    * Create a badge
    *
@@ -111,79 +111,61 @@ declare class AssetFactory {
    * @param {object} params.data - asset payload
    * @param {string} params.data.name - certificate name
    * @param {string} params.data.description - certificate description
-   * @param {AssetRecipient} params.data.recipient - certificate recipient
+   * @param {NFTRecipient} params.data.recipient - certificate recipient
    * @param {object} params.attributes - asset attributes
    * @returns {Promise} - the `[asset, hash]` on resolved
-   * @memberof AssetFactory
+   * @memberof NFTFactory
    */
-  createBadge(T120: _Lib.T122): Promise<any>;
+  createBadge(T118: _Lib.T120): Promise<any>;
   createSignedAsset(payload: any, attributes: any): Promise<any[]>;
   getVCBody(asset: any): any;
 }
-declare const _Lib: _Lib.T123;
+declare const _Lib: _Lib.T121;
 declare namespace _Lib {
-  export interface T100 {
-    normal: number;
-    consumed: number;
-    invalid: number;
-    expired: number;
-  }
   export interface T101 {
-    ticket: number;
-    coupon: number;
-    certificate: number;
-    badge: number;
-    license: number;
-    giftcard: number;
-    passport: number;
-    idcard: number;
-    receipt: number;
-    other: number;
-  }
-  export interface T103 {
     wallet: any;
     name: string;
     url: string;
     logo: string;
   }
-  export interface T104 {
+  export interface T102 {
     name: string;
     url: string;
     logo: string;
   }
-  export interface T105 {
+  export interface T103 {
     did: any;
     pk: string;
   }
-  export interface T107 {
+  export interface T105 {
     wallet: any;
+    name: string;
+    location: string;
+  }
+  export interface T106 {
     name: string;
     location: string;
   }
   export interface T108 {
-    name: string;
-    location: string;
-  }
-  export interface T110 {
     chainId: string;
     chainHost: string;
     wallet: any;
     issuer: any;
   }
-  export interface T112 {
+  export interface T110 {
     name: string;
     description: string;
     location: string;
-    host: AssetIssuer;
+    host: NFTIssuer;
     startTime: number;
     endTime: number;
   }
-  export interface T113 {
+  export interface T111 {
     display: string;
-    data: _Lib.T112;
+    data: _Lib.T110;
     attributes: any;
   }
-  export interface T115 {
+  export interface T113 {
     name: string;
     description: string;
     ratio: number;
@@ -192,41 +174,41 @@ declare namespace _Lib {
     startTime: number;
     endTime: number;
   }
-  export interface T116 {
+  export interface T114 {
     display: string;
-    data: _Lib.T115;
+    data: _Lib.T113;
     attributes: any;
   }
-  export interface T118 {
+  export interface T116 {
     name: string;
     description: string;
     reason: string;
     logoUrl: string;
-    recipient: AssetRecipient;
+    recipient: NFTRecipient;
     issueTime: number;
     expireTime: number;
   }
-  export interface T119 {
+  export interface T117 {
     display: string;
-    data: _Lib.T118;
+    data: _Lib.T116;
+    attributes: any;
+  }
+  export interface T119 {
+    name: string;
+    description: string;
+    recipient: NFTRecipient;
+  }
+  export interface T120 {
+    display: string;
+    data: _Lib.T119;
     attributes: any;
   }
   export interface T121 {
-    name: string;
-    description: string;
-    recipient: AssetRecipient;
-  }
-  export interface T122 {
-    display: string;
-    data: _Lib.T121;
-    attributes: any;
-  }
-  export interface T123 {
-    AssetStatus: Readonly<_Lib.T100>;
-    AssetType: Readonly<_Lib.T101>;
-    AssetIssuer: typeof AssetIssuer;
-    AssetRecipient: typeof AssetRecipient;
-    AssetFactory: typeof AssetFactory;
+    NFTStatus: any;
+    NFTType: any;
+    NFTIssuer: typeof NFTIssuer;
+    NFTRecipient: typeof NFTRecipient;
+    NFTFactory: typeof NFTFactory;
   }
 }
 export = _Lib;
