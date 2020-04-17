@@ -14,6 +14,7 @@ module.exports = {
     alias: {
       'bn.js': require.resolve('bn.js'),
       ms: require.resolve('ms'),
+      axios: require.resolve('axios'),
       debug: require.resolve('debug'),
     },
   },
