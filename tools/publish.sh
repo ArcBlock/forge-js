@@ -10,7 +10,7 @@ git branch -a
 changed=$(lerna changed)
 echo "lerna changed ${changed}"
 if [ "$changed" != "" ]; then
-  DEBUG=* node tools/setup-ci.js
+  npm config set '//registry.npmjs.org/:_authToken' "${NPM_TOKEN}"
 
   git checkout master
   git commit -am "update yarn.lock file"

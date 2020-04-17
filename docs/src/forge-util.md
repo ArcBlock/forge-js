@@ -12,7 +12,7 @@ tags:
 
 ## [**@arcblock/forge-util**](https://github.com/arcblock/forge-util)
 
-Contains utility functions to help developers manipulate encoding/decoding/formatting/bignumber
+Contains utility functions to help developers manipulate blockchain related encoding/decoding/formatting
 
 **Example**  
 
@@ -163,7 +163,7 @@ Should be called to get utf8 from it's hex representation
 
 ### hexToNumber(value) ⇒ `Number`
 
-Converts value to it's number representation
+Converts value to number representation
 
 **Kind**: static method  
 **Access**: public  

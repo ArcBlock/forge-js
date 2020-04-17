@@ -47,9 +47,9 @@ const sign = (signer, sk, payload = {}, doSign = true) => {
   let body = Object.assign(
     {
       iss: toDid(signer),
-      iat: now,
-      nbf: now,
-      exp: now + 5 * 60,
+      iat: String(now),
+      nbf: String(now),
+      exp: String(now + 5 * 60),
       version: DID_AUTH_PROTOCOL_VERSION,
     },
     payload || {}

@@ -2,7 +2,7 @@
 /* eslint-disable implicit-arrow-linebreak */
 /* eslint-disable no-param-reassign */
 /**
- * @fileOverview Contains utility functions to help developers manipulate encoding/decoding/formatting/bignumber
+ * @fileOverview Contains utility functions to help developers manipulate blockchain related encoding/decoding/formatting
  * @module @arcblock/forge-util
  * @example
  * yarn add @arcblock/forge-util
@@ -204,7 +204,7 @@ const hexToUtf8 = hex => {
 };
 
 /**
- * Converts value to it's number representation
+ * Converts value to number representation
  *
  * @public
  * @static

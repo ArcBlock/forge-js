@@ -12,7 +12,7 @@ describe('GraphQLClient', () => {
 
   let chainId = 'playground';
   let chainHost = 'https://playground.network.arcblockio.cn/api';
-  if (process.env.CI) {
+  if (process.env.TRAVIS) {
     chainId = 'zinc-2019-05-17';
     chainHost = 'https://zinc.abtnetwork.io/api';
   }
@@ -81,7 +81,7 @@ describe('GraphQLClient', () => {
     expect(typeof client.fromUnitToToken).toEqual('function');
     expect(typeof client.fromTokenToUnit).toEqual('function');
 
-    if (process.env.CI) {
+    if (process.env.TRAVIS) {
       const amount = await client.fromUnitToToken('180000000000000000');
       expect(amount.toString()).toEqual('18');
 

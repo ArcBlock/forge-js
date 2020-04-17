@@ -46,6 +46,7 @@ tags:
 
 Defines the interface of atomic-swap storage
 Which should be implemented to enable dApps to handle atomic-swap
+Can also be used as a simple order management solution
 
 ### new SwapStorage(options)
 
@@ -166,6 +167,7 @@ Delete atomic swap order by traceId
 
 Defines the interface of atomic-swap storage
 Which should be implemented to enable dApps to handle atomic-swap
+Can also be used as a simple order management solution
 
 ### new SwapStorage(options)
 

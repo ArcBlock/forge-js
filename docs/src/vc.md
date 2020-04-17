@@ -18,6 +18,7 @@ Utility functions to create/verify vc
 
 * [~create(params)](#.create) ⇒ `object`
 * [~verify(vc, ownerDid, trustedIssuers)](#.verify) ⇒ `boolean`
+* [~verifyPresentation(presentation, trustedIssuers, challenge)](#.verifyPresentation) ⇒ `boolean`
 
 ### [**@arcblock/vc**](https://github.com/arcblock/vc)~create(params) ⇒ `object`
 
@@ -53,5 +54,25 @@ Verify that the verifiable credential is valid
 | vc             | `object` | the verifiable credential object |
 | ownerDid       | `string` | vc holder/owner did              |
 | trustedIssuers | `Array`  | list of issuer did               |
+
+### [**@arcblock/vc**](https://github.com/arcblock/vc)~verifyPresentation(presentation, trustedIssuers, challenge) ⇒ `boolean`
+
+Verify that the Presentation is valid
+
+* It is signed by VC's owner
+* It contain chanllege
+* It has valid signature by the issuer
+* It is not expired
+
+**Kind**: inner method  
+**Throws**:
+
+* `Error` 
+
+| Param          | Type     | Description             |
+| -------------- | -------- | ----------------------- |
+| presentation   | `object` | the presentation object |
+| trustedIssuers | `Array`  | list of issuer did      |
+| challenge      | `String` | Random byte you want    |
 
   

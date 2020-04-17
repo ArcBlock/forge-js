@@ -1,7 +1,7 @@
 /* eslint-disable no-param-reassign */
 /* eslint-disable no-underscore-dangle */
 const MongoClient = require('mongodb');
-const StorageInterface = require('../../did-agent-storage/lib');
+const StorageInterface = require('@arcblock/did-agent-storage');
 
 module.exports = class MongoAgentStorage extends StorageInterface {
   /**

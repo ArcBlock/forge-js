@@ -433,7 +433,7 @@ declare namespace _Lib {
     origin: string;
     typeUrl: any;
     display: any;
-    method: string;
+    method: any;
     digest: any;
     sig: string;
     chainInfo: any;
