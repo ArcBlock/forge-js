@@ -1,3 +1,8 @@
+## 1.2.10 (四月 20, 2020)
+
+- reduction of design
+- [skip travis] update readme
+
 ## 1.2.9 (April 17, 2020)
 
 - [skip travis] update readme
