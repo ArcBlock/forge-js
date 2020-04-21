@@ -2,11 +2,5 @@
   "version": "1.2.10",
   "useWorkspaces": true,
   "npmClient": "yarn",
-  "packages": [
-    "forge/*",
-    "did/*",
-    "swap/*",
-    "asset/*",
-    "examples/*"
-  ]
+  "packages": ["forge/*", "did/*", "swap/*", "asset/*", "examples/*"]
 }

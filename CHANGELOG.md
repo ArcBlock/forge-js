@@ -1,3 +1,8 @@
+## 1.2.11 (四月 21, 2020)
+
+- Merge branch 'master' into improve-nft-template
+- reduction of design
+
 ## 1.2.10 (April 21, 2020)
 
 - [skip travis] update readme
