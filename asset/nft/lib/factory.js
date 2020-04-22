@@ -92,7 +92,7 @@ class NFTFactory {
     const { name, description, location, host, recipient, type, startTime, endTime, display: innerDisplay = '' } = data;
 
     const vc = create({
-      type: [type || 'NFTTicket', 'VerifiableCredential'],
+      type: [type, 'NFTTicket', 'VerifiableCredential'].filter(Boolean),
       issuer: {
         wallet: host.wallet,
         name: host.name,
@@ -166,7 +166,7 @@ class NFTFactory {
     } = data;
 
     const vc = create({
-      type: [type || 'NFTCoupon', 'VerifiableCredential'],
+      type: [type, 'NFTCoupon', 'VerifiableCredential'].filter(Boolean),
       issuer: {
         wallet: this.issuer.wallet,
         name: this.issuer.name,
@@ -206,7 +206,7 @@ class NFTFactory {
    * @memberof NFTFactory
    */
   async createCertificate({ display = '', data = {}, attributes = {} }) {
-    return this._createCert({ data, display, attributes, type: 'NFTCertificate' });
+    return this._createCert({ data, display, attributes });
   }
 
   /**
@@ -226,7 +226,7 @@ class NFTFactory {
     const { name, recipient, description, display: innerDisplay = '', type } = data;
 
     const vc = create({
-      type,
+      type: [type, 'NFTBadge', 'VerifiableCredential'].filter(Boolean),
       issuer: {
         wallet: this.wallet,
         name: this.issuer.name,
@@ -251,11 +251,7 @@ class NFTFactory {
         readonly: false,
         transferrable: true,
         data: {
-          typeUrl:
-            payload.type === 'WalletPlaygroundAchievement' ||
-            (Array.isArray(payload.type) && payload.type.includes('VerifiableCredential'))
-              ? 'vc'
-              : 'json',
+          typeUrl: 'vc',
           value: payload,
         },
       },
@@ -285,29 +281,39 @@ class NFTFactory {
     return {};
   }
 
-  async _createCert({ display = '', data = {}, attributes = {}, type }) {
+  async _createCert({ display = '', data = {}, attributes = {} }) {
     const requiredFields = ['name', 'description', 'reason', 'logoUrl'];
     const timeFields = ['issueTime', 'expireTime'];
 
     requiredFields.forEach(x => {
       if (!data[x]) {
-        throw new Error(`Missing required field ${x} when creating ${type} asset`);
+        throw new Error(`Missing required field ${x} when creating certificate`);
       }
     });
 
     timeFields.forEach(x => {
       if (!isDate(new Date(data[x]))) {
-        throw new Error(`Invalid date field ${x} when creating ${type} asset`);
+        throw new Error(`Invalid date field ${x} when creating certificate`);
       }
     });
 
     if (!(data.recipient instanceof NFTRecipient)) {
-      throw new Error(`Invalid recipient field when creating ${type} asset`);
+      throw new Error('Invalid recipient field when creating certificate');
     }
 
-    const { name, description, reason, logoUrl, recipient, issueTime, expireTime, display: innerDisplay = '' } = data;
+    const {
+      name,
+      description,
+      reason,
+      logoUrl,
+      recipient,
+      issueTime,
+      type,
+      expireTime,
+      display: innerDisplay = '',
+    } = data;
     const vc = create({
-      type: [type || 'NFTCertificate', 'VerifiableCredential'],
+      type: [type, 'NFTCertificate', 'VerifiableCredential'].filter(Boolean),
       issuer: {
         wallet: this.wallet,
         name: this.issuer.name,
