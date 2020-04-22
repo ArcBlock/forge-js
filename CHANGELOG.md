@@ -1,3 +1,8 @@
+## 1.2.12 (April 22, 2020)
+
+- feat: unify nft type fields for better meaning
+- [skip travis] update readme
+
 ## 1.2.11 (四月 21, 2020)
 
 - Merge branch 'master' into improve-nft-template
