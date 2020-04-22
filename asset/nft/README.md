@@ -6,13 +6,12 @@
 
 > Utility to create standard assets that can be rendered in [ABT Wallet](https://www.abtwallet.io)
 
-
 ## Table of Contents
 
-* [Install](#install)
-* [Usage](#usage)
-* [Documentation](#documentation)
-
+- [Table of Contents](#table-of-contents)
+- [Install](#install)
+- [Usage](#usage)
+- [Documentation](#documentation)
 
 ## Install
 
@@ -21,7 +20,6 @@ npm install @arcblock/nft
 // or
 yarn add @arcblock/nft
 ```
-
 
 ## Usage
 
@@ -43,6 +41,7 @@ const factory = new NFTFactory({
 
 const [asset, hash] = await factory.createTicket({
   backgroundUrl: 'https://www.arcblock.io',
+  type: 'DummyMovieTicket',
   data: {
     name: '复仇者联盟4的电影票',
     description: '单场次单人座',
@@ -58,7 +57,6 @@ const [asset, hash] = await factory.createTicket({
   },
 });
 ```
-
 
 ## Documentation
 
