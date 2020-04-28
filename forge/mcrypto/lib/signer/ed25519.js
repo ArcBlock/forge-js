@@ -28,12 +28,17 @@ class Ed25519Signer extends Signer {
   /**
    * Generate random secret/public key pair
    *
+   * @param {Buffer|Uint8Array} [userSeed=undefined]
    * @param {string} [encoding='hex']
    * @returns {KeyPair}
    * @memberof Ed25519Signer
    */
-  genKeyPair(encoding = 'hex') {
-    const seed = Uint8Array.from(randomBytes(32));
+  genKeyPair(userSeed, encoding = 'hex') {
+    const seed = userSeed ? toUint8Array(userSeed) : Uint8Array.from(randomBytes(32));
+    if (seed.byteLength !== 32) {
+      throw new Error('Invalid seed to generate key pair');
+    }
+
     const keyPair = ed25519.keyPair.fromSeed(seed);
 
     keyPair.publicKey = encode(keyPair.publicKey, encoding);

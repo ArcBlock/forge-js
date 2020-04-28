@@ -1,3 +1,4 @@
+const randomBytes = require('randombytes');
 const { toBase58, toUint8Array, toBuffer } = require('@arcblock/forge-util');
 const signer = require('../../lib/signer/ed25519');
 
@@ -17,6 +18,17 @@ describe('#ed25519', () => {
     const pair = signer.genKeyPair();
     expect(pair.publicKey).toBeTruthy();
     expect(pair.secretKey).toBeTruthy();
+  });
+
+  test('should create valid key pair from random seed', () => {
+    const seed = randomBytes(32);
+    const pair = signer.genKeyPair(seed);
+    expect(pair.publicKey).toBeTruthy();
+    expect(pair.secretKey).toBeTruthy();
+
+    const sig = signer.sign('abc', pair.secretKey);
+    const verify = signer.verify('abc', sig, pair.publicKey);
+    expect(verify).toBeTruthy();
   });
 
   test('should support getPublicKey', () => {
