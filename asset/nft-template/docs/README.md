@@ -1,44 +1,20 @@
 
-## [**@arcblock/vc**](https://github.com/arcblock/vc)
+## [**@arcblock/nft-template**](https://github.com/arcblock/nft-template)
 
-Utility functions to create/verify vc
+Utility functions to create NFT svg
 
-**Requires**: `module:@arcblock/did`, `module:@arcblock/forge-util`  
+### [**@arcblock/nft-template**](https://github.com/arcblock/nft-template)~insertText(param)
 
-* [~create(params)](#.create) ⇒ `object`
-* [~verify(vc, ownerDid, trustedIssuers)](#.verify) ⇒ `boolean`
-
-### [**@arcblock/vc**](https://github.com/arcblock/vc)~create(params) ⇒ `object`
-
-Create a valid verifiable credential
+inset a text in svg
 
 **Kind**: inner method   
 
-| Param                 | Type     | Description                |
-| --------------------- | -------- | -------------------------- |
-| params                | `object` |                            |
-| params.type           | `string` | The type of credential     |
-| params.subject        | `object` | The content of credential  |
-| params.issuer         | `object` | The issuer name and wallet |
-| params.issuanceDate   | `Date`   |                            |
-| params.expirationDate | `Date`   |                            |
-
-### [**@arcblock/vc**](https://github.com/arcblock/vc)~verify(vc, ownerDid, trustedIssuers) ⇒ `boolean`
-
-Verify that the verifiable credential is valid
-
-* It is signed by a whitelist of issuers
-* It is owned by the vc.subject.id
-* It has valid signature by the issuer
-* It is not expired
-
-**Kind**: inner method  
-**Throws**:
-
-* `Error` 
-
-| Param          | Type     | Description                      |
-| -------------- | -------- | -------------------------------- |
-| vc             | `object` | the verifiable credential object |
-| ownerDid       | `string` | vc holder/owner did              |
-| trustedIssuers | `Array`  | list of issuer did               |
+| Param        | Type     | Description                       |
+| ------------ | -------- | --------------------------------- |
+| param        | `object` |                                   |
+| param.x      | `int`    | position.x of the text            |
+| param.y      | `int`    | position.y of the text            |
+| param.size   | `int`    | font size of the text             |
+| param.anchor | `string` | Text alignment: left right middle |
+| param.color  | `string` | color of text                     |
+| param.text   | `string` | text                              |

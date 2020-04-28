@@ -532,7 +532,7 @@ function toUint8Array(v) {
     vb = Uint8Array.from(hexToBytes(toHex(v)));
   } else {
     throw new Error(
-      `Unsupported input type ${typeof v} detected for toBuffer, only Uint8Array/Buffer/Hex/Base58 supported`
+      `Unsupported input type ${typeof v} detected for toBuffer, only Uint8Array/Buffer/Hex/Base58 are supported`
     );
   }
 
