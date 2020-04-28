@@ -91,7 +91,7 @@ const fromPublicKeyHash = (buffer, type) => {
   const typeHex = fromTypeInfo(info);
   const checksum = stripHexPrefix(hashFn(`0x${typeHex}${pkHash}`, 1)).slice(0, 8); // 4 bytes
   const didHash = `0x${typeHex}${pkHash}${checksum}`;
-  debug('fromPublicKeyHash', { info, pkHash, typeHex, checksum, didHash });
+  // debug('fromPublicKeyHash', { info, pkHash, typeHex, checksum, didHash });
 
   return toBase58(didHash);
 };
@@ -157,7 +157,7 @@ const fromTypeInfo = type => {
   const hashBits = toBits(info.hash, 5);
   const infoBits = `${roleBits}${keyBits}${hashBits}`;
   const infoHex = stripHexPrefix(numberToHex(parseInt(infoBits, 2)));
-  debug('fromTypeInfo', info, roleBits, hashBits, infoBits, infoHex);
+  // debug('fromTypeInfo', info, roleBits, hashBits, infoBits, infoHex);
   return toStrictHex(infoHex, 4);
 };
 
