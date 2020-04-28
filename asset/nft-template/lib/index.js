@@ -39,7 +39,7 @@ function createCertSvg({ data }) {
     </foreignObject>
     <foreignObject x="60" y="98" width="254" height="15">
       <div style="color: #ffffff; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;text-align:center;font-size:12px;">
-        ${data.reason}
+        ${data.name}
       </div>
     </foreignObject>
     <svg x="20" y="95" width="28" height="20" viewBox="0 0 28 20">
