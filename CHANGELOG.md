@@ -1,3 +1,11 @@
+## 1.2.13 (April 28, 2020)
+
+- chore: update docs
+- feat: support keypair from seed
+- chore: disable verbose debug statements in did lib
+- chore(deps): bump https-proxy-agent from 2.2.1 to 2.2.4 (#456)
+- [skip travis] update readme
+
 ## 1.2.12 (April 22, 2020)
 
 - feat: unify nft type fields for better meaning
