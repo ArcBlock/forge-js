@@ -1,3 +1,8 @@
+## 1.2.14 (四月 28, 2020)
+
+- improve certificate nft display
+- [skip travis] update readme
+
 ## 1.2.13 (April 28, 2020)
 
 - chore: update docs
