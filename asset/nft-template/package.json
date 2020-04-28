@@ -1,6 +1,6 @@
 {
   "name": "@arcblock/nft-template",
-  "version": "1.2.13",
+  "version": "1.2.14",
   "description": "Javascript lib to work with ArcBlock NFT",
   "keywords": [
     "forge",
