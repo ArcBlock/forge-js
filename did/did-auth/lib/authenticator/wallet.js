@@ -457,7 +457,7 @@ class WalletAuthenticator extends BaseAuthenticator {
 
   // request wallet provide verifiableCredential
   async verifiableCredential({ claim, context, extraParams }) {
-    const { item, trustedIssuers, description: desc, chainInfo, meta = {} } = await this.getClaimInfo({
+    const { item, trustedIssuers, description: desc, chainInfo, tag, meta = {} } = await this.getClaimInfo({
       claim,
       context,
       extraParams,
@@ -470,6 +470,7 @@ class WalletAuthenticator extends BaseAuthenticator {
       trustedIssuers,
       chainInfo,
       meta,
+      tag,
     };
   }
 

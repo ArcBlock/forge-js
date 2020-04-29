@@ -1,3 +1,7 @@
+## 1.2.15 (April 29, 2020)
+
+- [skip travis] update readme
+
 ## 1.2.14 (四月 28, 2020)
 
 - improve certificate nft display
