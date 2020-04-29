@@ -1,3 +1,8 @@
+## 1.2.16 (四月 29, 2020)
+
+- fix vc verify error issue
+- [skip travis] update readme
+
 ## 1.2.15 (April 29, 2020)
 
 - [skip travis] update readme
