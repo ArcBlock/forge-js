@@ -156,6 +156,7 @@ function verify({ vc, ownerDid, trustedIssuers }) {
   const clone = cloneDeep(vc);
   const signature = clone.proof.jws;
   delete clone.proof;
+  delete clone.signature;
 
   // Verify signature
   if (issuer.verify(stringify(clone), fromBase64(signature)) !== true) {
