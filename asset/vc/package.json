@@ -1,6 +1,6 @@
 {
   "name": "@arcblock/vc",
-  "version": "1.2.13",
+  "version": "1.2.16",
   "description": "Javascript lib to work with ArcBlock Verifiable Credentials",
   "keywords": [
     "forge",
