@@ -156,6 +156,7 @@ function verify({ vc, ownerDid, trustedIssuers }) {
   const clone = cloneDeep(vc);
   const signature = clone.proof.jws;
   delete clone.proof;
+  delete clone.signature;
 
   // Verify signature
   if (issuer.verify(stringify(clone), fromBase64(signature)) !== true) {
@@ -180,25 +181,34 @@ function verify({ vc, ownerDid, trustedIssuers }) {
  */
 function verifyPresentation({ presentation, trustedIssuers, challenge }) {
   if (!presentation.challenge || challenge !== presentation.challenge) {
-    throw Error('unsafe response');
+    throw Error('Invalid challenge included on vc presentation');
   }
-  const vcArray = Array.isArray(presentation.verifiableCredential)
+
+  const vcList = Array.isArray(presentation.verifiableCredential)
     ? presentation.verifiableCredential
     : [presentation.verifiableCredential];
-  const proofArray = Array.isArray(presentation.proof) ? presentation.proof : [presentation.proof];
+
+  const proofList = Array.isArray(presentation.proof) ? presentation.proof : [presentation.proof];
   const clone = cloneDeep(presentation);
   delete clone.proof;
-  vcArray.forEach(vcString => {
-    const vc = JSON.parse(vcString);
-    const proof = proofArray.find(tmpProof => isFromPublicKey(vc.credentialSubject.id, tmpProof.pk));
-    if (!proof) throw Error('VC cannot be proof');
-    const signature = proof.jws;
-    const recipience = fromPublicKey(fromBase58(proof.pk), toTypeInfo(vc.credentialSubject.id));
-    if (recipience.verify(stringify(clone), fromBase64(signature)) !== true) {
-      throw Error('presentation signature not valid');
+
+  vcList.forEach(vcStr => {
+    const vcObj = JSON.parse(vcStr);
+    const proof = proofList.find(x => isFromPublicKey(vcObj.credentialSubject.id, x.pk));
+
+    if (!proof) {
+      throw Error(`VC does not have corresponding proof: ${vcStr}`);
     }
-    verify({ vc, ownerDid: vc.credentialSubject.id, trustedIssuers });
+
+    const signature = proof.jws;
+    const holder = fromPublicKey(fromBase58(proof.pk), toTypeInfo(vcObj.credentialSubject.id));
+    if (holder.verify(stringify(clone), fromBase64(signature)) !== true) {
+      throw Error('Presentation signature invalid');
+    }
+
+    verify({ vc: vcObj, ownerDid: vcObj.credentialSubject.id, trustedIssuers });
   });
+
   return true;
 }
 
