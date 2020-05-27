@@ -71,17 +71,11 @@ const preparePathname = (path, req) => {
 };
 
 // This makes the lib smart enough to infer baseURL from request object
-const prepareBaseUrl = req => {
-  const pathname = req.originalUrl.startsWith('/.netlify/functions/')
-    ? req.originalUrl.split('/').slice(0, 4).join('/') // prettier-ignore
-    : '';
-
-  return url.format({
-    protocol: req.protocol,
-    host: req.get('host'),
-    pathname,
-  });
-};
+const prepareBaseUrl = req => url.format({
+  protocol: req.protocol,
+  host: req.get('host'),
+  pathname: '',
+});
 
 const getStepChallenge = () => stripHexPrefix(Mcrypto.getRandomBytes(16)).toUpperCase();
 
