@@ -1,3 +1,8 @@
+## 1.2.17 (May 27, 2020)
+
+- feat: support dynamic baseUrl in did-auth
+- [skip travis] update readme
+
 ## 1.2.16 (四月 29, 2020)
 
 - fix vc verify error issue
