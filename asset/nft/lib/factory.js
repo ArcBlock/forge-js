@@ -89,13 +89,24 @@ class NFTFactory {
       throw new Error('Invalid host field when creating ticket asset');
     }
 
-    const { name, description, location, host, recipient, type, startTime, endTime, display: innerDisplay = '' } = data;
+    const {
+      name,
+      description,
+      location,
+      host,
+      recipient,
+      type,
+      startTime,
+      endTime,
+      display: innerDisplay = '',
+      issuanceDate,
+    } = data;
 
     const vc = create({
       type: [type, 'NFTTicket', 'VerifiableCredential'].filter(Boolean),
       issuer: {
         wallet: host.wallet,
-        name: host.name,
+        name: host.attributes.name,
       },
       subject: {
         id: recipient.wallet.toAddress(),
@@ -103,9 +114,11 @@ class NFTFactory {
         description,
         location,
         display: this._createDisplay(display || innerDisplay),
+        startTime: new Date(startTime),
+        endTime: new Date(endTime),
       },
-      issuanceDate: +new Date(startTime),
-      expirationDate: +new Date(endTime),
+      issuanceDate: issuanceDate || new Date(),
+      expirationDate: new Date(endTime),
     });
     debug('createTicket.vc', vc);
     return this.createSignedAsset(vc, attributes);
@@ -158,11 +171,11 @@ class NFTFactory {
       amount,
       location,
       minAmount,
-      startTime,
       expireTime,
       type,
       recipient,
       display: innerDisplay = '',
+      issuanceDate,
     } = data;
 
     const vc = create({
@@ -181,8 +194,8 @@ class NFTFactory {
         minAmount,
         display: this._createDisplay(display || innerDisplay),
       },
-      issuanceDate: +new Date(startTime),
-      expirationDate: +new Date(expireTime),
+      issuanceDate: issuanceDate || new Date(),
+      expirationDate: new Date(expireTime),
     });
     debug('createTicket.coupon', vc);
     return this.createSignedAsset(vc, attributes);
@@ -307,10 +320,10 @@ class NFTFactory {
       reason,
       logoUrl,
       recipient,
-      issueTime,
       type,
       expireTime,
       display: innerDisplay = '',
+      issuanceDate,
     } = data;
     const vc = create({
       type: [type, 'NFTCertificate', 'VerifiableCredential'].filter(Boolean),
@@ -326,7 +339,7 @@ class NFTFactory {
         logoUrl,
         display: this._createDisplay(display || innerDisplay),
       },
-      issuanceDate: +new Date(issueTime),
+      issuanceDate: issuanceDate || new Date(),
       expirationDate: +new Date(expireTime),
     });
     debug('createCert.vc', vc);
