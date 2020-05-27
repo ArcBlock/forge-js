@@ -45,6 +45,7 @@ class AgentAuthenticator extends WalletAuthenticator {
     authorizer,
     verifiableClaims = [],
     pathname = '',
+    baseUrl = '',
     extraParams = {},
   }) {
     this._verifyClaims(verifiableClaims);
@@ -67,7 +68,9 @@ class AgentAuthenticator extends WalletAuthenticator {
         delete x.chainInfo;
         return x;
       }),
-      url: `${this.baseUrl}${pathname}?${qs.stringify(Object.assign({ [this.tokenKey]: token }, extraParams))}`,
+      url: `${this.baseUrl || baseUrl}${pathname}?${qs.stringify(
+        Object.assign({ [this.tokenKey]: token }, extraParams)
+      )}`,
     };
 
     const signed = {

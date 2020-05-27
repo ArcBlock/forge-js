@@ -62,6 +62,9 @@ const handlers = new WalletHandlers({
 const express = require('express');
 const app = express();
 
+// This is required if you want to use dynamic baseUrl inference
+app.set('trust proxy', true);
+
 handlers.attach({
   prefix: '/api/did',
   action: 'login',
