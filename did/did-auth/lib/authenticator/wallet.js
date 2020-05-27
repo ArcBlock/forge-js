@@ -66,7 +66,7 @@ class WalletAuthenticator extends BaseAuthenticator {
 
     this.wallet = this._validateWallet(wallet);
     this.appInfo = this._validateAppInfo(appInfo, wallet);
-    this.chainInfo = chainInfo;
+    this.chainInfo = this._validateChainInfo(chainInfo);
 
     this.baseUrl = baseUrl;
     this.tokenKey = tokenKey;
@@ -95,7 +95,8 @@ class WalletAuthenticator extends BaseAuthenticator {
       url: encodeURIComponent(`${this.baseUrl || baseUrl}${pathname}?${qs.stringify(params)}`),
     };
 
-    const uri = `${this.appInfo.path}?${qs.stringify(payload)}`;
+    const appInfo = this.getAppInfo(Object.assign({ baseUrl }, params));
+    const uri = `${appInfo.path}?${qs.stringify(payload)}`;
     debug('uri', { token, pathname, uri, params, payload });
     return uri;
   }
@@ -121,15 +122,14 @@ class WalletAuthenticator extends BaseAuthenticator {
    * @param {string} params.error - error message
    * @returns {object} { appPk, authInfo }
    */
-  signResponse({ response = {}, error = '' }) {
+  signResponse({ response = {}, error = '' }, baseUrl) {
     const payload = {
-      appInfo: this.appInfo,
+      appInfo: this.getAppInfo({ baseUrl }),
       status: error ? 'error' : 'ok',
       errorMessage: error || '',
       response,
     };
 
-    // debug('signResponse', { response, error });
     return {
       appPk: this.appPk,
       authInfo: Jwt.sign(this.wallet.address, this.wallet.sk, payload),
@@ -157,17 +157,21 @@ class WalletAuthenticator extends BaseAuthenticator {
     // debug('sign.context', context);
     // debug('sign.params', extraParams);
 
-    const claimsInfo = await this.genRequestedClaims({ claims, context, extraParams });
-    const chainInfoParams = Object.assign({}, context, extraParams);
+    const claimsInfo = await this.genRequestedClaims({
+      claims,
+      context: Object.assign({ baseUrl }, context),
+      extraParams,
+    });
+    const infoParams = Object.assign({ baseUrl }, context, extraParams);
 
     // FIXME: this maybe buggy if user provided multiple claims
-    const tmp = claimsInfo.find(x => this.getChainInfo(chainInfoParams, x.chainInfo || {}));
+    const tmp = claimsInfo.find(x => this.getChainInfo(infoParams, x.chainInfo || {}));
 
     const payload = {
       action: 'responseAuth',
       challenge,
-      appInfo: this.appInfo,
-      chainInfo: this.getChainInfo(chainInfoParams, tmp ? tmp.chainInfo : undefined),
+      appInfo: this.getAppInfo(infoParams),
+      chainInfo: this.getChainInfo(infoParams, tmp ? tmp.chainInfo : undefined),
       requestedClaims: claimsInfo.map(x => {
         delete x.chainInfo;
         return x;
@@ -205,6 +209,30 @@ class WalletAuthenticator extends BaseAuthenticator {
     }
 
     return this.chainInfo;
+  }
+
+  /**
+   * Determine appInfo on the fly
+   *
+   * @param {object} params - contains the context of this request
+   * @param {object|undefined} info - app info object or function
+   * @returns {ApplicationInfo}
+   * @memberof WalletAuthenticator
+   */
+  getAppInfo(params) {
+    if (typeof this.appInfo === 'function') {
+      const result = this.appInfo(params);
+      if (!result.link) {
+        result.link = params.baseUrl;
+      }
+      if (this._validateAppInfo(result, this.wallet)) {
+        return result;
+      }
+
+      throw new Error('Invalid appInfo function provided');
+    }
+
+    return this.appInfo;
   }
 
   /**
@@ -280,9 +308,8 @@ class WalletAuthenticator extends BaseAuthenticator {
           })
         : claim;
 
-    const chainInfoParams = Object.assign({}, context, extraParams);
-    const chainInfo = this.getChainInfo(chainInfoParams, result.chainInfo || undefined);
-    ForgeSDK.connect(chainInfo.host, { chainId: chainInfo.id, name: chainInfo.id });
+    const infoParams = Object.assign({}, context, extraParams);
+    const chainInfo = this.getChainInfo(infoParams, result.chainInfo || undefined);
 
     result.chainInfo = chainInfo;
 
@@ -352,6 +379,12 @@ class WalletAuthenticator extends BaseAuthenticator {
 
     // We have to encode the transaction
     if (type.endsWith('Tx')) {
+      if (!chainInfo.host || !chainInfo.id) {
+        throw new Error('Invalid chainInfo when trying to encoding transaction');
+      }
+
+      ForgeSDK.connect(chainInfo.host, { chainId: chainInfo.id, name: chainInfo.id });
+
       if (typeof ForgeSDK[`encode${type}`] !== 'function') {
         throw new Error(`Unsupported transaction type ${type}`);
       }
@@ -508,6 +541,10 @@ class WalletAuthenticator extends BaseAuthenticator {
   }
 
   _validateAppInfo(appInfo, wallet) {
+    if (typeof appInfo === 'function') {
+      return appInfo;
+    }
+
     if (!appInfo) {
       throw new Error('WalletAuthenticator cannot work without appInfo');
     }
@@ -539,7 +576,7 @@ class WalletAuthenticator extends BaseAuthenticator {
 
   _validateChainInfo(chainInfo) {
     if (typeof chainInfo === 'function') {
-      return true;
+      return chainInfo;
     }
 
     if (!chainInfo) {

@@ -1,3 +1,8 @@
+## 1.2.18 (May 27, 2020)
+
+- feat: add baseUrl to dynamic appInfo and chainInfo
+- [skip travis] update readme
+
 ## 1.2.17 (May 27, 2020)
 
 - feat: support dynamic baseUrl in did-auth
