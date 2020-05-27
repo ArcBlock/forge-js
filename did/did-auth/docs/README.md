@@ -45,6 +45,7 @@
   * [getPublicUrl(pathname, params)](#WalletAuthenticator+getPublicUrl) ⇒ `string`
   * [signResponse(params)](#WalletAuthenticator+signResponse) ⇒ `object`
   * [getChainInfo(params, info)](#WalletAuthenticator+getChainInfo) ⇒ [`ChainInfo`](#ChainInfo)
+  * [getAppInfo(params, info)](#WalletAuthenticator+getAppInfo) ⇒ [`ChainInfo`](#ChainInfo)
   * [verify(data, \[locale\], \[enforceTimestamp\])](#WalletAuthenticator+verify) ⇒
 
 ### new AgentAuthenticator()
@@ -124,6 +125,17 @@ Determine chainInfo on the fly
 | params | `object`                | contains the context of this request |
 | info   | `object` \| `undefined` | chain info object or function        |
 
+### agentAuthenticator.getAppInfo(params, info) ⇒ [`ChainInfo`](#ChainInfo)
+
+Determine appInfo on the fly
+
+**Kind**: instance method of [`AgentAuthenticator`](#AgentAuthenticator)  
+
+| Param  | Type                    | Description                          |
+| ------ | ----------------------- | ------------------------------------ |
+| params | `object`                | contains the context of this request |
+| info   | `object` \| `undefined` | chain info object or function        |
+
 ### agentAuthenticator.verify(data, [locale], [enforceTimestamp]) ⇒
 
 Verify a DID auth response sent from ABT Wallet
@@ -191,6 +203,7 @@ Verify a jwt token signed by another application, used for inter-application com
   * [signResponse(params)](#WalletAuthenticator+signResponse) ⇒ `object`
   * [sign(params)](#WalletAuthenticator+sign) ⇒ `object`
   * [getChainInfo(params, info)](#WalletAuthenticator+getChainInfo) ⇒ [`ChainInfo`](#ChainInfo)
+  * [getAppInfo(params, info)](#WalletAuthenticator+getAppInfo) ⇒ [`ChainInfo`](#ChainInfo)
   * [verify(data, \[locale\], \[enforceTimestamp\])](#WalletAuthenticator+verify) ⇒
 
 ### new WalletAuthenticator(config)
@@ -291,6 +304,17 @@ Sign a auth response that returned to wallet: tell the wallet the appInfo/chainI
 ### walletAuthenticator.getChainInfo(params, info) ⇒ [`ChainInfo`](#ChainInfo)
 
 Determine chainInfo on the fly
+
+**Kind**: instance method of [`WalletAuthenticator`](#WalletAuthenticator)  
+
+| Param  | Type                    | Description                          |
+| ------ | ----------------------- | ------------------------------------ |
+| params | `object`                | contains the context of this request |
+| info   | `object` \| `undefined` | chain info object or function        |
+
+### walletAuthenticator.getAppInfo(params, info) ⇒ [`ChainInfo`](#ChainInfo)
+
+Determine appInfo on the fly
 
 **Kind**: instance method of [`WalletAuthenticator`](#WalletAuthenticator)  
 

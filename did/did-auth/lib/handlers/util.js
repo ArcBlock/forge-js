@@ -71,11 +71,12 @@ const preparePathname = (path, req) => {
 };
 
 // This makes the lib smart enough to infer baseURL from request object
-const prepareBaseUrl = req => url.format({
-  protocol: req.protocol,
-  host: req.get('host'),
-  pathname: '',
-});
+const prepareBaseUrl = req =>
+  url.format({
+    protocol: req.protocol,
+    host: req.get('host'),
+    pathname: '',
+  });
 
 const getStepChallenge = () => stripHexPrefix(Mcrypto.getRandomBytes(16)).toUpperCase();
 
@@ -513,7 +514,7 @@ module.exports = function createHandlers({
       try {
         const claim = await authenticator.getClaimInfo({
           claim: steps[0].authPrincipal,
-          context: { sessionDid: store.sessionDid },
+          context: { sessionDid: store.sessionDid, baseUrl: prepareBaseUrl(req) },
           extraParams: createExtraParams(locale, params, store ? store.extraParams : {}),
         });
 
@@ -547,7 +548,7 @@ module.exports = function createHandlers({
           data = { response: payload };
         }
 
-        const signed = authenticator.signResponse(data);
+        const signed = authenticator.signResponse(data, prepareBaseUrl(req));
         // debug('ensureSignedJson.do', signed);
         originJson.call(res, signed);
       };
