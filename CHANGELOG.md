@@ -1,3 +1,9 @@
+## 1.2.19 (五月 27, 2020)
+
+- Merge branch 'master' into fix-vc-issuance-date
+- update issuance date and add start,end for ticket
+- [skip travis] update readme
+
 ## 1.2.18 (May 27, 2020)
 
 - feat: add baseUrl to dynamic appInfo and chainInfo
