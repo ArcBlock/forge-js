@@ -39,16 +39,17 @@ describe('#WalletHandlers', () => {
     const authenticator = new Authenticator({
       wallet: app.toJSON(),
       // baseUrl: server.url,
-      appInfo: {
+      appInfo: ({ baseUrl }) => ({
         name: 'ABT Wallet Demo',
         description: 'Demo application to show the potential of ABT Wallet',
         icon: 'https://arcblock.oss-cn-beijing.aliyuncs.com/images/wallet-round.png',
-        link: 'https://arcblock.oss-cn-beijing.aliyuncs.com',
-      },
-      chainInfo: {
+        link: baseUrl,
+      }),
+      chainInfo: ({ baseUrl }) => ({
         host: chainHost,
         id: chainId,
-      },
+        baseUrl,
+      }),
     });
     const handlers = new WalletHandlers({ tokenStorage, authenticator });
 
@@ -108,7 +109,8 @@ describe('#WalletHandlers', () => {
 
     const authInfo1 = Jwt.decode(info3.authInfo);
     expect(authInfo1.iss).toEqual(`did:abt:${app.toAddress()}`);
-    // console.log('authInfo1', authInfo1);
+    expect(authInfo1.appInfo.link).toEqual(server.url);
+    expect(authInfo1.chainInfo.baseUrl).toEqual(server.url);
 
     // Submit auth principal
     const { data: info5 } = await axios.post(

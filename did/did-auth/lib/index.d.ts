@@ -87,7 +87,7 @@ declare class WalletAuthenticator extends BaseAuthenticator {
    * @param {string} params.error - error message
    * @returns {object} { appPk, authInfo }
    */
-  signResponse(T104: _Lib.T105): any;
+  signResponse(T104: _Lib.T105, baseUrl: any): any;
   /**
    * Sign a auth response that returned to wallet: tell the wallet the appInfo/chainInfo
    *
@@ -115,6 +115,15 @@ declare class WalletAuthenticator extends BaseAuthenticator {
    * @memberof WalletAuthenticator
    */
   getChainInfo(params: any, info: any): ChainInfo;
+  /**
+   * Determine appInfo on the fly
+   *
+   * @param {object} params - contains the context of this request
+   * @param {object|undefined} info - chain info object or function
+   * @returns {ChainInfo}
+   * @memberof WalletAuthenticator
+   */
+  getAppInfo(params: any): ChainInfo;
   /**
    * Verify a DID auth response sent from ABT Wallet
    *
