@@ -4,10 +4,10 @@ const url = require('url');
 const Mcrypto = require('@arcblock/mcrypto');
 const MemoryAuthStorage = require('@arcblock/did-auth-storage-memory');
 const MemoryAgentStorage = require('@arcblock/did-agent-storage-memory');
-const createTestServer = require('create-test-server');
 const { fromRandom, WalletType } = require('@arcblock/forge-wallet');
 const { toBase58, toDid } = require('@arcblock/forge-util');
 
+const createTestServer = require('../../../tools/util');
 const { AgentWalletHandlers, AgentAuthenticator } = require('../../../lib');
 const Jwt = require('../../../lib/jwt');
 
@@ -28,6 +28,7 @@ describe('#WalletHandlers', () => {
 
   beforeEach(async () => {
     server = await createTestServer();
+    server.set('trust proxy', true);
   });
 
   test('should handle common did-auth attach as expected', async () => {
@@ -35,7 +36,7 @@ describe('#WalletHandlers', () => {
     const agentStorage = new MemoryAgentStorage();
     const authenticator = new AgentAuthenticator({
       wallet: agent.toJSON(),
-      baseUrl: server.url,
+      // baseUrl: server.url,
       appInfo: {
         name: 'Connect Service',
         description: 'Connect Service',

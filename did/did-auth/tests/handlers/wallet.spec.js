@@ -3,10 +3,10 @@ const qs = require('querystring');
 const url = require('url');
 const Mcrypto = require('@arcblock/mcrypto');
 const MemoryAuthStorage = require('@arcblock/did-auth-storage-memory');
-const createTestServer = require('create-test-server');
 const { fromRandom, WalletType } = require('@arcblock/forge-wallet');
 const { toBase58 } = require('@arcblock/forge-util');
 
+const createTestServer = require('../../tools/util');
 const { WalletHandlers, WalletAuthenticator: Authenticator } = require('../../lib');
 const Jwt = require('../../lib/jwt');
 
@@ -30,6 +30,7 @@ describe('#WalletHandlers', () => {
 
   beforeAll(async () => {
     server = await createTestServer();
+    server.set('trust proxy', true);
   });
 
   // Attach challenge
@@ -37,7 +38,7 @@ describe('#WalletHandlers', () => {
     const tokenStorage = new MemoryAuthStorage();
     const authenticator = new Authenticator({
       wallet: app.toJSON(),
-      baseUrl: server.url,
+      // baseUrl: server.url,
       appInfo: {
         name: 'ABT Wallet Demo',
         description: 'Demo application to show the potential of ABT Wallet',

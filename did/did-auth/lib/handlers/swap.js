@@ -9,7 +9,7 @@ const debug = require('debug')(`${require('../../package.json').name}:handlers:s
 const createHandlers = require('./util');
 const BaseHandler = require('./base');
 
-const { preparePathname } = createHandlers;
+const { preparePathname, prepareBaseUrl } = createHandlers;
 
 const noop = () => {};
 
@@ -241,7 +241,11 @@ class AtomicSwapHandlers extends BaseHandler {
           demandSwapAddress: swap.address,
         });
 
-        const url = this.authenticator.getPublicUrl(preparePathname(retrievePath, cbParams.req), extraParams);
+        const url = this.authenticator.getPublicUrl(
+          preparePathname(retrievePath, cbParams.req),
+          extraParams,
+          prepareBaseUrl(cbParams.req)
+        );
         return Object.assign({}, result || {}, { response: { callback: url } });
       }
 
@@ -326,6 +330,7 @@ class AtomicSwapHandlers extends BaseHandler {
             }),
           },
           pathname: preparePathname(retrievePath, req),
+          baseUrl: prepareBaseUrl(req),
           extraParams: createExtraParams(locale, params, store ? store.extraParams : {}),
         });
 

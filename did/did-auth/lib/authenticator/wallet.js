@@ -39,7 +39,7 @@ class WalletAuthenticator extends BaseAuthenticator {
    * @param {Wallet} config.wallet - wallet instance {@see @arcblock/forge-wallet}
    * @param {ApplicationInfo} config.appInfo - application basic info
    * @param {ChainInfo|Function} config.chainInfo - application chain info
-   * @param {object} config.baseUrl - url to assemble wallet request uri
+   * @param {object} [config.baseUrl] - url to assemble wallet request uri, can be inferred from request object
    * @param {string} [config.tokenKey='_t_'] - query param key for `token`
    * @example
    * const ForgeSDK = require('@arcblock/forge-sdk');
@@ -61,12 +61,8 @@ class WalletAuthenticator extends BaseAuthenticator {
    *   },
    * });
    */
-  constructor({ wallet, appInfo, chainInfo, baseUrl, tokenKey = '_t_' }) {
+  constructor({ wallet, appInfo, chainInfo, baseUrl = '', tokenKey = '_t_' }) {
     super();
-
-    if (!baseUrl) {
-      throw new Error('WalletAuthenticator cannot work without a public accessible baseUrl');
-    }
 
     this.wallet = this._validateWallet(wallet);
     this.appInfo = this._validateAppInfo(appInfo, wallet);
@@ -87,15 +83,16 @@ class WalletAuthenticator extends BaseAuthenticator {
    * @method
    * @param {object} params
    * @param {string} params.token - action token
+   * @param {string} params.baseUrl - baseUrl inferred from request object
    * @param {string} params.pathname - wallet callback pathname
    * @param {object} params.query - params that should be persisted in wallet callback url
    * @returns {string}
    */
-  uri({ pathname = '', token = '', query = {} } = {}) {
+  uri({ baseUrl, pathname = '', token = '', query = {} } = {}) {
     const params = Object.assign({}, query, { [this.tokenKey]: token });
     const payload = {
       action: 'requestAuth',
-      url: encodeURIComponent(`${this.baseUrl}${pathname}?${qs.stringify(params)}`),
+      url: encodeURIComponent(`${this.baseUrl || baseUrl}${pathname}?${qs.stringify(params)}`),
     };
 
     const uri = `${this.appInfo.path}?${qs.stringify(payload)}`;
@@ -111,8 +108,8 @@ class WalletAuthenticator extends BaseAuthenticator {
    * @param {object} params
    * @returns {string}
    */
-  getPublicUrl(pathname, params = {}) {
-    return `${this.baseUrl}${pathname}?${qs.stringify(params)}`;
+  getPublicUrl(pathname, params = {}, baseUrl = '') {
+    return `${this.baseUrl || baseUrl}${pathname}?${qs.stringify(params)}`;
   }
 
   /**
@@ -156,7 +153,7 @@ class WalletAuthenticator extends BaseAuthenticator {
    * @param {string} params.context.sessionDid - did of logged-in user
    * @returns {object} { appPk, authInfo }
    */
-  async sign({ context, claims, pathname = '', challenge = '', extraParams = {} }) {
+  async sign({ context, claims, pathname = '', baseUrl = '', challenge = '', extraParams = {} }) {
     // debug('sign.context', context);
     // debug('sign.params', extraParams);
 
@@ -175,7 +172,7 @@ class WalletAuthenticator extends BaseAuthenticator {
         delete x.chainInfo;
         return x;
       }),
-      url: `${this.baseUrl}${pathname}?${qs.stringify({ [this.tokenKey]: context.token })}`,
+      url: `${this.baseUrl || baseUrl}${pathname}?${qs.stringify({ [this.tokenKey]: context.token })}`,
     };
 
     // debug('sign.payload', payload);

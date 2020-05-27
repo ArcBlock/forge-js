@@ -5,10 +5,10 @@ const ForgeSDK = require('@arcblock/forge-sdk');
 const Mcrypto = require('@arcblock/mcrypto');
 const MemoryAuthStorage = require('@arcblock/did-auth-storage-memory');
 const MemorySwapStorage = require('@arcblock/swap-storage-memory');
-const createTestServer = require('create-test-server');
 const { fromRandom, WalletType } = require('@arcblock/forge-wallet');
 const { toBase58 } = require('@arcblock/forge-util');
 
+const createTestServer = require('../../tools/util');
 const { SwapHandlers, WalletAuthenticator } = require('../../lib');
 const Jwt = require('../../lib/jwt');
 
@@ -22,8 +22,10 @@ const user = fromRandom();
 const app = fromRandom(type);
 const chainHost = 'https://playground.network.arcblockio.cn/api';
 const chainId = 'playground';
-const assetChainHost = 'https://zinc.network.arcblockio.cn/api';
-const assetChainId = 'zinc-2019-05-17';
+const assetChainHost = 'https://playground.network.arcblockio.cn/api';
+// const assetChainHost = 'https://zinc.network.arcblockio.cn/api';
+const assetChainId = 'playground';
+// const assetChainId = 'zinc-2019-05-17';
 const sleep = timeout => new Promise(resolve => setTimeout(resolve, timeout));
 
 describe('#SwapHandlers', () => {
@@ -31,6 +33,7 @@ describe('#SwapHandlers', () => {
 
   beforeAll(async () => {
     server = await createTestServer();
+    server.set('trust proxy', true);
   });
 
   test('should be a function', () => {
@@ -51,7 +54,7 @@ describe('#SwapHandlers', () => {
     const swapStorage = new MemorySwapStorage();
     const authenticator = new WalletAuthenticator({
       wallet: app.toJSON(),
-      baseUrl: server.url,
+      // baseUrl: server.url,
       appInfo: {
         name: 'ABT Wallet Demo',
         description: 'Demo application to show the potential of ABT Wallet',
@@ -152,7 +155,6 @@ describe('#SwapHandlers', () => {
     const parsed = url.parse(info.url);
     const authUrl = decodeURIComponent(qs.parse(parsed.search).url);
     expect(authUrl.indexOf(info.token) > 0).toBeTruthy();
-    expect(authUrl.indexOf(traceId) > 0).toBeTruthy();
 
     // Check token status
     const { data: info2 } = await getTokenState();

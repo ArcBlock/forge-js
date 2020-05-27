@@ -1,8 +1,7 @@
 // Generate by [js2dts@0.3.3](https://github.com/whxaxes/js2dts#readme)
 
 import { EventEmitter } from 'events';
-declare class BaseAuthenticator {
-}
+declare class BaseAuthenticator {}
 declare class WalletAuthenticator extends BaseAuthenticator {
   wallet: any;
   appInfo: any;
@@ -35,7 +34,7 @@ declare class WalletAuthenticator extends BaseAuthenticator {
    * @param {Wallet} config.wallet - wallet instance {@see @arcblock/forge-wallet}
    * @param {ApplicationInfo} config.appInfo - application basic info
    * @param {ChainInfo|Function} config.chainInfo - application chain info
-   * @param {object} config.baseUrl - url to assemble wallet request uri
+   * @param {object} [config.baseUrl] - url to assemble wallet request uri, can be inferred from request object
    * @param {string} [config.tokenKey='_t_'] - query param key for `token`
    * @example
    * const ForgeSDK = require('@arcblock/forge-sdk');
@@ -64,6 +63,7 @@ declare class WalletAuthenticator extends BaseAuthenticator {
    * @method
    * @param {object} params
    * @param {string} params.token - action token
+   * @param {string} params.baseUrl - baseUrl inferred from request object
    * @param {string} params.pathname - wallet callback pathname
    * @param {object} params.query - params that should be persisted in wallet callback url
    * @returns {string}
@@ -77,7 +77,7 @@ declare class WalletAuthenticator extends BaseAuthenticator {
    * @param {object} params
    * @returns {string}
    */
-  getPublicUrl(pathname: string, params?: any): string;
+  getPublicUrl(pathname: string, params?: any, baseUrl?: string): string;
   /**
    * Sign a plain response, usually on auth success or error
    *
@@ -384,6 +384,7 @@ declare namespace _Lib {
   }
   export interface T103 {
     token: string;
+    baseUrl: string;
     pathname: string;
     query: any;
   }
@@ -462,6 +463,7 @@ declare namespace _Lib {
     trustedIssuers: any;
     chainInfo: any;
     meta: any;
+    tag: any;
   }
   export interface T125 {
     type: string;

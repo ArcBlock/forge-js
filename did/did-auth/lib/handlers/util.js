@@ -70,6 +70,19 @@ const preparePathname = (path, req) => {
   return cleanPath;
 };
 
+// This makes the lib smart enough to infer baseURL from request object
+const prepareBaseUrl = req => {
+  const pathname = req.originalUrl.startsWith('/.netlify/functions/')
+    ? `/${req.originalUrl.split('/').slice(0, 3).join('/')}` // prettier-ignore
+    : '';
+
+  return url.format({
+    protocol: req.protocol,
+    host: req.get('host'),
+    pathname,
+  });
+};
+
 const getStepChallenge = () => stripHexPrefix(Mcrypto.getRandomBytes(16)).toUpperCase();
 
 const parseWalletUA = (userAgent = '') => {
@@ -212,6 +225,7 @@ module.exports = function createHandlers({
         url: authenticator.uri({
           token,
           pathname: preparePathname(getPathName(pathname, req), req),
+          baseUrl: prepareBaseUrl(req),
           query: {},
         }),
       });
@@ -351,6 +365,7 @@ module.exports = function createHandlers({
             },
             claims: store ? steps[store.currentStep] : steps[0],
             pathname: preparePathname(getPathName(pathname, req), req),
+            baseUrl: prepareBaseUrl(req),
             extraParams: createExtraParams(locale, params, store ? store.extraParams : {}),
             challenge: store ? store.challenge : '',
           })
@@ -459,6 +474,7 @@ module.exports = function createHandlers({
                 },
                 claims: steps[nextStep],
                 pathname: preparePathname(getPathName(pathname, req), req),
+                baseUrl: prepareBaseUrl(req),
                 extraParams: createExtraParams(locale, params, store.extraParams || {}),
                 challenge: nextChallenge,
               })
@@ -567,4 +583,5 @@ module.exports = function createHandlers({
 
 module.exports.parseWalletUA = parseWalletUA;
 module.exports.preparePathname = preparePathname;
+module.exports.prepareBaseUrl = prepareBaseUrl;
 module.exports.getStepChallenge = getStepChallenge;

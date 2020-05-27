@@ -3149,7 +3149,7 @@ create-hmac@^1.1.0, create-hmac@^1.1.2, create-hmac@^1.1.4:
 
 create-test-server@^3.0.1:
   version "3.0.1"
-  resolved "https://registry.npmjs.org/create-test-server/-/create-test-server-3.0.1.tgz#f21140732ac99e67b50b315e46b4f98a5081ad7c"
+  resolved "https://registry.yarnpkg.com/create-test-server/-/create-test-server-3.0.1.tgz#f21140732ac99e67b50b315e46b4f98a5081ad7c"
   integrity sha512-RRc+7LXSm+w3j9j3gJMVveD0Aa8uZCYhZtetpGltHZQg7ND9gW7m5jWk4OTSQgeD6PL+8gun8/CS1Pn3b5+M5A==
   dependencies:
     body-parser "^1.18.2"

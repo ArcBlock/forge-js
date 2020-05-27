@@ -85,6 +85,7 @@ Generate a deep link url that can be displayed as QRCode for ABT Wallet to consu
 | --------------- | -------- | ------------------------------------------------------ |
 | params          | `object` |                                                        |
 | params.token    | `string` | action token                                           |
+| params.baseUrl  | `string` | baseUrl inferred from request object                   |
 | params.pathname | `string` | wallet callback pathname                               |
 | params.query    | `object` | params that should be persisted in wallet callback url |
 
@@ -202,7 +203,7 @@ Creates an instance of DID Authenticator.
 | config.wallet     | `Wallet`                                |                               | wallet instance {[**@see**](https://github.com/see) [**@arcblock/forge-wallet**](https://github.com/arcblock/forge-wallet)} |
 | config.appInfo    | [`ApplicationInfo`](#ApplicationInfo)   |                               | application basic info                                                                                                      |
 | config.chainInfo  | [`ChainInfo`](#ChainInfo) \| `function` |                               | application chain info                                                                                                      |
-| config.baseUrl    | `object`                                |                               | url to assemble wallet request uri                                                                                          |
+| [config.baseUrl]  | `object`                                |                               | url to assemble wallet request uri, can be inferred from request object                                                     |
 | [config.tokenKey] | `string`                                | `&quot;&#x27;_t_&#x27;&quot;` | query param key for `token`                                                                                                 |
 
 **Example**  
@@ -238,6 +239,7 @@ Generate a deep link url that can be displayed as QRCode for ABT Wallet to consu
 | --------------- | -------- | ------------------------------------------------------ |
 | params          | `object` |                                                        |
 | params.token    | `string` | action token                                           |
+| params.baseUrl  | `string` | baseUrl inferred from request object                   |
 | params.pathname | `string` | wallet callback pathname                               |
 | params.query    | `object` | params that should be persisted in wallet callback url |
 
