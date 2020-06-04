@@ -58,7 +58,6 @@ class NFTFactory {
    * @param {string} params.data.name - ticket name
    * @param {string} params.data.description - ticket description
    * @param {string} params.data.location - event location
-   * @param {NFTIssuer} params.data.host - event host
    * @param {number} params.data.startTime - event start time
    * @param {number} params.data.endTime - event end time
    * @param {object} params.attributes - asset attributes
@@ -66,7 +65,7 @@ class NFTFactory {
    * @memberof NFTFactory
    */
   async createTicket({ display = '', data = {}, attributes = {} }) {
-    const requiredFields = ['name', 'description', 'location', 'host'];
+    const requiredFields = ['name', 'description', 'location'];
     const timeFields = ['startTime', 'endTime'];
 
     requiredFields.forEach(x => {
@@ -85,15 +84,10 @@ class NFTFactory {
       throw new Error(`Invalid recipient field when creating ${type} asset`);
     }
 
-    if (!(data.host instanceof NFTIssuer)) {
-      throw new Error('Invalid host field when creating ticket asset');
-    }
-
     const {
       name,
       description,
       location,
-      host,
       recipient,
       type,
       startTime,
@@ -105,8 +99,8 @@ class NFTFactory {
     const vc = create({
       type: [type, 'NFTTicket', 'VerifiableCredential'].filter(Boolean),
       issuer: {
-        wallet: host.wallet,
-        name: host.attributes.name,
+        wallet: this.wallet,
+        name: this.issuer.attributes.name,
       },
       subject: {
         id: recipient.wallet.toAddress(),
@@ -182,7 +176,7 @@ class NFTFactory {
       type: [type, 'NFTCoupon', 'VerifiableCredential'].filter(Boolean),
       issuer: {
         wallet: this.issuer.wallet,
-        name: this.issuer.name,
+        name: this.issuer.attributes.name,
       },
       subject: {
         id: recipient.wallet.toAddress(),
@@ -242,7 +236,7 @@ class NFTFactory {
       type: [type, 'NFTBadge', 'VerifiableCredential'].filter(Boolean),
       issuer: {
         wallet: this.wallet,
-        name: this.issuer.name,
+        name: this.issuer.attributes.name,
       },
       subject: {
         id: recipient.wallet.toAddress(),
@@ -325,11 +319,12 @@ class NFTFactory {
       display: innerDisplay = '',
       issuanceDate,
     } = data;
+
     const vc = create({
       type: [type, 'NFTCertificate', 'VerifiableCredential'].filter(Boolean),
       issuer: {
         wallet: this.wallet,
-        name: this.issuer.name,
+        name: this.issuer.attributes.name,
       },
       subject: {
         id: recipient.wallet.toAddress(),
