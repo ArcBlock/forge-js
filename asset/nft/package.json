@@ -1,7 +1,7 @@
 {
   "name": "@arcblock/nft",
   "description": "Utility to create standard asset on forge powered blockchain",
-  "version": "1.2.19",
+  "version": "1.2.20",
   "author": {
     "name": "wangshijun",
     "email": "shijun@arcblock.io",
