@@ -1,3 +1,8 @@
+## 1.2.20 (六月 04, 2020)
+
+- fix nft issuer name can not correct display
+- [skip travis] update readme
+
 ## 1.2.19 (五月 27, 2020)
 
 - Merge branch 'master' into fix-vc-issuance-date
