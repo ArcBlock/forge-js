@@ -1,3 +1,9 @@
+## 1.3.0 (June 13, 2020)
+
+- chore: rebuild dependency
+- chore: replace grpc dependency with @grpc/grpc-js
+- chore: regenerate forge-abi code with latest grpc tools
+
 ## 1.2.20 (六月 04, 2020)
 
 - fix nft issuer name can not correct display
