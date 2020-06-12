@@ -18,8 +18,8 @@
     "@arcblock/client-extension": "^1.2.13",
     "@arcblock/forge-message": "^1.2.13",
     "@arcblock/forge-proto": "^1.2.0",
+    "@grpc/grpc-js": "^1.0.5",
     "debug": "^4.1.1",
-    "grpc": "^1.24.0",
     "lodash": "^4.17.15"
   },
   "devDependencies": {

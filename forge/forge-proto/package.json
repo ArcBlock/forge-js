@@ -60,6 +60,7 @@
     "coverage": "yarn lint && yarn test -- --coverage --collectCoverageFrom=index.js --collectCoverageFrom=!lib/*.js"
   },
   "dependencies": {
+    "@grpc/grpc-js": "^1.0.5",
     "debug": "^4.1.1",
     "lodash": "^4.17.15"
   },
