@@ -1,7 +1,7 @@
 // GENERATED CODE -- DO NOT EDIT!
 
 'use strict';
-var grpc = require('grpc');
+var grpc = require('@grpc/grpc-js');
 var rpc_pb = require('./rpc_pb.js');
 
 function serialize_forge_abi_RequestDeclareNode(arg) {
@@ -664,7 +664,6 @@ function deserialize_forge_abi_ResponseUnsubscribe(buffer_arg) {
   return rpc_pb.ResponseUnsubscribe.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
-
 // forge RPC definition
 //
 // Notice: when you define a new RPC, please follow the naming convention. Your
@@ -672,9 +671,9 @@ function deserialize_forge_abi_ResponseUnsubscribe(buffer_arg) {
 // name, prefixed with Request / Response. e.g. rpc get_abc(RequestGetAbc)
 // returns (ResponseGetAbc). If you break this, RPC builder would complain.
 //
-var ChainRpcService = exports.ChainRpcService = {
+var ChainRpcService = (exports.ChainRpcService = {
   // tx related
-send_tx: {
+  send_tx: {
     path: '/forge_abi.ChainRpc/send_tx',
     requestStream: false,
     responseStream: false,
@@ -730,7 +729,7 @@ send_tx: {
     responseDeserialize: deserialize_forge_abi_ResponseGetUnconfirmedTxs,
   },
   // utility
-get_chain_info: {
+  get_chain_info: {
     path: '/forge_abi.ChainRpc/get_chain_info',
     requestStream: false,
     responseStream: false,
@@ -796,10 +795,10 @@ get_chain_info: {
     responseSerialize: serialize_forge_abi_ResponseGetConfig,
     responseDeserialize: deserialize_forge_abi_ResponseGetConfig,
   },
-};
+});
 
 exports.ChainRpcClient = grpc.makeGenericClientConstructor(ChainRpcService);
-var EventRpcService = exports.EventRpcService = {
+var EventRpcService = (exports.EventRpcService = {
   subscribe: {
     path: '/forge_abi.EventRpc/subscribe',
     requestStream: false,
@@ -822,20 +821,19 @@ var EventRpcService = exports.EventRpcService = {
     responseSerialize: serialize_forge_abi_ResponseUnsubscribe,
     responseDeserialize: deserialize_forge_abi_ResponseUnsubscribe,
   },
-};
+});
 
 exports.EventRpcClient = grpc.makeGenericClientConstructor(EventRpcService);
-var FileRpcService = exports.FileRpcService = {
-};
+var FileRpcService = (exports.FileRpcService = {});
 
 exports.FileRpcClient = grpc.makeGenericClientConstructor(FileRpcService);
 // filesystem related
 // rpc store_file(stream RequestStoreFile) returns (ResponseStoreFile);
 // rpc load_file(RequestLoadFile) returns (stream ResponseLoadFile);
 // rpc pin_file(RequestPinFile) returns (ResponsePinFile);
-var StateRpcService = exports.StateRpcService = {
+var StateRpcService = (exports.StateRpcService = {
   // state related
-get_account_state: {
+  get_account_state: {
     path: '/forge_abi.StateRpc/get_account_state',
     requestStream: true,
     responseStream: true,
@@ -869,10 +867,10 @@ get_account_state: {
     responseDeserialize: deserialize_forge_abi_ResponseGetForgeState,
   },
   // rpc get_protocol_state(stream RequestGetProtocolState) returns (stream
-// ResponseGetProtocolState);
-// rpc get_stake_state(stream RequestGetStakeState)
-// returns (stream ResponseGetStakeState);
-get_swap_state: {
+  // ResponseGetProtocolState);
+  // rpc get_stake_state(stream RequestGetStakeState)
+  // returns (stream ResponseGetStakeState);
+  get_swap_state: {
     path: '/forge_abi.StateRpc/get_swap_state',
     requestStream: true,
     responseStream: true,
@@ -894,12 +892,12 @@ get_swap_state: {
     responseSerialize: serialize_forge_abi_ResponseGetDelegateState,
     responseDeserialize: deserialize_forge_abi_ResponseGetDelegateState,
   },
-};
+});
 
 exports.StateRpcClient = grpc.makeGenericClientConstructor(StateRpcService);
-var WalletRpcService = exports.WalletRpcService = {
+var WalletRpcService = (exports.WalletRpcService = {
   // wallet related
-declare_node: {
+  declare_node: {
     path: '/forge_abi.WalletRpc/declare_node',
     requestStream: false,
     responseStream: false,
@@ -910,10 +908,10 @@ declare_node: {
     responseSerialize: serialize_forge_abi_ResponseDeclareNode,
     responseDeserialize: deserialize_forge_abi_ResponseDeclareNode,
   },
-};
+});
 
 exports.WalletRpcClient = grpc.makeGenericClientConstructor(WalletRpcService);
-var StatsRpcService = exports.StatsRpcService = {
+var StatsRpcService = (exports.StatsRpcService = {
   get_forge_stats: {
     path: '/forge_abi.StatsRpc/get_forge_stats',
     requestStream: false,
@@ -1035,6 +1033,6 @@ var StatsRpcService = exports.StatsRpcService = {
     responseSerialize: serialize_forge_abi_ResponseGetSwapStatistics,
     responseDeserialize: deserialize_forge_abi_ResponseGetSwapStatistics,
   },
-};
+});
 
 exports.StatsRpcClient = grpc.makeGenericClientConstructor(StatsRpcService);
