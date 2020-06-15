@@ -1,7 +1,7 @@
 {
   "name": "@arcblock/forge-proto",
   "description": "Static modules generated from forge-sdk protobuf files",
-  "version": "1.3.0",
+  "version": "1.3.1",
   "author": {
     "name": "wangshijun",
     "email": "shijun@arcblock.io",
@@ -61,8 +61,8 @@
   },
   "dependencies": {
     "@grpc/grpc-js": "^1.0.5",
-    "google-auth-library": "^6.0.1",
     "debug": "^4.1.1",
+    "google-auth-library": "^6.0.1",
     "lodash": "^4.17.15"
   },
   "gitHead": "87990c8b5e215107fc587c1ced0d6b3e2cd2483e"
