@@ -1,3 +1,7 @@
+## 1.3.1 (June 15, 2020)
+
+- fix: peer dependency of @grpc/grpc-js
+
 ## 1.3.0 (June 13, 2020)
 
 - chore: rebuild dependency
