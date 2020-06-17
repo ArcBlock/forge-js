@@ -6,18 +6,17 @@
 
 > Forge Javascript SDK packages all in one
 
-
 ## Table of Contents
 
-* [Install](#install)
-* [Usage](#usage)
-  * [ES5(commonjs)](#es5commonjs)
-  * [ES6](#es6)
-  * [Util](#util)
-  * [Wallet](#wallet)
-  * [Message](#message)
-* [Packages Included](#packages-included)
-
+- [Table of Contents](#table-of-contents)
+- [Install](#install)
+- [Usage](#usage)
+  - [ES5(commonjs)](#es5commonjs)
+  - [ES6](#es6)
+  - [Util](#util)
+  - [Wallet](#wallet)
+  - [Message](#message)
+- [Packages Included](#packages-included)
 
 ## Install
 
@@ -26,7 +25,6 @@ npm i @arcblock/forge-sdk
 // OR
 yarn add @arcblock/forge-sdk
 ```
-
 
 ## Usage
 
@@ -42,17 +40,22 @@ ForgeSDK.connect('https://test.abtnetwork.io/api', { name: 'test' });
 ForgeSDK.connect('https://zinc.abtnetwork.io/api', { name: 'zinc' });
 ForgeSDK.connect('tcp://127.0.0.1:28210', { name: 'local' });
 
+const sender = ForgeSDK.Wallet.fromRandom();
+const receiver = ForgeSDK.Wallet.fromRandom();
+
 // Declare on test chain
-ForgeSDK.declare({
-  moniker: 'abcd',
-  wallet: ForgeSDK.Wallet.fromRandom(),
-}).then(console.log);
+await ForgeSDK.declare({ moniker: 'sender', wallet: sender }, { conn: 'test' }).then(console.log);
+await ForgeSDK.declare({ moniker: 'receiver', wallet: receiver }, { conn: 'test' }).then(console.log);
 
 // Get zinc chain info
 ForgeSDK.getChainInfo({ conn: 'zinc' }).then(console.log);
 
 // Get local chain info
 ForgeSDK.getChainInfo({ conn: 'local' }).then(console.log);
+
+// Poke and transfer on test chain
+await ForgeSDK.checkin({ wallet: sender }, { conn: 'test' }).then(console.log);
+await ForgeSDK.transfer({ to: receiver.toAddress(), token: 1, wallet: sender }, { conn: 'test' }).then(console.log);
 ```
 
 ### ES6
@@ -103,12 +106,11 @@ const message = ForgeSDK.Message.createMessage('Transaction', {
 console.log(message);
 ```
 
-
 ## Packages Included
 
-* [graphql-client](https://www.npmjs.com/package/@arcblock/graphql-client), available after `ForgeSDK.connect`
-* [grpc-client](https://www.npmjs.com/package/@arcblock/grpc-client), available after `ForgeSDK.connect`
-* [forge-util](https://www.npmjs.com/package/@arcblock/forge-util), available on `ForgeSDK.Util`
-* [did-util](https://www.npmjs.com/package/@arcblock/did-util), available on `ForgeSDK.Util`
-* [forge-wallet](https://www.npmjs.com/package/@arcblock/forge-wallet), available on `ForgeSDK.Wallet`
-* [forge-message](https://www.npmjs.com/package/@arcblock/forge-message), available on `ForgeSDK.Message`
+- [graphql-client](https://www.npmjs.com/package/@arcblock/graphql-client), available after `ForgeSDK.connect`
+- [grpc-client](https://www.npmjs.com/package/@arcblock/grpc-client), available after `ForgeSDK.connect`
+- [forge-util](https://www.npmjs.com/package/@arcblock/forge-util), available on `ForgeSDK.Util`
+- [did-util](https://www.npmjs.com/package/@arcblock/did-util), available on `ForgeSDK.Util`
+- [forge-wallet](https://www.npmjs.com/package/@arcblock/forge-wallet), available on `ForgeSDK.Wallet`
+- [forge-message](https://www.npmjs.com/package/@arcblock/forge-message), available on `ForgeSDK.Message`
