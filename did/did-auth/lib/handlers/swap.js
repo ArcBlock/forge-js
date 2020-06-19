@@ -64,7 +64,7 @@ class AtomicSwapHandlers extends BaseHandler {
       };
 
       if (events[data.status]) {
-        const payload = await this.swapStorage.read(data.token);
+        const payload = await this.swapStorage.read(data.traceId || data.token);
         this.emit(events[data.status], payload);
       }
     });
