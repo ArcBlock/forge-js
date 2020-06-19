@@ -1,3 +1,7 @@
+## 1.3.2 (June 19, 2020)
+
+- fix: swap handler update event emit error
+
 ## 1.3.1 (June 15, 2020)
 
 - fix: peer dependency of @grpc/grpc-js
