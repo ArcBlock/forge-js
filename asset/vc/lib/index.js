@@ -57,6 +57,9 @@ function create({ type, subject, issuer, issuanceDate, expirationDate }) {
   const vcType = Object.assign({}, typeInfo, { role: types.RoleType.ROLE_VC });
   const vcDid = fromPublicKeyHash(wallet.hash(stringify(subject)), vcType);
 
+  // eslint-disable-next-line no-param-reassign
+  issuanceDate = issuanceDate || new Date().toISOString();
+
   const vcObj = {
     '@context': 'https://schema.arcblock.io/v0.1/context.jsonld',
     id: vcDid,
@@ -66,7 +69,7 @@ function create({ type, subject, issuer, issuanceDate, expirationDate }) {
       pk: toBase58(wallet.publicKey),
       name: issuerName || issuerDid,
     },
-    issuanceDate: issuanceDate || new Date().toISOString(),
+    issuanceDate,
     expirationDate,
     credentialSubject: subject,
   };
@@ -78,7 +81,7 @@ function create({ type, subject, issuer, issuanceDate, expirationDate }) {
   const signature = wallet.sign(stringify(vcObj));
   const proof = {
     type: proofTypes[typeInfo.pk],
-    created: new Date().toISOString(),
+    created: issuanceDate,
     proofPurpose: 'assertionMethod',
     jws: toBase64(signature),
   };
