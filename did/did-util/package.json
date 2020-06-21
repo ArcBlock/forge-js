@@ -1,7 +1,7 @@
 {
   "name": "@arcblock/did-util",
   "description": "Helper function to calculate did",
-  "version": "1.3.1",
+  "version": "1.3.3",
   "author": {
     "name": "wangshijun",
     "email": "shijun@arcblock.io",
@@ -18,11 +18,11 @@
     "wangshijun <shijun@arcblock.io> (https://ocap.arcblock.io)"
   ],
   "dependencies": {
-    "@arcblock/did": "^1.2.13",
+    "@arcblock/did": "^1.3.3",
     "@arcblock/forge-message": "^1.3.1",
     "@arcblock/forge-proto": "^1.3.1",
     "@arcblock/forge-util": "^1.2.13",
-    "@arcblock/forge-wallet": "^1.2.13",
+    "@arcblock/forge-wallet": "^1.3.3",
     "@arcblock/mcrypto": "^1.2.13"
   },
   "devDependencies": {
