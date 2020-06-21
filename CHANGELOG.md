@@ -1,3 +1,9 @@
+## 1.3.3 (June 21, 2020)
+
+- fix: vc issuance date for vc #468
+- fix: remove verbose debug
+- [skip travis] update readme
+
 ## 1.3.2 (June 19, 2020)
 
 - fix: swap handler update event emit error
