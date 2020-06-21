@@ -63,7 +63,7 @@ const toCompleteType = info => {
 const fromSecretKey = (sk, type) => {
   const info = toCompleteType(type || {});
   const pub = getSigner(info.pk).getPublicKey(sk);
-  debug('fromSecretKey', pub);
+  // debug('fromSecretKey', pub);
   return fromPublicKey(pub.indexOf('0x') === 0 ? pub : `0x${pub}`, info);
 };
 
@@ -80,7 +80,7 @@ const fromPublicKey = (pk, type) => {
   const info = toCompleteType(type || {});
   const hashFn = getHasher(info.hash);
   const pkHash = hashFn(pk, 1);
-  debug('fromPublicKey', pkHash);
+  // debug('fromPublicKey', pkHash);
   return fromPublicKeyHash(pkHash, info);
 };
 
