@@ -9,22 +9,23 @@
 const GraphqlClient = require('../lib/node');
 
 const endpoint = process.env.FORGE_API_HOST || 'http://127.0.0.1:8210'; // testnet
+// const endpoint = process.env.FORGE_API_HOST || 'https://xenon.abtnetwork.io/api'; // testnet
+// const endpoint = process.env.FORGE_API_HOST || 'https://playground.network.arcblockio/api'; // testnet
+
 const client = new GraphqlClient(`${endpoint}/api`);
 
 (async () => {
   try {
-    const subscription = await client.subscribe({ topic: 'end_block' });
-    // Same as
-    // const subscription = await client.doRawSubscription(`
-    //   subscription {
-    //     subscribe(topic: "end_block") {
-    //       topic
-    //       endBlock {
-    //         height
-    //       }
-    //     }
-    //   }
-    // `);
+    const subscription = await client.doRawSubscription(`
+      subscription {
+        subscribe(topic: "end_block") {
+          topic
+          endBlock {
+            height
+          }
+        }
+      }
+    `);
 
     subscription.on('data', d => console.log('onNewBlock', d));
     subscription.on('error', console.error);

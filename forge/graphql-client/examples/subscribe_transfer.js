@@ -10,6 +10,7 @@ const { fromRandom } = require('@arcblock/forge-wallet');
 const GraphqlClient = require('../lib/node');
 
 const endpoint = process.env.FORGE_API_HOST || 'http://127.0.0.1:8210'; // testnet
+// const endpoint = process.env.FORGE_API_HOST || 'https://xenon.abtnetwork.io/api'; // testnet
 
 const client = new GraphqlClient(`${endpoint}/api`);
 const sleep = timeout => new Promise(resolve => setTimeout(resolve, timeout));
@@ -24,8 +25,32 @@ const sleep = timeout => new Promise(resolve => setTimeout(resolve, timeout));
     const declare = async (wallet, name) => client.declare({ moniker: name, wallet });
     const checkin = async wallet => client.checkin({ wallet });
 
-    // subscribe(topic: "transfer", filter: "value.itx.to=\\"${receiver.toAddress()}\\"");
-    const subscription = await client.subscribe({ topic: 'transfer' });
+    const subscription = await client.doRawSubscription(`
+      subscription {
+        subscribe(topic: "transfer") {
+          topic
+          transfer {
+            chainId
+            delegator
+            from
+            itxJson
+            nonce
+            pk
+            signature
+            signatures {
+              delegator
+              pk
+              signature
+              signer
+              data {
+                typeUrl
+                value
+              }
+            }
+          }
+        }
+      }
+    `);
 
     subscription.on('data', d => console.log('onTransfer', d));
     subscription.on('error', console.error);
