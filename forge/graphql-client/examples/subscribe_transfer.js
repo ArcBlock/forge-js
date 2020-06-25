@@ -9,22 +9,15 @@
 const { fromRandom } = require('@arcblock/forge-wallet');
 const GraphqlClient = require('../lib/node');
 
-const endpoint = process.env.FORGE_API_HOST || 'http://127.0.0.1:8210'; // testnet
-// const endpoint = process.env.FORGE_API_HOST || 'https://xenon.abtnetwork.io/api'; // testnet
+const endpoint = process.env.FORGE_API_HOST || 'http://127.0.0.1:8210';
+// const endpoint = process.env.FORGE_API_HOST || 'https://xenon.abtnetwork.io';
+// const endpoint = process.env.FORGE_API_HOST || 'https://playground.network.arcblockio.cn';
 
 const client = new GraphqlClient(`${endpoint}/api`);
 const sleep = timeout => new Promise(resolve => setTimeout(resolve, timeout));
 
 (async () => {
   try {
-    const sender = fromRandom();
-    const receiver = fromRandom();
-    console.log({ sender: sender.toJSON() });
-    console.log({ receiver: receiver.toJSON() });
-
-    const declare = async (wallet, name) => client.declare({ moniker: name, wallet });
-    const checkin = async wallet => client.checkin({ wallet });
-
     const subscription = await client.doRawSubscription(`
       subscription {
         subscribe(topic: "transfer") {
@@ -54,6 +47,14 @@ const sleep = timeout => new Promise(resolve => setTimeout(resolve, timeout));
 
     subscription.on('data', d => console.log('onTransfer', d));
     subscription.on('error', console.error);
+
+    const sender = fromRandom();
+    const receiver = fromRandom();
+    console.log({ sender: sender.toJSON() });
+    console.log({ receiver: receiver.toJSON() });
+
+    const declare = async (wallet, name) => client.declare({ moniker: name, wallet });
+    const checkin = async wallet => client.checkin({ wallet });
 
     // 1. declare user
     console.log('declare sender', await declare(sender, 'sender'));

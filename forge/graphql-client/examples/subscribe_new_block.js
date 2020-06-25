@@ -8,9 +8,9 @@
  */
 const GraphqlClient = require('../lib/node');
 
-const endpoint = process.env.FORGE_API_HOST || 'http://127.0.0.1:8210'; // testnet
-// const endpoint = process.env.FORGE_API_HOST || 'https://xenon.abtnetwork.io/api'; // testnet
-// const endpoint = process.env.FORGE_API_HOST || 'https://playground.network.arcblockio/api'; // testnet
+const endpoint = process.env.FORGE_API_HOST || 'http://127.0.0.1:8210';
+// const endpoint = process.env.FORGE_API_HOST || 'https://xenon.abtnetwork.io';
+// const endpoint = process.env.FORGE_API_HOST || 'https://playground.network.arcblockio.cn';
 
 const client = new GraphqlClient(`${endpoint}/api`);
 
