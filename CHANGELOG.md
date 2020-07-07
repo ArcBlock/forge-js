@@ -1,3 +1,10 @@
+## 1.3.4 (July 06, 2020)
+
+- add expiretime config for vc lib
+- [skip travis] update example files
+- [skip travis] update example files
+- [skip travis] update readme
+
 ## 1.3.3 (June 21, 2020)
 
 - fix: vc issuance date for vc #468

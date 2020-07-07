@@ -111,7 +111,7 @@ function create({ type, subject, issuer, issuanceDate, expirationDate }) {
  * @throws {Error}
  * @returns {boolean}
  */
-function verify({ vc, ownerDid, trustedIssuers }) {
+function verify({ vc, ownerDid, trustedIssuers, ignoreExpired = false }) {
   // Integrity check
   if (!vc) {
     throw new Error('Empty verifiable credential object');
@@ -133,7 +133,8 @@ function verify({ vc, ownerDid, trustedIssuers }) {
   if (new Date(vc.issuanceDate).getTime() > Date.now()) {
     throw Error('Verifiable credential has not take effect');
   }
-  if (vc.expirationDate !== undefined && new Date(vc.expirationDate).getTime() < Date.now()) {
+
+  if (!ignoreExpired && vc.expirationDate !== undefined && new Date(vc.expirationDate).getTime() < Date.now()) {
     throw Error('Verifiable credential has expired');
   }
 
@@ -182,7 +183,7 @@ function verify({ vc, ownerDid, trustedIssuers }) {
  * @throws {Error}
  * @returns {boolean}
  */
-function verifyPresentation({ presentation, trustedIssuers, challenge }) {
+function verifyPresentation({ presentation, trustedIssuers, challenge, ignoreExpired = false }) {
   if (!presentation.challenge || challenge !== presentation.challenge) {
     throw Error('Invalid challenge included on vc presentation');
   }
@@ -209,7 +210,7 @@ function verifyPresentation({ presentation, trustedIssuers, challenge }) {
       throw Error('Presentation signature invalid');
     }
 
-    verify({ vc: vcObj, ownerDid: vcObj.credentialSubject.id, trustedIssuers });
+    verify({ vc: vcObj, ownerDid: vcObj.credentialSubject.id, trustedIssuers, ignoreExpired });
   });
 
   return true;
