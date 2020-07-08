@@ -1,15 +1,16 @@
+## 1.3.5 (July 08, 2020)
+
+- chore: remove useless console.log
+- feat: support revoke/retrieve swap in swap storage #412
+
 ## 1.3.4 (July 06, 2020)
 
 - add expiretime config for vc lib
-- [skip travis] update example files
-- [skip travis] update example files
-- [skip travis] update readme
 
 ## 1.3.3 (June 21, 2020)
 
 - fix: vc issuance date for vc #468
 - fix: remove verbose debug
-- [skip travis] update readme
 
 ## 1.3.2 (June 19, 2020)
 
@@ -28,28 +29,23 @@
 ## 1.2.20 (六月 04, 2020)
 
 - fix nft issuer name can not correct display
-- [skip travis] update readme
 
 ## 1.2.19 (五月 27, 2020)
 
 - Merge branch 'master' into fix-vc-issuance-date
 - update issuance date and add start,end for ticket
-- [skip travis] update readme
 
 ## 1.2.18 (May 27, 2020)
 
 - feat: add baseUrl to dynamic appInfo and chainInfo
-- [skip travis] update readme
 
 ## 1.2.17 (May 27, 2020)
 
 - feat: support dynamic baseUrl in did-auth
-- [skip travis] update readme
 
 ## 1.2.16 (四月 29, 2020)
 
 - fix vc verify error issue
-- [skip travis] update readme
 
 ## 1.2.15 (April 29, 2020)
 
