@@ -495,6 +495,42 @@ class AtomicSwapHandlers extends BaseHandler {
         });
 
         // eslint-disable-next-line no-shadow
+        retriever.on('revoked.user', async ({ hash }) => {
+          try {
+            await this.swapStorage.update(traceId, {
+              status: 'user_revoke',
+              demandRevokeHash: hash,
+            });
+          } catch (err) {
+            // Do something
+          }
+        });
+
+        // eslint-disable-next-line no-shadow
+        retriever.on('revoked.both', async ({ hash }) => {
+          try {
+            await this.swapStorage.update(traceId, {
+              status: 'both_revoke',
+              offerRevokeHash: hash,
+            });
+          } catch (err) {
+            // Do something
+          }
+        });
+
+        // eslint-disable-next-line no-shadow
+        retriever.on('revoked.seller', async ({ hash }) => {
+          try {
+            await this.swapStorage.update(traceId, {
+              status: 'seller_revoke',
+              offerRevokeHash: hash,
+            });
+          } catch (err) {
+            // Do something
+          }
+        });
+
+        // eslint-disable-next-line no-shadow
         retriever.on('retrieved.both', async ({ hash }) => {
           try {
             await this.swapStorage.update(traceId, {

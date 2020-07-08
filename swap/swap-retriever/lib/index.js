@@ -120,6 +120,60 @@ const createRetriever = params => {
         return;
       }
 
+      // Check if the demand(user) swap is revoked
+      const demandUpdateHash = get(target.state, 'context.renaissanceTx.hash', '');
+      const demandUpdateOp = get(target.state, 'context.renaissanceTx.tx.itxJson.type_url', '');
+      const isUserRevoked = demandUpdateHash && demandUpdateOp === 'fg:t:revoke_swap';
+
+      // Check if the offer(seller) swap is revoked
+      const offerUpdateHash = get(source.state, 'context.renaissanceTx.hash', '');
+      const offerUpdateOp = get(source.state, 'context.renaissanceTx.tx.itxJson.type_url', '');
+      const isSellerRevoked = offerUpdateHash && offerUpdateOp === 'fg:t:revoke_swap';
+
+      if (isUserRevoked) {
+        events.emit('revoked.user', { traceId, hash: demandUpdateHash, retryCount });
+
+        // Seller should revoke if user has revoked
+        if (!isSellerRevoked) {
+          try {
+            const hash = await ForgeSDK.revokeSwap(
+              {
+                address: demandSwapAddress,
+                wallet: ForgeSDK.Wallet.fromJSON(retrieveWallet),
+              },
+              { conn: demandChainId }
+            );
+            debug('swap.revoke.sent', { traceId, hash });
+
+            // Check tx status
+            const verifier = createVerifier({
+              hash,
+              chainHost: demandChainHost,
+              chainId: demandChainId,
+            });
+
+            verifier.on('error', err => {
+              const error = new Error(`Revoke tx verify failed: ${hash}: ${err}`);
+              events.emit('error', { traceId, type: 'exception', error, retryCount });
+            });
+            verifier.on('done', () => {
+              debug('swap.revoke.done.both', { traceId, hash, retryCount });
+              events.emit('revoked.both', { traceId, hash, retryCount });
+            });
+          } catch (err) {
+            printError(err);
+            events.emit('error', { traceId, type: 'exception', error: err, retryCount });
+          }
+        }
+
+        return;
+      }
+
+      if (isSellerRevoked) {
+        events.emit('revoked.seller', { traceId, hash: offerUpdateHash, retryCount });
+        return;
+      }
+
       if (source.state && source.state.hashkey) {
         // Figure out user retrieve hash
         const demandRetrieveHash = get(source.state, 'context.renaissanceTx.hash', '');
