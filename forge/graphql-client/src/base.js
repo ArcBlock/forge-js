@@ -44,8 +44,6 @@ class GraphQLClientBase extends BaseClient {
       socketEndpoint = socketEndpoint.replace('ws://', 'wss://');
     }
 
-    console.log('_getSocketEndpoint', endpoint, socketEndpoint);
-
     return `${socketEndpoint}/socket`;
   }
 
