@@ -1,3 +1,7 @@
+## 1.3.6 (July 16, 2020)
+
+- chore: bump sdk util to latest
+
 ## 1.3.5 (July 08, 2020)
 
 - chore: remove useless console.log
