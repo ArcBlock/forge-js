@@ -1,3 +1,7 @@
+## 1.3.7 (July 16, 2020)
+
+- chore: bump sdk util to latest
+
 ## 1.3.6 (July 16, 2020)
 
 - chore: bump sdk util to latest
