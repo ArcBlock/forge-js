@@ -1,3 +1,7 @@
+## 1.3.8 (July 25, 2020)
+
+- feat: make did-auth handlers work in abt node routers
+
 ## 1.3.7 (July 16, 2020)
 
 - chore: bump sdk util to latest
