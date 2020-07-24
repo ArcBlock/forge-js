@@ -5,6 +5,7 @@ const url = require('url');
 const get = require('lodash.get');
 const Mcrypto = require('@arcblock/mcrypto');
 const { isValid: isValidDid } = require('@arcblock/did');
+const { getBaseUrl } = require('@abtnode/router-adapter');
 const { stripHexPrefix } = require('@arcblock/forge-util');
 
 // eslint-disable-next-line
@@ -71,12 +72,14 @@ const preparePathname = (path, req) => {
 };
 
 // This makes the lib smart enough to infer baseURL from request object
-const prepareBaseUrl = req =>
-  url.format({
+const prepareBaseUrl = req => {
+  const pathPrefix = getBaseUrl(req).replace(/\/$/, '');
+  return url.format({
     protocol: req.protocol,
     host: req.get('host'),
-    pathname: '',
+    pathname: pathPrefix,
   });
+};
 
 const getStepChallenge = () => stripHexPrefix(Mcrypto.getRandomBytes(16)).toUpperCase();
 
