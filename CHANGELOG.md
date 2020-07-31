@@ -1,3 +1,7 @@
+## 1.3.9 (July 31, 2020)
+
+- fix: bump router adapter to latest
+
 ## 1.3.8 (July 25, 2020)
 
 - feat: make did-auth handlers work in abt node routers

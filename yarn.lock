@@ -2,10 +2,10 @@
 # yarn lockfile v1
 
 
-"@abtnode/router-adapter@^0.8.5":
-  version "0.8.5"
-  resolved "https://registry.yarnpkg.com/@abtnode/router-adapter/-/router-adapter-0.8.5.tgz#b254743d65625ec779351b6aa869671265e37309"
-  integrity sha512-aqGUw+dnH5e9Ce/AZybT1BGI3+eQCsLg8BRD8f+iQMBMyCvaAtfia1sGWHjXKebd3iw9yV/FMg/7DjsTl3BpsQ==
+"@abtnode/router-adapter@^0.9.0":
+  version "0.9.0"
+  resolved "https://registry.yarnpkg.com/@abtnode/router-adapter/-/router-adapter-0.9.0.tgz#45594b40d5733f2522b278da805d9f9038124e10"
+  integrity sha512-4SdEQyNskeIAtpZ5ncIPMQ7RUMJPh/W88MrG3vLQoGHZ6R1Yos3BHXkkKPOCaOITYbP0wUs/tNhECPb0SdKDKQ==
   dependencies:
     cheerio "^1.0.0-rc.3"
     mime "^2.4.6"
