@@ -1,3 +1,7 @@
+## 1.3.10 (August 14, 2020)
+
+- add port param when concat did auth base url
+
 ## 1.3.9 (July 31, 2020)
 
 - fix: bump router adapter to latest

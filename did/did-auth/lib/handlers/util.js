@@ -76,7 +76,8 @@ const prepareBaseUrl = req => {
   const pathPrefix = getBaseUrl(req).replace(/\/$/, '');
   return url.format({
     protocol: req.protocol,
-    host: req.get('host'),
+    hostname: req.get('host').split(':')[0],
+    port: req.get('X-Real-Port'),
     pathname: pathPrefix,
   });
 };
