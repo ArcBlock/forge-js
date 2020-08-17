@@ -8,7 +8,7 @@ const sdk = {
 
 Object.keys(sdk).forEach(x => {
   describe(x, () => {
-    jest.setTimeout(10000);
+    jest.setTimeout(30000);
 
     const SDK = sdk[x];
 
