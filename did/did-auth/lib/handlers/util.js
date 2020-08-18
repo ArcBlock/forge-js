@@ -74,9 +74,13 @@ const preparePathname = (path, req) => {
 // This makes the lib smart enough to infer baseURL from request object
 const prepareBaseUrl = req => {
   const pathPrefix = getBaseUrl(req).replace(/\/$/, '');
+  const [hostname, port] = req.get('host').split(':');
+  // NOTE: x-real-port exist because sometimes the auth api is behind a port-forwarding proxy
+  const finalPort = req.get('X-Real-Port') || port || '';
   return url.format({
     protocol: req.protocol,
-    host: req.get('host'),
+    hostname,
+    port: Number(finalPort) === 80 ? '' : finalPort,
     pathname: pathPrefix,
   });
 };
