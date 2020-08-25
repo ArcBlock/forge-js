@@ -1,3 +1,7 @@
+## 1.3.11 (August 25, 2020)
+
+- fix: dynamic base url infer on netlify
+
 ## 1.3.10 (August 14, 2020)
 
 - add port param when concat did auth base url
