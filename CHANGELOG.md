@@ -1,3 +1,7 @@
+## 1.3.12 (August 31, 2020)
+
+- [skip travis] update readme
+
 ## 1.3.11 (August 25, 2020)
 
 - fix: dynamic base url infer on netlify
