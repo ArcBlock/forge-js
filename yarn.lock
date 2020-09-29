@@ -2987,10 +2987,22 @@ bser@2.1.1:
   dependencies:
     node-int64 "^0.4.0"
 
+bson@^1.0.4:
+  version "1.1.5"
+  resolved "https://registry.yarnpkg.com/bson/-/bson-1.1.5.tgz#2aaae98fcdf6750c0848b0cba1ddec3c73060a34"
+  integrity sha512-kDuEzldR21lHciPQAIulLs1LZlCXdLziXI6Mb/TDkwXhb//UORJNPXgcRs2CuO4H0DcMkpfT3/ySsP3unoZjBg==
+
 bson@^1.1.0:
   version "1.1.4"
   resolved "https://registry.yarnpkg.com/bson/-/bson-1.1.4.tgz#f76870d799f15b854dffb7ee32f0a874797f7e89"
   integrity sha512-S/yKGU1syOMzO86+dGpg2qGoDL0zvzcb262G+gqEy6TgP6rt6z6qxSFX/8X6vLC91P7G7C3nLs0+bvDzmvBA3Q==
+
+bson@~0.2:
+  version "0.2.22"
+  resolved "https://registry.yarnpkg.com/bson/-/bson-0.2.22.tgz#fcda103f26d0c074d5a52d50927db80fd02b4b39"
+  integrity sha1-/NoQPybQwHTVpS1Qkn24D9ArSzk=
+  dependencies:
+    nan "~1.8"
 
 btoa-lite@^1.0.0:
   version "1.0.0"
@@ -7894,6 +7906,13 @@ jws@^4.0.0:
     jwa "^2.0.0"
     safe-buffer "^5.0.1"
 
+kerberos@0.0.11:
+  version "0.0.11"
+  resolved "https://registry.yarnpkg.com/kerberos/-/kerberos-0.0.11.tgz#cb29891c21c22ac195f3140b97dd12204fea7dc2"
+  integrity sha1-yymJHCHCKsGV8xQLl90SIE/qfcI=
+  dependencies:
+    nan "~1.8"
+
 kind-of@^3.0.2, kind-of@^3.0.3, kind-of@^3.2.0:
   version "3.2.2"
   resolved "https://registry.yarnpkg.com/kind-of/-/kind-of-3.2.2.tgz#31ea21a734bab9bbb0f32466d893aea51e4a3c64"
@@ -8862,6 +8881,16 @@ mongodb-core@3.1.11:
   optionalDependencies:
     saslprep "^1.0.0"
 
+mongodb@1.4.x:
+  version "1.4.40"
+  resolved "https://registry.yarnpkg.com/mongodb/-/mongodb-1.4.40.tgz#cfd80b74fdf0fa053f2ccfb5f49c47ca32a38efb"
+  integrity sha1-z9gLdP3w+gU/LM+19JxHyjKjjvs=
+  dependencies:
+    bson "~0.2"
+  optionalDependencies:
+    kerberos "0.0.11"
+    readable-stream latest
+
 mongodb@3.1.13:
   version "3.1.13"
   resolved "https://registry.yarnpkg.com/mongodb/-/mongodb-3.1.13.tgz#f8cdcbb36ad7a08b570bd1271c8525753f75f9f4"
@@ -8938,6 +8967,11 @@ nan@^2.12.1, nan@^2.14.0:
   version "2.14.1"
   resolved "https://registry.yarnpkg.com/nan/-/nan-2.14.1.tgz#d7be34dfa3105b91494c3147089315eff8874b01"
   integrity sha512-isWHgVjnFjh2x2yuJ/tj3JbwoHu3UC2dX5G/88Cm24yB6YopVgxvBObDY7n5xW6ExmFhJpSEQqFPvq9zaXc8Jw==
+
+nan@~1.8:
+  version "1.8.4"
+  resolved "https://registry.yarnpkg.com/nan/-/nan-1.8.4.tgz#3c76b5382eab33e44b758d2813ca9d92e9342f34"
+  integrity sha1-PHa1OC6rM+RLdY0oE8qdkuk0LzQ=
 
 nanomatch@^1.2.9:
   version "1.2.13"
@@ -10393,7 +10427,7 @@ read@1, read@~1.0.1:
     string_decoder "~1.1.1"
     util-deprecate "~1.0.1"
 
-"readable-stream@2 || 3", readable-stream@^3.0.2, readable-stream@^3.1.1, readable-stream@^3.6.0:
+"readable-stream@2 || 3", readable-stream@^3.0.2, readable-stream@^3.1.1, readable-stream@^3.6.0, readable-stream@latest:
   version "3.6.0"
   resolved "https://registry.yarnpkg.com/readable-stream/-/readable-stream-3.6.0.tgz#337bbda3adc0706bd3e024426a286d4b4b2c9198"
   integrity sha512-BViHy7LKeTz4oNnkcLJ+lVSL6vpiFeX6/d3oSH8zCW7UxP2onchk+vTGB143xuFjHS3deTgkKoXXymXqymiIdA==
@@ -11646,6 +11680,11 @@ safe-regex@^1.1.0:
   dependencies:
     ret "~0.1.10"
 
+safe@^0.4.5:
+  version "0.4.6"
+  resolved "https://registry.yarnpkg.com/safe/-/safe-0.4.6.tgz#1d5580cf2635c5cb940ea48fb5081ae3c25b1be1"
+  integrity sha1-HVWAzyY1xcuUDqSPtQga48JbG+E=
+
 safefs@^4.1.0:
   version "4.2.0"
   resolved "https://registry.yarnpkg.com/safefs/-/safefs-4.2.0.tgz#6d60d3aecc47c3d02b0ecf39ee0a3798cb363218"
@@ -12650,6 +12689,17 @@ timers-browserify@^2.0.4:
   integrity sha512-60aV6sgJ5YEbzUdn9c8kYGIqOubPoUdqQCul3SBAsRCZ40s6Y5cMcrW4dt3/k/EsbLVJNl9n6Vz3fTc+k2GeKQ==
   dependencies:
     setimmediate "^1.0.4"
+
+tingodb@^0.6.1:
+  version "0.6.1"
+  resolved "https://registry.yarnpkg.com/tingodb/-/tingodb-0.6.1.tgz#f63336259af7dfa6c90dfe2556a0dfb0d4eede59"
+  integrity sha1-9jM2JZr336bJDf4lVqDfsNTu3lk=
+  dependencies:
+    lodash "^4.17.5"
+    safe "^0.4.5"
+    safe-buffer "^5.1.1"
+  optionalDependencies:
+    bson "^1.0.4"
 
 tmp@^0.0.33:
   version "0.0.33"
