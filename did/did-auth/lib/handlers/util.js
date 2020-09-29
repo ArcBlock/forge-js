@@ -5,7 +5,6 @@ const url = require('url');
 const get = require('lodash.get');
 const Mcrypto = require('@arcblock/mcrypto');
 const { isValid: isValidDid } = require('@arcblock/did');
-const { getBaseUrl } = require('@abtnode/router-adapter');
 const { stripHexPrefix } = require('@arcblock/forge-util');
 
 // eslint-disable-next-line
@@ -69,6 +68,14 @@ const preparePathname = (path, req) => {
   const cleanPath = [prefix, path].join('/').replace(/\/+/g, '/');
   // console.log('preparePathname', { path, delimiter, fullPath, prefix, cleanPath });
   return cleanPath;
+};
+
+const getBaseUrl = req => {
+  if (req.headers['x-path-prefix']) {
+    return `/${req.headers['x-path-prefix']}/`.replace(/\/+/g, '/');
+  }
+
+  return '/';
 };
 
 // This makes the lib smart enough to infer baseURL from request object
