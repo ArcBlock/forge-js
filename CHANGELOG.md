@@ -1,3 +1,8 @@
+## 1.3.13 (September 29, 2020)
+
+- add did auth storage tingo
+- [skip travis] update readme
+
 ## 1.3.12 (August 31, 2020)
 
 - [skip travis] update readme
