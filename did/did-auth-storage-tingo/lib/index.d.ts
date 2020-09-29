@@ -30,7 +30,7 @@ declare class TingoAuthStorage extends AuthStorage {
   options: _Lib.T100;
   db: any;
   /**
-   * Creates an instance of MongoAuthStorage.
+   * Creates an instance of TingoAuthStorage.
    *
    * @class
    * @param {Object} options { collection, url }

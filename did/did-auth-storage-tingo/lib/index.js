@@ -40,7 +40,7 @@ const promiseDelete = (collection, condition) =>
 
 module.exports = class TingoAuthStorage extends StorageInterface {
   /**
-   * Creates an instance of MongoAuthStorage.
+   * Creates an instance of TingoAuthStorage.
    *
    * @class
    * @param {Object} options { collection, url }
