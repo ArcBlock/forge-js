@@ -245,7 +245,7 @@ class AtomicSwapHandlers extends BaseHandler {
         const url = this.authenticator.getPublicUrl(
           preparePathname(retrievePath, cbParams.req),
           extraParams,
-          prepareBaseUrl(cbParams.req)
+          prepareBaseUrl(cbParams.req, extraParams)
         );
         return Object.assign({}, result || {}, { response: { callback: url } });
       }
