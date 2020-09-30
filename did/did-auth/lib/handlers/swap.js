@@ -3,6 +3,7 @@
 const ForgeSDK = require('@arcblock/forge-sdk');
 const { createVerifier } = require('@arcblock/tx-util');
 const { createRetriever, verifyUserSwap } = require('@arcblock/swap-retriever');
+const get = require('lodash.get');
 
 // eslint-disable-next-line
 const debug = require('debug')(`${require('../../package.json').name}:handlers:swap`);
@@ -330,7 +331,7 @@ class AtomicSwapHandlers extends BaseHandler {
             }),
           },
           pathname: preparePathname(retrievePath, req),
-          baseUrl: prepareBaseUrl(req),
+          baseUrl: prepareBaseUrl(req, get(store, 'extraParams', {})),
           extraParams: createExtraParams(locale, params, store ? store.extraParams : {}),
         });
 

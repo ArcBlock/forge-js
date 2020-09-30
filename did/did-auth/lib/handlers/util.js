@@ -79,11 +79,11 @@ const getBaseUrl = req => {
 };
 
 // This makes the lib smart enough to infer baseURL from request object
-const prepareBaseUrl = req => {
+const prepareBaseUrl = (req, params) => {
   const pathPrefix = getBaseUrl(req).replace(/\/$/, '');
   const [hostname = '', port = 80] = (req.get('host') || '').split(':');
   // NOTE: x-real-port exist because sometimes the auth api is behind a port-forwarding proxy
-  const finalPort = req.get('X-Real-Port') || port || '';
+  const finalPort = get(params, 'x-real-port', null) || req.get('X-Real-Port') || port || '';
   return url.format({
     protocol: req.protocol,
     hostname,
@@ -214,7 +214,7 @@ module.exports = function createHandlers({
   // For web app
   const generateActionToken = async (req, res) => {
     try {
-      const params = Object.assign({}, req.body, req.query, req.params);
+      const params = Object.assign({ 'x-real-port': req.get('x-real-port') }, req.body, req.query, req.params);
       const sessionDid = get(req, sessionDidKey);
       const token = sha3(tokenGenerator({ req, action, pathname }))
         .replace(/^0x/, '')
@@ -234,7 +234,7 @@ module.exports = function createHandlers({
         url: authenticator.uri({
           token,
           pathname: preparePathname(getPathName(pathname, req), req),
-          baseUrl: prepareBaseUrl(req),
+          baseUrl: prepareBaseUrl(req, params),
           query: {},
         }),
       });
@@ -374,7 +374,7 @@ module.exports = function createHandlers({
             },
             claims: store ? steps[store.currentStep] : steps[0],
             pathname: preparePathname(getPathName(pathname, req), req),
-            baseUrl: prepareBaseUrl(req),
+            baseUrl: prepareBaseUrl(req, get(store, 'extraParams', {})),
             extraParams: createExtraParams(locale, params, store ? store.extraParams : {}),
             challenge: store ? store.challenge : '',
           })
@@ -483,7 +483,7 @@ module.exports = function createHandlers({
                 },
                 claims: steps[nextStep],
                 pathname: preparePathname(getPathName(pathname, req), req),
-                baseUrl: prepareBaseUrl(req),
+                baseUrl: prepareBaseUrl(req, get(store, 'extraParams', {})),
                 extraParams: createExtraParams(locale, params, store.extraParams || {}),
                 challenge: nextChallenge,
               })
@@ -528,7 +528,7 @@ module.exports = function createHandlers({
       try {
         const claim = await authenticator.getClaimInfo({
           claim: steps[0].authPrincipal,
-          context: { sessionDid: store.sessionDid, baseUrl: prepareBaseUrl(req) },
+          context: { sessionDid: store.sessionDid, baseUrl: prepareBaseUrl(req, get(store, 'extraParams', {})) },
           extraParams: createExtraParams(locale, params, store ? store.extraParams : {}),
         });
 
@@ -552,7 +552,7 @@ module.exports = function createHandlers({
     if (req.ensureSignedJson === undefined) {
       req.ensureSignedJson = true;
       const originJson = res.json;
-      res.json = payload => {
+      res.json = async payload => {
         let data;
         if (payload.error) {
           data = { error: payload.error };
@@ -562,7 +562,11 @@ module.exports = function createHandlers({
           data = { response: payload };
         }
 
-        const signed = authenticator.signResponse(data, prepareBaseUrl(req));
+        const params = Object.assign({}, req.body, req.query, req.params);
+        const token = params[tokenKey];
+        const store = token ? await tokenStorage.read(token) : null;
+
+        const signed = authenticator.signResponse(data, prepareBaseUrl(req, get(store, 'extraParams', {})));
         // debug('ensureSignedJson.do', signed);
         originJson.call(res, signed);
       };
