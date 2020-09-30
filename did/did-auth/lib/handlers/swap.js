@@ -3,6 +3,7 @@
 const ForgeSDK = require('@arcblock/forge-sdk');
 const { createVerifier } = require('@arcblock/tx-util');
 const { createRetriever, verifyUserSwap } = require('@arcblock/swap-retriever');
+const get = require('lodash.get');
 
 // eslint-disable-next-line
 const debug = require('debug')(`${require('../../package.json').name}:handlers:swap`);
@@ -244,7 +245,7 @@ class AtomicSwapHandlers extends BaseHandler {
         const url = this.authenticator.getPublicUrl(
           preparePathname(retrievePath, cbParams.req),
           extraParams,
-          prepareBaseUrl(cbParams.req)
+          prepareBaseUrl(cbParams.req, extraParams)
         );
         return Object.assign({}, result || {}, { response: { callback: url } });
       }
@@ -330,7 +331,7 @@ class AtomicSwapHandlers extends BaseHandler {
             }),
           },
           pathname: preparePathname(retrievePath, req),
-          baseUrl: prepareBaseUrl(req),
+          baseUrl: prepareBaseUrl(req, get(store, 'extraParams', {})),
           extraParams: createExtraParams(locale, params, store ? store.extraParams : {}),
         });
 
