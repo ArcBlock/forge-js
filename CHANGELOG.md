@@ -1,3 +1,8 @@
+## 1.3.13 (September 30, 2020)
+
+- chore: update prepareBaseUrl in swap handler
+- fix: dynamic base url logic for x-real-port
+
 ## 1.3.12 (August 31, 2020)
 
 - [skip travis] update readme
