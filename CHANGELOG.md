@@ -1,3 +1,8 @@
+## 1.4.0 (October 13, 2020)
+
+- chore: use @abtnode/nedb
+- [skip travis] update readme
+
 ## 1.3.13 (September 30, 2020)
 
 - chore: update prepareBaseUrl in swap handler
