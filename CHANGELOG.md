@@ -1,7 +1,6 @@
 ## 1.4.0 (October 13, 2020)
 
-- chore: use @abtnode/nedb
-- [skip travis] update readme
+- chore: use @abtnode/nedb instead of nedb
 
 ## 1.3.13 (September 30, 2020)
 
