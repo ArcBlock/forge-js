@@ -1,3 +1,8 @@
+## 1.4.0 (October 13, 2020)
+
+- chore: use @abtnode/nedb instead of nedb
+- chore: force publish new version for all packages
+
 ## 1.3.13 (September 30, 2020)
 
 - chore: update prepareBaseUrl in swap handler

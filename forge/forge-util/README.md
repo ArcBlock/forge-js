@@ -43,7 +43,7 @@ Following are the most used methods in `@arcblock/forge-util`:
 * `toAddress`: remove `did:abt:` prefix
 
 Checkout [lib/index.d.ts](./lib/index.d.ts) for more API.
-
+Checkout [tests/index.spec.js](./tests/index.spec.js) for more usage examples.
 
 ## Documentation
 
