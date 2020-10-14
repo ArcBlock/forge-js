@@ -1,3 +1,10 @@
+LAST_COMMIT_MESSAGE=$(git log -1 --pretty=%B | cat)
+SKIP_MARK="[skip travis]"
+if [[ "$LAST_COMMIT_MESSAGE" == *"$SKIP_MARK"* ]]; then
+  echo "Do nothing because we have published already or marked as skip travis."
+  exit 0
+fi
+
 git config --local user.name "wangshijun"
 git config --local user.email "wangshijun2010@gmail.com"
 
@@ -7,7 +14,7 @@ git remote -v
 git pull origin master
 git branch -a
 
-changed=$(lerna changed)
+changed=$(lerna changed --force-publish)
 echo "lerna changed ${changed}"
 if [ "$changed" != "" ]; then
   npm config set '//registry.npmjs.org/:_authToken' "${NPM_TOKEN}"
@@ -19,7 +26,7 @@ if [ "$changed" != "" ]; then
   VERSION=$(cat version | awk '{$1=$1;print}')
   echo "publish version ${VERSION}"
   lerna run build
-  lerna publish $VERSION --yes
+  lerna publish $VERSION --force-publish --yes
 
   # trigger cnpm sync
   node tools/post-publish.js
