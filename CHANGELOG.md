@@ -1,3 +1,7 @@
+## 1.4.1 (October 15, 2020)
+
+- chore: upgrade @arcblock/sdk-util package
+
 ## 1.4.0 (October 13, 2020)
 
 - chore: use @abtnode/nedb instead of nedb
