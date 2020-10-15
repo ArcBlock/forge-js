@@ -1,7 +1,7 @@
 {
   "name": "@arcblock/nft",
   "description": "Utility to create standard asset on forge powered blockchain",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "author": {
     "name": "wangshijun",
     "email": "shijun@arcblock.io",
@@ -15,9 +15,9 @@
     "access": "public"
   },
   "dependencies": {
-    "@arcblock/forge-sdk": "^1.4.0",
-    "@arcblock/forge-wallet": "^1.4.0",
-    "@arcblock/vc": "^1.4.0",
+    "@arcblock/forge-sdk": "^1.4.1",
+    "@arcblock/forge-wallet": "^1.4.1",
+    "@arcblock/vc": "^1.4.1",
     "debug": "^4.1.1",
     "json-stable-stringify": "^1.0.1",
     "lodash": "^4.17.15",
