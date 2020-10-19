@@ -85,7 +85,7 @@ const prepareBaseUrl = (req, params) => {
   // NOTE: x-real-port exist because sometimes the auth api is behind a port-forwarding proxy
   const finalPort = get(params, 'x-real-port', null) || req.get('X-Real-Port') || port || '';
   return url.format({
-    protocol: req.protocol,
+    protocol: get(params, 'x-real-protocol', null) || req.get('X-Real-protocol', 'http'),
     hostname,
     port: Number(finalPort) === 80 ? '' : finalPort,
     pathname: pathPrefix,
@@ -214,7 +214,12 @@ module.exports = function createHandlers({
   // For web app
   const generateActionToken = async (req, res) => {
     try {
-      const params = Object.assign({ 'x-real-port': req.get('x-real-port') }, req.body, req.query, req.params);
+      const params = Object.assign(
+        { 'x-real-port': req.get('x-real-port'), 'x-real-protocol': req.get('x-real-protocol') },
+        req.body,
+        req.query,
+        req.params
+      );
       const sessionDid = get(req, sessionDidKey);
       const token = sha3(tokenGenerator({ req, action, pathname }))
         .replace(/^0x/, '')
