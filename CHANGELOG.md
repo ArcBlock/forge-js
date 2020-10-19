@@ -1,3 +1,7 @@
+## 1.4.2 (October 19, 2020)
+
+- add x-real-protocol header
+
 ## 1.4.1 (October 15, 2020)
 
 - chore: upgrade @arcblock/sdk-util package
