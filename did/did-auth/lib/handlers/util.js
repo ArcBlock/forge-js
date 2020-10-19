@@ -85,7 +85,7 @@ const prepareBaseUrl = (req, params) => {
   // NOTE: x-real-port exist because sometimes the auth api is behind a port-forwarding proxy
   const finalPort = get(params, 'x-real-port', null) || req.get('X-Real-Port') || port || '';
   return url.format({
-    protocol: get(params, 'x-real-protocol', null) || req.get('X-Real-protocol', 'http'),
+    protocol: get(params, 'x-real-protocol', null) || req.get('X-Real-protocol', 'http') || 'http',
     hostname,
     port: Number(finalPort) === 80 ? '' : finalPort,
     pathname: pathPrefix,
