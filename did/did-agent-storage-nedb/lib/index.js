@@ -1,5 +1,5 @@
 /* eslint-disable no-underscore-dangle */
-const DataStore = require('@abtnode/nedb');
+const DataStore = require('@nedb/core');
 const StorageInterface = require('@arcblock/did-agent-storage');
 
 const debug = require('debug')(require('../package.json').name);

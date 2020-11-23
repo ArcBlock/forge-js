@@ -2,23 +2,6 @@
 # yarn lockfile v1
 
 
-"@abtnode/binary-search-tree@^1.0.16":
-  version "1.0.16"
-  resolved "https://registry.yarnpkg.com/@abtnode/binary-search-tree/-/binary-search-tree-1.0.16.tgz#450d9b58e6ffb43455b2769f80832f513980c450"
-  integrity sha512-NTh6ZZ8m5PGDcqsuAE0pK4kVxbQzSZfJctJ0kTKOxX/8qpye5GjN0HkpzzR5+6X98X9JhRo7ZqiywJzEaOTkdQ==
-
-"@abtnode/nedb@1.x":
-  version "1.0.16"
-  resolved "https://registry.yarnpkg.com/@abtnode/nedb/-/nedb-1.0.16.tgz#1f13c387f8d2c2b801f473cd380acc679dce3c46"
-  integrity sha512-c8+G6x3aXfCtnswmsAJOhxAl76WsF4Reo/p4EcOsT5Q9/e39rzqUH1o9UNVotWjN6a/3LzT4IGh2BnMlzYPDOg==
-  dependencies:
-    "@abtnode/binary-search-tree" "^1.0.16"
-    async "^2.6.1"
-    debug "^4.2.0"
-    localforage "^1.3.0"
-    mkdirp "~0.5.1"
-    node-line-reader "0.0.3"
-
 "@arcblock/sdk-util@^0.28.5":
   version "0.28.5"
   resolved "https://registry.yarnpkg.com/@arcblock/sdk-util/-/sdk-util-0.28.5.tgz#ce1f60b50846920f7664a6ec0f44bed66dbb2697"
@@ -1152,6 +1135,23 @@
     call-me-maybe "^1.0.1"
     glob-to-regexp "^0.3.0"
 
+"@nedb/binary-search-tree@^1.1.0":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@nedb/binary-search-tree/-/binary-search-tree-1.1.0.tgz#c232c38415c5c0f43ae590fe31e142f2b688fe7e"
+  integrity sha512-Qv3yTOJ5CXsOIPJ0BFoArKfAxiI12CCBT78cGJHhUaHcq8i0zRLRhjVdSYSNL8j+HP3V/6IMhhra2k9QyDMbUQ==
+
+"@nedb/core@1.x":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@nedb/core/-/core-1.1.0.tgz#6fc8af7fba7e5c3dbb756abe09243906a5c2ada6"
+  integrity sha512-llKy6mu2+sl2yg2EoMXz+Gh/sonkDltG+VWVs+9SPDfEogYKJvYc/wGxoPLw+OsFeURQSAxKxFNXgmhIEB7r9Q==
+  dependencies:
+    "@nedb/binary-search-tree" "^1.1.0"
+    async "^3.2.0"
+    debug "^4.2.0"
+    localforage "^1.9.0"
+    mkdirp "^1.0.4"
+    node-line-reader "0.0.3"
+
 "@nodelib/fs.stat@^1.1.2":
   version "1.1.3"
   resolved "https://registry.yarnpkg.com/@nodelib/fs.stat/-/fs.stat-1.1.3.tgz#2b5a3ab3f918cca48a8c754c08168e3f03eba61b"
@@ -2036,12 +2036,17 @@ async-limiter@~1.0.0:
   resolved "https://registry.yarnpkg.com/async-limiter/-/async-limiter-1.0.1.tgz#dd379e94f0db8310b08291f9d64c3209766617fd"
   integrity sha512-csOlWGAcRFJaI6m+F2WKdnMKr4HhdhFVBk0H/QbJFMCr+uO2kwohwXQPxw/9OCxp05r5ghVBFSyioixx3gfkNQ==
 
-async@^2.1.4, async@^2.6.1:
+async@^2.1.4:
   version "2.6.3"
   resolved "https://registry.yarnpkg.com/async/-/async-2.6.3.tgz#d72625e2344a3656e3a3ad4fa749fa83299d82ff"
   integrity sha512-zflvls11DCy+dQWzTW2dzuilv8Z5X/pjfmZOWba6TNIVDm+2UDaJmXSOXlasHKfNBs8oo3M0aT50fDEWfKZjXg==
   dependencies:
     lodash "^4.17.14"
+
+async@^3.2.0:
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/async/-/async-3.2.0.tgz#b3a2685c5ebb641d3de02d161002c60fc9f85720"
+  integrity sha512-TR2mEZFVOj2pLStYxLht7TyfuRzaydfpxr3k9RpHIzMgw7A64dzsdqCxH1WJyQdoe8T10nDXd9wnEigmiuHIZw==
 
 asynckit@^0.4.0:
   version "0.4.0"
@@ -8064,10 +8069,10 @@ loader-utils@^1.2.3:
     emojis-list "^3.0.0"
     json5 "^1.0.1"
 
-localforage@^1.3.0:
-  version "1.7.4"
-  resolved "https://registry.yarnpkg.com/localforage/-/localforage-1.7.4.tgz#88b59cc9b25ae54c76bb2c080b21ec832c22d3f6"
-  integrity sha512-3EmVZatmNVeCo/t6Te7P06h2alGwbq8wXlSkcSXMvDE2/edPmsVqTPlzGnZaqwZZDBs6v+kxWpqjVsqsNJT8jA==
+localforage@^1.9.0:
+  version "1.9.0"
+  resolved "https://registry.yarnpkg.com/localforage/-/localforage-1.9.0.tgz#f3e4d32a8300b362b4634cc4e066d9d00d2f09d1"
+  integrity sha512-rR1oyNrKulpe+VM9cYmcFn6tsHuokyVHFaCM3+osEmxaHTbEk8oQu6eGDfS6DQLWi/N67XRmB8ECG37OES368g==
   dependencies:
     lie "3.1.1"
 
@@ -8735,7 +8740,7 @@ mkdirp@*, mkdirp@^1.0.4:
   resolved "https://registry.yarnpkg.com/mkdirp/-/mkdirp-1.0.4.tgz#3eb5ed62622756d79a5f0e2a221dfebad75c2f7e"
   integrity sha512-vVqVZQyf3WLx2Shd0qJ9xuvqgAyKPLAiqITEtqW0oIUjzo3PePDd6fW9iFz30ef7Ysp/oiWqbhszeGWW2T6Gzw==
 
-mkdirp@^0.5.0, mkdirp@^0.5.1, mkdirp@^0.5.3, mkdirp@~0.5.1:
+mkdirp@^0.5.0, mkdirp@^0.5.1, mkdirp@^0.5.3:
   version "0.5.5"
   resolved "https://registry.yarnpkg.com/mkdirp/-/mkdirp-0.5.5.tgz#d91cefd62d1436ca0f41620e251288d420099def"
   integrity sha512-NKmAlESf6jMGym1++R0Ra7wvhV+wFW63FaSOFPwRahvea0gMUcGUhVeAg/0BC0wiv9ih5NYPB1Wn1UEI1/L+xQ==
