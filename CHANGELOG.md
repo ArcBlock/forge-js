@@ -1,3 +1,7 @@
+## 1.4.3 (November 23, 2020)
+
+- chore: use @nedb/core instead of @abtnode/nedb
+
 ## 1.4.2 (October 19, 2020)
 
 - add x-real-protocol header
