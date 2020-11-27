@@ -81,19 +81,19 @@ describe('GraphQLClient', () => {
     expect(typeof client.fromUnitToToken).toEqual('function');
     expect(typeof client.fromTokenToUnit).toEqual('function');
 
-    if (process.env.TRAVIS) {
-      const amount = await client.fromUnitToToken('180000000000000000');
-      expect(amount.toString()).toEqual('18');
+    // if (process.env.TRAVIS) {
+    //   const amount = await client.fromUnitToToken('180000000000000000');
+    //   expect(amount.toString()).toEqual('18');
 
-      const amount2 = await client.fromTokenToUnit(0.18);
-      expect(amount2.toString()).toEqual('1800000000000000');
-    } else {
-      const amount = await client.fromUnitToToken('18000000000000000000');
-      expect(amount.toString()).toEqual('18');
+    //   const amount2 = await client.fromTokenToUnit(0.18);
+    //   expect(amount2.toString()).toEqual('1800000000000000');
+    // } else {
+    const amount = await client.fromUnitToToken('18000000000000000000');
+    expect(amount.toString()).toEqual('18');
 
-      const amount2 = await client.fromTokenToUnit(0.18);
-      expect(amount2.toString()).toEqual('180000000000000000');
-    }
+    const amount2 = await client.fromTokenToUnit(0.18);
+    expect(amount2.toString()).toEqual('180000000000000000');
+    // }
   });
 
   const wallet = fromRandom();
