@@ -1,3 +1,7 @@
+## 1.4.4 (November 27, 2020)
+
+- update version of @arcblock/sdk-util
+
 ## 1.4.3 (November 23, 2020)
 
 - chore: use @nedb/core instead of @abtnode/nedb
