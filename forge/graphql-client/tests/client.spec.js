@@ -10,12 +10,12 @@ describe('GraphQLClient', () => {
     expect(typeof GraphQLClient).toEqual('function');
   });
 
-  let chainId = 'playground';
-  let chainHost = 'https://playground.network.arcblockio.cn/api';
-  if (process.env.TRAVIS) {
-    chainId = 'zinc-2019-05-17';
-    chainHost = 'https://zinc.abtnetwork.io/api';
-  }
+  const chainId = 'playground';
+  const chainHost = 'https://playground.network.arcblockio.cn/api';
+  // if (process.env.TRAVIS) {
+  //   chainId = 'zinc-2019-05-17';
+  //   chainHost = 'https://zinc.abtnetwork.io/api';
+  // }
   const client = new GraphQLClient(chainHost);
 
   test('should have alias methods', () => {
