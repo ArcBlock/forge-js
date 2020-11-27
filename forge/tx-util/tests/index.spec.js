@@ -66,7 +66,7 @@ describe('#createVerifier', () => {
     expect(data.state.address).toEqual(asset);
   });
 
-  test.only('should verify tx and account dynamic', async () => {
+  test.skip('should verify tx and account dynamic', async () => {
     const wallet = ForgeSDK.Wallet.fromRandom();
     const chainId = 'zinc-2019-05-17';
     const chainHost = 'https://zinc.abtnetwork.io/api';
