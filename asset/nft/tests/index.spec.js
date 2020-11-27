@@ -35,7 +35,7 @@ beforeAll(async () => {
   ]);
 }, 20000);
 
-describe('NFTFactory.createTicket', () => {
+describe.skip('NFTFactory.createTicket', () => {
   test('should be a function', () => {
     expect(typeof factory.createTicket).toEqual('function');
   });
@@ -70,7 +70,7 @@ describe('NFTFactory.createTicket', () => {
   }, 20000);
 });
 
-describe('NFTFactory.createCoupon', () => {
+describe.skip('NFTFactory.createCoupon', () => {
   test('should be a function', () => {
     expect(typeof factory.createCoupon).toEqual('function');
   });
@@ -101,7 +101,7 @@ describe('NFTFactory.createCoupon', () => {
   }, 20000);
 });
 
-describe('NFTFactory.createCertificate', () => {
+describe.skip('NFTFactory.createCertificate', () => {
   test('should be a function', () => {
     expect(typeof factory.createCertificate).toEqual('function');
   });
@@ -131,7 +131,7 @@ describe('NFTFactory.createCertificate', () => {
   }, 20000);
 });
 
-describe('NFTFactory.createBadge', () => {
+describe.skip('NFTFactory.createBadge', () => {
   test('should be a function', () => {
     expect(typeof factory.createBadge).toEqual('function');
   });
