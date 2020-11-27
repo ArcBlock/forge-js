@@ -35,7 +35,7 @@ beforeAll(async () => {
   ]);
 }, 20000);
 
-describe('NFTFactory.createTicket', () => {
+describe.skip('NFTFactory.createTicket', () => {
   test('should be a function', () => {
     expect(typeof factory.createTicket).toEqual('function');
   });
