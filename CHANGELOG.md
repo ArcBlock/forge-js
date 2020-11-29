@@ -1,3 +1,7 @@
+## 1.4.5 (November 30, 2020)
+
+- fix: remove warning when appInfo.link is empty since it can be calculated on-the-fly
+
 ## 1.4.4 (November 27, 2020)
 
 - update version of @arcblock/sdk-util
