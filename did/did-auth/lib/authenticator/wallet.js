@@ -558,11 +558,6 @@ class WalletAuthenticator extends BaseAuthenticator {
       throw new Error('WalletAuthenticator cannot work without appInfo.icon');
     }
 
-    if (!appInfo.link) {
-      // eslint-disable-next-line no-console
-      console.warn('It\'s recommended that you set appInfo.link to allow users to return to your dapp easily.'); // prettier-ignore
-    }
-
     if (!appInfo.path) {
       appInfo.path = 'https://abtwallet.io/i/';
     }
