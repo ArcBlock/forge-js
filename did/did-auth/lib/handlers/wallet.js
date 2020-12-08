@@ -141,6 +141,9 @@ class WalletHandlers extends BaseHandler {
 
     // 5. Wallet: submit auth response
     app.post(pathname, ensureWallet, ensureContext, ensureSignedJson, onAuthResponse);
+
+    // 5. Wallet: submit auth response for web wallet
+    app.get(`${pathname}/submit`, ensureWallet, ensureContext, ensureSignedJson, onAuthResponse);
   }
 }
 

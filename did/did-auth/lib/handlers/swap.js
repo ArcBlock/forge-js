@@ -306,6 +306,8 @@ class AtomicSwapHandlers extends BaseHandler {
     // 5. Wallet: submit auth response
     app.post(authPath, ensureWallet, ensureSignedJson, ensureContext, ensureSwap, onAuthResponse);
 
+    app.get(`${authPath}/submit`, ensureWallet, ensureSignedJson, ensureContext, ensureSwap, onAuthResponse);
+
     // 6. Wallet: simple auth principal stub that used for wallet to pickup retrieve
     app.get(retrievePath, ensureWallet, ensureSignedJson, ensureContext, ensureSwap, async (req, res) => {
       const { locale, token, params, wallet, store } = req.context;
