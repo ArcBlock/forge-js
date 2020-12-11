@@ -125,7 +125,40 @@ describe('#JsonpWalletHandlers', () => {
       headers,
     });
 
-    console.log(info5);
+    const authInfo2 = Jwt.decode(info5.authInfo);
+
+    expect(authInfo1.challenge).toBeTruthy();
+    expect(authInfo2.challenge).toBeTruthy();
+    expect(authInfo1.challenge).not.toEqual(authInfo2.challenge);
+
+    // Check store status: scanned
+    const { data: info6 } = await getTokenState();
+    expect(info6.token).toEqual(info.token);
+    expect(info6.status).toEqual('scanned');
+    expect(info6.currentStep).toEqual(1);
+
+    const { origin: origin1, pathname: pathname1, search: search1 } = new URL(authInfo2.url);
+    const submitAuth2Url = `${origin1}${pathname1}/submit${search1}`;
+
+    const { data: info7 } = await axios.get(submitAuth2Url, {
+      params: {
+        userPk: toBase58(user.publicKey),
+        userInfo: Jwt.sign(user.toAddress(), user.secretKey, {
+          requestedClaims: [{ type: 'profile', email: 'shijun@arcblock.io', fullName: 'wangshijun' }],
+          challenge: authInfo2.challenge,
+        }),
+      },
+      headers,
+    });
+    const authInfo3 = Jwt.decode(info7.authInfo);
+    // eslint-disable-next-line no-console
+    console.log('authInfo3', authInfo3);
+
+    // Check store status: succeed
+    const { data: info8 } = await getTokenState();
+    expect(info8.token).toEqual(info.token);
+    expect(info8.status).toEqual('succeed');
+    expect(info8.currentStep).toEqual(1);
   });
 
   afterAll(async () => {
