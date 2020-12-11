@@ -1,6 +1,7 @@
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable prefer-destructuring */
 /* eslint-disable object-curly-newline */
+/* eslint-disable consistent-return */
 const url = require('url');
 const get = require('lodash.get');
 const Mcrypto = require('@arcblock/mcrypto');
@@ -384,10 +385,7 @@ module.exports = function createHandlers({
         })
       );
 
-      res.jsonp({
-        ...signedClaim,
-        signed: true,
-      });
+      res.jsonp(Object.assign(signedClaim, { signed: true }));
     } catch (err) {
       onProcessError({ req, res, stage: 'send-auth-claim', err });
     }
@@ -496,10 +494,11 @@ module.exports = function createHandlers({
                 challenge: nextChallenge,
               })
             );
-            return res.jsonp({
-              ...nextSignedClaim,
-              signed: true,
-            });
+            return res.jsonp(
+              Object.assign(nextSignedClaim, {
+                signed: true,
+              })
+            );
           } catch (err) {
             return onProcessError({ req, res, stage: 'next-auth-claim', err });
           }
@@ -565,8 +564,7 @@ module.exports = function createHandlers({
       const originJsonp = res.jsonp;
       res.jsonp = async payload => {
         if (payload.signed) {
-          const { signed, ...rest } = payload;
-          return originJsonp.call(res, rest);
+          return originJsonp.call(res, payload);
         }
 
         let data;
