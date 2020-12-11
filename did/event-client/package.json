@@ -1,7 +1,7 @@
 {
   "name": "@arcblock/event-client",
   "description": "Helper library to attach a websocket server to any express app",
-  "version": "1.4.5",
+  "version": "1.4.6",
   "author": {
     "name": "wangshijun",
     "email": "shijun@arcblock.io",

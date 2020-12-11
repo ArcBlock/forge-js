@@ -1,6 +1,6 @@
 {
   "name": "@arcblock/nft-template",
-  "version": "1.4.5",
+  "version": "1.4.6",
   "description": "Javascript lib to work with ArcBlock NFT",
   "keywords": [
     "forge",
@@ -47,11 +47,11 @@
     "url": "https://github.com/ArcBlock/forge-js/issues"
   },
   "dependencies": {
-    "@arcblock/did": "^1.4.5",
-    "@arcblock/forge-util": "^1.4.5",
-    "@arcblock/forge-wallet": "^1.4.5",
-    "@arcblock/mcrypto": "^1.4.5",
-    "@arcblock/nft": "^1.4.5",
+    "@arcblock/did": "^1.4.6",
+    "@arcblock/forge-util": "^1.4.6",
+    "@arcblock/forge-wallet": "^1.4.6",
+    "@arcblock/mcrypto": "^1.4.6",
+    "@arcblock/nft": "^1.4.6",
     "debug": "^4.1.1",
     "lodash": "^4.17.14",
     "pako": "^1.0.11"
