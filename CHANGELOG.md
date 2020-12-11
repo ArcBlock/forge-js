@@ -4,10 +4,6 @@
 - fix: jsonp test case failure
 - feat: add submit auth use jsonp in did auth
 
-## 1.4.6 (十二月 08, 2020)
-
-- feat: add submit auth use jsonp in did auth
-
 ## 1.4.5 (November 30, 2020)
 
 - fix: remove warning when appInfo.link is empty since it can be calculated on-the-fly
