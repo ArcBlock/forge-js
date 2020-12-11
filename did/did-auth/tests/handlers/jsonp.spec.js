@@ -1,3 +1,5 @@
+Error.stackTraceLimit = Infinity;
+
 const axios = require('axios');
 const qs = require('querystring');
 const url = require('url');
@@ -6,9 +8,9 @@ const MemoryAuthStorage = require('@arcblock/did-auth-storage-memory');
 const { fromRandom, WalletType } = require('@arcblock/forge-wallet');
 const { toBase58 } = require('@arcblock/forge-util');
 
-const createTestServer = require('../../tools/util');
-const { WalletHandlers, WalletAuthenticator: Authenticator } = require('../../lib');
-const Jwt = require('../../lib/jwt');
+const createTestServer = require('@arcblock/did-auth/tools/util');
+const { WalletHandlers, WalletAuthenticator: Authenticator } = require('@arcblock/did-auth');
+const Jwt = require('@arcblock/did-auth/lib/jwt');
 
 const type = WalletType({
   role: Mcrypto.types.RoleType.ROLE_APPLICATION,
@@ -24,7 +26,7 @@ const headers = {
   'User-Agent': 'ArcWallet/1.3.29 iPhone12,3 iOS/13.0 CFNetwork/1098.7 Darwin/19.0.0',
 };
 
-describe('#WalletHandlers', () => {
+describe('#JsonpWalletHandlers', () => {
   let server;
 
   beforeAll(async () => {
@@ -113,8 +115,6 @@ describe('#WalletHandlers', () => {
 
     const { origin, pathname, search } = new URL(authInfo1.url);
     const submitAuthUrl = `${origin}${pathname}/submit${search}`;
-
-    console.log(submitAuthUrl);
 
     // Submit auth principal
     const { data: info5 } = await axios.get(submitAuthUrl, {

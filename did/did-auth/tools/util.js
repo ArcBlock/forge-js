@@ -31,7 +31,7 @@ const createTestServer = (opts = {}) =>
       const cb = typeof fn === 'function' ? fn(req, res, next) : fn;
 
       Promise.resolve(cb).then(val => {
-        if (val) {
+        if (val && !val.finished) {
           res.send(val);
         }
       });
