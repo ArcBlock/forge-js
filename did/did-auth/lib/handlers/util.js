@@ -1,6 +1,7 @@
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable prefer-destructuring */
 /* eslint-disable object-curly-newline */
+/* eslint-disable consistent-return */
 const url = require('url');
 const get = require('lodash.get');
 const Mcrypto = require('@arcblock/mcrypto');
@@ -207,7 +208,7 @@ module.exports = function createHandlers({
       tokenStorage.update(token, { status: STATUS_ERROR, error: err.message });
     }
 
-    res.json({ error: err.message });
+    res.jsonp({ error: err.message });
     onError({ stage, err });
   };
 
@@ -234,7 +235,7 @@ module.exports = function createHandlers({
       await tokenStorage.update(token, { currentStep: 0, sessionDid, challenge, extraParams: params });
       // debug('generate token', { action, pathname, token, sessionDid });
 
-      res.json({
+      res.jsonp({
         token,
         url: authenticator.uri({
           token,
@@ -357,7 +358,7 @@ module.exports = function createHandlers({
 
     const error = await checkUser({ context: req.context, userDid, userPk });
     if (error) {
-      return res.json({ error });
+      return res.jsonp({ error });
     }
 
     try {
@@ -366,25 +367,25 @@ module.exports = function createHandlers({
       }
 
       const signParams = await getSignParams(req);
-      res.jsonp(
-        await authenticator.sign(
-          Object.assign(signParams, {
-            context: {
-              token,
-              userDid,
-              userPk,
-              sessionDid: store ? store.sessionDid : '',
-              walletVersion: wallet.version,
-              walletOS: wallet.os,
-            },
-            claims: store ? steps[store.currentStep] : steps[0],
-            pathname: preparePathname(getPathName(pathname, req), req),
-            baseUrl: prepareBaseUrl(req, get(store, 'extraParams', {})),
-            extraParams: createExtraParams(locale, params, store ? store.extraParams : {}),
-            challenge: store ? store.challenge : '',
-          })
-        )
+      const signedClaim = await authenticator.sign(
+        Object.assign(signParams, {
+          context: {
+            token,
+            userDid,
+            userPk,
+            sessionDid: store ? store.sessionDid : '',
+            walletVersion: wallet.version,
+            walletOS: wallet.os,
+          },
+          claims: store ? steps[store.currentStep] : steps[0],
+          pathname: preparePathname(getPathName(pathname, req), req),
+          baseUrl: prepareBaseUrl(req, get(store, 'extraParams', {})),
+          extraParams: createExtraParams(locale, params, store ? store.extraParams : {}),
+          challenge: store ? store.challenge : '',
+        })
       );
+
+      res.jsonp(Object.assign(signedClaim, { signed: true }));
     } catch (err) {
       onProcessError({ req, res, stage: 'send-auth-claim', err });
     }
@@ -407,7 +408,7 @@ module.exports = function createHandlers({
       // TODO: in next minor release, we should enforce challenge
       if (store && store.challenge && userChallenge) {
         if (store.challenge !== userChallenge) {
-          return res.json({ error: errors.challengeMismatch[locale] });
+          return res.jsonp({ error: errors.challengeMismatch[locale] });
         }
       }
 
@@ -436,7 +437,7 @@ module.exports = function createHandlers({
         }
 
         const result = await onDecline(cbParams);
-        return res.json(Object.assign({}, result || {}));
+        return res.jsonp(Object.assign({}, result || {}));
       }
 
       // debug('onAuthResponse.verify', { userDid, token, claims: claimResponse });
@@ -450,7 +451,7 @@ module.exports = function createHandlers({
 
       const error = await checkUser({ context: req.context, userDid, userPk });
       if (error) {
-        return res.json({ error });
+        return res.jsonp({ error });
       }
 
       // onPreAuth: error thrown from this callback will halt the auth process
@@ -465,7 +466,7 @@ module.exports = function createHandlers({
             // Only return if we are walked through all steps
             if (store.currentStep === steps.length - 1) {
               await tokenStorage.update(token, { status: STATUS_SUCCEED });
-              return res.json(Object.assign({}, result || {}));
+              return res.jsonp(Object.assign({}, result || {}));
             }
           }
 
@@ -493,19 +494,23 @@ module.exports = function createHandlers({
                 challenge: nextChallenge,
               })
             );
-            return res.jsonp(nextSignedClaim);
+            return res.jsonp(
+              Object.assign(nextSignedClaim, {
+                signed: true,
+              })
+            );
           } catch (err) {
             return onProcessError({ req, res, stage: 'next-auth-claim', err });
           }
         }
 
         // If we have a invalid token
-        return res.json({ error: errors.token404[locale] });
+        return res.jsonp({ error: errors.token404[locale] });
       }
 
       // If we have no token
       const result = await onAuth(cbParams);
-      res.json(Object.assign({}, result || {}));
+      res.jsonp(Object.assign({}, result || {}));
     } catch (err) {
       onProcessError({ req, res, stage: 'verify-auth-claim', err });
     }
@@ -538,7 +543,7 @@ module.exports = function createHandlers({
         });
 
         if (!claim) {
-          return res.json({ error: errors.authClaim[locale] });
+          return res.jsonp({ error: errors.authClaim[locale] });
         }
 
         if (claim.target || (claim.targetType && claim.targetType.role)) {
@@ -556,8 +561,12 @@ module.exports = function createHandlers({
   const ensureSignedJson = (req, res, next) => {
     if (req.ensureSignedJson === undefined) {
       req.ensureSignedJson = true;
-      const originJson = res.json;
-      res.json = async payload => {
+      const originJsonp = res.jsonp;
+      res.jsonp = async payload => {
+        if (payload.signed) {
+          return originJsonp.call(res, payload);
+        }
+
         let data;
         if (payload.error) {
           data = { error: payload.error };
@@ -571,9 +580,9 @@ module.exports = function createHandlers({
         const token = params[tokenKey];
         const store = token ? await tokenStorage.read(token) : null;
 
-        const signed = authenticator.signResponse(data, prepareBaseUrl(req, get(store, 'extraParams', {})));
+        const signedData = authenticator.signResponse(data, prepareBaseUrl(req, get(store, 'extraParams', {})));
         // debug('ensureSignedJson.do', signed);
-        originJson.call(res, signed);
+        originJsonp.call(res, signedData);
       };
     }
 
