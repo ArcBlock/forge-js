@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 Error.stackTraceLimit = Infinity;
 
 const axios = require('axios');
