@@ -1,7 +1,7 @@
 {
   "name": "@arcblock/did-agent-storage-nedb",
   "description": "Storage engine that uses nedb for agent-auth",
-  "version": "1.4.6",
+  "version": "1.4.7",
   "author": "wangshijun <shijun@arcblock.io> (https://ocap.arcblock.io)",
   "bugs": {
     "url": "https://github.com/ArcBlock/forge-js/issues",
@@ -61,7 +61,7 @@
   },
   "gitHead": "87990c8b5e215107fc587c1ced0d6b3e2cd2483e",
   "dependencies": {
-    "@arcblock/did-agent-storage": "^1.4.6",
+    "@arcblock/did-agent-storage": "^1.4.7",
     "@nedb/core": "1.x",
     "debug": "^4.1.1",
     "mongodb": "3.1.13"
