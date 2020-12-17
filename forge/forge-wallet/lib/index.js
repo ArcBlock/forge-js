@@ -119,13 +119,18 @@ function Wallet(keyPair, type = defaultWalletType) {
     hash(data, round = 1) {
       return hasher(data, round);
     },
-    sign(data) {
+    sign(data, hashBeforeSign = true) {
       if (!keyPair.sk) {
         throw new Error('Cannot sign data without a secretKey');
       }
-      const hash = hasher(data, 1);
-      // console.log('sign.hash', hash.replace(/^0x/i, '').toUpperCase());
-      return signer.sign(hash, keyPair.sk);
+
+      if (hashBeforeSign) {
+        const hash = hasher(data, 1);
+        // console.log('sign.hash', hash.replace(/^0x/i, '').toUpperCase());
+        return signer.sign(hash, keyPair.sk);
+      }
+
+      return signer.sign(data, keyPair.sk);
     },
     verify(data, signature, hashBeforeVerify = true) {
       if (!keyPair.pk) {
