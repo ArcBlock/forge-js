@@ -111,12 +111,12 @@ class AgentWalletHandlers extends WalletHandlers {
       const authorizeId = req.query.authorizeId || req.query[appKey] || req.params.authorizeId || req.params[appKey];
 
       if (!authorizeId) {
-        return res.json({ error: 'App ID is required to start' });
+        return res.jsonp({ error: 'App ID is required to start' });
       }
 
       const authorization = await this.agentStorage.read(authorizeId);
       if (!authorization) {
-        return res.json({ error: 'App authorization not found' });
+        return res.jsonp({ error: 'App authorization not found' });
       }
 
       req.authorizeId = authorizeId;
@@ -170,6 +170,9 @@ class AgentWalletHandlers extends WalletHandlers {
 
     // 5. Wallet: submit auth response
     app.post(pathname, ensureAuthorization, ensureWallet, ensureContext, ensureSignedJson, onAuthResponse);
+
+    // 6. Wallet: submit auth response for web wallet
+    app.get(`${pathname}/submit`, ensureAuthorization, ensureWallet, ensureContext, ensureSignedJson, onAuthResponse);
   }
 }
 
