@@ -1,3 +1,7 @@
+## 1.4.8 (十二月 17, 2020)
+
+- fix: support no hash before sign for wallet sign
+
 ## 1.4.7 (十二月 17, 2020)
 
 - fix: agent wallet jsonp
