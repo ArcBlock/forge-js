@@ -1,3 +1,7 @@
+## 1.4.7 (十二月 17, 2020)
+
+- fix: agent wallet jsonp
+
 ## 1.4.6 (十二月 11, 2020)
 
 - feat: finish the jsonp test
