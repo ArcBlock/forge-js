@@ -8,6 +8,11 @@ class BaseAuthenticator {
     if (!wallet) {
       throw new Error('WalletAuthenticator cannot work without wallet');
     }
+
+    if (typeof wallet === 'function') {
+      return wallet;
+    }
+
     if (!wallet.sk) {
       throw new Error('WalletAuthenticator cannot work without wallet.sk');
     }

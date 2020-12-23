@@ -149,7 +149,7 @@ describe('GraphQLClient', () => {
       }
     });
 
-    test.skip('should multi sign tx correctly: object', async () => {
+    test('should multi sign tx correctly: object', async () => {
       try {
         const sender = fromRandom();
         const receiver = fromRandom();

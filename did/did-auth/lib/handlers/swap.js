@@ -207,12 +207,12 @@ class AtomicSwapHandlers extends BaseHandler {
       const traceId = traceIdFromToken || req.query[swapKey] || req.params[swapKey];
 
       if (!traceId) {
-        return res.json({ error: 'Swap ID is required to start' });
+        return res.jsonp({ error: 'Swap ID is required to start' });
       }
 
       const swap = await this.swapStorage.read(traceId);
       if (!swap) {
-        return res.json({ error: 'Swap not found' });
+        return res.jsonp({ error: 'Swap not found' });
       }
 
       req.traceId = traceId;
@@ -287,7 +287,7 @@ class AtomicSwapHandlers extends BaseHandler {
     // 0. create swap or retrieve swap
     app.post(`${prefix}/swap`, async (req, res) => {
       const swap = await this.start(req.body);
-      return res.json(swap);
+      return res.jsonp(swap);
     });
     // app.get(`${prefix}/swap/:traceId`, ensureSwap, async (req, res) => res.jsonp(req.swap));
 
@@ -335,11 +335,12 @@ class AtomicSwapHandlers extends BaseHandler {
           pathname: preparePathname(retrievePath, req),
           baseUrl: prepareBaseUrl(req, get(store, 'extraParams', {})),
           extraParams: createExtraParams(locale, params, store ? store.extraParams : {}),
+          request: req,
         });
 
         res.jsonp(authInfo);
       } catch (err) {
-        res.json({ error: err.message });
+        res.jsonp({ error: err.message });
         onError({ stage: 'retrieve-response', err });
       }
     });
@@ -355,41 +356,41 @@ class AtomicSwapHandlers extends BaseHandler {
 
       const result = await checkUser({ context: req.context, params, userDid, userPk });
       if (result) {
-        res.json({ error: result });
+        res.jsonp({ error: result });
         return;
       }
 
       if (req.swap.offerSetupHash && req.swap.offerSwapAddress) {
-        res.json({ swapAddress: req.swap.offerSwapAddress });
+        res.jsonp({ swapAddress: req.swap.offerSwapAddress });
         return;
       }
 
       // Prevent duplicate setup_swap in case user is retrying
       if (req.swap.status === 'seller_setup') {
-        res.json({ error: 'A retrieve is in progress, please retry if that retrieve failed' });
+        res.jsonp({ error: 'A retrieve is in progress, please retry if that retrieve failed' });
         return;
       }
       await this.swapStorage.update(traceId, { status: 'seller_setup' });
 
       // Prevent retrieve on edge cases
       if (req.swap.status === 'user_retrieve') {
-        res.json({ error: 'You have already retrieved this swap' });
+        res.jsonp({ error: 'You have already retrieved this swap' });
         return;
       }
       if (req.swap.status === 'both_retrieve') {
-        res.json({ error: 'The swap already completed successfully' });
+        res.jsonp({ error: 'The swap already completed successfully' });
         return;
       }
       if (req.swap.status === 'user_revoke') {
-        res.json({ error: 'You have revoked the swap, so retrieve is forbidden' });
+        res.jsonp({ error: 'You have revoked the swap, so retrieve is forbidden' });
         return;
       }
       if (req.swap.status === 'seller_revoke') {
-        res.json({ error: 'Seller have revoked the swap, so retrieve is forbidden' });
+        res.jsonp({ error: 'Seller have revoked the swap, so retrieve is forbidden' });
         return;
       }
       if (req.swap.status === 'both_revoke') {
-        res.json({ error: 'Both have revoked the swap, so retrieve is forbidden' });
+        res.jsonp({ error: 'Both have revoked the swap, so retrieve is forbidden' });
         return;
       }
 
@@ -419,7 +420,7 @@ class AtomicSwapHandlers extends BaseHandler {
                   receiver: req.swap.demandUserAddress,
                   hashlock: `0x${state.hashlock}`,
                   locktime: this.swapContext.offerLocktime,
-                  wallet: ForgeSDK.Wallet.fromJSON(this.authenticator.wallet),
+                  wallet: ForgeSDK.Wallet.fromJSON(this.authenticator.getWalletInfo(req)),
                 },
                 { conn: req.swap.offerChainId }
               );
@@ -458,7 +459,7 @@ class AtomicSwapHandlers extends BaseHandler {
           offerSwapAddress: address,
         });
 
-        res.json({ swapAddress: address });
+        res.jsonp({ swapAddress: address });
 
         const retriever = createRetriever({
           traceId,
@@ -470,7 +471,7 @@ class AtomicSwapHandlers extends BaseHandler {
           offerChainId: req.swap.offerChainId,
           demandChainHost: req.swap.demandChainHost,
           demandChainId: req.swap.demandChainId,
-          retrieveWallet: this.authenticator.wallet,
+          retrieveWallet: this.authenticator.getWalletInfo(req),
           checkInterval: 2000,
           autoStart: true,
           maxRetry: 60,
@@ -554,7 +555,7 @@ class AtomicSwapHandlers extends BaseHandler {
           console.error('swap.setup.error', err);
         }
 
-        res.json({ error: errorMessage });
+        res.jsonp({ error: errorMessage });
         await this.swapStorage.update(traceId, { status: 'error', errorMessage });
         onError({ stage: 'offer-setup-swap', err });
       }

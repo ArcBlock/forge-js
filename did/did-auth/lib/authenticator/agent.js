@@ -47,6 +47,7 @@ class AgentAuthenticator extends WalletAuthenticator {
     pathname = '',
     baseUrl = '',
     extraParams = {},
+    request,
   }) {
     this._verifyClaims(verifiableClaims);
     this._verifyAuthorizer(authorizer);
@@ -61,11 +62,16 @@ class AgentAuthenticator extends WalletAuthenticator {
     // FIXME: this maybe buggy if user provided multiple claims
     const tmp = claimsInfo.find(x => this.getChainInfo(infoParams, x.chainInfo || {}));
 
+    const wallet = this.getWalletInfo(request, infoParams);
+    if (!appInfo.publisher) {
+      appInfo.publisher = toDid(authorizer.did);
+    }
+
     const payload = {
       action: 'responseAuth',
       appInfo,
       iss: toDid(authorizer.did),
-      agentDid: toDid(this.wallet.address),
+      agentDid: toDid(wallet.address),
       chainInfo: this.getChainInfo(infoParams, tmp ? tmp.chainInfo : undefined),
       verifiableClaims,
       requestedClaims: claimsInfo.map(x => {
@@ -79,8 +85,8 @@ class AgentAuthenticator extends WalletAuthenticator {
 
     const signed = {
       appPk: toBase58(authorizer.pk),
-      agentPk: this.appPk,
-      authInfo: Jwt.sign(this.wallet.address, this.wallet.sk, payload),
+      agentPk: toBase58(wallet.pk),
+      authInfo: Jwt.sign(wallet.address, wallet.sk, payload),
     };
 
     debug('responseAuth.sign', { context, extraParams, payload, signed });

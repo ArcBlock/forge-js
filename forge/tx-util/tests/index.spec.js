@@ -15,7 +15,7 @@ describe('#createVerifier', () => {
 
   if (!process.env.TRAVIS) {
     const chainId = 'playground';
-    const chainHost = 'https://playground.network.arcblockio.cn/api';
+    const chainHost = 'https://playground.abtnetwork.io/api';
     const tx = '5FA1CC5BF7FE549228306B76A1DBB1E9BC061C5F1AABCCA3A2EE401D02FBB57E';
     const account = 'zNKmY4bw8VYDCCpYdYKM92GFiQ1xQYMCN4ug';
     const asset = 'zjdjkYwSFyRMM8VwkyEdpTBEaUV4cnfPU5wK';
@@ -67,7 +67,7 @@ describe('#createVerifier', () => {
       expect(data.state.address).toEqual(asset);
     });
 
-    test.skip('should verify tx and account dynamic', async () => {
+    test('should verify tx and account dynamic', async () => {
       const wallet = ForgeSDK.Wallet.fromRandom();
       const chainId = 'zinc-2019-05-17';
       const chainHost = 'https://zinc.abtnetwork.io/api';

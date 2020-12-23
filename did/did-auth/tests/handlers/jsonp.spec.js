@@ -21,7 +21,7 @@ const type = WalletType({
 
 const user = fromRandom();
 const app = fromRandom(type);
-const chainHost = 'https://playground.network.arcblockio.cn/api';
+const chainHost = 'https://playground.abtnetwork.io/api';
 const chainId = 'playground';
 const headers = {
   'User-Agent': 'ArcWallet/1.3.29 iPhone12,3 iOS/13.0 CFNetwork/1098.7 Darwin/19.0.0',
