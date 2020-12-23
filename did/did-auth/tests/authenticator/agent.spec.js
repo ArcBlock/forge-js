@@ -81,7 +81,6 @@ describe('#AgentAuthenticator', () => {
     expect(Array.isArray(decoded.requestedClaims)).toBeTruthy();
     expect(Array.isArray(decoded.verifiableClaims)).toBeTruthy();
 
-    // TODO: can verify authorized claim
-    // expect(Jwt.verify(signed.authInfo, agent.pk)).toBeTruthy();
+    expect(Jwt.verify(signed.authInfo, agent.pk, { signerKey: 'agentDid' })).toBeTruthy();
   });
 });

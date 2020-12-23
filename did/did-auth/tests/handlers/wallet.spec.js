@@ -157,6 +157,73 @@ describe('#WalletHandlers', () => {
     expect(info8.currentStep).toEqual(1);
   });
 
+  test('should handle custom walletInfo as expected', async () => {
+    const tokenStorage = new MemoryAuthStorage();
+    const authenticator = new Authenticator({
+      wallet: () => app.toJSON(),
+      baseUrl: server.url,
+      appInfo: () => ({
+        name: 'ABT Wallet Demo',
+        description: 'Demo application to show the potential of ABT Wallet',
+        icon: 'https://arcblock.oss-cn-beijing.aliyuncs.com/images/wallet-round.png',
+      }),
+      chainInfo: () => ({
+        host: chainHost,
+        id: chainId,
+      }),
+    });
+    const handlers = new WalletHandlers({ tokenStorage, authenticator });
+    const chainInfo = {
+      host: 'https://zinc.abtnetwork.io/api',
+      id: 'zinc-2019-05-17',
+    };
+
+    handlers.attach({
+      app: server,
+      action: 'test',
+      authPrincipal: { chainInfo },
+      claims: {
+        profile: () => ({
+          fields: ['fullName', 'email'],
+          description: 'test',
+        }),
+      },
+      onAuth: noop,
+    });
+
+    // Test api endpoint
+    const { data: info } = await axios.get(`${server.url}/api/did/test/token`);
+    const getTokenState = () => axios.get(`${server.url}/api/did/test/status?_t_=${info.token}`);
+    expect(info.token).toBeTruthy();
+    expect(info.url.indexOf(info.token) > 0).toBeTruthy();
+
+    // Parse auth url from wallet
+    const parsed = url.parse(info.url);
+    const authUrl = decodeURIComponent(qs.parse(parsed.search).url);
+    expect(authUrl.indexOf(info.token) > 0).toBeTruthy();
+
+    // Check token status
+    const { data: info2 } = await getTokenState();
+    expect(info2.token).toEqual(info.token);
+    expect(info2.status).toEqual('created');
+    expect(info2.currentStep).toEqual(0);
+
+    // Simulate wallet scan
+    const { data: info3 } = await axios.get(authUrl, { headers });
+    expect(info3.appPk).toEqual(toBase58(app.publicKey));
+    expect(Jwt.verify(info3.authInfo, info3.appPk)).toEqual(true);
+
+    // Check token status
+    const { data: info4 } = await getTokenState();
+    expect(info4.token).toEqual(info.token);
+    expect(info4.status).toEqual('scanned');
+    expect(info4.currentStep).toEqual(0);
+
+    const authInfo1 = Jwt.decode(info3.authInfo);
+    expect(authInfo1.iss).toEqual(`did:abt:${app.toAddress()}`);
+    expect(authInfo1.chainInfo).toEqual(chainInfo);
+  });
+
   test('should handle custom chainInfo as expected', async () => {
     const tokenStorage = new MemoryAuthStorage();
     const authenticator = new Authenticator({

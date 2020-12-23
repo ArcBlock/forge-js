@@ -65,12 +65,11 @@ class WalletAuthenticator extends BaseAuthenticator {
     super();
 
     this.wallet = this._validateWallet(wallet);
-    this.appInfo = this._validateAppInfo(appInfo, wallet);
+    this.appInfo = this._validateAppInfo(appInfo);
     this.chainInfo = this._validateChainInfo(chainInfo);
 
     this.baseUrl = baseUrl;
     this.tokenKey = tokenKey;
-    this.appPk = toBase58(wallet.pk);
 
     if (!this.appInfo.link) {
       this.appInfo.link = this.baseUrl;
@@ -122,17 +121,23 @@ class WalletAuthenticator extends BaseAuthenticator {
    * @param {string} params.error - error message
    * @returns {object} { appPk, authInfo }
    */
-  signResponse({ response = {}, error = '' }, baseUrl) {
+  signResponse({ response = {}, error = '' }, baseUrl, request) {
+    const wallet = this.getWalletInfo(request, { baseUrl });
+    const appInfo = this.getAppInfo({ baseUrl });
+    if (!appInfo.publisher) {
+      appInfo.publisher = `did:abt:${wallet.address}`;
+    }
+
     const payload = {
-      appInfo: this.getAppInfo({ baseUrl }),
+      appInfo,
       status: error ? 'error' : 'ok',
       errorMessage: error || '',
       response,
     };
 
     return {
-      appPk: this.appPk,
-      authInfo: Jwt.sign(this.wallet.address, this.wallet.sk, payload),
+      appPk: toBase58(wallet.pk),
+      authInfo: Jwt.sign(wallet.address, wallet.sk, payload),
     };
   }
 
@@ -153,7 +158,7 @@ class WalletAuthenticator extends BaseAuthenticator {
    * @param {string} params.context.sessionDid - did of logged-in user
    * @returns {object} { appPk, authInfo }
    */
-  async sign({ context, claims, pathname = '', baseUrl = '', challenge = '', extraParams = {} }) {
+  async sign({ context, request, claims, pathname = '', baseUrl = '', challenge = '', extraParams = {} }) {
     // debug('sign.context', context);
     // debug('sign.params', extraParams);
 
@@ -167,10 +172,16 @@ class WalletAuthenticator extends BaseAuthenticator {
     // FIXME: this maybe buggy if user provided multiple claims
     const tmp = claimsInfo.find(x => this.getChainInfo(infoParams, x.chainInfo || {}));
 
+    const appInfo = this.getAppInfo(infoParams);
+    const wallet = this.getWalletInfo(request, infoParams);
+    if (!appInfo.publisher) {
+      appInfo.publisher = `did:abt:${wallet.address}`;
+    }
+
     const payload = {
       action: 'responseAuth',
       challenge,
-      appInfo: this.getAppInfo(infoParams),
+      appInfo,
       chainInfo: this.getChainInfo(infoParams, tmp ? tmp.chainInfo : undefined),
       requestedClaims: claimsInfo.map(x => {
         delete x.chainInfo;
@@ -182,8 +193,8 @@ class WalletAuthenticator extends BaseAuthenticator {
     // debug('sign.payload', payload);
 
     return {
-      appPk: this.appPk,
-      authInfo: Jwt.sign(this.wallet.address, this.wallet.sk, payload),
+      appPk: toBase58(wallet.pk),
+      authInfo: Jwt.sign(wallet.address, wallet.sk, payload),
     };
   }
 
@@ -225,7 +236,7 @@ class WalletAuthenticator extends BaseAuthenticator {
       if (!result.link) {
         result.link = params.baseUrl;
       }
-      if (this._validateAppInfo(result, this.wallet)) {
+      if (this._validateAppInfo(result)) {
         return result;
       }
 
@@ -233,6 +244,19 @@ class WalletAuthenticator extends BaseAuthenticator {
     }
 
     return this.appInfo;
+  }
+
+  getWalletInfo(request, params = {}) {
+    if (typeof this.wallet === 'function') {
+      const result = this.wallet(request, params);
+      if (this._validateWallet(result)) {
+        return result;
+      }
+
+      throw new Error('Invalid wallet function provided');
+    }
+
+    return this.wallet;
   }
 
   /**
@@ -540,7 +564,7 @@ class WalletAuthenticator extends BaseAuthenticator {
     };
   }
 
-  _validateAppInfo(appInfo, wallet) {
+  _validateAppInfo(appInfo) {
     if (typeof appInfo === 'function') {
       return appInfo;
     }
@@ -560,10 +584,6 @@ class WalletAuthenticator extends BaseAuthenticator {
 
     if (!appInfo.path) {
       appInfo.path = 'https://abtwallet.io/i/';
-    }
-
-    if (!appInfo.publisher) {
-      appInfo.publisher = `did:abt:${wallet.address}`;
     }
 
     return appInfo;

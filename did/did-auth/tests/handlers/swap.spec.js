@@ -20,12 +20,10 @@ const type = WalletType({
 
 const user = fromRandom();
 const app = fromRandom(type);
-const chainHost = 'https://playground.network.arcblockio.cn/api';
+const chainHost = 'https://playground.abtnetwork.io/api';
 const chainId = 'playground';
-const assetChainHost = 'https://playground.network.arcblockio.cn/api';
-// const assetChainHost = 'https://zinc.network.arcblockio.cn/api';
-const assetChainId = 'playground';
-// const assetChainId = 'zinc-2019-05-17';
+const assetChainHost = 'https://zinc.abtnetwork.io/api';
+const assetChainId = 'zinc-2019-05-17';
 const sleep = timeout => new Promise(resolve => setTimeout(resolve, timeout));
 
 describe('#SwapHandlers', () => {
@@ -53,18 +51,18 @@ describe('#SwapHandlers', () => {
     const tokenStorage = new MemoryAuthStorage();
     const swapStorage = new MemorySwapStorage();
     const authenticator = new WalletAuthenticator({
-      wallet: app.toJSON(),
+      wallet: () => app.toJSON(),
       // baseUrl: server.url,
-      appInfo: {
+      appInfo: () => ({
         name: 'ABT Wallet Demo',
         description: 'Demo application to show the potential of ABT Wallet',
         icon: 'https://arcblock.oss-cn-beijing.aliyuncs.com/images/wallet-round.png',
         link: 'https://arcblock.oss-cn-beijing.aliyuncs.com',
-      },
-      chainInfo: {
+      }),
+      chainInfo: () => ({
         host: chainHost,
         id: chainId,
-      },
+      }),
     });
     const handlers = new SwapHandlers({
       authenticator,
@@ -301,5 +299,5 @@ describe('#SwapHandlers', () => {
       });
 
     await Promise.all([doRetrieve(), doRetrieveAgain()]);
-  }, 20000);
+  }, 60000);
 });

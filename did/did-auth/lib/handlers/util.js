@@ -382,6 +382,7 @@ module.exports = function createHandlers({
           baseUrl: prepareBaseUrl(req, get(store, 'extraParams', {})),
           extraParams: createExtraParams(locale, params, store ? store.extraParams : {}),
           challenge: store ? store.challenge : '',
+          request: req,
         })
       );
 
@@ -492,6 +493,7 @@ module.exports = function createHandlers({
                 baseUrl: prepareBaseUrl(req, get(store, 'extraParams', {})),
                 extraParams: createExtraParams(locale, params, store.extraParams || {}),
                 challenge: nextChallenge,
+                request: req,
               })
             );
             return res.jsonp(
@@ -580,7 +582,7 @@ module.exports = function createHandlers({
         const token = params[tokenKey];
         const store = token ? await tokenStorage.read(token) : null;
 
-        const signedData = authenticator.signResponse(data, prepareBaseUrl(req, get(store, 'extraParams', {})));
+        const signedData = authenticator.signResponse(data, prepareBaseUrl(req, get(store, 'extraParams', {})), req);
         // debug('ensureSignedJson.do', signed);
         originJsonp.call(res, signedData);
       };
