@@ -1,3 +1,8 @@
+## 1.5.0 (December 23, 2020)
+
+- fix: enable tests since zinc test chain is back
+- feat: support dynamic dapp wallet for did-auth workflow
+
 ## 1.4.8 (十二月 17, 2020)
 
 - fix: support no hash before sign for wallet sign
