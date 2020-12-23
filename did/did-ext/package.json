@@ -1,0 +1,57 @@
+{
+  "name": "@arcblock/did-ext",
+  "version": "1.5.0",
+  "description": "Extension to work with ArcBlock DID",
+  "keywords": [
+    "arcblock",
+    "did",
+    "sdk"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "author": {
+    "name": "wangshijun",
+    "email": "shijun@arcblock.io",
+    "url": "https://github.com/wangshijun"
+  },
+  "homepage": "https://github.com/ArcBlock/forge-js/tree/master/did/did-ext",
+  "license": "Apache-2.0",
+  "main": "lib/index.js",
+  "files": [
+    "lib"
+  ],
+  "devDependencies": {
+    "jest": "^24.8.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ArcBlock/forge-js.git"
+  },
+  "scripts": {
+    "lint": "eslint tests lib",
+    "lint:fix": "eslint --fix tests lib",
+    "docs": "yarn generate-dts && yarn generate-docs && yarn cleanup-docs && yarn format-docs",
+    "cleanup-docs": "node ../../tools/cleanup-docs.js docs/README.md $npm_package_name",
+    "generate-docs": "jsdoc2md lib/index.js > docs/README.md",
+    "generate-dts": "j2d lib/index.js",
+    "format-docs": "remark . -o",
+    "precommit": "CI=1 yarn test",
+    "prepush": "CI=1 yarn test",
+    "test": "yarn lint && node tools/jest.js",
+    "coverage": "yarn lint && yarn test -- --coverage"
+  },
+  "bugs": {
+    "url": "https://github.com/ArcBlock/forge-js/issues"
+  },
+  "dependencies": {
+    "@arcblock/forge-util": "^1.5.0",
+    "@arcblock/forge-wallet": "^1.5.0",
+    "@arcblock/mcrypto": "^1.5.0",
+    "@arcblock/did": "^1.5.0",
+    "@wangshijun/hdkey": "^2.0.4",
+    "bn.js": "^5.0.0",
+    "debug": "^4.1.1",
+    "lodash": "^4.17.14"
+  }
+}
