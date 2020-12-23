@@ -24,7 +24,7 @@
 [![docs](https://img.shields.io/badge/powered%20by-arcblock-green.svg)](https://docs.arcblock.io)
 [![Gitter](https://badges.gitter.im/ArcBlock/community.svg)](https://gitter.im/ArcBlock/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
-> Last updated at 12/23/2020, 9:28:57 AM
+> Last updated at 12/23/2020, 12:10:29 PM
 
 Javascript SDK for [forge](https://docs.arcblock.io/forge/latest/), which is an awesome framework to write distributed blockchain applications.
 
@@ -53,6 +53,7 @@ Javascript SDK for [forge](https://docs.arcblock.io/forge/latest/), which is an 
 - [did-auth-storage-memory <img src="https://img.shields.io/npm/v/@arcblock/did-auth-storage-memory.svg" alt="Version">](https://www.npmjs.com/package/@arcblock/did-auth-storage-memory)
 - [did-auth-storage-mongo <img src="https://img.shields.io/npm/v/@arcblock/did-auth-storage-mongo.svg" alt="Version">](https://www.npmjs.com/package/@arcblock/did-auth-storage-mongo)
 - [did-auth-storage-nedb <img src="https://img.shields.io/npm/v/@arcblock/did-auth-storage-nedb.svg" alt="Version">](https://www.npmjs.com/package/@arcblock/did-auth-storage-nedb)
+- [did-ext <img src="https://img.shields.io/npm/v/@arcblock/did-ext.svg" alt="Version">](https://www.npmjs.com/package/@arcblock/did-ext)
 - [did-util <img src="https://img.shields.io/npm/v/@arcblock/did-util.svg" alt="Version">](https://www.npmjs.com/package/@arcblock/did-util)
 - [event-client <img src="https://img.shields.io/npm/v/@arcblock/event-client.svg" alt="Version">](https://www.npmjs.com/package/@arcblock/event-client)
 - [event-server <img src="https://img.shields.io/npm/v/@arcblock/event-server.svg" alt="Version">](https://www.npmjs.com/package/@arcblock/event-server)
