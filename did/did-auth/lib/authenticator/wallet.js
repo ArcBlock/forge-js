@@ -36,9 +36,9 @@ class WalletAuthenticator extends BaseAuthenticator {
    *
    * @class
    * @param {object} config
-   * @param {Wallet} config.wallet - wallet instance {@see @arcblock/forge-wallet}
-   * @param {ApplicationInfo} config.appInfo - application basic info
-   * @param {ChainInfo|Function} config.chainInfo - application chain info
+   * @param {Wallet|Function} config.wallet - wallet instance {@see @arcblock/forge-wallet} or a function that returns wallet instance
+   * @param {ApplicationInfo|Function} config.appInfo - application basic info or a function that returns application info
+   * @param {ChainInfo|Function} config.chainInfo - application chain info or a function that returns chain info
    * @param {object} [config.baseUrl] - url to assemble wallet request uri, can be inferred from request object
    * @param {string} [config.tokenKey='_t_'] - query param key for `token`
    * @example
