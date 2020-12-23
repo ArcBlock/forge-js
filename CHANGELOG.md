@@ -1,3 +1,7 @@
+## 1.5.1 (December 23, 2020)
+
+- feat: add did extension package to support `fromAppDid`
+
 ## 1.5.0 (December 23, 2020)
 
 - fix: enable tests since zinc test chain is back
