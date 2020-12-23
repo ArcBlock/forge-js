@@ -18,7 +18,7 @@ const type = WalletType({
 
 const user = fromRandom();
 const app = fromRandom(type);
-const chainHost = 'https://playground.network.arcblockio.cn/api';
+const chainHost = 'https://playground.abtnetwork.io/api';
 const chainId = 'playground';
 const noop = () => {};
 const headers = {
