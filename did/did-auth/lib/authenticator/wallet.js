@@ -87,14 +87,14 @@ class WalletAuthenticator extends BaseAuthenticator {
    * @param {object} params.query - params that should be persisted in wallet callback url
    * @returns {string}
    */
-  uri({ baseUrl, pathname = '', token = '', query = {} } = {}) {
+  async uri({ baseUrl, pathname = '', token = '', query = {} } = {}) {
     const params = Object.assign({}, query, { [this.tokenKey]: token });
     const payload = {
       action: 'requestAuth',
       url: encodeURIComponent(`${this.baseUrl || baseUrl}${pathname}?${qs.stringify(params)}`),
     };
 
-    const appInfo = this.getAppInfo(Object.assign({ baseUrl }, params));
+    const appInfo = await this.getAppInfo(Object.assign({ baseUrl }, params));
     const uri = `${appInfo.path}?${qs.stringify(payload)}`;
     debug('uri', { token, pathname, uri, params, payload });
     return uri;
@@ -121,9 +121,9 @@ class WalletAuthenticator extends BaseAuthenticator {
    * @param {string} params.error - error message
    * @returns {object} { appPk, authInfo }
    */
-  signResponse({ response = {}, error = '' }, baseUrl, request) {
-    const wallet = this.getWalletInfo(request, { baseUrl });
-    const appInfo = this.getAppInfo({ baseUrl });
+  async signResponse({ response = {}, error = '' }, baseUrl, request) {
+    const wallet = await this.getWalletInfo(request, { baseUrl });
+    const appInfo = await this.getAppInfo({ baseUrl });
     if (!appInfo.publisher) {
       appInfo.publisher = `did:abt:${wallet.address}`;
     }
@@ -170,10 +170,18 @@ class WalletAuthenticator extends BaseAuthenticator {
     const infoParams = Object.assign({ baseUrl }, context, extraParams);
 
     // FIXME: this maybe buggy if user provided multiple claims
-    const tmp = claimsInfo.find(x => this.getChainInfo(infoParams, x.chainInfo || {}));
+    const tmp = claimsInfo.find(x => {
+      try {
+        this._isValidChainInfo(x.chainInfo || {});
+        return true;
+      } catch (err) {
+        return false;
+      }
+    });
 
-    const appInfo = this.getAppInfo(infoParams);
-    const wallet = this.getWalletInfo(request, infoParams);
+    const appInfo = await this.getAppInfo(infoParams);
+    const chainInfo = await this.getChainInfo(infoParams, tmp ? tmp.chainInfo : undefined);
+    const wallet = await this.getWalletInfo(request, infoParams);
     if (!appInfo.publisher) {
       appInfo.publisher = `did:abt:${wallet.address}`;
     }
@@ -182,7 +190,7 @@ class WalletAuthenticator extends BaseAuthenticator {
       action: 'responseAuth',
       challenge,
       appInfo,
-      chainInfo: this.getChainInfo(infoParams, tmp ? tmp.chainInfo : undefined),
+      chainInfo,
       requestedClaims: claimsInfo.map(x => {
         delete x.chainInfo;
         return x;
@@ -206,13 +214,13 @@ class WalletAuthenticator extends BaseAuthenticator {
    * @returns {ChainInfo}
    * @memberof WalletAuthenticator
    */
-  getChainInfo(params, info) {
+  async getChainInfo(params, info) {
     if (info) {
       return this._isValidChainInfo(info) ? info : null;
     }
 
     if (typeof this.chainInfo === 'function') {
-      const result = this.chainInfo(params);
+      const result = await this.chainInfo(params);
       if (this._validateChainInfo(result)) {
         return result;
       }
@@ -230,9 +238,9 @@ class WalletAuthenticator extends BaseAuthenticator {
    * @returns {ApplicationInfo}
    * @memberof WalletAuthenticator
    */
-  getAppInfo(params) {
+  async getAppInfo(params) {
     if (typeof this.appInfo === 'function') {
-      const result = this.appInfo(params);
+      const result = await this.appInfo(params);
       if (!result.link) {
         result.link = params.baseUrl;
       }
@@ -246,9 +254,9 @@ class WalletAuthenticator extends BaseAuthenticator {
     return this.appInfo;
   }
 
-  getWalletInfo(request, params = {}) {
+  async getWalletInfo(request, params = {}) {
     if (typeof this.wallet === 'function') {
-      const result = this.wallet(request, params);
+      const result = await this.wallet(request, params);
       if (this._validateWallet(result)) {
         return result;
       }
@@ -333,7 +341,7 @@ class WalletAuthenticator extends BaseAuthenticator {
         : claim;
 
     const infoParams = Object.assign({}, context, extraParams);
-    const chainInfo = this.getChainInfo(infoParams, result.chainInfo || undefined);
+    const chainInfo = await this.getChainInfo(infoParams, result.chainInfo || undefined);
 
     result.chainInfo = chainInfo;
 

@@ -59,10 +59,18 @@ class AgentAuthenticator extends WalletAuthenticator {
       extraParams,
     });
     const infoParams = Object.assign({ baseUrl }, context, extraParams);
-    // FIXME: this maybe buggy if user provided multiple claims
-    const tmp = claimsInfo.find(x => this.getChainInfo(infoParams, x.chainInfo || {}));
 
-    const wallet = this.getWalletInfo(request, infoParams);
+    // FIXME: this maybe buggy if user provided multiple claims
+    const tmp = claimsInfo.find(x => {
+      try {
+        this._isValidChainInfo(x.chainInfo || {});
+        return true;
+      } catch (err) {
+        return false;
+      }
+    });
+
+    const wallet = await this.getWalletInfo(request, infoParams);
     if (!appInfo.publisher) {
       appInfo.publisher = toDid(authorizer.did);
     }

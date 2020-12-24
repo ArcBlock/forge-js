@@ -87,7 +87,7 @@ describe('#WalletAuthenticator', () => {
     expect(typeof auth.swap).toEqual('function');
   });
 
-  test('should generate correct chainInfo', () => {
+  test('should generate correct chainInfo', async () => {
     auth.chainInfo = ({ locale }) => {
       if (locale === 'en') {
         return { host: 'https://www.arcblock.io', id: 123 };
@@ -96,17 +96,17 @@ describe('#WalletAuthenticator', () => {
       return { host: 'https://www.arcblockio.cn', id: 456 };
     };
 
-    const enChainInfo = auth.getChainInfo({ locale: 'en' });
+    const enChainInfo = await auth.getChainInfo({ locale: 'en' });
     expect(enChainInfo.host).toEqual('https://www.arcblock.io');
     expect(enChainInfo.id).toEqual(123);
 
-    const zhChainInfo = auth.getChainInfo({ locale: 'zh' });
+    const zhChainInfo = await auth.getChainInfo({ locale: 'zh' });
     expect(zhChainInfo.host).toEqual('https://www.arcblockio.cn');
     expect(zhChainInfo.id).toEqual(456);
   });
 
-  test('should generate correct uri', () => {
-    const uri = auth.uri();
+  test('should generate correct uri', async () => {
+    const uri = await auth.uri();
     const parsed = url.parse(uri);
     const params = qs.parse(parsed.query);
     expect(parsed.host).toEqual('abtwallet.io');
