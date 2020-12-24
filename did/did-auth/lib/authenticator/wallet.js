@@ -94,8 +94,7 @@ class WalletAuthenticator extends BaseAuthenticator {
       url: encodeURIComponent(`${this.baseUrl || baseUrl}${pathname}?${qs.stringify(params)}`),
     };
 
-    const appInfo = await this.getAppInfo(Object.assign({ baseUrl }, params));
-    const uri = `${appInfo.path}?${qs.stringify(payload)}`;
+    const uri = `https://abtwallet.io/i/?${qs.stringify(payload)}`;
     debug('uri', { token, pathname, uri, params, payload });
     return uri;
   }
@@ -122,8 +121,8 @@ class WalletAuthenticator extends BaseAuthenticator {
    * @returns {object} { appPk, authInfo }
    */
   async signResponse({ response = {}, error = '' }, baseUrl, request) {
-    const wallet = await this.getWalletInfo(request, { baseUrl });
-    const appInfo = await this.getAppInfo({ baseUrl });
+    const wallet = await this.getWalletInfo({ baseUrl, request });
+    const appInfo = await this.getAppInfo({ baseUrl, request });
     if (!appInfo.publisher) {
       appInfo.publisher = `did:abt:${wallet.address}`;
     }
@@ -167,7 +166,7 @@ class WalletAuthenticator extends BaseAuthenticator {
       context: Object.assign({ baseUrl }, context),
       extraParams,
     });
-    const infoParams = Object.assign({ baseUrl }, context, extraParams);
+    const infoParams = Object.assign({ baseUrl, request }, context, extraParams);
 
     // FIXME: this maybe buggy if user provided multiple claims
     const tmp = claimsInfo.find(x => {
@@ -181,7 +180,7 @@ class WalletAuthenticator extends BaseAuthenticator {
 
     const appInfo = await this.getAppInfo(infoParams);
     const chainInfo = await this.getChainInfo(infoParams, tmp ? tmp.chainInfo : undefined);
-    const wallet = await this.getWalletInfo(request, infoParams);
+    const wallet = await this.getWalletInfo(infoParams);
     if (!appInfo.publisher) {
       appInfo.publisher = `did:abt:${wallet.address}`;
     }
@@ -254,9 +253,9 @@ class WalletAuthenticator extends BaseAuthenticator {
     return this.appInfo;
   }
 
-  async getWalletInfo(request, params = {}) {
+  async getWalletInfo(params) {
     if (typeof this.wallet === 'function') {
-      const result = await this.wallet(request, params);
+      const result = await this.wallet(params);
       if (this._validateWallet(result)) {
         return result;
       }

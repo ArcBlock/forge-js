@@ -58,7 +58,7 @@ class AgentAuthenticator extends WalletAuthenticator {
       context: Object.assign({ baseUrl }, context),
       extraParams,
     });
-    const infoParams = Object.assign({ baseUrl }, context, extraParams);
+    const infoParams = Object.assign({ baseUrl, request }, context, extraParams);
 
     // FIXME: this maybe buggy if user provided multiple claims
     const tmp = claimsInfo.find(x => {
@@ -70,7 +70,7 @@ class AgentAuthenticator extends WalletAuthenticator {
       }
     });
 
-    const wallet = await this.getWalletInfo(request, infoParams);
+    const wallet = await this.getWalletInfo(infoParams);
     if (!appInfo.publisher) {
       appInfo.publisher = toDid(authorizer.did);
     }

@@ -411,7 +411,7 @@ class AtomicSwapHandlers extends BaseHandler {
 
             // Then setup swap for user
             try {
-              const setupWallet = await this.authenticator.getWalletInfo(req);
+              const setupWallet = await this.authenticator.getWalletInfo({ request: req });
               const [hash, address] = await ForgeSDK.setupSwap(
                 {
                   token: await ForgeSDK.fromUnitToToken(req.swap.offerToken, {
@@ -462,7 +462,7 @@ class AtomicSwapHandlers extends BaseHandler {
 
         res.jsonp({ swapAddress: address });
 
-        const retrieveWallet = await this.authenticator.getWalletInfo(req);
+        const retrieveWallet = await this.authenticator.getWalletInfo({ request: req });
         const retriever = createRetriever({
           traceId,
           offerSwapAddress: address,
