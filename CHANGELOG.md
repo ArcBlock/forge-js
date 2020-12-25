@@ -1,3 +1,8 @@
+## 1.5.2 (December 25, 2020)
+
+- chore: unify async did-auth callback signatures
+- feat: support async callbacks for did authenticator
+
 ## 1.5.1 (December 23, 2020)
 
 - feat: add did extension package to support `fromAppDid`
