@@ -1,7 +1,7 @@
 {
   "name": "@arcblock/grpc-client",
   "description": "gRPC client to read/write data on forge powered blockchain",
-  "version": "1.5.1",
+  "version": "1.5.2",
   "author": {
     "name": "wangshijun",
     "email": "shijun@arcblock.io",
@@ -15,18 +15,18 @@
     "access": "public"
   },
   "dependencies": {
-    "@arcblock/client-extension": "^1.5.1",
-    "@arcblock/forge-message": "^1.5.1",
-    "@arcblock/forge-proto": "^1.5.1",
+    "@arcblock/client-extension": "^1.5.2",
+    "@arcblock/forge-message": "^1.5.2",
+    "@arcblock/forge-proto": "^1.5.2",
     "@grpc/grpc-js": "^1.0.5",
     "debug": "^4.1.1",
     "google-auth-library": "^6.0.1",
     "lodash": "^4.17.15"
   },
   "devDependencies": {
-    "@arcblock/did-util": "^1.5.1",
-    "@arcblock/forge-util": "^1.5.1",
-    "@arcblock/forge-wallet": "^1.5.1",
+    "@arcblock/did-util": "^1.5.2",
+    "@arcblock/forge-util": "^1.5.2",
+    "@arcblock/forge-wallet": "^1.5.2",
     "jest": "^24.8.0",
     "remark-cli": "^5.0.0",
     "remark-preset-github": "^0.0.9"
