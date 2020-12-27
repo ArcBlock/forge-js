@@ -235,15 +235,14 @@ module.exports = function createHandlers({
       await tokenStorage.update(token, { currentStep: 0, sessionDid, challenge, extraParams: params });
       // debug('generate token', { action, pathname, token, sessionDid });
 
-      res.jsonp({
+      const uri = await authenticator.uri({
         token,
-        url: authenticator.uri({
-          token,
-          pathname: preparePathname(getPathName(pathname, req), req),
-          baseUrl: prepareBaseUrl(req, params),
-          query: {},
-        }),
+        pathname: preparePathname(getPathName(pathname, req), req),
+        baseUrl: prepareBaseUrl(req, params),
+        query: {},
       });
+
+      res.jsonp({ token, url: uri });
     } catch (err) {
       onProcessError({ req, res, stage: 'generate-token', err });
     }
@@ -582,7 +581,11 @@ module.exports = function createHandlers({
         const token = params[tokenKey];
         const store = token ? await tokenStorage.read(token) : null;
 
-        const signedData = authenticator.signResponse(data, prepareBaseUrl(req, get(store, 'extraParams', {})), req);
+        const signedData = await authenticator.signResponse(
+          data,
+          prepareBaseUrl(req, get(store, 'extraParams', {})),
+          req
+        );
         // debug('ensureSignedJson.do', signed);
         originJsonp.call(res, signedData);
       };
