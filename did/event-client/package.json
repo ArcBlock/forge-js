@@ -15,7 +15,7 @@
     "access": "public"
   },
   "dependencies": {
-    "debug": "^4.1.1",
+    "debug": "^4.3.1",
     "isomorphic-ws": "^4.0.1",
     "phoenix": "^1.4.11",
     "wolfy87-eventemitter": "^5.2.5",

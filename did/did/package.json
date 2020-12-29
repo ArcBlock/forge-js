@@ -50,7 +50,7 @@
     "@arcblock/forge-util": "^1.5.2",
     "@arcblock/mcrypto": "^1.5.2",
     "bn.js": "^5.0.0",
-    "debug": "^4.1.1",
+    "debug": "^4.3.1",
     "lodash": "^4.17.14"
   }
 }
