@@ -1,3 +1,7 @@
+## 1.5.3 (December 30, 2020)
+
+- chore: bump sdk-util/axios/debug to latest
+
 ## 1.5.2 (December 25, 2020)
 
 - chore: unify async did-auth callback signatures
