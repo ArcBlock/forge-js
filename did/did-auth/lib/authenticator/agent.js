@@ -55,7 +55,7 @@ class AgentAuthenticator extends WalletAuthenticator {
 
     const claimsInfo = await this.genRequestedClaims({
       claims,
-      context: Object.assign({ baseUrl }, context),
+      context: Object.assign({ baseUrl, request }, context),
       extraParams,
     });
     const infoParams = Object.assign({ baseUrl, request }, context, extraParams);

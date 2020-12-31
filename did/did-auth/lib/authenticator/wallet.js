@@ -163,7 +163,7 @@ class WalletAuthenticator extends BaseAuthenticator {
 
     const claimsInfo = await this.genRequestedClaims({
       claims,
-      context: Object.assign({ baseUrl }, context),
+      context: Object.assign({ baseUrl, request }, context),
       extraParams,
     });
     const infoParams = Object.assign({ baseUrl, request }, context, extraParams);
@@ -336,6 +336,7 @@ class WalletAuthenticator extends BaseAuthenticator {
             walletOS,
             walletVersion,
             extraParams,
+            context,
           })
         : claim;
 
