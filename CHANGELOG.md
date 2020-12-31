@@ -1,3 +1,7 @@
+## 1.5.4 (December 31, 2020)
+
+- fix: agent authenticator chain info promise issue
+
 ## 1.5.3 (December 30, 2020)
 
 - chore: bump sdk-util/axios/debug to latest
