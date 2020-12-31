@@ -75,12 +75,14 @@ class AgentAuthenticator extends WalletAuthenticator {
       appInfo.publisher = toDid(authorizer.did);
     }
 
+    const chainInfo = await this.getChainInfo(infoParams, tmp ? tmp.chainInfo : undefined);
+
     const payload = {
       action: 'responseAuth',
       appInfo,
       iss: toDid(authorizer.did),
       agentDid: toDid(wallet.address),
-      chainInfo: this.getChainInfo(infoParams, tmp ? tmp.chainInfo : undefined),
+      chainInfo,
       verifiableClaims,
       requestedClaims: claimsInfo.map(x => {
         delete x.chainInfo;
