@@ -1,3 +1,7 @@
+## 1.5.5 (December 31, 2020)
+
+- fix: should pass request object in context when gen did-claim
+
 ## 1.5.4 (December 31, 2020)
 
 - fix: agent authenticator chain info promise issue
