@@ -254,7 +254,7 @@ describe('#encodeAny', () => {
 });
 
 describe('#encodeAny & #decodeAny & json', () => {
-  it('should encode and decode json type', () => {
+  test('should encode and decode json type', () => {
     const encoded = encodeAny({
       typeUrl: 'json',
       value: { key: 'value1' },
@@ -273,7 +273,26 @@ describe('#encodeAny & #decodeAny & json', () => {
     expect(decoded.type).toEqual('json');
   });
 
-  it('should encode and decode vc type', () => {
+  test('should encode decoded json type', () => {
+    const encoded = encodeAny({
+      type: 'json',
+      value: { key: 'value1' },
+    });
+
+    expect(encoded.array[0]).toEqual('json');
+    expect(encoded.array[1]).toEqual(
+      Uint8Array.from(Buffer.from(JSON.stringify({ key: 'value1' })))
+    );
+
+    const decoded = decodeAny({
+      typeUrl: 'json',
+      value: encoded.array[1],
+    });
+    expect(decoded.value.key).toEqual('value1');
+    expect(decoded.type).toEqual('json');
+  });
+
+  test('should encode and decode vc type', () => {
     const encoded = encodeAny({
       typeUrl: 'vc',
       value: { key: 'value1' },

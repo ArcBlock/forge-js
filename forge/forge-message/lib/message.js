@@ -438,9 +438,13 @@ function encodeAny(data) {
     } else {
       const { value: anyValue, type: anyType } = data;
       const typeUrl = toTypeUrl(anyType);
-      const anyValueBinary = createMessage(anyType, anyValue);
       anyMessage.setTypeUrl(typeUrl);
-      anyMessage.setValue(anyValueBinary.serializeBinary());
+      if (['json', 'vc'].includes(typeUrl)) {
+        anyMessage.setValue(Uint8Array.from(Buffer.from(JSON.stringify(anyValue))));
+      } else {
+        const anyValueBinary = createMessage(anyType, anyValue);
+        anyMessage.setValue(anyValueBinary.serializeBinary());
+      }
     }
   } catch (err) {
     console.error('error encode any type', data);
