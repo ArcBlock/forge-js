@@ -1,3 +1,7 @@
+## 1.5.6 (January 14, 2021)
+
+- fix: encodeAny not handling decoded json inputs correctly
+
 ## 1.5.5 (December 31, 2020)
 
 - fix: should pass request object in context when gen did-claim
