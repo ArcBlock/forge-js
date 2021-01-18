@@ -1,3 +1,7 @@
+## 1.5.7 (January 18, 2021)
+
+- feat: support optional chainInfo during did-auth
+
 ## 1.5.6 (January 14, 2021)
 
 - fix: encodeAny not handling decoded json inputs correctly
