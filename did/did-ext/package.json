@@ -1,6 +1,6 @@
 {
   "name": "@arcblock/did-ext",
-  "version": "1.5.6",
+  "version": "1.5.7",
   "description": "Extension to work with ArcBlock DID",
   "keywords": [
     "arcblock",
@@ -45,10 +45,10 @@
     "url": "https://github.com/ArcBlock/forge-js/issues"
   },
   "dependencies": {
-    "@arcblock/did": "^1.5.6",
-    "@arcblock/forge-util": "^1.5.6",
-    "@arcblock/forge-wallet": "^1.5.6",
-    "@arcblock/mcrypto": "^1.5.6",
+    "@arcblock/did": "^1.5.7",
+    "@arcblock/forge-util": "^1.5.7",
+    "@arcblock/forge-wallet": "^1.5.7",
+    "@arcblock/mcrypto": "^1.5.7",
     "@wangshijun/hdkey": "^2.0.4",
     "bn.js": "^5.0.0",
     "debug": "^4.3.1",
