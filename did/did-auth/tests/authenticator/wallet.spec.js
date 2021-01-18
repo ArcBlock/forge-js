@@ -23,35 +23,16 @@ describe('#WalletAuthenticator', () => {
   });
 
   test('should throw error with invalid param', () => {
-    try {
-      const auth = new WalletAuthenticator({ baseUrl: chainHost });
-    } catch (err) {
-      expect(err.message.indexOf('wallet') > 0).toBeTruthy();
-    }
-    try {
-      const auth = new WalletAuthenticator({ baseUrl: chainHost, wallet: { sk: '123', pk: '' } });
-    } catch (err) {
-      expect(err.message.indexOf('wallet.pk') > 0).toBeTruthy();
-    }
-    try {
-      const auth = new WalletAuthenticator({
-        baseUrl: chainHost,
-        wallet: { sk: '123', pk: '456', address: '789' },
-        appInfo: {},
-      });
-    } catch (err) {
-      expect(err.message.indexOf('appInfo') > 0).toBeTruthy();
-    }
-    try {
-      const auth = new WalletAuthenticator({
-        baseUrl: chainHost,
-        wallet: { sk: '123', pk: '456', address: '789' },
-        appInfo: { name: '123', description: '456', icon: '789' },
-        chainInfo: {},
-      });
-    } catch (err) {
-      expect(err.message.indexOf('chainInfo.host') > 0).toBeTruthy();
-    }
+    expect(() => new WalletAuthenticator({ baseUrl: chainHost })).toThrow(/wallet/);
+    expect(() => new WalletAuthenticator({ baseUrl: chainHost, wallet: { sk: '123', pk: '' } })).toThrow(/wallet\.pk/);
+    expect(
+      () =>
+        new WalletAuthenticator({
+          baseUrl: chainHost,
+          wallet: { sk: '123', pk: '456', address: '789' },
+          appInfo: {},
+        })
+    ).toThrow(/appInfo/);
   });
 
   const auth = new WalletAuthenticator({
@@ -156,5 +137,22 @@ describe('#WalletAuthenticator', () => {
     const signed = await auth.sign({ context: { token: '123', userPk, userDid }, claims });
     const clientSigned = { userPk: signed.appPk, userInfo: signed.authInfo, token: '123' };
     expect(await auth.verify(clientSigned)).toBeTruthy();
+  });
+
+  test('should generate correct none chainInfo', async () => {
+    const tmp = new WalletAuthenticator({
+      wallet,
+      baseUrl: 'http://zinc.abtnetwork.io/webapp',
+      appInfo: {
+        name: 'ABT Wallet Demo',
+        description: 'Demo application to show the potential of ABT Wallet',
+        icon: 'https://arcblock.oss-cn-beijing.aliyuncs.com/images/wallet-round.png',
+        link: 'http://zinc.abtnetwork.io/webapp',
+      },
+    });
+
+    const chainInfo = await tmp.getChainInfo({ locale: 'en' });
+    expect(chainInfo.host).toEqual('none');
+    expect(chainInfo.id).toEqual('none');
   });
 });

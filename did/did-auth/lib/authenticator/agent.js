@@ -2,14 +2,18 @@
 /* eslint-disable indent */
 /* eslint-disable object-curly-newline */
 const qs = require('querystring');
+const isEqual = require('lodash/isEqual');
 const { toBase58 } = require('@arcblock/forge-util');
 const { toDid } = require('@arcblock/did');
 
 const Jwt = require('../jwt');
+const BaseAuthenticator = require('./base');
 const WalletAuthenticator = require('./wallet');
 
 // eslint-disable-next-line
 const debug = require('debug')(`${require('../../package.json').name}:authenticator:wallet`);
+
+const { DEFAULT_CHAIN_INFO } = BaseAuthenticator;
 
 /**
  * Authenticator that can be used to sign did-auth payment on-behalf of another application
@@ -61,21 +65,14 @@ class AgentAuthenticator extends WalletAuthenticator {
     const infoParams = Object.assign({ baseUrl, request }, context, extraParams);
 
     // FIXME: this maybe buggy if user provided multiple claims
-    const tmp = claimsInfo.find(x => {
-      try {
-        this._isValidChainInfo(x.chainInfo || {});
-        return true;
-      } catch (err) {
-        return false;
-      }
-    });
+    const tmp = claimsInfo.find(x => isEqual(this._isValidChainInfo(x.chainInfo), DEFAULT_CHAIN_INFO) === false);
 
     const wallet = await this.getWalletInfo(infoParams);
     if (!appInfo.publisher) {
       appInfo.publisher = toDid(authorizer.did);
     }
 
-    const chainInfo = await this.getChainInfo(infoParams, tmp ? tmp.chainInfo : undefined);
+    const chainInfo = await this.getChainInfo(infoParams, tmp ? tmp.chainInfo : null);
 
     const payload = {
       action: 'responseAuth',

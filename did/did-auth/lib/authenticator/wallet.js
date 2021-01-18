@@ -2,6 +2,7 @@
 /* eslint-disable indent */
 /* eslint-disable object-curly-newline */
 const qs = require('querystring');
+const isEqual = require('lodash/isEqual');
 const ForgeSDK = require('@arcblock/forge-sdk');
 const { toBase58 } = require('@arcblock/forge-util');
 const { fromAddress } = require('@arcblock/forge-wallet');
@@ -12,6 +13,8 @@ const BaseAuthenticator = require('./base');
 
 // eslint-disable-next-line
 const debug = require('debug')(`${require('../../package.json').name}:authenticator:wallet`);
+
+const { DEFAULT_CHAIN_INFO } = BaseAuthenticator;
 
 class WalletAuthenticator extends BaseAuthenticator {
   /**
@@ -61,12 +64,12 @@ class WalletAuthenticator extends BaseAuthenticator {
    *   },
    * });
    */
-  constructor({ wallet, appInfo, chainInfo, baseUrl = '', tokenKey = '_t_' }) {
+  constructor({ wallet, appInfo, chainInfo = DEFAULT_CHAIN_INFO, baseUrl = '', tokenKey = '_t_' }) {
     super();
 
     this.wallet = this._validateWallet(wallet);
     this.appInfo = this._validateAppInfo(appInfo);
-    this.chainInfo = this._validateChainInfo(chainInfo);
+    this.chainInfo = chainInfo;
 
     this.baseUrl = baseUrl;
     this.tokenKey = tokenKey;
@@ -169,17 +172,10 @@ class WalletAuthenticator extends BaseAuthenticator {
     const infoParams = Object.assign({ baseUrl, request }, context, extraParams);
 
     // FIXME: this maybe buggy if user provided multiple claims
-    const tmp = claimsInfo.find(x => {
-      try {
-        this._isValidChainInfo(x.chainInfo || {});
-        return true;
-      } catch (err) {
-        return false;
-      }
-    });
+    const tmp = claimsInfo.find(x => isEqual(this._isValidChainInfo(x.chainInfo), DEFAULT_CHAIN_INFO) === false);
 
     const appInfo = await this.getAppInfo(infoParams);
-    const chainInfo = await this.getChainInfo(infoParams, tmp ? tmp.chainInfo : undefined);
+    const chainInfo = await this.getChainInfo(infoParams, tmp ? tmp.chainInfo : DEFAULT_CHAIN_INFO);
     const wallet = await this.getWalletInfo(infoParams);
     if (!appInfo.publisher) {
       appInfo.publisher = `did:abt:${wallet.address}`;
@@ -215,18 +211,15 @@ class WalletAuthenticator extends BaseAuthenticator {
    */
   async getChainInfo(params, info) {
     if (info) {
-      return this._isValidChainInfo(info) ? info : null;
+      return this._isValidChainInfo(info) ? info : DEFAULT_CHAIN_INFO;
     }
 
     if (typeof this.chainInfo === 'function') {
       const result = await this.chainInfo(params);
-      if (this._validateChainInfo(result)) {
-        return result;
-      }
-      throw new Error('Invalid chainInfo function provided');
+      return this._isValidChainInfo(result) ? result : DEFAULT_CHAIN_INFO;
     }
 
-    return this.chainInfo;
+    return this.chainInfo || DEFAULT_CHAIN_INFO;
   }
 
   /**
@@ -341,7 +334,7 @@ class WalletAuthenticator extends BaseAuthenticator {
         : claim;
 
     const infoParams = Object.assign({}, context, extraParams);
-    const chainInfo = await this.getChainInfo(infoParams, result.chainInfo || undefined);
+    const chainInfo = await this.getChainInfo(infoParams, result.chainInfo);
 
     result.chainInfo = chainInfo;
 
@@ -595,24 +588,6 @@ class WalletAuthenticator extends BaseAuthenticator {
     }
 
     return appInfo;
-  }
-
-  _validateChainInfo(chainInfo) {
-    if (typeof chainInfo === 'function') {
-      return chainInfo;
-    }
-
-    if (!chainInfo) {
-      throw new Error('WalletAuthenticator cannot work without chainInfo');
-    }
-    if (!chainInfo.host) {
-      throw new Error('WalletAuthenticator cannot work without chainInfo.host');
-    }
-    if (!chainInfo.id) {
-      throw new Error('WalletAuthenticator cannot work without chainInfo.id');
-    }
-
-    return chainInfo;
   }
 
   _isValidChainInfo(x) {

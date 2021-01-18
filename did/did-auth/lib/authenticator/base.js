@@ -92,3 +92,4 @@ class BaseAuthenticator {
 }
 
 module.exports = BaseAuthenticator;
+module.exports.DEFAULT_CHAIN_INFO = { id: 'none', host: 'none' };

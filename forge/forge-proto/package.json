@@ -63,7 +63,7 @@
     "@grpc/grpc-js": "^1.0.5",
     "debug": "^4.3.1",
     "google-auth-library": "^6.0.1",
-    "lodash": "^4.17.15"
+    "lodash": "^4.17.20"
   },
   "gitHead": "87990c8b5e215107fc587c1ced0d6b3e2cd2483e"
 }
