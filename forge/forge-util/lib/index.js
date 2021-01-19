@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 /* eslint-disable no-bitwise */
 /* eslint-disable implicit-arrow-linebreak */
 /* eslint-disable no-param-reassign */
@@ -17,7 +18,6 @@ const isString = require('lodash/isString');
 const isNumber = require('lodash/isNumber');
 const isObject = require('lodash/isObject');
 const isNull = require('lodash/isNull');
-const numberToBN = require('number-to-bn');
 const multibase = require('multibase');
 const utf8 = require('utf8');
 const base64 = require('base64-url');
@@ -26,6 +26,50 @@ const BN = require('bn.js');
 const DID_PREFIX = 'did:abt:';
 const zero = new BN(0);
 const negative1 = new BN(-1);
+
+/**
+ * Returns a BN object, converts a number value to a BN
+ * @param {String|Number|Object} `arg` input a string number, hex string number, number, BigNumber or BN object
+ * @return {Object} `output` BN object of the number
+ * @throws if the argument is not an array, object that isn't a bignumber, not a string number or number
+ */
+const numberToBN = arg => {
+  if (typeof arg === 'string' || typeof arg === 'number') {
+    let multiplier = new BN(1); // eslint-disable-line
+    const formattedString = String(arg)
+      .toLowerCase()
+      .trim();
+    const isHexPrefixed = formattedString.substr(0, 2) === '0x' || formattedString.substr(0, 3) === '-0x';
+    let stringArg = stripHexPrefix(formattedString); // eslint-disable-line
+    if (stringArg.substr(0, 1) === '-') {
+      stringArg = stripHexPrefix(stringArg.slice(1));
+      multiplier = new BN(-1, 10);
+    }
+    stringArg = stringArg === '' ? '0' : stringArg;
+
+    if (
+      (!stringArg.match(/^-?[0-9]+$/) && stringArg.match(/^[0-9A-Fa-f]+$/)) ||
+      stringArg.match(/^[a-fA-F]+$/) ||
+      (isHexPrefixed === true && stringArg.match(/^[0-9A-Fa-f]+$/))
+    ) {
+      return new BN(stringArg, 16).mul(multiplier);
+    }
+
+    if ((stringArg.match(/^-?[0-9]+$/) || stringArg === '') && isHexPrefixed === false) {
+      return new BN(stringArg, 10).mul(multiplier);
+    }
+  } else if (typeof arg === 'object' && arg.toString && !arg.pop && !arg.push) {
+    if (arg.toString(10).match(/^-?[0-9]+$/) && (arg.mul || arg.dividedToIntegerBy)) {
+      return new BN(arg.toString(10), 10);
+    }
+  }
+
+  throw new Error(
+    `[number-to-bn] while converting number ${JSON.stringify(
+      arg
+    )} to BN.js instance, error: invalid number value. Value must be an integer, hex string, BN or BigNumber instance. Note, decimals are not supported.`
+  );
+};
 
 /**
  * Returns a `boolean` on whether or not the `string` starts with '0x'
@@ -562,7 +606,8 @@ function toBuffer(v) {
  * @throws {Error}
  */
 function toBase58(v) {
-  return multibase.encode('base58btc', toBuffer(v)).toString();
+  const buf = multibase.encode('base58btc', toUint8Array(v));
+  return Buffer.from(buf).toString('utf-8');
 }
 
 /**
@@ -578,7 +623,7 @@ function fromBase58(v) {
     throw new Error('fromBase58 expect strict base58 encoded string as input');
   }
 
-  return multibase.decode(v);
+  return Buffer.from(multibase.decode(v));
 }
 
 /**

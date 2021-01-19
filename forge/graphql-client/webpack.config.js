@@ -13,6 +13,7 @@ module.exports = {
   resolve: {
     alias: {
       'bn.js': require.resolve('bn.js'),
+      elliptic: require.resolve('elliptic'),
       ms: require.resolve('ms'),
       axios: require.resolve('axios'),
       debug: require.resolve('debug'),
