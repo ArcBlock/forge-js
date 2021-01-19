@@ -1,3 +1,7 @@
+## 1.5.8 (January 19, 2021)
+
+- chore: bump crypto/hash related dependencies to latest
+
 ## 1.5.7 (January 18, 2021)
 
 - feat: support optional chainInfo during did-auth
