@@ -46,7 +46,7 @@ const sleep = timeout => new Promise(resolve => setTimeout(resolve, timeout));
     await declare(betty, 'betty');
 
     // wait
-    await sleep(3000);
+    await sleep(1000);
 
     // checkin accounts
     await checkin(alice, 'alice');
@@ -74,6 +74,14 @@ const sleep = timeout => new Promise(resolve => setTimeout(resolve, timeout));
       wallet: betty,
     });
     console.log('betty.transfer.hash', hash2);
+
+    await sleep(1000);
+    const hash3 = await client.revokeDelegate({
+      from: alice,
+      to: betty,
+      privileges: ['fg:t:transfer'],
+    });
+    console.log('alice.revokeDelegate.hash', hash3);
   } catch (err) {
     console.error(err);
     console.log(JSON.stringify(err.errors));

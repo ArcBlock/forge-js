@@ -21,6 +21,7 @@ const client = new GraphqlClient(`${endpoint}/api`);
     const user1 = fromRandom();
     const hash1 = await client.declare({
       moniker: `poke_user_${Math.round(Math.random() * 10000)}`,
+      data: { type: 'json', value: Math.random() },
       wallet: user1,
     });
 
@@ -33,6 +34,7 @@ const client = new GraphqlClient(`${endpoint}/api`);
       tx: {
         itx: {
           moniker: 'sign_and_send',
+      data: { type: 'json', value: Math.random() },
         },
       },
       wallet: user2,
@@ -47,6 +49,7 @@ const client = new GraphqlClient(`${endpoint}/api`);
       tx: {
         itx: {
           moniker: 'sign_and_send',
+      data: { type: 'json', value: Math.random() },
         },
       },
       wallet: user3,

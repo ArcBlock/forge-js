@@ -33,7 +33,7 @@ const sleep = timeout => new Promise(resolve => setTimeout(resolve, timeout));
       readonly: false, // if we want to update the asset, we should set this to false
       transferrable: false,
       data: {
-        typeUrl: 'json',
+        type: 'json',
         value: {
           key: 'value',
           sn: Math.random(),
@@ -56,7 +56,7 @@ const sleep = timeout => new Promise(resolve => setTimeout(resolve, timeout));
       address: assetAddress,
       moniker: 'asset_updated',
       data: {
-        typeUrl: 'json',
+        type: 'json',
         value: {
           key: 'value updated',
           sn: Math.random(),
