@@ -80,7 +80,6 @@ describe('#forge-wallet', () => {
 
   test('should generate base16 address', () => {
     const wallet = fromRandom('eth');
-    console.log(wallet.toJSON());
     expect(wallet.toAddress().startsWith('0x')).toBeTruthy();
   });
 });
