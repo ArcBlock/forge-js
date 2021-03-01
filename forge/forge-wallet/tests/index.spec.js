@@ -6,6 +6,9 @@ const {
   fromJSON,
   fromAddress,
   isValid,
+  WalletType,
+  DEFAULT_WALLET_TYPE,
+  ETH_WALLET_TYPE,
 } = require('../lib');
 
 const sk =
@@ -14,10 +17,12 @@ const pk = '0xE4852B7091317E3622068E62A5127D1FB0D4AE2FC50213295E10652D2F0ABFC7';
 const appId = 'zNKtCNqYWLYWYW3gWRA1vnRykfCBZYHZvzKr';
 const sig =
   '0x8122c608f61b04f6b574f005dc8e0463d393a7fb50e0426bca587b20778a8a9f6376bab87bc3983b0a5f1c9581f6d94162317c715a3c1c0f086be1e514399109';
+
 const type = {
   role: types.RoleType.ROLE_APPLICATION,
   pk: types.KeyType.ED25519,
   hash: types.HashType.SHA3,
+  address: types.EncodingType.BASE58,
 };
 
 describe('#forge-wallet', () => {
@@ -66,5 +71,44 @@ describe('#forge-wallet', () => {
 
     const wallet2 = fromPublicKey(pk, type);
     expect(isValid(wallet2, false)).toEqual(true);
+  });
+
+  test('should generate base58 address', () => {
+    const wallet = fromRandom();
+    expect(wallet.toAddress().startsWith('z')).toBeTruthy();
+  });
+
+  test('should generate base16 address', () => {
+    const wallet = fromRandom('eth');
+    console.log(wallet.toJSON());
+    expect(wallet.toAddress().startsWith('0x')).toBeTruthy();
+  });
+});
+
+describe('WalletType', () => {
+  test('should merge default wallet-type', () => {
+    let t = WalletType();
+    expect(t).toEqual(DEFAULT_WALLET_TYPE);
+
+    t = WalletType({ role: types.RoleType.ROLE_ACCOUNT });
+    expect(t).toEqual(DEFAULT_WALLET_TYPE);
+  });
+
+  test('should fromJson and toJson work', () => {
+    const t = WalletType();
+    const json = {
+      address: 'BASE58',
+      hash: 'SHA3',
+      pk: 'ED25519',
+      role: 'ROLE_ACCOUNT',
+    };
+    expect(WalletType.toJSON(t)).toEqual(json);
+    expect(WalletType.fromJSON(json)).toEqual(t);
+  });
+
+  test('should string defaults work', () => {
+    expect(WalletType('default')).toEqual(DEFAULT_WALLET_TYPE);
+    expect(WalletType('forge')).toEqual(DEFAULT_WALLET_TYPE);
+    expect(WalletType('eth')).toEqual(ETH_WALLET_TYPE);
   });
 });

@@ -15,10 +15,18 @@ const mapping = {
   address: 'encoding',
 };
 
-const defaultWalletType = {
+const DEFAULT_WALLET_TYPE = {
   pk: types.KeyType.ED25519,
   role: types.RoleType.ROLE_ACCOUNT,
   hash: types.HashType.SHA3,
+  address: types.EncodingType.BASE58,
+};
+
+const ETH_WALLET_TYPE = {
+  pk: types.KeyType.SECP256K1,
+  role: types.RoleType.ROLE_ACCOUNT,
+  hash: types.HashType.KECCAK,
+  address: types.EncodingType.BASE16,
 };
 
 /**
@@ -38,7 +46,7 @@ const defaultWalletType = {
  *
  * @public
  * @static
- * @param {WalletTypeObject} [type=defaultWalletType]
+ * @param {WalletTypeObject|string} [type='default']
  * @returns {object}
  * @example
  * const assert = require('assert');
@@ -51,16 +59,25 @@ const defaultWalletType = {
  *   hash: types.HashType.SHA3,
  * });
  */
-function WalletType(type = defaultWalletType) {
-  const { role, pk, hash } = Object.assign({}, defaultWalletType, type);
-  Object.keys(type).forEach(x => {
+function WalletType(type = 'default') {
+  let input = null;
+  if (type === 'default' || type === 'forge') {
+    input = DEFAULT_WALLET_TYPE;
+  } else if (type === 'eth') {
+    input = ETH_WALLET_TYPE;
+  } else {
+    input = Object.assign({}, DEFAULT_WALLET_TYPE, type);
+  }
+
+  const { role, pk, hash, address } = input;
+  Object.keys(input).forEach(x => {
     const key = upperFirst(`${mapping[x] || x}Type`);
-    if (Object.values(types[key]).includes(type[x]) === false) {
-      throw new Error(`Unsupported ${x} type: ${type[x]}`);
+    if (Object.values(types[key]).includes(input[x]) === false) {
+      throw new Error(`Unsupported ${x} type: ${input[x]}`);
     }
   });
 
-  return { role, pk, hash, address: types.EncodingType.BASE58 };
+  return { role, pk, hash, address };
 }
 
 WalletType.toJSON = type =>
@@ -104,10 +121,10 @@ WalletType.fromJSON = json =>
  * @param {object} keyPair - the key pair
  * @param {string} keyPair.sk - the secretKey
  * @param {string} keyPair.pk - the wallet publicKey
- * @param {WalletTypeObject} [type=defaultWalletType] - wallet type
+ * @param {WalletTypeObject} [type='default'] - wallet type
  * @returns {WalletObject} wallet object that can be used to sign/verify/getAddress
  */
-function Wallet(keyPair, type = defaultWalletType) {
+function Wallet(keyPair, type = 'default') {
   const signer = getSigner(type.pk);
   const hasher = getHasher(type.hash);
 
@@ -160,7 +177,7 @@ function Wallet(keyPair, type = defaultWalletType) {
  * @public
  * @static
  * @param {string} sk - the secret key, `hex encoded string`
- * @param {WalletTypeObject} [type=defaultWalletType] - wallet type
+ * @param {WalletTypeObject} [type='default'] - wallet type
  * @returns {WalletObject} wallet object that can be used to sign/verify/getAddress
  * @example
  * const assert = require('assert');
@@ -177,7 +194,7 @@ function Wallet(keyPair, type = defaultWalletType) {
  * assert.equal(signature, sig, "signature should match");
  * assert.ok(wallet.verify(message, signature), "signature should be verified");
  */
-function fromSecretKey(sk, _type = defaultWalletType) {
+function fromSecretKey(sk, _type = 'default') {
   const type = WalletType(_type);
   const keyPair = { sk, pk: getSigner(type.pk).getPublicKey(sk) };
   return Wallet(keyPair, type);
@@ -189,10 +206,10 @@ function fromSecretKey(sk, _type = defaultWalletType) {
  * @public
  * @static
  * @param {string} pk - the public key, `hex encoded string`
- * @param {WalletTypeObject} [type=defaultWalletType] - wallet type
+ * @param {WalletTypeObject} [type='default'] - wallet type
  * @returns {WalletObject} wallet object that can be used to sign/verify/getAddress
  */
-function fromPublicKey(pk, _type = defaultWalletType) {
+function fromPublicKey(pk, _type = 'default') {
   return Wallet({ pk }, WalletType(_type));
 }
 
@@ -222,14 +239,14 @@ function fromAddress(address) {
  *
  * @public
  * @static
- * @param {WalletTypeObject} [type=defaultWalletType] - wallet type
+ * @param {WalletTypeObject} [type='default'] - wallet type
  * @returns {WalletObject} wallet object that can be used to sign/verify/getAddress
  * @example
  * const { fromRandom } = require('@arcblock/forge-wallet');
  * const wallet = fromRandom();
  * // Do something with wallet
  */
-function fromRandom(_type = defaultWalletType) {
+function fromRandom(_type = 'default') {
   const type = WalletType(_type);
   const signer = getSigner(type.pk);
   const keyPair = signer.genKeyPair();
@@ -305,4 +322,6 @@ module.exports = {
   isValid,
   Wallet,
   WalletType,
+  DEFAULT_WALLET_TYPE,
+  ETH_WALLET_TYPE,
 };
