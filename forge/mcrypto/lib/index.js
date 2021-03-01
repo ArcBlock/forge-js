@@ -102,6 +102,7 @@ const Mcrypto = (module.exports = {
       ED25519: 0,
       SECP256K1: 1,
     },
+
     /**
      * Hashing algorithms
      *
@@ -120,6 +121,7 @@ const Mcrypto = (module.exports = {
       SHA3_512: 5,
       SHA2: 6,
     },
+
     /**
      * DID wallet role type
      *
@@ -145,8 +147,11 @@ const Mcrypto = (module.exports = {
       ROLE_SWAP: 12,
       ROLE_DELEGATE: 13,
       ROLE_VC: 14, // verifiable credential
+      ROLE_BLOCKLET: 15, // blocklet
+      ROLE_REGISTRY: 16, // blocklet registry
       ROLE_ANY: 63,
     },
+
     /**
      * Address encoding algorithm, defaults to `base58btc`
      *

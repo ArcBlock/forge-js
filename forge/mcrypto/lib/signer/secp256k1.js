@@ -62,9 +62,7 @@ class Secp256k1Signer extends Signer {
    * @memberof Secp256k1Signer
    */
   getPublicKey(sk, encoding = 'hex') {
-    const pk = secp256k1
-      .keyFromPrivate(this.strip0x(toHex(sk)), 'hex')
-      .getPublic(compressed, 'hex');
+    const pk = secp256k1.keyFromPrivate(this.strip0x(toHex(sk))).getPublic(compressed, 'hex');
     return encode(`0x${pk}`, encoding);
   }
 
@@ -86,8 +84,8 @@ class Secp256k1Signer extends Signer {
     }
 
     const signature = secp256k1
-      .keyFromPrivate(this.strip0x(toHex(sk)), 'hex')
-      .sign(this.strip0x(msg))
+      .keyFromPrivate(this.strip0x(toHex(sk)))
+      .sign(this.strip0x(msg), { canonical: true })
       .toDER('hex');
     return encode(`0x${signature}`, encoding);
   }
