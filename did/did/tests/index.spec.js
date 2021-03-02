@@ -29,6 +29,21 @@ const appType = {
   hash: types.HashType.SHA3,
 };
 
+const ethereumCases = [
+  {
+    secretKey: '0x4646464646464646464646464646464646464646464646464646464646464646',
+    publicKey:
+      '0x4bc2a31265153f07e70e0bab08724e6b85e217f8cd628ceb62974247bb493382ce28cab79ad7119ee1ad3ebcdb98a16805211530ecc6cfefa1b88e6dff99232a',
+    address: '0x9d8A62f656a8d1615C1294fd71e9CFb3E4855A4F',
+  },
+  {
+    secretKey: '0x0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef',
+    publicKey:
+      '0x4646ae5047316b4230d0086c8acec687f00b1cd9d1dc634f6cb358ac0a9a8ffffe77b4dd0a4bfb95851f3b7355c781dd60f8418fc8a65d14907aff47c903a559',
+    address: '0xFCAd0B19bB29D4674531d6f115237E16AfCE377c',
+  },
+];
+
 describe('@arcblock/did', () => {
   test('should have functions', () => {
     expect(typeof fromSecretKey).toEqual('function');
@@ -69,36 +84,21 @@ describe('@arcblock/did', () => {
     expect(address).toEqual(appId);
   });
 
-  test('should get type info as expected', () => {
-    const typeInfo = toTypeInfo(appId);
-    expect(typeInfo).toEqual(appType);
-  });
-
-  test('should get type info as expected: string', () => {
-    const typeInfo = toTypeInfo(appId, true);
-    expect(typeInfo.role).toEqual('ROLE_APPLICATION');
-    expect(typeInfo.pk).toEqual('ED25519');
-    expect(typeInfo.hash).toEqual('SHA3');
-  });
-
-  test('should get type info as expected: bot', () => {
-    const typeInfo = toTypeInfo('zcXdrcDeYJgZ5Nkc3eBgXQKTrXc2B7hwzoiy', true);
-    expect(typeInfo.role).toEqual('ROLE_BOT');
-    expect(typeInfo.pk).toEqual('ED25519');
-    expect(typeInfo.hash).toEqual('SHA3');
-  });
-
-  test('should get type hex as expected', () => {
-    const typeHex = fromTypeInfo(appType);
-    expect(typeHex).toEqual('0c01');
-  });
-
   test('should validate did as expected', () => {
     expect(isValid(appId)).toEqual(true);
     expect(isValid(userId)).toEqual(true);
     expect(isValid(`did:abt:${appId}`)).toEqual(true);
     expect(isValid(`did:abt:${userId}`)).toEqual(true);
     expect(isValid('abc')).toEqual(false);
+    expect(isValid('did:abt:z1muQ3xqHQK2uiACHyChikobsiY5kLqtShA')).toEqual(true);
+    expect(isValid('z1muQ3xqHQK2uiACHyChikobsiY5kLqtShA')).toEqual(true);
+    expect(isValid('z2muQ3xqHQK2uiACHyChikobsiY5kLqtShA')).toEqual(false);
+    expect(isValid('z1muQ3xqHQK2uiACHyChikobsiY5kLqtSha')).toEqual(false);
+
+    // ethereum support
+    ethereumCases.forEach(({ address }) => {
+      expect(isValid(address)).toEqual(true);
+    });
   });
 
   test('should match did and pk work as expected', () => {
@@ -117,39 +117,29 @@ describe('@arcblock/did', () => {
     expect(fromPublicKey(pk1, { role: types.RoleType.ROLE_NODE })).toEqual('z89nF4GRYvgw5mqk8NqVVC7NeZLWKbcbQY7V');
     expect(fromPublicKey(pk1, { role: types.RoleType.ROLE_VALIDATOR })).toEqual('zyt2vg6n8424c9xdXLGj1g27finM77ZN5KQL');
 
-    // const hash1 = '0xD1B287B1ACB71A980568C99A3AB32A8ED1D9C1BB';
-    // expect(fromPublicKeyHash(hash1)).toEqual('z1ioGHFYiEemfLa3hQjk4JTwWTQPu1g2YxP');
-    // expect(fromPublicKeyHash(hash1, { role: types.RoleType.ROLE_NODE })).toEqual('z89nF4GRYvgw5mqk8NqVVC7NeZLWKbcbQY7V');
-    // expect(fromPublicKeyHash(hash1, { role: types.RoleType.ROLE_VALIDATOR })).toEqual('zyt2vg6n8424c9xdXLGj1g27finM77ZN5KQL');
-
     expect(
       fromSecretKey('0x26954E19E8781905E2CF91A18AE4F36A954C142176EE1BC27C2635520C49BC55', {
         pk: types.KeyType.SECP256K1,
       })
     ).toEqual('z1Ee1H8g248HqroacmEnZzMYgbhjz1Z2WSvv');
-
-    expect(isValid('did:abt:z1muQ3xqHQK2uiACHyChikobsiY5kLqtShA')).toEqual(true);
-    expect(isValid('z1muQ3xqHQK2uiACHyChikobsiY5kLqtShA')).toEqual(true);
-    expect(isValid('z2muQ3xqHQK2uiACHyChikobsiY5kLqtShA')).toEqual(false);
-    expect(isValid('z1muQ3xqHQK2uiACHyChikobsiY5kLqtSha')).toEqual(false);
   });
 
   test('should generate eth address from privateKey as expected', () => {
-    expect(fromSecretKey('0x4646464646464646464646464646464646464646464646464646464646464646', 'eth')).toEqual(
-      '0x9d8A62f656a8d1615C1294fd71e9CFb3E4855A4F'
-    );
-    expect(fromSecretKey('0x0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef', 'eth')).toEqual(
-      '0xFCAd0B19bB29D4674531d6f115237E16AfCE377c'
-    );
+    ethereumCases.forEach(({ secretKey, address }) => {
+      expect(fromSecretKey(secretKey, 'eth')).toEqual(address);
+    });
   });
 
-  test('should generate eth address from publicKey as expected: more', () => {
-    expect(fromPublicKey('0x4bc2a31265153f07e70e0bab08724e6b85e217f8cd628ceb62974247bb493382ce28cab79ad7119ee1ad3ebcdb98a16805211530ecc6cfefa1b88e6dff99232a', 'eth')).toEqual(
-      '0x9d8A62f656a8d1615C1294fd71e9CFb3E4855A4F'
-    );
-    expect(fromPublicKey('0x4646ae5047316b4230d0086c8acec687f00b1cd9d1dc634f6cb358ac0a9a8ffffe77b4dd0a4bfb95851f3b7355c781dd60f8418fc8a65d14907aff47c903a559', 'eth')).toEqual(
-      '0xFCAd0B19bB29D4674531d6f115237E16AfCE377c'
-    );
+  test('should generate eth address from publicKey as expected', () => {
+    ethereumCases.forEach(({ publicKey, address }) => {
+      expect(fromPublicKey(publicKey, 'eth')).toEqual(address);
+    });
+  });
+
+  test('should validate eth address from publicKey as expected', () => {
+    ethereumCases.forEach(({ publicKey, address }) => {
+      expect(isFromPublicKey(address, publicKey)).toEqual(true);
+    });
   });
 });
 
@@ -190,5 +180,40 @@ describe('DidType', () => {
     expect(DidType('default')).toEqual(DID_TYPE_FORGE);
     expect(DidType('forge')).toEqual(DID_TYPE_FORGE);
     expect(DidType('eth')).toEqual(DID_TYPE_ETHEREUM);
+  });
+
+  test('should get type info as expected', () => {
+    const typeInfo = toTypeInfo(appId);
+    expect(typeInfo).toEqual(appType);
+  });
+
+  test('should get type info as expected: string', () => {
+    const typeInfo = toTypeInfo(appId, true);
+    expect(typeInfo.role).toEqual('ROLE_APPLICATION');
+    expect(typeInfo.pk).toEqual('ED25519');
+    expect(typeInfo.hash).toEqual('SHA3');
+  });
+
+  test('should get type info as expected: bot', () => {
+    const typeInfo = toTypeInfo('zcXdrcDeYJgZ5Nkc3eBgXQKTrXc2B7hwzoiy', true);
+    expect(typeInfo.role).toEqual('ROLE_BOT');
+    expect(typeInfo.pk).toEqual('ED25519');
+    expect(typeInfo.hash).toEqual('SHA3');
+  });
+
+  test('should get type info as expected: ethereum', () => {
+    const address = '0xFCAd0B19bB29D4674531d6f115237E16AfCE377c';
+    let typeInfo = toTypeInfo(address);
+    expect(typeInfo).toEqual(DID_TYPE_ETHEREUM);
+
+    typeInfo = toTypeInfo(address, true);
+    expect(typeInfo.role).toEqual('ROLE_ACCOUNT');
+    expect(typeInfo.pk).toEqual('ETHEREUM');
+    expect(typeInfo.hash).toEqual('KECCAK');
+  });
+
+  test('should get type hex as expected', () => {
+    const typeHex = fromTypeInfo(appType);
+    expect(typeHex).toEqual('0c01');
   });
 });

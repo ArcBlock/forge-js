@@ -13,6 +13,7 @@ const {
   toTypeInfo,
   fromTypeInfo,
   isEthereumType,
+  isEthereumAddress,
   DID_TYPE_FORGE,
   DID_TYPE_ETHEREUM,
   toChecksumAddress,
@@ -139,6 +140,10 @@ const isValid = did => {
   const { hash } = toTypeInfo(did);
   if (typeof hash === 'undefined') {
     return false;
+  }
+
+  if (isEthereumAddress(did)) {
+    return true;
   }
 
   const hashFn = getHasher(hash);

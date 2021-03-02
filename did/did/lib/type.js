@@ -226,18 +226,23 @@ const fromTypeInfo = type => {
  */
 const toTypeInfo = (did, returnString = false) => {
   try {
-    const bytes = toBytes(did);
-    const typeBytes = bytes.slice(0, 2);
-    const typeHex = toStrictHex(Buffer.from(typeBytes).toString('hex'));
-    const typeBits = toBits(new BN(typeHex, 16), 16);
-    const roleBits = typeBits.slice(0, 6);
-    const keyBits = typeBits.slice(6, 11);
-    const hashBits = typeBits.slice(11, 16);
-    const type = {
-      role: parseInt(roleBits, 2),
-      pk: parseInt(keyBits, 2),
-      hash: parseInt(hashBits, 2),
-    };
+    let type = null;
+    if (isEthereumAddress(did)) {
+      type = DID_TYPE_ETHEREUM;
+    } else {
+      const bytes = toBytes(did);
+      const typeBytes = bytes.slice(0, 2);
+      const typeHex = toStrictHex(Buffer.from(typeBytes).toString('hex'));
+      const typeBits = toBits(new BN(typeHex, 16), 16);
+      const roleBits = typeBits.slice(0, 6);
+      const keyBits = typeBits.slice(6, 11);
+      const hashBits = typeBits.slice(11, 16);
+      type = {
+        role: parseInt(roleBits, 2),
+        pk: parseInt(keyBits, 2),
+        hash: parseInt(hashBits, 2),
+      };
+    }
 
     // remove unsupported types
     Object.keys(type).forEach(x => {
