@@ -12,6 +12,9 @@ const {
   isFromPublicKey,
   toDid,
   toAddress,
+  DidType,
+  DID_TYPE_FORGE,
+  DID_TYPE_ETHEREUM,
 } = require('../lib/index');
 
 const sk =
@@ -19,6 +22,7 @@ const sk =
 const pk = '0xE4852B7091317E3622068E62A5127D1FB0D4AE2FC50213295E10652D2F0ABFC7';
 const appId = 'zNKtCNqYWLYWYW3gWRA1vnRykfCBZYHZvzKr';
 const appIdSecp256k1 = 'zNYm1gM23ZGHNYDYyBwSaywzTqLKoj4WuTeC';
+const appIdEth = '0x9c408fb9e50e31ecaa50dbe044a06350d8ab695c';
 const userId = 'z1nfCgfPqvSQCaZ2EVZPXbwPjKCkMrqfTUu';
 const appType = {
   role: types.RoleType.ROLE_APPLICATION,
@@ -103,7 +107,7 @@ describe('@arcblock/did', () => {
     expect(isFromPublicKey('abc', pk)).toEqual(false);
   });
 
-  test.only('should match elixir did test case', () => {
+  test('should match elixir did test case', () => {
     const sk1 = '0x3E0F9A313300226D51E33D5D98A126E86396956122E97E32D31CEE2277380B83FF47B3022FA503EAA1E9FA4B20FA8B16694EA56096F3A2E9109714062B3486D9'; // prettier-ignore
     expect(fromSecretKey(sk1)).toEqual('z1ioGHFYiEemfLa3hQjk4JTwWTQPu1g2YxP');
     expect(fromSecretKey(sk1, { role: types.RoleType.ROLE_NODE })).toEqual('z89nF4GRYvgw5mqk8NqVVC7NeZLWKbcbQY7V');
@@ -130,6 +134,30 @@ describe('@arcblock/did', () => {
     expect(isValid('z2muQ3xqHQK2uiACHyChikobsiY5kLqtShA')).toEqual(false);
     expect(isValid('z1muQ3xqHQK2uiACHyChikobsiY5kLqtSha')).toEqual(false);
   });
+
+  test('should generate eth address from publicKey as expected', () => {
+    expect(
+      fromPublicKey(pk, {
+        pk: types.KeyType.ETHEREUM,
+        hash: types.HashType.KECCAK,
+        address: types.EncodingType.BASE16,
+      })
+    ).toEqual(appIdEth);
+
+    expect(fromPublicKey(pk, 'eth')).toEqual(appIdEth);
+  });
+
+  test('should generate eth address from privateKey as expected', () => {
+    expect(fromSecretKey('0x1697c963a5d66d23e121454f030339355b3fb15c9a1eedec575f0de2c6f0465d', 'eth')).toEqual(
+      '0xf7484f39c9a5a653c6bc0097a8c2ca9f9e77045e'
+    );
+    expect(fromSecretKey('0x1697c963a5d66d23e121454f030339355b3fb15c9a1eedec575f0de2c6f0465d', 'eth')).toEqual(
+      '0xf7484f39c9a5a653c6bc0097a8c2ca9f9e77045e'
+    );
+    expect(fromSecretKey('0x1697c963a5d66d23e121454f030339355b3fb15c9a1eedec575f0de2c6f0465d', 'eth')).toEqual(
+      '0xf7484f39c9a5a653c6bc0097a8c2ca9f9e77045e'
+    );
+  });
 });
 
 describe('toDid & toAddress', () => {
@@ -141,5 +169,33 @@ describe('toDid & toAddress', () => {
   test('should prepend prefix', () => {
     expect(toAddress('did:abt:z1muQ3xqHQK2uiACHyChikobsiY5kLqtShA')).toEqual('z1muQ3xqHQK2uiACHyChikobsiY5kLqtShA');
     expect(toAddress('z1muQ3xqHQK2uiACHyChikobsiY5kLqtShA')).toEqual('z1muQ3xqHQK2uiACHyChikobsiY5kLqtShA');
+  });
+});
+
+describe('DidType', () => {
+  test('should merge default wallet-type', () => {
+    let t = DidType();
+    expect(t).toEqual(DID_TYPE_FORGE);
+
+    t = DidType({ role: types.RoleType.ROLE_ACCOUNT });
+    expect(t).toEqual(DID_TYPE_FORGE);
+  });
+
+  test('should fromJson and toJson work', () => {
+    const t = DidType();
+    const json = {
+      address: 'BASE58',
+      hash: 'SHA3',
+      pk: 'ED25519',
+      role: 'ROLE_ACCOUNT',
+    };
+    expect(DidType.toJSON(t)).toEqual(json);
+    expect(DidType.fromJSON(json)).toEqual(t);
+  });
+
+  test('should string defaults work', () => {
+    expect(DidType('default')).toEqual(DID_TYPE_FORGE);
+    expect(DidType('forge')).toEqual(DID_TYPE_FORGE);
+    expect(DidType('eth')).toEqual(DID_TYPE_ETHEREUM);
   });
 });

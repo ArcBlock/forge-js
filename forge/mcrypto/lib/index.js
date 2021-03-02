@@ -7,6 +7,7 @@
  * - Signer
  *    - Ed25519 {@link Ed25519Signer}
  *    - Secp256k1 {@link Secp256k1Signer}
+ *    - Ethereum {@link EthereumSigner}
  * - Hasher
  *    - SHA2 {@link Sha2Hasher}
  *    - SHA3 {@link Sha3Hasher}
@@ -41,6 +42,7 @@ const Mcrypto = (module.exports = {
   Signer: {
     Ed25519: require('./signer/ed25519'),
     Secp256k1: require('./signer/secp256k1'),
+    Ethereum: require('./signer/ethereum'),
   },
 
   /**
@@ -101,6 +103,7 @@ const Mcrypto = (module.exports = {
     KeyType: {
       ED25519: 0,
       SECP256K1: 1,
+      ETHEREUM: 2,
     },
 
     /**
@@ -174,6 +177,7 @@ const Mcrypto = (module.exports = {
    * @param {number} type - algorithm used to derive key pair, possible values are
    * - types.KeyType.ED25519
    * - types.KeyType.SECP256k1
+   * - types.KeyType.ETHEREUM
    * @returns {object} signer instance
    * @example
    * const { getSigner, types } = require('@arcblock/mcrypto');
@@ -233,6 +237,7 @@ const Mcrypto = (module.exports = {
 const Signers = Object.freeze({
   [Mcrypto.types.KeyType.ED25519]: Mcrypto.Signer.Ed25519,
   [Mcrypto.types.KeyType.SECP256K1]: Mcrypto.Signer.Secp256k1,
+  [Mcrypto.types.KeyType.ETHEREUM]: Mcrypto.Signer.Ethereum,
 });
 
 const Hashers = Object.freeze({
