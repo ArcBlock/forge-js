@@ -148,14 +148,20 @@ describe('@arcblock/did', () => {
   });
 
   test('should generate eth address from privateKey as expected', () => {
-    expect(fromSecretKey('0x1697c963a5d66d23e121454f030339355b3fb15c9a1eedec575f0de2c6f0465d', 'eth')).toEqual(
-      '0xf7484f39c9a5a653c6bc0097a8c2ca9f9e77045e'
+    expect(fromSecretKey('0x4646464646464646464646464646464646464646464646464646464646464646', 'eth')).toEqual(
+      '0x9d8a62f656a8d1615c1294fd71e9cfb3e4855a4f'
     );
-    expect(fromSecretKey('0x1697c963a5d66d23e121454f030339355b3fb15c9a1eedec575f0de2c6f0465d', 'eth')).toEqual(
-      '0xf7484f39c9a5a653c6bc0097a8c2ca9f9e77045e'
+    expect(fromSecretKey('0x0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef', 'eth')).toEqual(
+      '0xfcad0b19bb29d4674531d6f115237e16afce377c'
     );
-    expect(fromSecretKey('0x1697c963a5d66d23e121454f030339355b3fb15c9a1eedec575f0de2c6f0465d', 'eth')).toEqual(
-      '0xf7484f39c9a5a653c6bc0097a8c2ca9f9e77045e'
+  });
+
+  test('should generate eth address from publicKey as expected: more', () => {
+    expect(fromPublicKey('0x4bc2a31265153f07e70e0bab08724e6b85e217f8cd628ceb62974247bb493382ce28cab79ad7119ee1ad3ebcdb98a16805211530ecc6cfefa1b88e6dff99232a', 'eth')).toEqual(
+      '0x9d8a62f656a8d1615c1294fd71e9cfb3e4855a4f'
+    );
+    expect(fromPublicKey('0x4646ae5047316b4230d0086c8acec687f00b1cd9d1dc634f6cb358ac0a9a8ffffe77b4dd0a4bfb95851f3b7355c781dd60f8418fc8a65d14907aff47c903a559', 'eth')).toEqual(
+      '0xfcad0b19bb29d4674531d6f115237e16afce377c'
     );
   });
 });
