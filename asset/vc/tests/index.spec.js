@@ -2,7 +2,7 @@
 const stringify = require('json-stable-stringify');
 const { types } = require('@arcblock/mcrypto');
 const { fromRandom } = require('@arcblock/forge-wallet');
-const { toCompleteType, fromPublicKeyHash } = require('@arcblock/did');
+const { DidType, fromPublicKeyHash } = require('@arcblock/did');
 const { toBase58 } = require('@arcblock/forge-util');
 
 const { create, verify, verifyPresentation } = require('../lib/index');
@@ -34,7 +34,7 @@ describe('@arcblock/vc', () => {
         subject,
       });
 
-      const vcType = toCompleteType({ role: types.RoleType.ROLE_VC });
+      const vcType = DidType({ role: types.RoleType.ROLE_VC });
       const vcDid = fromPublicKeyHash(issuer.hash(stringify(subject)), vcType);
       expect(vc.id).toEqual(vcDid);
 
