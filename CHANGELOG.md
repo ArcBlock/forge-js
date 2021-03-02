@@ -1,3 +1,12 @@
+## 1.6.0 (March 02, 2021)
+
+- fix: make isValid and isFromPublicKey work for ethereum addresses
+- feat: return checksum address for ethereum
+- feat: support ethereum address generation
+- feat: support customize address encoding type in did-types
+- feat: add ethereum signer in mcrypto
+- chore: add new role type for blocklet and registry
+
 ## 1.5.8 (January 19, 2021)
 
 - chore: bump crypto/hash related dependencies to latest
