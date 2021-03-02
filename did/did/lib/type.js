@@ -2,7 +2,7 @@ const BN = require('bn.js');
 const upperFirst = require('lodash/upperFirst');
 const isEqual = require('lodash/isEqual');
 const pick = require('lodash/pick');
-const { types } = require('@arcblock/mcrypto');
+const { types, Hasher } = require('@arcblock/mcrypto');
 const { numberToHex, stripHexPrefix } = require('@arcblock/forge-util');
 const { toBits, toBytes, toStrictHex } = require('./util');
 
@@ -31,6 +31,84 @@ const DID_TYPE_ETHEREUM = {
 const isEthereumType = type => {
   const props = ['pk', 'hash', 'address'];
   return isEqual(pick(type, props), pick(DID_TYPE_ETHEREUM, props));
+};
+
+/**
+ * Checks if the given string is an address
+ *
+ * @method isEthereumAddress
+ * @param {String} address the given HEX address
+ * @return {Boolean}
+ */
+const isEthereumAddress = address => {
+  // check if it has the basic requirements of an address
+  if (!/^(0x)?[0-9a-f]{40}$/i.test(address)) {
+    return false;
+  }
+
+  // If it's ALL lowercase or ALL upppercase
+  if (/^(0x|0X)?[0-9a-f]{40}$/.test(address) || /^(0x|0X)?[0-9A-F]{40}$/.test(address)) {
+    return true;
+  }
+
+  // Otherwise check each case
+  return checkAddressChecksum(address);
+};
+
+/**
+ * Checks if the given string is a checksummed address
+ *
+ * @method checkAddressChecksum
+ * @param {String} address the given HEX address
+ * @return {Boolean}
+ */
+const checkAddressChecksum = address => {
+  // Check each case
+  const origin = address.replace(/^0x/i, '');
+  const addressHash = Hasher.Keccak.hash256(origin.toLowerCase()).replace(/^0x/i, '');
+
+  for (let i = 0; i < 40; i++) {
+    // the nth letter should be uppercase if the nth digit of casemap is 1
+    if (
+      (parseInt(addressHash[i], 16) > 7 && origin[i].toUpperCase() !== origin[i]) ||
+      (parseInt(addressHash[i], 16) <= 7 && origin[i].toLowerCase() !== origin[i])
+    ) {
+      return false;
+    }
+  }
+  return true;
+};
+
+/**
+ * Converts to a checksum address
+ *
+ * @method toChecksumAddress
+ * @param {String} address the given HEX address
+ * @return {String}
+ */
+const toChecksumAddress = address => {
+  if (typeof address === 'undefined') {
+    return '';
+  }
+
+  if (!/^(0x)?[0-9a-f]{40}$/i.test(address)) {
+    throw new Error(`Given address "${address}" is not a valid Ethereum address.`);
+  }
+
+  const lower = address.toLowerCase().replace(/^0x/i, '');
+  const addressHash = Hasher.Keccak.hash256(lower).replace(/^0x/i, '');
+  let checksumAddress = '0x';
+
+  for (let i = 0; i < lower.length; i++) {
+    // If ith character is 8 to f then make it uppercase
+    if (parseInt(addressHash[i], 16) > 7) {
+      checksumAddress += lower[i].toUpperCase();
+    } else {
+      checksumAddress += lower[i];
+    }
+  }
+
+  return checksumAddress;
 };
 
 /**
@@ -188,5 +266,7 @@ module.exports = {
   fromTypeInfo,
   toTypeInfo,
   isEthereumType,
+  isEthereumAddress,
+  toChecksumAddress,
   DidType,
 };

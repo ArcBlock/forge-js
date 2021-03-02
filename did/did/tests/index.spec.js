@@ -22,7 +22,6 @@ const sk =
 const pk = '0xE4852B7091317E3622068E62A5127D1FB0D4AE2FC50213295E10652D2F0ABFC7';
 const appId = 'zNKtCNqYWLYWYW3gWRA1vnRykfCBZYHZvzKr';
 const appIdSecp256k1 = 'zNYm1gM23ZGHNYDYyBwSaywzTqLKoj4WuTeC';
-const appIdEth = '0x9c408fb9e50e31ecaa50dbe044a06350d8ab695c';
 const userId = 'z1nfCgfPqvSQCaZ2EVZPXbwPjKCkMrqfTUu';
 const appType = {
   role: types.RoleType.ROLE_APPLICATION,
@@ -135,33 +134,21 @@ describe('@arcblock/did', () => {
     expect(isValid('z1muQ3xqHQK2uiACHyChikobsiY5kLqtSha')).toEqual(false);
   });
 
-  test('should generate eth address from publicKey as expected', () => {
-    expect(
-      fromPublicKey(pk, {
-        pk: types.KeyType.ETHEREUM,
-        hash: types.HashType.KECCAK,
-        address: types.EncodingType.BASE16,
-      })
-    ).toEqual(appIdEth);
-
-    expect(fromPublicKey(pk, 'eth')).toEqual(appIdEth);
-  });
-
   test('should generate eth address from privateKey as expected', () => {
     expect(fromSecretKey('0x4646464646464646464646464646464646464646464646464646464646464646', 'eth')).toEqual(
-      '0x9d8a62f656a8d1615c1294fd71e9cfb3e4855a4f'
+      '0x9d8A62f656a8d1615C1294fd71e9CFb3E4855A4F'
     );
     expect(fromSecretKey('0x0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef', 'eth')).toEqual(
-      '0xfcad0b19bb29d4674531d6f115237e16afce377c'
+      '0xFCAd0B19bB29D4674531d6f115237E16AfCE377c'
     );
   });
 
   test('should generate eth address from publicKey as expected: more', () => {
     expect(fromPublicKey('0x4bc2a31265153f07e70e0bab08724e6b85e217f8cd628ceb62974247bb493382ce28cab79ad7119ee1ad3ebcdb98a16805211530ecc6cfefa1b88e6dff99232a', 'eth')).toEqual(
-      '0x9d8a62f656a8d1615c1294fd71e9cfb3e4855a4f'
+      '0x9d8A62f656a8d1615C1294fd71e9CFb3E4855A4F'
     );
     expect(fromPublicKey('0x4646ae5047316b4230d0086c8acec687f00b1cd9d1dc634f6cb358ac0a9a8ffffe77b4dd0a4bfb95851f3b7355c781dd60f8418fc8a65d14907aff47c903a559', 'eth')).toEqual(
-      '0xfcad0b19bb29d4674531d6f115237e16afce377c'
+      '0xFCAd0B19bB29D4674531d6f115237E16AfCE377c'
     );
   });
 });

@@ -8,7 +8,15 @@
 const Mcrypto = require('@arcblock/mcrypto');
 const { stripHexPrefix, toBase58, toAddress, toDid } = require('@arcblock/forge-util');
 const { DID_PREFIX, toBytes, toStrictHex } = require('./util');
-const { DidType, toTypeInfo, fromTypeInfo, DID_TYPE_FORGE, DID_TYPE_ETHEREUM } = require('./type');
+const {
+  DidType,
+  toTypeInfo,
+  fromTypeInfo,
+  isEthereumType,
+  DID_TYPE_FORGE,
+  DID_TYPE_ETHEREUM,
+  toChecksumAddress,
+} = require('./type');
 
 // eslint-disable-next-line
 const debug = require('debug')(require('../package.json').name);
@@ -29,7 +37,7 @@ const { types, getSigner, getHasher } = Mcrypto;
 const fromSecretKey = (sk, type) => {
   const info = DidType(type || {});
   const pub = getSigner(info.pk).getPublicKey(sk);
-  debug('fromSecretKey', { sk, pub });
+  // debug('fromSecretKey', { sk, pub });
   return fromPublicKey(pub.indexOf('0x') === 0 ? pub : `0x${pub}`, info);
 };
 
@@ -46,7 +54,7 @@ const fromPublicKey = (pk, type) => {
   const info = DidType(type || {});
   const hashFn = getHasher(info.hash);
   const pkHash = hashFn(pk, 1);
-  debug('fromPublicKey', pkHash);
+  // debug('fromPublicKey', pkHash);
   return fromPublicKeyHash(pkHash, info);
 };
 
@@ -57,16 +65,21 @@ const fromPublicKeyHash = (buffer, type) => {
   const typeHex = fromTypeInfo(info);
   const checksum = stripHexPrefix(hashFn(`0x${typeHex}${pkHash}`, 1)).slice(0, 8); // 4 bytes
   const didHash = `0x${typeHex}${pkHash}${checksum}`;
-  debug('fromPublicKeyHash', { buffer, info, pkHash, typeHex, checksum, didHash });
+  // debug('fromPublicKeyHash', { buffer, info, pkHash, typeHex, checksum, didHash });
+
+  // ethereum-compatible address, this address does not contain any type info
+  // but we can infer from the address itself
+  if (isEthereumType(info)) {
+    return toChecksumAddress(`0x${buffer.slice(-40)}`);
+  }
 
   // default forge-compatible did
   if (info.address === types.EncodingType.BASE58) {
     return toBase58(didHash);
   }
 
-  // ethereum-compatible address, this address does not contain any type info
-  // but we can infer from the address itself
-  return `0x${buffer.slice(-40)}`;
+  // fallback base16 encoding
+  return didHash;
 };
 
 /**
