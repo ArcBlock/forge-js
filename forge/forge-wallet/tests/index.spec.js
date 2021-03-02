@@ -1,15 +1,5 @@
 const { types } = require('@arcblock/mcrypto');
-const {
-  fromRandom,
-  fromPublicKey,
-  fromSecretKey,
-  fromJSON,
-  fromAddress,
-  isValid,
-  WalletType,
-  DEFAULT_WALLET_TYPE,
-  ETH_WALLET_TYPE,
-} = require('../lib');
+const { fromRandom, fromPublicKey, fromSecretKey, fromJSON, fromAddress, isValid } = require('../lib');
 
 const sk =
   '0xD67C071B6F51D2B61180B9B1AA9BE0DD0704619F0E30453AB4A592B036EDE644E4852B7091317E3622068E62A5127D1FB0D4AE2FC50213295E10652D2F0ABFC7';
@@ -81,33 +71,5 @@ describe('#forge-wallet', () => {
   test('should generate base16 address', () => {
     const wallet = fromRandom('eth');
     expect(wallet.toAddress().startsWith('0x')).toBeTruthy();
-  });
-});
-
-describe('WalletType', () => {
-  test('should merge default wallet-type', () => {
-    let t = WalletType();
-    expect(t).toEqual(DEFAULT_WALLET_TYPE);
-
-    t = WalletType({ role: types.RoleType.ROLE_ACCOUNT });
-    expect(t).toEqual(DEFAULT_WALLET_TYPE);
-  });
-
-  test('should fromJson and toJson work', () => {
-    const t = WalletType();
-    const json = {
-      address: 'BASE58',
-      hash: 'SHA3',
-      pk: 'ED25519',
-      role: 'ROLE_ACCOUNT',
-    };
-    expect(WalletType.toJSON(t)).toEqual(json);
-    expect(WalletType.fromJSON(json)).toEqual(t);
-  });
-
-  test('should string defaults work', () => {
-    expect(WalletType('default')).toEqual(DEFAULT_WALLET_TYPE);
-    expect(WalletType('forge')).toEqual(DEFAULT_WALLET_TYPE);
-    expect(WalletType('eth')).toEqual(ETH_WALLET_TYPE);
   });
 });
