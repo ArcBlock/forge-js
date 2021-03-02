@@ -137,12 +137,43 @@ declare namespace ForgeSdkUtil {
 }
 
 /**
+ * The structure of a forge wallet type
+ *
+ * @public
+ * @static
+ * @global
+ * @typedef {Object} DidType
+ * @prop {number} role - Enum field to identify wallet role type
+ * @prop {number} pk - Crypto algorithm to derive publicKey from the secretKey
+ * @prop {number} hash - Hash algorithm used to hash data before sign them
+ */
+
+/**
+ * Create an wallet type object that be used as param to create a new wallet
+ *
+ * @public
+ * @static
+ * @param {DidType|string} [type='default']
+ * @returns {object}
+ * @example
+ * const assert = require('assert');
+ * const { DidType } = require('@arcblock/did');
+ * const { types } = require('@arcblock/mcrypto');
+ *
+ * const type = DidType({
+ *   role: types.RoleType.ROLE_APPLICATION,
+ *   pk: types.KeyType.ED25519,
+ *   hash: types.HashType.SHA3,
+ * });
+ */
+declare function DidType(type?: string | any): any;
+/**
  * Generate a wallet from secretKey
  *
  * @public
  * @static
  * @param {string} sk - the secret key, `hex encoded string`
- * @param {WalletTypeObject} [type=defaultWalletType] - wallet type
+ * @param {DidType} [type='default'] - wallet type
  * @returns {WalletObject} wallet object that can be used to sign/verify/getAddress
  * @example
  * const assert = require('assert');
@@ -159,30 +190,30 @@ declare namespace ForgeSdkUtil {
  * assert.equal(signature, sig, "signature should match");
  * assert.ok(wallet.verify(message, signature), "signature should be verified");
  */
-declare function fromSecretKey(sk: string, _type?: ForgeSdkWallet.T100): WalletObject;
+declare function fromSecretKey(sk: string, _type?: string): WalletObject;
 /**
  * Generate a wallet from publicKey
  *
  * @public
  * @static
  * @param {string} pk - the public key, `hex encoded string`
- * @param {WalletTypeObject} [type=defaultWalletType] - wallet type
+ * @param {DidType} [type='default'] - wallet type
  * @returns {WalletObject} wallet object that can be used to sign/verify/getAddress
  */
-declare function fromPublicKey(pk: string, _type?: ForgeSdkWallet.T100): WalletObject;
+declare function fromPublicKey(pk: string, _type?: string): WalletObject;
 /**
  * Generate a wallet by generating a random secretKey
  *
  * @public
  * @static
- * @param {WalletTypeObject} [type=defaultWalletType] - wallet type
+ * @param {DidType} [type='default'] - wallet type
  * @returns {WalletObject} wallet object that can be used to sign/verify/getAddress
  * @example
  * const { fromRandom } = require('@arcblock/forge-wallet');
  * const wallet = fromRandom();
  * // Do something with wallet
  */
-declare function fromRandom(_type?: ForgeSdkWallet.T100): WalletObject;
+declare function fromRandom(_type?: string): WalletObject;
 /**
  * Generate a wallet from address (did)
  *
@@ -230,7 +261,7 @@ declare function isValid(wallet: any, canSign?: boolean): boolean;
  * @global
  * @name WalletObject
  * @typedef WalletObject
- * @prop {WalletTypeObject} type - Indicates the wallet type
+ * @prop {DidType} type - Indicates the wallet type
  * @prop {secretKey} secretKey - Wallet secretKey
  * @prop {publicKey} publicKey - Wallet publicKey
  * @prop {function} sign - Sign `data`, data is hashed using the `HashType` defined in type before signing
@@ -247,54 +278,13 @@ declare function isValid(wallet: any, canSign?: boolean): boolean;
  * @param {object} keyPair - the key pair
  * @param {string} keyPair.sk - the secretKey
  * @param {string} keyPair.pk - the wallet publicKey
- * @param {WalletTypeObject} [type=defaultWalletType] - wallet type
+ * @param {DidType} [type='default'] - wallet type
  * @returns {WalletObject} wallet object that can be used to sign/verify/getAddress
  */
-declare function Wallet(keyPair: ForgeSdkWallet.T101, type?: WalletTypeObject): WalletObject;
-/**
- * The structure of a forge wallet type
- *
- * @public
- * @static
- * @global
- * @typedef {Object} WalletTypeObject
- * @prop {number} role - Enum field to identify wallet role type
- * @prop {number} pk - Crypto algorithm to derive publicKey from the secretKey
- * @prop {number} hash - Hash algorithm used to hash data before sign them
- */
-
-/**
- * Create an wallet type object that be used as param to create a new wallet
- *
- * @public
- * @static
- * @param {WalletTypeObject} [type=defaultWalletType]
- * @returns {object}
- * @example
- * const assert = require('assert');
- * const { WalletType } = require('@arcblock/forge-wallet');
- * const { types } = require('@arcblock/mcrypto');
- *
- * const type = WalletType({
- *   role: types.RoleType.ROLE_APPLICATION,
- *   pk: types.KeyType.ED25519,
- *   hash: types.HashType.SHA3,
- * });
- */
-declare function WalletType(type?: WalletTypeObject): any;
+declare function Wallet(keyPair: ForgeSdkWallet.T100, type?: typeof DidType): WalletObject;
 declare namespace ForgeSdkWallet {
-  export interface T100 {
-    pk: any;
-    role: any;
-    hash: any;
-  }
-  export interface WalletTypeObject {
-    role: number;
-    pk: number;
-    hash: number;
-  }
   export interface WalletObject {
-    type: WalletTypeObject;
+    type: typeof DidType;
     secretKey: any;
     publicKey: any;
     sign: (...args: any[]) => any;
@@ -302,14 +292,11 @@ declare namespace ForgeSdkWallet {
     toAddress: (...args: any[]) => any;
     toJSON: (...args: any[]) => any;
   }
-  export interface T101 {
+  export interface T100 {
     sk: string;
     pk: string;
   }
-  export interface T102 {
-    [key: string]: any;
-  }
-  export interface T103 {
+  export interface T101 {
     fromSecretKey: typeof fromSecretKey;
     fromPublicKey: typeof fromPublicKey;
     fromRandom: typeof fromRandom;
@@ -318,7 +305,8 @@ declare namespace ForgeSdkWallet {
     fromJSON: typeof fromJSON;
     isValid: typeof isValid;
     Wallet: typeof Wallet;
-    WalletType: typeof WalletType;
+    WalletType: typeof DidType;
+    DidType: typeof DidType;
   }
 }
 
@@ -600,145 +588,13 @@ declare interface ForgeSDK {
    * @param {string} [config.chainId=""] - chainId used to construct transaction
    * @see GRpcClient.getRpcMethods
    */
+  constructor(config?: any);
   /**
    * List standard rpc methods
    *
    * @returns {object}
    */
   getRpcMethods(): any;
-
-fromUnitToToken(value: string): Promise<string>;
-fromTokenToUnit(amount: number): Promise<BN>;
-toLocktime(number: number, options: any): Promise<number>;
-getTxSendMethods(): Array<string>;
-getTxSendMethods(): Array<string>;
-getTxSignMethods(): Array.<string>;
-getTxMultiSignMethods(): Array.<string>;
-getType(x: string): Object;
-decodeTx(input: string|buffer): object;
-declare(params: object, extra: any): Promise<string>;
-migrateAccount(params: object, extra: any): Promise<string>;
-delegate(params: object, extra: any): Promise<string>;
-revokeDelegate(params: object, extra: any): Promise<string>;
-createAsset(params: object, extra: any):  Promise<string>;
-updateAsset(params: object, extra: any):  Promise<string>;
-prepareConsumeAsset(params: object, extra: any): Promise<string>;
-finalizeConsumeAsset(params: object, extra: any): Promise<string>;
-consumeAsset(params: object, extra: any): Promise<string>;
-createAssetFactory(params: object, extra: any): Promise<string>;
-acquireAsset(params: object, extra: any): Promise<string>;
-upgradeNode(params: object, extra: any): Promise<string>;
-setupSwap(params: object, extra: any): Promise<string>;
-retrieveSwap(params: object, extra: any): Promise<string>;
-revokeSwap(params: object, extra: any): Promise<string>;
-transfer(params: object, extra: any): Promise<string>;
-prepareExchange(params: object, extra: any): Promise<string>;
-finalizeExchange(params: object, extra: any): Promise<string>;
-exchange(params: object, extra: any): Promise<string>;
-checkin(params: object, extra: any): Promise<string>;
-refuel(params: object, extra: any): Promise<string>;
-
-sendTx(request: forge_abi.RequestSendTx): GRpcClient.UnaryResult<forge_abi.ResponseSendTx>;
-getTx(request: forge_abi.RequestGetTx | Array<forge_abi.RequestGetTx>): GRpcClient.StreamResult<forge_abi.ResponseGetTx>;
-getBlock(request: forge_abi.RequestGetBlock | Array<forge_abi.RequestGetBlock>): GRpcClient.StreamResult<forge_abi.ResponseGetBlock>;
-getBlocks(request: forge_abi.RequestGetBlocks): GRpcClient.UnaryResult<forge_abi.ResponseGetBlocks>;
-getUnconfirmedTxs(request: forge_abi.RequestGetUnconfirmedTxs): GRpcClient.UnaryResult<forge_abi.ResponseGetUnconfirmedTxs>;
-getChainInfo(request: forge_abi.RequestGetChainInfo): GRpcClient.UnaryResult<forge_abi.ResponseGetChainInfo>;
-getNodeInfo(request: forge_abi.RequestGetNodeInfo): GRpcClient.UnaryResult<forge_abi.ResponseGetNodeInfo>;
-search(request: forge_abi.RequestSearch): GRpcClient.UnaryResult<forge_abi.ResponseSearch>;
-getNetInfo(request: forge_abi.RequestGetNetInfo): GRpcClient.UnaryResult<forge_abi.ResponseGetNetInfo>;
-getValidatorsInfo(request: forge_abi.RequestGetValidatorsInfo): GRpcClient.UnaryResult<forge_abi.ResponseGetValidatorsInfo>;
-getConfig(request: forge_abi.RequestGetConfig): GRpcClient.UnaryResult<forge_abi.ResponseGetConfig>;
-subscribe(request: forge_abi.RequestSubscribe): GRpcClient.StreamResult<forge_abi.ResponseSubscribe>;
-unsubscribe(request: forge_abi.RequestUnsubscribe): GRpcClient.UnaryResult<forge_abi.ResponseUnsubscribe>;
-
-getAccountState(request: forge_abi.RequestGetAccountState | Array<forge_abi.RequestGetAccountState>): GRpcClient.StreamResult<forge_abi.ResponseGetAccountState>;
-getAssetState(request: forge_abi.RequestGetAssetState | Array<forge_abi.RequestGetAssetState>): GRpcClient.StreamResult<forge_abi.ResponseGetAssetState>;
-getForgeState(request: forge_abi.RequestGetForgeState): GRpcClient.UnaryResult<forge_abi.ResponseGetForgeState>;
-getSwapState(request: forge_abi.RequestGetSwapState | Array<forge_abi.RequestGetSwapState>): GRpcClient.StreamResult<forge_abi.ResponseGetSwapState>;
-getDelegateState(request: forge_abi.RequestGetDelegateState | Array<forge_abi.RequestGetDelegateState>): GRpcClient.StreamResult<forge_abi.ResponseGetDelegateState>;
-declareNode(request: forge_abi.RequestDeclareNode): GRpcClient.UnaryResult<forge_abi.ResponseDeclareNode>;
-getForgeStats(request: forge_abi.RequestGetForgeStats): GRpcClient.UnaryResult<forge_abi.ResponseGetForgeStats>;
-listTransactions(request: forge_abi.RequestListTransactions): GRpcClient.UnaryResult<forge_abi.ResponseListTransactions>;
-listAssets(request: forge_abi.RequestListAssets): GRpcClient.UnaryResult<forge_abi.ResponseListAssets>;
-listStakes(request: forge_abi.RequestListStakes): GRpcClient.UnaryResult<forge_abi.ResponseListStakes>;
-listAccount(request: forge_abi.RequestListAccount): GRpcClient.UnaryResult<forge_abi.ResponseListAccount>;
-listTopAccounts(request: forge_abi.RequestListTopAccounts): GRpcClient.UnaryResult<forge_abi.ResponseListTopAccounts>;
-listAssetTransactions(request: forge_abi.RequestListAssetTransactions): GRpcClient.UnaryResult<forge_abi.ResponseListAssetTransactions>;
-listBlocks(request: forge_abi.RequestListBlocks): GRpcClient.UnaryResult<forge_abi.ResponseListBlocks>;
-getHealthStatus(request: forge_abi.RequestGetHealthStatus): GRpcClient.UnaryResult<forge_abi.ResponseGetHealthStatus>;
-listSwap(request: forge_abi.RequestListSwap): GRpcClient.UnaryResult<forge_abi.ResponseListSwap>;
-getSwapStatistics(request: forge_abi.RequestGetSwapStatistics): GRpcClient.UnaryResult<forge_abi.ResponseGetSwapStatistics>;
-encodeAccountMigrateTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.ResponseSendTx>;
-encodeAcquireAssetTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.ResponseSendTx>;
-encodeApproveWithdrawTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.ResponseSendTx>;
-encodeConsumeAssetTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.ResponseSendTx>;
-encodeCreateAssetTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.ResponseSendTx>;
-encodeDeclareTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.ResponseSendTx>;
-encodeDelegateTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.ResponseSendTx>;
-encodeDepositTokenTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.ResponseSendTx>;
-encodeExchangeTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.ResponseSendTx>;
-encodePokeTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.ResponseSendTx>;
-encodeRefuelTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.ResponseSendTx>;
-encodeRetrieveSwapTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.ResponseSendTx>;
-encodeRevokeDelegateTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.ResponseSendTx>;
-encodeRevokeSwapTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.ResponseSendTx>;
-encodeRevokeWithdrawTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.ResponseSendTx>;
-encodeSetupSwapTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.ResponseSendTx>;
-encodeTransferTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.ResponseSendTx>;
-encodeUpdateAssetTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.ResponseSendTx>;
-encodeUpdateConsensusParamsTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.ResponseSendTx>;
-encodeUpdateValidatorTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.ResponseSendTx>;
-encodeUpgradeNodeTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.ResponseSendTx>;
-encodeWithdrawTokenTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.ResponseSendTx>;
-sendAccountMigrateTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.EncodeTxResult>;
-sendAcquireAssetTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.EncodeTxResult>;
-sendApproveWithdrawTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.EncodeTxResult>;
-sendConsumeAssetTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.EncodeTxResult>;
-sendCreateAssetTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.EncodeTxResult>;
-sendDeclareTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.EncodeTxResult>;
-sendDelegateTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.EncodeTxResult>;
-sendDepositTokenTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.EncodeTxResult>;
-sendExchangeTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.EncodeTxResult>;
-sendPokeTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.EncodeTxResult>;
-sendRefuelTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.EncodeTxResult>;
-sendRetrieveSwapTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.EncodeTxResult>;
-sendRevokeDelegateTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.EncodeTxResult>;
-sendRevokeSwapTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.EncodeTxResult>;
-sendRevokeWithdrawTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.EncodeTxResult>;
-sendSetupSwapTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.EncodeTxResult>;
-sendTransferTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.EncodeTxResult>;
-sendUpdateAssetTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.EncodeTxResult>;
-sendUpdateConsensusParamsTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.EncodeTxResult>;
-sendUpdateValidatorTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.EncodeTxResult>;
-sendUpgradeNodeTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.EncodeTxResult>;
-sendWithdrawTokenTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.EncodeTxResult>;
-signAccountMigrateTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.Transaction>;
-signAcquireAssetTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.Transaction>;
-signApproveWithdrawTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.Transaction>;
-signConsumeAssetTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.Transaction>;
-signCreateAssetTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.Transaction>;
-signDeclareTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.Transaction>;
-signDelegateTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.Transaction>;
-signDepositTokenTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.Transaction>;
-signExchangeTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.Transaction>;
-signPokeTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.Transaction>;
-signRefuelTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.Transaction>;
-signRetrieveSwapTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.Transaction>;
-signRevokeDelegateTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.Transaction>;
-signRevokeSwapTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.Transaction>;
-signRevokeWithdrawTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.Transaction>;
-signSetupSwapTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.Transaction>;
-signTransferTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.Transaction>;
-signUpdateAssetTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.Transaction>;
-signUpdateConsensusParamsTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.Transaction>;
-signUpdateValidatorTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.Transaction>;
-signUpgradeNodeTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.Transaction>;
-signWithdrawTokenTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.Transaction>;
-multiSignExchangeTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.Transaction>;
-multiSignConsumeAssetTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.Transaction>;
-multiSignDeclareTx(param: GRpcClient.TxParam<GRpcClient.undefined>): Promise<GRpcClient.Transaction>;
-
 }
 
 declare namespace forge_abi {
@@ -2347,6 +2203,7 @@ declare namespace GRpcClient {
 
 /*~ Write your module's methods and properties in this class */
 declare interface ForgeSDK {
+  constructor(httpEndpoint: string);
 
   getQueries(): string[];
   getSubscriptions(): string[];

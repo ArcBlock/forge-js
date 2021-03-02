@@ -1,6 +1,6 @@
 // Generate by [js2dts@0.3.3](https://github.com/whxaxes/js2dts#readme)
 
-import { EventEmitter } from 'events';
+import * as events from 'events';
 declare const _Lib: _Lib.T101;
 declare namespace _Lib {
   export interface T100 {
@@ -18,7 +18,7 @@ declare namespace _Lib {
     maxRetry: number;
   }
   export interface T101 {
-    createRetriever: (params: _Lib.T100) => EventEmitter;
+    createRetriever: (params: _Lib.T100) => events;
     verifyUserSwap: (swapState: any, swapStore: any) => boolean;
   }
 }

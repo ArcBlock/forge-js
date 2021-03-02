@@ -45,7 +45,7 @@
   * [getPublicUrl(pathname, params)](#WalletAuthenticator+getPublicUrl) ⇒ `string`
   * [signResponse(params)](#WalletAuthenticator+signResponse) ⇒ `object`
   * [getChainInfo(params, info)](#WalletAuthenticator+getChainInfo) ⇒ [`ChainInfo`](#ChainInfo)
-  * [getAppInfo(params, info)](#WalletAuthenticator+getAppInfo) ⇒ [`ChainInfo`](#ChainInfo)
+  * [getAppInfo(params, info)](#WalletAuthenticator+getAppInfo) ⇒ [`ApplicationInfo`](#ApplicationInfo)
   * [verify(data, \[locale\], \[enforceTimestamp\])](#WalletAuthenticator+verify) ⇒
 
 ### new AgentAuthenticator()
@@ -125,7 +125,7 @@ Determine chainInfo on the fly
 | params | `object`                | contains the context of this request |
 | info   | `object` \| `undefined` | chain info object or function        |
 
-### agentAuthenticator.getAppInfo(params, info) ⇒ [`ChainInfo`](#ChainInfo)
+### agentAuthenticator.getAppInfo(params, info) ⇒ [`ApplicationInfo`](#ApplicationInfo)
 
 Determine appInfo on the fly
 
@@ -134,7 +134,7 @@ Determine appInfo on the fly
 | Param  | Type                    | Description                          |
 | ------ | ----------------------- | ------------------------------------ |
 | params | `object`                | contains the context of this request |
-| info   | `object` \| `undefined` | chain info object or function        |
+| info   | `object` \| `undefined` | app info object or function          |
 
 ### agentAuthenticator.verify(data, [locale], [enforceTimestamp]) ⇒
 
@@ -203,21 +203,21 @@ Verify a jwt token signed by another application, used for inter-application com
   * [signResponse(params)](#WalletAuthenticator+signResponse) ⇒ `object`
   * [sign(params)](#WalletAuthenticator+sign) ⇒ `object`
   * [getChainInfo(params, info)](#WalletAuthenticator+getChainInfo) ⇒ [`ChainInfo`](#ChainInfo)
-  * [getAppInfo(params, info)](#WalletAuthenticator+getAppInfo) ⇒ [`ChainInfo`](#ChainInfo)
+  * [getAppInfo(params, info)](#WalletAuthenticator+getAppInfo) ⇒ [`ApplicationInfo`](#ApplicationInfo)
   * [verify(data, \[locale\], \[enforceTimestamp\])](#WalletAuthenticator+verify) ⇒
 
 ### new WalletAuthenticator(config)
 
 Creates an instance of DID Authenticator.
 
-| Param             | Type                                    | Default                       | Description                                                                                                                 |
-| ----------------- | --------------------------------------- | ----------------------------- | --------------------------------------------------------------------------------------------------------------------------- |
-| config            | `object`                                |                               |                                                                                                                             |
-| config.wallet     | `Wallet`                                |                               | wallet instance {[**@see**](https://github.com/see) [**@arcblock/forge-wallet**](https://github.com/arcblock/forge-wallet)} |
-| config.appInfo    | [`ApplicationInfo`](#ApplicationInfo)   |                               | application basic info                                                                                                      |
-| config.chainInfo  | [`ChainInfo`](#ChainInfo) \| `function` |                               | application chain info                                                                                                      |
-| [config.baseUrl]  | `object`                                |                               | url to assemble wallet request uri, can be inferred from request object                                                     |
-| [config.tokenKey] | `string`                                | `&quot;&#x27;_t_&#x27;&quot;` | query param key for `token`                                                                                                 |
+| Param             | Type                                                | Default                       | Description                                                                                                                                                            |
+| ----------------- | --------------------------------------------------- | ----------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| config            | `object`                                            |                               |                                                                                                                                                                        |
+| config.wallet     | `Wallet` \| `function`                              |                               | wallet instance {[**@see**](https://github.com/see) [**@arcblock/forge-wallet**](https://github.com/arcblock/forge-wallet)} or a function that returns wallet instance |
+| config.appInfo    | [`ApplicationInfo`](#ApplicationInfo) \| `function` |                               | application basic info or a function that returns application info                                                                                                     |
+| config.chainInfo  | [`ChainInfo`](#ChainInfo) \| `function`             |                               | application chain info or a function that returns chain info                                                                                                           |
+| [config.baseUrl]  | `object`                                            |                               | url to assemble wallet request uri, can be inferred from request object                                                                                                |
+| [config.tokenKey] | `string`                                            | `&quot;&#x27;_t_&#x27;&quot;` | query param key for `token`                                                                                                                                            |
 
 **Example**  
 
@@ -312,7 +312,7 @@ Determine chainInfo on the fly
 | params | `object`                | contains the context of this request |
 | info   | `object` \| `undefined` | chain info object or function        |
 
-### walletAuthenticator.getAppInfo(params, info) ⇒ [`ChainInfo`](#ChainInfo)
+### walletAuthenticator.getAppInfo(params, info) ⇒ [`ApplicationInfo`](#ApplicationInfo)
 
 Determine appInfo on the fly
 
@@ -321,7 +321,7 @@ Determine appInfo on the fly
 | Param  | Type                    | Description                          |
 | ------ | ----------------------- | ------------------------------------ |
 | params | `object`                | contains the context of this request |
-| info   | `object` \| `undefined` | chain info object or function        |
+| info   | `object` \| `undefined` | app info object or function          |
 
 ### walletAuthenticator.verify(data, [locale], [enforceTimestamp]) ⇒
 

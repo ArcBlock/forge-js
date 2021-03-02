@@ -5,18 +5,11 @@ Utility functions to create/inspect did, and do did-based auth, an implementatio
 
 **Requires**: `module:@arcblock/mcrypto`, `module:@arcblock/forge-util`  
 
-```
-* _static_
-  * [fromSecretKey(sk, type)](#fromSecretKey) ⇒ `string`
-  * [fromPublicKey(pk, type)](#fromPublicKey) ⇒ `string`
-  * [fromHash(hash, role)](#fromHash) ⇒ `string`
-  * [isFromPublicKey(did, pk)](#isFromPublicKey) ⇒ `boolean`
-  * [fromTypeInfo(type)](#fromTypeInfo) ⇒
-  * [toTypeInfo(did, [returnString])](#toTypeInfo) ⇒ `object`
-  * [isValid(did)](#isValid) ⇒ `boolean`
-* _inner_
-  * [~toCompleteType(info)](#.toCompleteType) ⇒ `object`
-```
+* [fromSecretKey(sk, type)](#fromSecretKey) ⇒ `string`
+* [fromPublicKey(pk, type)](#fromPublicKey) ⇒ `string`
+* [fromHash(hash, role)](#fromHash) ⇒ `string`
+* [isFromPublicKey(did, pk)](#isFromPublicKey) ⇒ `boolean`
+* [isValid(did)](#isValid) ⇒ `boolean`
 
 ### fromSecretKey(sk, type) ⇒ `string`
 
@@ -71,31 +64,6 @@ Check if an DID is generated from a publicKey
 | did   | `string` | string of the did, usually base58btc format |
 | pk    | `string` | hex encoded publicKey string                |
 
-### fromTypeInfo(type) ⇒
-
-Convert type info object to hex string
-
-**Kind**: static method  
-**Returns**: string  
-**Access**: public  
-
-| Param | Type     | Description                                                                                                                         |
-| ----- | -------- | ----------------------------------------------------------------------------------------------------------------------------------- |
-| type  | `object` | wallet type, {[**@see**](https://github.com/see) [**@arcblock/forge-wallet**](https://github.com/arcblock/forge-wallet)#WalletType} |
-
-### toTypeInfo(did, [returnString]) ⇒ `object`
-
-Get type info from did (base58 format)
-
-**Kind**: static method  
-**Returns**: `object` - wallet type {[**@see**](https://github.com/see) [**@arcblock/forge-wallet**](https://github.com/arcblock/forge-wallet)#WalletType}  
-**Access**: public  
-
-| Param          | Type      | Default | Description    |
-| -------------- | --------- | ------- | -------------- |
-| did            | `string`  |         | address string |
-| [returnString] | `boolean` | `true`  |                |
-
 ### isValid(did) ⇒ `boolean`
 
 Check if a DID string is valid
@@ -106,13 +74,3 @@ Check if a DID string is valid
 | Param | Type     | Description    |
 | ----- | -------- | -------------- |
 | did   | `string` | address string |
-
-### [**@arcblock/did**](https://github.com/arcblock/did)~toCompleteType(info) ⇒ `object`
-
-Make a type info complete
-
-**Kind**: inner method   
-
-| Param | Type     | Description        |
-| ----- | -------- | ------------------ |
-| info  | `object` | { pk, role, hash } |

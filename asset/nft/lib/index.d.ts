@@ -59,7 +59,6 @@ declare class NFTFactory {
    * @param {string} params.data.name - ticket name
    * @param {string} params.data.description - ticket description
    * @param {string} params.data.location - event location
-   * @param {NFTIssuer} params.data.host - event host
    * @param {number} params.data.startTime - event start time
    * @param {number} params.data.endTime - event end time
    * @param {object} params.attributes - asset attributes
@@ -174,7 +173,6 @@ declare namespace _Lib {
     name: string;
     description: string;
     location: string;
-    host: NFTIssuer;
     startTime: number;
     endTime: number;
   }

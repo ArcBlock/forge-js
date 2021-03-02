@@ -142,6 +142,7 @@ declare namespace ForgeSdkUtil {
 
 /*~ Write your module's methods and properties in this class */
 declare interface ForgeSDK {
+  constructor(httpEndpoint: string);
 
   getQueries(): string[];
   getSubscriptions(): string[];

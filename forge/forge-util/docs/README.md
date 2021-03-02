@@ -14,33 +14,38 @@ console.log(Util.fromUnitToToken('1000000000000000000')); // 100
 console.log(Util.isStrictHex('0x123abc')); // true
 ```
 
-* [isHexPrefixed(str)](#isHexPrefixed) ⇒ `Boolean`
-* [stripHexPrefix(str)](#stripHexPrefix) ⇒ `String` \| `Optional`
-* [isBN(object)](#isBN) ⇒ `Boolean`
-* [isBigNumber(object)](#isBigNumber) ⇒ `Boolean`
-* [isHexStrict(hex)](#isHexStrict) ⇒ `Boolean`
-* [isHex(hex)](#isHex) ⇒ `Boolean`
-* [toBN(number,)](#toBN) ⇒ `BN`
-* [utf8ToHex(str)](#utf8ToHex) ⇒ `String`
-* [hexToUtf8(hex)](#hexToUtf8) ⇒ `String`
-* [hexToNumber(value)](#hexToNumber) ⇒ `Number`
-* [numberToHex(value)](#numberToHex) ⇒ `String`
-* [bytesToHex(bytes)](#bytesToHex) ⇒ `String`
-* [hexToBytes(hex)](#hexToBytes) ⇒ `Array`
-* [toHex(value, returnType)](#toHex) ⇒ `String`
-* [fromUnitToToken(input, \[decimal\], \[optionsInput\])](#fromUnitToToken) ⇒ `string`
-* [fromTokenToUnit(input, \[decimal\])](#fromTokenToUnit) ⇒ `BN`
-* [isUint8Array(value)](#isUint8Array) ⇒ `Boolean`
-* [UUID()](#UUID) ⇒ `string`
-* [isUUID(str)](#isUUID) ⇒ `boolean`
-* [toUint8Array(v)](#toUint8Array) ⇒ `Uint8Array`
-* [toBuffer(v)](#toBuffer) ⇒ `buffer`
-* [toBase58(v)](#toBase58) ⇒ `string`
-* [fromBase58(v)](#fromBase58) ⇒ `buffer`
-* [toBase64(v, \[escape\])](#toBase64) ⇒ `string`
-* [fromBase64(v)](#fromBase64) ⇒ `buffer`
-* [toAddress(did)](#toAddress) ⇒ `string`
-* [toDid(did)](#toDid) ⇒ `string`
+```
+* _static_
+  * [isHexPrefixed(str)](#isHexPrefixed) ⇒ `Boolean`
+  * [stripHexPrefix(str)](#stripHexPrefix) ⇒ `String` \| `Optional`
+  * [isBN(object)](#isBN) ⇒ `Boolean`
+  * [isBigNumber(object)](#isBigNumber) ⇒ `Boolean`
+  * [isHexStrict(hex)](#isHexStrict) ⇒ `Boolean`
+  * [isHex(hex)](#isHex) ⇒ `Boolean`
+  * [toBN(number,)](#toBN) ⇒ `BN`
+  * [utf8ToHex(str)](#utf8ToHex) ⇒ `String`
+  * [hexToUtf8(hex)](#hexToUtf8) ⇒ `String`
+  * [hexToNumber(value)](#hexToNumber) ⇒ `Number`
+  * [numberToHex(value)](#numberToHex) ⇒ `String`
+  * [bytesToHex(bytes)](#bytesToHex) ⇒ `String`
+  * [hexToBytes(hex)](#hexToBytes) ⇒ `Array`
+  * [toHex(value, returnType)](#toHex) ⇒ `String`
+  * [fromUnitToToken(input, [decimal], [optionsInput])](#fromUnitToToken) ⇒ `string`
+  * [fromTokenToUnit(input, [decimal])](#fromTokenToUnit) ⇒ `BN`
+  * [isUint8Array(value)](#isUint8Array) ⇒ `Boolean`
+  * [UUID()](#UUID) ⇒ `string`
+  * [isUUID(str)](#isUUID) ⇒ `boolean`
+  * [toUint8Array(v)](#toUint8Array) ⇒ `Uint8Array`
+  * [toBuffer(v)](#toBuffer) ⇒ `buffer`
+  * [toBase58(v)](#toBase58) ⇒ `string`
+  * [fromBase58(v)](#fromBase58) ⇒ `buffer`
+  * [toBase64(v, [escape])](#toBase64) ⇒ `string`
+  * [fromBase64(v)](#fromBase64) ⇒ `buffer`
+  * [toAddress(did)](#toAddress) ⇒ `string`
+  * [toDid(did)](#toDid) ⇒ `string`
+* _inner_
+  * [~numberToBN(&#x60;arg&#x60;)](#.numberToBN) ⇒ `Object`
+```
 
 ### isHexPrefixed(str) ⇒ `Boolean`
 
@@ -371,3 +376,17 @@ Convert address to did: prepend `did:abt:` prefix
 | Param | Type     | Description    |
 | ----- | -------- | -------------- |
 | did   | `string` | address string |
+
+### [**@arcblock/forge-util**](https://github.com/arcblock/forge-util)~numberToBN(&amp;#x60;arg&amp;#x60;) ⇒ `Object`
+
+Returns a BN object, converts a number value to a BN
+
+**Kind**: inner method  
+**Returns**: `Object` - `output` BN object of the number  
+**Throws**:
+
+* if the argument is not an array, object that isn't a bignumber, not a string number or number
+
+| Param | Type                             | Description                                                              |
+| ----- | -------------------------------- | ------------------------------------------------------------------------ |
+| `arg` | `String` \| `Number` \| `Object` | input a string number, hex string number, number, BigNumber or BN object |

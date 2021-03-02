@@ -18,6 +18,7 @@ Just a wrapper around existing javascript crypto libraries, implementation detai
 * Signer
   * [`Ed25519`](https://github.com/ArcBlock/forge-js/commit/Ed25519) [Ed25519Signer](Ed25519Signer)
   * Secp256k1 [Secp256k1Signer](Secp256k1Signer)
+  * Ethereum [EthereumSigner](EthereumSigner)
 * Hasher
   * SHA2 [Sha2Hasher](Sha2Hasher)
   * SHA3 [Sha3Hasher](Sha3Hasher)
@@ -102,9 +103,9 @@ Get signer instance
 **Kind**: static method  
 **Returns**: `object` - signer instance  
 
-| Param | Type     | Description                                                                                                                                                       |
-| ----- | -------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| type  | `number` | algorithm used to derive key pair, possible values are - types.KeyType.[`ED25519`](https://github.com/ArcBlock/forge-js/commit/ED25519) - types.KeyType.SECP256k1 |
+| Param | Type     | Description                                                                                                                                                                                |
+| ----- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| type  | `number` | algorithm used to derive key pair, possible values are - types.KeyType.[`ED25519`](https://github.com/ArcBlock/forge-js/commit/ED25519) - types.KeyType.SECP256k1 - types.KeyType.ETHEREUM |
 
 **Example**  
 
