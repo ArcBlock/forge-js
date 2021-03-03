@@ -157,17 +157,21 @@ const isValid = did => {
 
 module.exports = {
   types,
+
   toStrictHex,
   fromSecretKey,
   fromPublicKey,
   fromPublicKeyHash,
   fromHash,
-  toTypeInfo,
+
   toAddress,
   toDid,
-  fromTypeInfo,
+
   isFromPublicKey,
   isValid,
+
+  toTypeInfo,
+  fromTypeInfo,
   DidType,
   DID_TYPE_FORGE,
   DID_TYPE_ETHEREUM,
