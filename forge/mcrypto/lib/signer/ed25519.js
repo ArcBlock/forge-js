@@ -90,3 +90,4 @@ class Ed25519Signer extends Signer {
 }
 
 module.exports = new Ed25519Signer();
+module.exports.Ed25519Signer = Ed25519Signer;

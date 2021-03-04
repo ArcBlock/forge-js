@@ -1,14 +1,14 @@
 // Generate by [js2dts@0.3.3](https://github.com/whxaxes/js2dts#readme)
 
-import { EventEmitter } from 'events';
-declare class BaseAuthenticator {}
+import * as events from 'events';
+declare class BaseAuthenticator {
+}
 declare class WalletAuthenticator extends BaseAuthenticator {
   wallet: any;
   appInfo: any;
   chainInfo: any;
   baseUrl: any;
   tokenKey: any;
-  appPk: string;
   /**
    * @typedef ApplicationInfo
    * @prop {string} name - application name
@@ -31,9 +31,9 @@ declare class WalletAuthenticator extends BaseAuthenticator {
    *
    * @class
    * @param {object} config
-   * @param {Wallet} config.wallet - wallet instance {@see @arcblock/forge-wallet}
-   * @param {ApplicationInfo} config.appInfo - application basic info
-   * @param {ChainInfo|Function} config.chainInfo - application chain info
+   * @param {Wallet|Function} config.wallet - wallet instance {@see @arcblock/forge-wallet} or a function that returns wallet instance
+   * @param {ApplicationInfo|Function} config.appInfo - application basic info or a function that returns application info
+   * @param {ChainInfo|Function} config.chainInfo - application chain info or a function that returns chain info
    * @param {object} [config.baseUrl] - url to assemble wallet request uri, can be inferred from request object
    * @param {string} [config.tokenKey='_t_'] - query param key for `token`
    * @example
@@ -87,7 +87,7 @@ declare class WalletAuthenticator extends BaseAuthenticator {
    * @param {string} params.error - error message
    * @returns {object} { appPk, authInfo }
    */
-  signResponse(T104: _Lib.T105, baseUrl: any): any;
+  signResponse(T104: _Lib.T105, baseUrl: any, request: any): any;
   /**
    * Sign a auth response that returned to wallet: tell the wallet the appInfo/chainInfo
    *
@@ -119,11 +119,12 @@ declare class WalletAuthenticator extends BaseAuthenticator {
    * Determine appInfo on the fly
    *
    * @param {object} params - contains the context of this request
-   * @param {object|undefined} info - chain info object or function
-   * @returns {ChainInfo}
+   * @param {object|undefined} info - app info object or function
+   * @returns {ApplicationInfo}
    * @memberof WalletAuthenticator
    */
-  getAppInfo(params: any): ChainInfo;
+  getAppInfo(params: any): ApplicationInfo;
+  getWalletInfo(params: any): Promise<any>;
   /**
    * Verify a DID auth response sent from ABT Wallet
    *
@@ -174,7 +175,7 @@ declare class AppAuthenticator extends BaseAuthenticator {
    */
   verify(data: any, locale?: string, enforceTimestamp?: boolean): Promise<any>;
 }
-declare class BaseHandler extends EventEmitter {
+declare class BaseHandler extends events {
   authenticator: any;
   tokenStorage: any;
   tokenGenerator(...args: any[]): any;
@@ -411,6 +412,14 @@ declare namespace _Lib {
     id: string;
     host: string;
     restrictedDeclare: boolean;
+  }
+  export interface ApplicationInfo {
+    name: string;
+    description: string;
+    icon: string;
+    link: string;
+    path: string;
+    publisher: string;
   }
   export interface T109 {
     claims: any;

@@ -1,6 +1,6 @@
 // Generate by [js2dts@0.3.3](https://github.com/whxaxes/js2dts#readme)
 
-import { EventEmitter } from 'events';
+import * as events from 'events';
 /**
  * Defines the interface of authorized did auth storage
  * Which is used when building an centralized service that do did-auth on behalf of many applications
@@ -11,7 +11,7 @@ import { EventEmitter } from 'events';
  * @see @arcblock/did-agent-storage-mongo
  * @extends {EventEmitter}
  */
-declare class DidAgentStorage extends EventEmitter {
+declare class DidAgentStorage extends events {
   requiredFields: string[];
   /**
    * Creates an instance of DidAgentStorage.

@@ -11,9 +11,6 @@
 ## Typedefs
 
 <dl>
-<dt><a href="#WalletTypeObject">WalletTypeObject</a> : `Object`</dt>
-<dd><p>The structure of a forge wallet type</p>
-</dd>
 <dt><a href="#WalletObject">WalletObject</a></dt>
 <dd></dd>
 </dl>
@@ -30,7 +27,6 @@ This module wraps common utility functions to help developers manipulate crypto 
 yarn add @arcblock/forge-wallet
 ```
 
-* [WalletType(\[type\])](#WalletType) ⇒ `object`
 * [Wallet(keyPair, \[type\])](#Wallet) ⇒ [`WalletObject`](#WalletObject)
 * [fromSecretKey(sk, \[type\])](#fromSecretKey) ⇒ [`WalletObject`](#WalletObject)
 * [fromPublicKey(pk, \[type\])](#fromPublicKey) ⇒ [`WalletObject`](#WalletObject)
@@ -38,31 +34,6 @@ yarn add @arcblock/forge-wallet
 * [fromRandom(\[type\])](#fromRandom) ⇒ [`WalletObject`](#WalletObject)
 * [fromJSON(json)](#fromJSON) ⇒ [`WalletObject`](#WalletObject)
 * [isValid(wallet, canSign)](#isValid)
-
-### WalletType([type]) ⇒ `object`
-
-Create an wallet type object that be used as param to create a new wallet
-
-**Kind**: static method  
-**Access**: public  
-
-| Param  | Type                                    | Default             |
-| ------ | --------------------------------------- | ------------------- |
-| [type] | [`WalletTypeObject`](#WalletTypeObject) | `defaultWalletType` |
-
-**Example**  
-
-```js
-const assert = require('assert');
-const { WalletType } = require('@arcblock/forge-wallet');
-const { types } = require('@arcblock/mcrypto');
-
-const type = WalletType({
-  role: types.RoleType.ROLE_APPLICATION,
-  pk: types.KeyType.ED25519,
-  hash: types.HashType.SHA3,
-});
-```
 
 ### Wallet(keyPair, [type]) ⇒ [`WalletObject`](#WalletObject)
 
@@ -72,12 +43,12 @@ Generate an wallet instance that can be used to sign a message or verify a signa
 **Returns**: [`WalletObject`](#WalletObject) - wallet object that can be used to sign/verify/getAddress  
 **Access**: public  
 
-| Param      | Type                                    | Default             | Description          |
-| ---------- | --------------------------------------- | ------------------- | -------------------- |
-| keyPair    | `object`                                |                     | the key pair         |
-| keyPair.sk | `string`                                |                     | the secretKey        |
-| keyPair.pk | `string`                                |                     | the wallet publicKey |
-| [type]     | [`WalletTypeObject`](#WalletTypeObject) | `defaultWalletType` | wallet type          |
+| Param      | Type      | Default               | Description          |
+| ---------- | --------- | --------------------- | -------------------- |
+| keyPair    | `object`  |                       | the key pair         |
+| keyPair.sk | `string`  |                       | the secretKey        |
+| keyPair.pk | `string`  |                       | the wallet publicKey |
+| [type]     | `DidType` | `&#x27;default&#x27;` | wallet type          |
 
 ### fromSecretKey(sk, [type]) ⇒ [`WalletObject`](#WalletObject)
 
@@ -87,10 +58,10 @@ Generate a wallet from secretKey
 **Returns**: [`WalletObject`](#WalletObject) - wallet object that can be used to sign/verify/getAddress  
 **Access**: public  
 
-| Param  | Type                                    | Default             | Description                          |
-| ------ | --------------------------------------- | ------------------- | ------------------------------------ |
-| sk     | `string`                                |                     | the secret key, `hex encoded string` |
-| [type] | [`WalletTypeObject`](#WalletTypeObject) | `defaultWalletType` | wallet type                          |
+| Param  | Type      | Default               | Description                          |
+| ------ | --------- | --------------------- | ------------------------------------ |
+| sk     | `string`  |                       | the secret key, `hex encoded string` |
+| [type] | `DidType` | `&#x27;default&#x27;` | wallet type                          |
 
 **Example**  
 
@@ -118,10 +89,10 @@ Generate a wallet from publicKey
 **Returns**: [`WalletObject`](#WalletObject) - wallet object that can be used to sign/verify/getAddress  
 **Access**: public  
 
-| Param  | Type                                    | Default             | Description                          |
-| ------ | --------------------------------------- | ------------------- | ------------------------------------ |
-| pk     | `string`                                |                     | the public key, `hex encoded string` |
-| [type] | [`WalletTypeObject`](#WalletTypeObject) | `defaultWalletType` | wallet type                          |
+| Param  | Type      | Default               | Description                          |
+| ------ | --------- | --------------------- | ------------------------------------ |
+| pk     | `string`  |                       | the public key, `hex encoded string` |
+| [type] | `DidType` | `&#x27;default&#x27;` | wallet type                          |
 
 ### fromAddress(address) ⇒ [`WalletObject`](#WalletObject)
 
@@ -156,9 +127,9 @@ Generate a wallet by generating a random secretKey
 **Returns**: [`WalletObject`](#WalletObject) - wallet object that can be used to sign/verify/getAddress  
 **Access**: public  
 
-| Param  | Type                                    | Default             | Description |
-| ------ | --------------------------------------- | ------------------- | ----------- |
-| [type] | [`WalletTypeObject`](#WalletTypeObject) | `defaultWalletType` | wallet type |
+| Param  | Type      | Default               | Description |
+| ------ | --------- | --------------------- | ----------- |
+| [type] | `DidType` | `&#x27;default&#x27;` | wallet type |
 
 **Example**  
 
@@ -202,33 +173,18 @@ Check if an object is valid wallet object
 | canSign | `boolean` | `true`  | should the wallet support sign |
 
 
-## WalletTypeObject : `Object`
-
-The structure of a forge wallet type
-
-**Kind**: global typedef  
-**Access**: public  
-**Properties**
-
-| Name | Type     | Description                                             |
-| ---- | -------- | ------------------------------------------------------- |
-| role | `number` | Enum field to identify wallet role type                 |
-| pk   | `number` | Crypto algorithm to derive publicKey from the secretKey |
-| hash | `number` | Hash algorithm used to hash data before sign them       |
-
-
 ## WalletObject
 
 **Kind**: global typedef  
 **Access**: public  
 **Properties**
 
-| Name      | Type                                    | Description                                                                              |
-| --------- | --------------------------------------- | ---------------------------------------------------------------------------------------- |
-| type      | [`WalletTypeObject`](#WalletTypeObject) | Indicates the wallet type                                                                |
-| secretKey | `secretKey`                             | Wallet secretKey                                                                         |
-| publicKey | `publicKey`                             | Wallet publicKey                                                                         |
-| sign      | `function`                              | Sign `data`, data is hashed using the `HashType` defined in type before signing          |
-| verify    | `function`                              | Verify `signature`, data is hashed using the `HashType` defined in type before verifying |
-| toAddress | `function`                              | Get wallet address without `did:abt:` prefix                                             |
-| toJSON    | `function`                              | Serialize wallet to json object, checkout [fromJSON](fromJSON) for deserialisation       |
+| Name      | Type        | Description                                                                              |
+| --------- | ----------- | ---------------------------------------------------------------------------------------- |
+| type      | `DidType`   | Indicates the wallet type                                                                |
+| secretKey | `secretKey` | Wallet secretKey                                                                         |
+| publicKey | `publicKey` | Wallet publicKey                                                                         |
+| sign      | `function`  | Sign `data`, data is hashed using the `HashType` defined in type before signing          |
+| verify    | `function`  | Verify `signature`, data is hashed using the `HashType` defined in type before verifying |
+| toAddress | `function`  | Get wallet address without `did:abt:` prefix                                             |
+| toJSON    | `function`  | Serialize wallet to json object, checkout [fromJSON](fromJSON) for deserialisation       |

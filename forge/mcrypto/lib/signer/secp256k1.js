@@ -3,11 +3,10 @@
 const EC = require('elliptic').ec;
 const BN = require('bn.js');
 const randomBytes = require('randombytes');
-const { isHexStrict, toHex, toUint8Array } = require('@arcblock/forge-util');
+const { stripHexPrefix, toHex, toBuffer, toUint8Array } = require('@arcblock/forge-util');
 const Signer = require('../protocols/signer');
 
 const secp256k1 = new EC('secp256k1');
-const compressed = false;
 const encode = require('../encode');
 
 /**
@@ -18,10 +17,8 @@ const encode = require('../encode');
 class Secp256k1Signer extends Signer {
   constructor() {
     super();
-  }
-
-  strip0x(input) {
-    return isHexStrict(input) ? input.replace(/^0x/i, '') : input;
+    this.pkHasFormatPrefix = true;
+    this.pkCompressed = false;
   }
 
   isValidSK(sk) {
@@ -62,9 +59,11 @@ class Secp256k1Signer extends Signer {
    * @memberof Secp256k1Signer
    */
   getPublicKey(sk, encoding = 'hex') {
-    const pk = secp256k1
-      .keyFromPrivate(this.strip0x(toHex(sk)), 'hex')
-      .getPublic(compressed, 'hex');
+    let pk = secp256k1.keyFromPrivate(toBuffer(sk)).getPublic(this.pkCompressed, 'hex');
+    if (this.pkHasFormatPrefix === false) {
+      pk = pk.slice(2);
+    }
+
     return encode(`0x${pk}`, encoding);
   }
 
@@ -86,8 +85,8 @@ class Secp256k1Signer extends Signer {
     }
 
     const signature = secp256k1
-      .keyFromPrivate(this.strip0x(toHex(sk)), 'hex')
-      .sign(this.strip0x(msg))
+      .keyFromPrivate(toBuffer(sk))
+      .sign(stripHexPrefix(msg), { canonical: true })
       .toDER('hex');
     return encode(`0x${signature}`, encoding);
   }
@@ -108,10 +107,14 @@ class Secp256k1Signer extends Signer {
       // Do nothing;
     }
 
-    return secp256k1
-      .keyFromPublic(this.strip0x(toHex(pk)), 'hex')
-      .verify(this.strip0x(msg), this.strip0x(toHex(signature)));
+    let pkBuffer = toBuffer(pk);
+    if (this.pkHasFormatPrefix === false && pkBuffer[0] !== 0x04 && pkBuffer.byteLength === 64) {
+      pkBuffer = Buffer.concat([Buffer.from([0x04]), pkBuffer]);
+    }
+
+    return secp256k1.keyFromPublic(pkBuffer).verify(stripHexPrefix(msg), stripHexPrefix(toHex(signature)));
   }
 }
 
 module.exports = new Secp256k1Signer();
+module.exports.Secp256k1Signer = Secp256k1Signer;

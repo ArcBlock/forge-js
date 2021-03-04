@@ -34,7 +34,7 @@ const client = new GraphqlClient(`${endpoint}/api`);
       tx: {
         itx: {
           moniker: 'sign_and_send',
-      data: { type: 'json', value: Math.random() },
+          data: { type: 'json', value: Math.random() },
         },
       },
       wallet: user2,
@@ -49,7 +49,7 @@ const client = new GraphqlClient(`${endpoint}/api`);
       tx: {
         itx: {
           moniker: 'sign_and_send',
-      data: { type: 'json', value: Math.random() },
+          data: { type: 'json', value: Math.random() },
         },
       },
       wallet: user3,
@@ -58,6 +58,14 @@ const client = new GraphqlClient(`${endpoint}/api`);
     const hash3 = await client.sendTx({ tx: signed3 });
     console.log('view user3 account', `${endpoint}/node/explorer/accounts/${user3.toAddress()}`);
     console.log('view user3 tx', `${endpoint}/node/explorer/txs/${hash3.hash}`);
+
+    const user4 = fromRandom('eth');
+    const hash4 = await client.declare({
+      moniker: `poke_user_${Math.round(Math.random() * 10000)}`,
+      wallet: user4,
+    });
+    console.log('view user4 account', `${endpoint}/node/explorer/accounts/${user4.toAddress()}`);
+    console.log('view user4 tx', `${endpoint}/node/explorer/txs/${hash4.hash}`);
   } catch (err) {
     console.error(err);
     console.log(JSON.stringify(err.errors));

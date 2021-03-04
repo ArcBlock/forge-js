@@ -5,7 +5,7 @@ const camelCase = require('lodash/camelCase');
 const snakeCase = require('lodash/snakeCase');
 const padStart = require('lodash/padStart');
 const errorCodes = require('@arcblock/forge-proto/lib/status_code.json');
-const { isValid: isValidDID } = require('@arcblock/did');
+const { isValid: isValidDID, toTypeInfo } = require('@arcblock/did');
 const { toDelegateAddress, toSwapAddress, toAssetAddress } = require('@arcblock/did-util');
 const { transactions, typeUrls, multiSignTxs } = require('@arcblock/forge-proto/lite');
 const { createMessage, getMessageType, decodeAny } = require('@arcblock/forge-message/lite');
@@ -451,16 +451,25 @@ const createExtensionMethods = (client, { encodeTxAsBase64 = false } = {}) => {
    * @param {object} extra - other param to underlying client implementation
    * @returns {Promise} the transaction hash once resolved
    */
-  client.declare = ({ moniker, issuer = '', data, wallet }, extra) =>
-    client.sendDeclareTx(
+  client.declare = ({ moniker, issuer = '', data, wallet }, extra) => {
+    let itxData = data;
+
+    // If there is no data attached to the account, we can attach wallet type by default
+    const typeData = wallet.type;
+    if (!itxData && typeData) {
+      itxData = { typeUrl: 'json', value: toTypeInfo(typeData, true) };
+    }
+
+    return client.sendDeclareTx(
       {
         tx: {
-          itx: { moniker, issuer, data },
+          itx: { moniker, issuer, data: itxData },
         },
         wallet,
       },
       extra
     );
+  };
 
   /**
    * Prepare an declare transaction when the chain has enabled restricted declare

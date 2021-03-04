@@ -1,7 +1,7 @@
 // Generate by [js2dts@0.3.3](https://github.com/whxaxes/js2dts#readme)
 
 declare class EventServer {
-  channels: any;
+  channels: any[];
   wss: any;
   /**
    * Creates an instance of EventServer.

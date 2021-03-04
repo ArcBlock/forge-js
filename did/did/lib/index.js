@@ -5,49 +5,24 @@
  * @requires @arcblock/mcrypto
  * @requires @arcblock/forge-util
  */
-const upperFirst = require('lodash/upperFirst');
 const Mcrypto = require('@arcblock/mcrypto');
-const BN = require('bn.js');
-const { numberToHex, stripHexPrefix, toBase58, toAddress, toDid } = require('@arcblock/forge-util');
-const { DID_PREFIX, toBits, toBytes, toStrictHex } = require('./util');
+const { stripHexPrefix, toBase58, toAddress, toDid } = require('@arcblock/forge-util');
+const { DID_PREFIX, toBytes, toStrictHex } = require('./util');
+const {
+  DidType,
+  toTypeInfo,
+  fromTypeInfo,
+  isEthereumType,
+  isEthereumAddress,
+  DID_TYPE_FORGE,
+  DID_TYPE_ETHEREUM,
+  toChecksumAddress,
+} = require('./type');
 
 // eslint-disable-next-line
 const debug = require('debug')(require('../package.json').name);
 
 const { types, getSigner, getHasher } = Mcrypto;
-
-const mapping = {
-  pk: 'key',
-};
-
-/**
- * Make a type info complete
- *
- * @param {object} info - { pk, role, hash }
- * @returns {object}
- */
-const toCompleteType = info => {
-  const type = Object.assign(
-    {
-      pk: types.KeyType.ED25519,
-      role: types.RoleType.ROLE_ACCOUNT,
-      hash: types.HashType.SHA3,
-    },
-    info || {}
-  );
-
-  const sha2Roles = [
-    types.RoleType.ROLE_NODE,
-    types.RoleType.ROLE_VALIDATOR,
-    types.RoleType.ROLE_TETHER,
-    types.RoleType.ROLE_SWAP,
-  ];
-  if (sha2Roles.includes(type.role)) {
-    type.hash = types.HashType.SHA2;
-  }
-
-  return type;
-};
 
 /**
  * Gen DID from private key and type config
@@ -61,9 +36,9 @@ const toCompleteType = info => {
  * @returns {string} DID string
  */
 const fromSecretKey = (sk, type) => {
-  const info = toCompleteType(type || {});
+  const info = DidType(type || {});
   const pub = getSigner(info.pk).getPublicKey(sk);
-  // debug('fromSecretKey', pub);
+  // debug('fromSecretKey', { sk, pub });
   return fromPublicKey(pub.indexOf('0x') === 0 ? pub : `0x${pub}`, info);
 };
 
@@ -77,7 +52,7 @@ const fromSecretKey = (sk, type) => {
  * @returns {string} DID string
  */
 const fromPublicKey = (pk, type) => {
-  const info = toCompleteType(type || {});
+  const info = DidType(type || {});
   const hashFn = getHasher(info.hash);
   const pkHash = hashFn(pk, 1);
   // debug('fromPublicKey', pkHash);
@@ -85,15 +60,27 @@ const fromPublicKey = (pk, type) => {
 };
 
 const fromPublicKeyHash = (buffer, type) => {
-  const info = toCompleteType(type || {});
+  const info = DidType(type || {});
   const pkHash = stripHexPrefix(buffer).slice(0, 40); // 20 bytes
   const hashFn = getHasher(info.hash);
   const typeHex = fromTypeInfo(info);
   const checksum = stripHexPrefix(hashFn(`0x${typeHex}${pkHash}`, 1)).slice(0, 8); // 4 bytes
   const didHash = `0x${typeHex}${pkHash}${checksum}`;
-  // debug('fromPublicKeyHash', { info, pkHash, typeHex, checksum, didHash });
+  // debug('fromPublicKeyHash', { buffer, info, pkHash, typeHex, checksum, didHash });
 
-  return toBase58(didHash);
+  // ethereum-compatible address, this address does not contain any type info
+  // but we can infer from the address itself
+  if (isEthereumType(info)) {
+    return toChecksumAddress(`0x${buffer.slice(-40)}`);
+  }
+
+  // default forge-compatible did
+  if (info.address === types.EncodingType.BASE58) {
+    return toBase58(didHash);
+  }
+
+  // fallback base16 encoding
+  return didHash;
 };
 
 /**
@@ -112,7 +99,7 @@ const fromHash = (hash, role = types.RoleType.ROLE_ACCOUNT) => {
     throw new Error(`Unsupported role type ${role} when gen ddi from hash`);
   }
 
-  const type = toCompleteType({
+  const type = DidType({
     role: types.RoleType[roleKeys[roleValues.indexOf(role)]],
   });
 
@@ -142,71 +129,6 @@ const isFromPublicKey = (did, pk) => {
 };
 
 /**
- * Convert type info object to hex string
- *
- * @public
- * @static
- * @param {object} type - wallet type, {@see @arcblock/forge-wallet#WalletType}
- * @returns string
- */
-const fromTypeInfo = type => {
-  const info = toCompleteType(type || {});
-
-  const roleBits = toBits(info.role, 6);
-  const keyBits = toBits(info.pk, 5);
-  const hashBits = toBits(info.hash, 5);
-  const infoBits = `${roleBits}${keyBits}${hashBits}`;
-  const infoHex = stripHexPrefix(numberToHex(parseInt(infoBits, 2)));
-  // debug('fromTypeInfo', info, roleBits, hashBits, infoBits, infoHex);
-  return toStrictHex(infoHex, 4);
-};
-
-/**
- * Get type info from did (base58 format)
- *
- * @public
- * @static
- * @param {string} did - address string
- * @param {boolean} [returnString=true]
- * @returns {object} wallet type {@see @arcblock/forge-wallet#WalletType}
- */
-const toTypeInfo = (did, returnString = false) => {
-  try {
-    const bytes = toBytes(did);
-    const typeBytes = bytes.slice(0, 2);
-    const typeHex = toStrictHex(Buffer.from(typeBytes).toString('hex'));
-    const typeBits = toBits(new BN(typeHex, 16), 16);
-    const roleBits = typeBits.slice(0, 6);
-    const keyBits = typeBits.slice(6, 11);
-    const hashBits = typeBits.slice(11, 16);
-    const type = {
-      role: parseInt(roleBits, 2),
-      pk: parseInt(keyBits, 2),
-      hash: parseInt(hashBits, 2),
-    };
-
-    // remove unsupported types
-    Object.keys(type).forEach(x => {
-      const enums = Object.values(types[`${upperFirst(mapping[x] || x)}Type`]);
-      if (enums.includes(type[x]) === false) {
-        delete type[x];
-      }
-    });
-
-    const typeStr = Object.keys(type).reduce((acc, x) => {
-      const enums = types[`${upperFirst(mapping[x] || x)}Type`];
-      acc[x] = Object.keys(enums).find(d => enums[d] === type[x]);
-      return acc;
-    }, {});
-
-    return returnString ? typeStr : type;
-  } catch (err) {
-    debug('AbtDid.toTypeInfo.decodeError', err);
-    return {};
-  }
-};
-
-/**
  * Check if a DID string is valid
  *
  * @public
@@ -220,6 +142,10 @@ const isValid = did => {
     return false;
   }
 
+  if (isEthereumAddress(did)) {
+    return true;
+  }
+
   const hashFn = getHasher(hash);
   const bytes = toBytes(did);
   const bytesHex = toStrictHex(Buffer.from(bytes.slice(0, 22)).toString('hex'));
@@ -231,16 +157,22 @@ const isValid = did => {
 
 module.exports = {
   types,
+
   toStrictHex,
   fromSecretKey,
   fromPublicKey,
   fromPublicKeyHash,
   fromHash,
-  toTypeInfo,
+
   toAddress,
   toDid,
-  toCompleteType,
-  fromTypeInfo,
+
   isFromPublicKey,
   isValid,
+
+  toTypeInfo,
+  fromTypeInfo,
+  DidType,
+  DID_TYPE_FORGE,
+  DID_TYPE_ETHEREUM,
 };

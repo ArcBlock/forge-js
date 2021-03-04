@@ -1,12 +1,43 @@
 // Generate by [js2dts@0.3.3](https://github.com/whxaxes/js2dts#readme)
 
 /**
+ * The structure of a forge wallet type
+ *
+ * @public
+ * @static
+ * @global
+ * @typedef {Object} DidType
+ * @prop {number} role - Enum field to identify wallet role type
+ * @prop {number} pk - Crypto algorithm to derive publicKey from the secretKey
+ * @prop {number} hash - Hash algorithm used to hash data before sign them
+ */
+
+/**
+ * Create an wallet type object that be used as param to create a new wallet
+ *
+ * @public
+ * @static
+ * @param {DidType|string} [type='default']
+ * @returns {object}
+ * @example
+ * const assert = require('assert');
+ * const { DidType } = require('@arcblock/did');
+ * const { types } = require('@arcblock/mcrypto');
+ *
+ * const type = DidType({
+ *   role: types.RoleType.ROLE_APPLICATION,
+ *   pk: types.KeyType.ED25519,
+ *   hash: types.HashType.SHA3,
+ * });
+ */
+declare function DidType(type?: string | any): any;
+/**
  * Generate a wallet from secretKey
  *
  * @public
  * @static
  * @param {string} sk - the secret key, `hex encoded string`
- * @param {WalletTypeObject} [type=defaultWalletType] - wallet type
+ * @param {DidType} [type='default'] - wallet type
  * @returns {WalletObject} wallet object that can be used to sign/verify/getAddress
  * @example
  * const assert = require('assert');
@@ -23,30 +54,30 @@
  * assert.equal(signature, sig, "signature should match");
  * assert.ok(wallet.verify(message, signature), "signature should be verified");
  */
-declare function fromSecretKey(sk: string, _type?: _Lib.T100): WalletObject;
+declare function fromSecretKey(sk: string, _type?: string): WalletObject;
 /**
  * Generate a wallet from publicKey
  *
  * @public
  * @static
  * @param {string} pk - the public key, `hex encoded string`
- * @param {WalletTypeObject} [type=defaultWalletType] - wallet type
+ * @param {DidType} [type='default'] - wallet type
  * @returns {WalletObject} wallet object that can be used to sign/verify/getAddress
  */
-declare function fromPublicKey(pk: string, _type?: _Lib.T100): WalletObject;
+declare function fromPublicKey(pk: string, _type?: string): WalletObject;
 /**
  * Generate a wallet by generating a random secretKey
  *
  * @public
  * @static
- * @param {WalletTypeObject} [type=defaultWalletType] - wallet type
+ * @param {DidType} [type='default'] - wallet type
  * @returns {WalletObject} wallet object that can be used to sign/verify/getAddress
  * @example
  * const { fromRandom } = require('@arcblock/forge-wallet');
  * const wallet = fromRandom();
  * // Do something with wallet
  */
-declare function fromRandom(_type?: _Lib.T100): WalletObject;
+declare function fromRandom(_type?: string): WalletObject;
 /**
  * Generate a wallet from address (did)
  *
@@ -94,7 +125,7 @@ declare function isValid(wallet: any, canSign?: boolean): boolean;
  * @global
  * @name WalletObject
  * @typedef WalletObject
- * @prop {WalletTypeObject} type - Indicates the wallet type
+ * @prop {DidType} type - Indicates the wallet type
  * @prop {secretKey} secretKey - Wallet secretKey
  * @prop {publicKey} publicKey - Wallet publicKey
  * @prop {function} sign - Sign `data`, data is hashed using the `HashType` defined in type before signing
@@ -111,55 +142,14 @@ declare function isValid(wallet: any, canSign?: boolean): boolean;
  * @param {object} keyPair - the key pair
  * @param {string} keyPair.sk - the secretKey
  * @param {string} keyPair.pk - the wallet publicKey
- * @param {WalletTypeObject} [type=defaultWalletType] - wallet type
+ * @param {DidType} [type='default'] - wallet type
  * @returns {WalletObject} wallet object that can be used to sign/verify/getAddress
  */
-declare function Wallet(keyPair: _Lib.T101, type?: WalletTypeObject): WalletObject;
-/**
- * The structure of a forge wallet type
- *
- * @public
- * @static
- * @global
- * @typedef {Object} WalletTypeObject
- * @prop {number} role - Enum field to identify wallet role type
- * @prop {number} pk - Crypto algorithm to derive publicKey from the secretKey
- * @prop {number} hash - Hash algorithm used to hash data before sign them
- */
-
-/**
- * Create an wallet type object that be used as param to create a new wallet
- *
- * @public
- * @static
- * @param {WalletTypeObject} [type=defaultWalletType]
- * @returns {object}
- * @example
- * const assert = require('assert');
- * const { WalletType } = require('@arcblock/forge-wallet');
- * const { types } = require('@arcblock/mcrypto');
- *
- * const type = WalletType({
- *   role: types.RoleType.ROLE_APPLICATION,
- *   pk: types.KeyType.ED25519,
- *   hash: types.HashType.SHA3,
- * });
- */
-declare function WalletType(type?: WalletTypeObject): any;
-declare const _Lib: _Lib.T103;
+declare function Wallet(keyPair: _Lib.T100, type?: typeof DidType): WalletObject;
+declare const _Lib: _Lib.T101;
 declare namespace _Lib {
-  export interface T100 {
-    pk: any;
-    role: any;
-    hash: any;
-  }
-  export interface WalletTypeObject {
-    role: number;
-    pk: number;
-    hash: number;
-  }
   export interface WalletObject {
-    type: WalletTypeObject;
+    type: typeof DidType;
     secretKey: any;
     publicKey: any;
     sign: (...args: any[]) => any;
@@ -167,14 +157,11 @@ declare namespace _Lib {
     toAddress: (...args: any[]) => any;
     toJSON: (...args: any[]) => any;
   }
-  export interface T101 {
+  export interface T100 {
     sk: string;
     pk: string;
   }
-  export interface T102 {
-    [key: string]: any;
-  }
-  export interface T103 {
+  export interface T101 {
     fromSecretKey: typeof fromSecretKey;
     fromPublicKey: typeof fromPublicKey;
     fromRandom: typeof fromRandom;
@@ -183,7 +170,8 @@ declare namespace _Lib {
     fromJSON: typeof fromJSON;
     isValid: typeof isValid;
     Wallet: typeof Wallet;
-    WalletType: typeof WalletType;
+    WalletType: typeof DidType;
+    DidType: typeof DidType;
   }
 }
 export = _Lib;

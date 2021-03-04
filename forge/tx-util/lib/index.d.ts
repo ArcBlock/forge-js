@@ -1,15 +1,15 @@
 // Generate by [js2dts@0.3.3](https://github.com/whxaxes/js2dts#readme)
 
-import { EventEmitter } from 'events';
+import * as events from 'events';
 declare const _Lib: _Lib.T100;
 declare namespace _Lib {
   export interface T100 {
-    createVerifier: (params: any) => EventEmitter;
-    verifyTx: (params: any) => EventEmitter;
+    createVerifier: (params: any) => events;
+    verifyTx: (params: any) => events;
     verifyTxAsync: (params: any) => Promise<any>;
-    verifyAccount: (params: any) => EventEmitter;
+    verifyAccount: (params: any) => events;
     verifyAccountAsync: (params: any) => Promise<any>;
-    verifyAsset: (params: any) => EventEmitter;
+    verifyAsset: (params: any) => events;
     verifyAssetAsync: (params: any) => Promise<any>;
   }
 }

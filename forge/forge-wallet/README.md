@@ -30,6 +30,7 @@ const type = WalletType({
   role: types.RoleType.ROLE_APPLICATION,
   pk: types.KeyType.ED25519,
   hash: types.HashType.SHA3,
+  address: types.EncodingType.BASE58,
 });
 
 const wallet = fromSecretKey(sk, type);
