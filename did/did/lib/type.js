@@ -3,7 +3,7 @@ const upperFirst = require('lodash/upperFirst');
 const isEqual = require('lodash/isEqual');
 const pick = require('lodash/pick');
 const { types, Hasher } = require('@arcblock/mcrypto');
-const { numberToHex, stripHexPrefix } = require('@arcblock/forge-util');
+const { numberToHex, stripHexPrefix, isHex, toAddress } = require('@arcblock/forge-util');
 const { toBits, toBytes, toStrictHex } = require('./util');
 
 // eslint-disable-next-line
@@ -36,11 +36,13 @@ const isEthereumType = type => {
 /**
  * Checks if the given string is an address
  *
- * @method isEthereumAddress
- * @param {String} address the given HEX address
+ * @method isEthereumDid
+ * @param {String} did the given HEX address
  * @return {Boolean}
  */
-const isEthereumAddress = address => {
+const isEthereumDid = did => {
+  const address = toAddress(did);
+
   // check if it has the basic requirements of an address
   if (!/^(0x)?[0-9a-f]{40}$/i.test(address)) {
     return false;
@@ -227,7 +229,7 @@ const fromTypeInfo = type => {
 const toTypeInfo = (did, returnString = false) => {
   try {
     let type = null;
-    if (isEthereumAddress(did)) {
+    if (isEthereumDid(did)) {
       type = DID_TYPE_ETHEREUM;
     } else {
       const bytes = toBytes(did);
@@ -241,6 +243,7 @@ const toTypeInfo = (did, returnString = false) => {
         role: parseInt(roleBits, 2),
         pk: parseInt(keyBits, 2),
         hash: parseInt(hashBits, 2),
+        address: isHex(toAddress(did)) ? types.EncodingType.BASE16 : types.EncodingType.BASE58,
       };
     }
 
@@ -271,7 +274,7 @@ module.exports = {
   fromTypeInfo,
   toTypeInfo,
   isEthereumType,
-  isEthereumAddress,
+  isEthereumDid,
   toChecksumAddress,
   DidType,
 };

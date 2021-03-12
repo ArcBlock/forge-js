@@ -36,6 +36,10 @@ const sign = (signer, sk, payload = {}, doSign = true) => {
       alg: 'Ed25519',
       type: 'JWT',
     },
+    [types.KeyType.ETHEREUM]: {
+      alg: 'Ethereum',
+      type: 'JWT',
+    },
   };
 
   // make header
@@ -165,6 +169,7 @@ const verify = (token, signerPk, { tolerance = 5, enforceTimestamp = true, signe
       secp256k1: getSigner(types.KeyType.SECP256K1),
       es256k: getSigner(types.KeyType.SECP256K1),
       ed25519: getSigner(types.KeyType.ED25519),
+      ethereum: getSigner(types.KeyType.ETHEREUM),
     };
     const alg = header.alg.toLowerCase();
     if (signers[alg]) {

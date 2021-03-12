@@ -13,7 +13,7 @@ const {
   toTypeInfo,
   fromTypeInfo,
   isEthereumType,
-  isEthereumAddress,
+  isEthereumDid,
   DID_TYPE_FORGE,
   DID_TYPE_ETHEREUM,
   toChecksumAddress,
@@ -137,17 +137,18 @@ const isFromPublicKey = (did, pk) => {
  * @returns {boolean}
  */
 const isValid = did => {
-  const { hash } = toTypeInfo(did);
+  const address = toAddress(did);
+  const { hash } = toTypeInfo(address);
   if (typeof hash === 'undefined') {
     return false;
   }
 
-  if (isEthereumAddress(did)) {
+  if (isEthereumDid(address)) {
     return true;
   }
 
   const hashFn = getHasher(hash);
-  const bytes = toBytes(did);
+  const bytes = toBytes(address);
   const bytesHex = toStrictHex(Buffer.from(bytes.slice(0, 22)).toString('hex'));
   const didChecksum = toStrictHex(Buffer.from(bytes.slice(22, 26)).toString('hex'));
   const checksum = stripHexPrefix(hashFn(`0x${bytesHex}`, 1)).slice(0, 8);

@@ -1,3 +1,7 @@
+## 1.6.1 (March 12, 2021)
+
+- chore: polish ethereum support in did and did-auth
+
 ## 1.6.0 (March 02, 2021)
 
 - fix: make isValid and isFromPublicKey work for ethereum addresses
