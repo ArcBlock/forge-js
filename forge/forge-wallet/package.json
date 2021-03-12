@@ -1,6 +1,6 @@
 {
   "name": "@arcblock/forge-wallet",
-  "version": "1.6.0",
+  "version": "1.6.1",
   "description": "Utility function to create and use an forge compatible crypto wallet",
   "keywords": [
     "crypto",
@@ -47,7 +47,7 @@
     "url": "https://github.com/ArcBlock/forge-js/issues"
   },
   "dependencies": {
-    "@arcblock/did": "^1.6.0",
-    "@arcblock/mcrypto": "^1.6.0"
+    "@arcblock/did": "^1.6.1",
+    "@arcblock/mcrypto": "^1.6.1"
   }
 }
