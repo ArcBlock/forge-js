@@ -60,5 +60,6 @@
   "resolutions": {
     "bn.js": "5.1.3",
     "elliptic": "6.5.3"
-  }
+  },
+  "gitHead": "2df8525a632c9b1e6ccb82f90cc4e4aacc475bcf"
 }

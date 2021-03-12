@@ -49,5 +49,6 @@
   "dependencies": {
     "@arcblock/did": "^1.6.1",
     "@arcblock/mcrypto": "^1.6.1"
-  }
+  },
+  "gitHead": "2df8525a632c9b1e6ccb82f90cc4e4aacc475bcf"
 }
