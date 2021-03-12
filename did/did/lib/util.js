@@ -1,5 +1,5 @@
 const padStart = require('lodash/padStart');
-const { toBN, fromBase58 } = require('@arcblock/forge-util');
+const { toBN, fromBase58, isHexStrict, stripHexPrefix } = require('@arcblock/forge-util');
 
 const DID_PREFIX = 'did:abt:';
 
@@ -11,6 +11,10 @@ const DID_PREFIX = 'did:abt:';
  */
 const toBytes = did => {
   try {
+    if (isHexStrict(did)) {
+      return Buffer.from(stripHexPrefix(did), 'hex');
+    }
+
     let bytes = fromBase58(did.replace(DID_PREFIX, ''));
     while (bytes.length < 26) {
       bytes = Buffer.concat([Buffer.from([0]), bytes]);

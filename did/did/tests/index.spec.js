@@ -27,6 +27,7 @@ const appType = {
   role: types.RoleType.ROLE_APPLICATION,
   pk: types.KeyType.ED25519,
   hash: types.HashType.SHA3,
+  address: types.EncodingType.BASE58,
 };
 
 const ethereumCases = [
@@ -85,6 +86,7 @@ describe('@arcblock/did', () => {
   });
 
   test('should validate did as expected', () => {
+    // base48 support
     expect(isValid(appId)).toEqual(true);
     expect(isValid(userId)).toEqual(true);
     expect(isValid(`did:abt:${appId}`)).toEqual(true);
@@ -95,9 +97,14 @@ describe('@arcblock/did', () => {
     expect(isValid('z2muQ3xqHQK2uiACHyChikobsiY5kLqtShA')).toEqual(false);
     expect(isValid('z1muQ3xqHQK2uiACHyChikobsiY5kLqtSha')).toEqual(false);
 
+    // base16 support
+    expect(isValid('0x0021e4b8f62674897ed75df0f7356e82c6f9a64a5c13f3cc0cd3')).toEqual(true);
+    expect(isValid('did:abt:0x0021e4b8f62674897ed75df0f7356e82c6f9a64a5c13f3cc0cd3')).toEqual(true);
+
     // ethereum support
     ethereumCases.forEach(({ address }) => {
       expect(isValid(address)).toEqual(true);
+      expect(isValid(`did:abt:${address}`)).toEqual(true);
     });
   });
 
@@ -122,6 +129,13 @@ describe('@arcblock/did', () => {
         pk: types.KeyType.SECP256K1,
       })
     ).toEqual('z1Ee1H8g248HqroacmEnZzMYgbhjz1Z2WSvv');
+
+    expect(
+      fromSecretKey('0x26954E19E8781905E2CF91A18AE4F36A954C142176EE1BC27C2635520C49BC55', {
+        pk: types.KeyType.SECP256K1,
+        address: types.EncodingType.BASE16,
+      })
+    ).toEqual('0x0021e4b8f62674897ed75df0f7356e82c6f9a64a5c13f3cc0cd3');
   });
 
   test('should generate eth address from privateKey as expected', () => {
@@ -206,10 +220,24 @@ describe('DidType', () => {
     let typeInfo = toTypeInfo(address);
     expect(typeInfo).toEqual(DID_TYPE_ETHEREUM);
 
+    typeInfo = toTypeInfo(`did:abt:${address}`);
+    expect(typeInfo).toEqual(DID_TYPE_ETHEREUM);
+
     typeInfo = toTypeInfo(address, true);
     expect(typeInfo.role).toEqual('ROLE_ACCOUNT');
     expect(typeInfo.pk).toEqual('ETHEREUM');
     expect(typeInfo.hash).toEqual('KECCAK');
+  });
+
+  test('should get type info as expected: base16', () => {
+    const address = '0x0021e4b8f62674897ed75df0f7356e82c6f9a64a5c13f3cc0cd3';
+    const typeInfo = toTypeInfo(address);
+    expect(typeInfo).toEqual({
+      role: types.RoleType.ROLE_ACCOUNT,
+      pk: types.KeyType.SECP256K1,
+      hash: types.HashType.SHA3,
+      address: types.EncodingType.BASE16,
+    });
   });
 
   test('should get type hex as expected', () => {
