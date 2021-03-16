@@ -43,7 +43,7 @@ const fromAppDid = (appDid, rootSk, type = { role: types.RoleType.ROLE_ACCOUNT }
     const keyPair = Mcrypto.Signer.Ed25519.genKeyPair(child.privateKey);
     sk = keyPair.secretKey;
   } else {
-    sk = child.privateKey;
+    sk = toHex(child.privateKey);
   }
 
   return fromSecretKey(sk, type);
