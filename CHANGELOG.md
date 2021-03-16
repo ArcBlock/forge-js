@@ -1,3 +1,7 @@
+## 1.6.2 (三月 16, 2021)
+
+- fix: sk with hex for fromAppDid func
+
 ## 1.6.1 (March 12, 2021)
 
 - chore: polish ethereum support in did and did-auth
