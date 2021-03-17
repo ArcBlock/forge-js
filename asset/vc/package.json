@@ -1,6 +1,6 @@
 {
   "name": "@arcblock/vc",
-  "version": "1.6.1",
+  "version": "1.6.2",
   "description": "Javascript lib to work with ArcBlock Verifiable Credentials",
   "keywords": [
     "forge",
@@ -47,10 +47,10 @@
     "url": "https://github.com/ArcBlock/forge-js/issues"
   },
   "dependencies": {
-    "@arcblock/did": "^1.6.1",
-    "@arcblock/forge-util": "^1.6.1",
-    "@arcblock/forge-wallet": "^1.6.1",
-    "@arcblock/mcrypto": "^1.6.1",
+    "@arcblock/did": "^1.6.2",
+    "@arcblock/forge-util": "^1.6.2",
+    "@arcblock/forge-wallet": "^1.6.2",
+    "@arcblock/mcrypto": "^1.6.2",
     "debug": "^4.3.1",
     "json-stable-stringify": "^1.0.1",
     "lodash": "^4.17.20"

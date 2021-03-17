@@ -1,7 +1,7 @@
 {
   "name": "@arcblock/swap-storage-memory",
   "description": "Storage engine that uses memory for atomic swap",
-  "version": "1.6.1",
+  "version": "1.6.2",
   "author": "wangshijun <shijun@arcblock.io> (https://ocap.arcblock.io)",
   "bugs": {
     "url": "https://github.com/ArcBlock/forge-js/issues",
@@ -61,6 +61,6 @@
   },
   "gitHead": "2df8525a632c9b1e6ccb82f90cc4e4aacc475bcf",
   "dependencies": {
-    "@arcblock/swap-storage": "^1.6.1"
+    "@arcblock/swap-storage": "^1.6.2"
   }
 }
