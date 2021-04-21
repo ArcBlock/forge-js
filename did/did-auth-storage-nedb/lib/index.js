@@ -1,5 +1,6 @@
 /* eslint-disable no-underscore-dangle */
-const DataStore = require('@nedb/core');
+const Nedb = require('@nedb/core');
+const NedbMulti = require('@nedb/multi');
 const StorageInterface = require('@arcblock/did-auth-storage');
 
 const debug = require('debug')(require('../package.json').name);
@@ -21,6 +22,8 @@ module.exports = class DiskAuthStorage extends StorageInterface {
 
     this.options = options;
 
+    const DataStore = options.dbPort ? NedbMulti(options.dbPort) : Nedb;
+
     this.db = new DataStore(
       Object.assign(
         {
@@ -31,6 +34,12 @@ module.exports = class DiskAuthStorage extends StorageInterface {
         options
       )
     );
+
+    this.db.loadDatabase((err) => {
+      if (err) {
+        debug(`failed to load disk database ${options.dbPath}`, { error: err });
+      }
+    });
 
     // TODO: we may need a ready state if the database file is too large
   }

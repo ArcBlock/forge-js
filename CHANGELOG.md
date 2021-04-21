@@ -1,4 +1,8 @@
-## 1.6.2 (三月 16, 2021)
+## 1.6.3 (April 21, 2021)
+
+- feat: support to specify dbPort when starting nedb
+
+## 1.6.2 (March 16, 2021)
 
 - fix: sk with hex for fromAppDid func
 
