@@ -79,5 +79,5 @@
     "test": "yarn lint && node tools/jest.js",
     "coverage": "yarn lint && yarn test -- --coverage"
   },
-  "gitHead": "554c17ccece77a1abc528348bee7f9e75865d918"
+  "gitHead": "570a366418890ded86422e168417bae0c9967e35"
 }
