@@ -63,6 +63,7 @@
   "dependencies": {
     "@arcblock/did-auth-storage": "^1.6.2",
     "@nedb/core": "1.x",
+    "@nedb/multi": "1.x",
     "debug": "^4.3.1"
   }
 }
