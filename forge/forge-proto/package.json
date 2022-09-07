@@ -1,7 +1,7 @@
 {
   "name": "@arcblock/forge-proto",
   "description": "Static modules generated from forge-sdk protobuf files",
-  "version": "1.6.3",
+  "version": "1.7.0",
   "author": {
     "name": "wangshijun",
     "email": "shijun@arcblock.io",
