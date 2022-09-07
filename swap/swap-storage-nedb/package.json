@@ -62,7 +62,7 @@
   "gitHead": "570a366418890ded86422e168417bae0c9967e35",
   "dependencies": {
     "@arcblock/swap-storage": "^1.7.0",
-    "@nedb/core": "^2.0.2",
+    "@nedb/core": "2.x",
     "debug": "^4.3.4"
   }
 }

@@ -15,8 +15,8 @@
     "access": "public"
   },
   "dependencies": {
-    "@arcblock/did": "^1.17.18",
-    "@arcblock/did-util": "^1.17.18",
+    "@arcblock/did": "^1.17.19",
+    "@arcblock/did-util": "^1.17.19",
     "@arcblock/forge-message": "^1.7.0",
     "@arcblock/forge-proto": "^1.7.0",
     "@arcblock/forge-util": "^1.7.0",

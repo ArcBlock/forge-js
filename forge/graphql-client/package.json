@@ -39,7 +39,7 @@
     "wolfy87-eventemitter": "^5.2.9"
   },
   "devDependencies": {
-    "@arcblock/did-util": "^1.17.18",
+    "@arcblock/did-util": "^1.17.19",
     "@arcblock/forge-util": "^1.7.0",
     "@arcblock/forge-wallet": "^1.7.0",
     "axios": "^0.21.4",

@@ -47,7 +47,7 @@
     "url": "https://github.com/ArcBlock/forge-js/issues"
   },
   "dependencies": {
-    "@arcblock/did": "^1.17.18",
+    "@arcblock/did": "^1.17.19",
     "@arcblock/mcrypto": "^1.7.0"
   },
   "gitHead": "570a366418890ded86422e168417bae0c9967e35"
