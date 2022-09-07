@@ -1,7 +1,7 @@
 {
   "name": "@arcblock/swap-storage-nedb",
   "description": "Storage engine that uses mongodb for atomic swap",
-  "version": "1.7.0",
+  "version": "1.7.1",
   "author": "wangshijun <shijun@arcblock.io> (https://ocap.arcblock.io)",
   "bugs": {
     "url": "https://github.com/ArcBlock/forge-js/issues",
@@ -61,7 +61,7 @@
   },
   "gitHead": "570a366418890ded86422e168417bae0c9967e35",
   "dependencies": {
-    "@arcblock/swap-storage": "^1.7.0",
+    "@arcblock/swap-storage": "^1.7.1",
     "@nedb/core": "2.x",
     "debug": "^4.3.4"
   }
