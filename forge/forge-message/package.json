@@ -17,13 +17,13 @@
   "dependencies": {
     "@arcblock/forge-proto": "^1.6.3",
     "@arcblock/forge-util": "^1.6.3",
-    "debug": "^4.3.1",
-    "google-protobuf": "^3.9.0",
-    "lodash": "^4.17.20"
+    "debug": "^4.3.4",
+    "google-protobuf": "^3.21.0",
+    "lodash": "^4.17.21"
   },
   "devDependencies": {
-    "jest": "^24.8.0",
-    "jsdoc-to-markdown": "^5.0.0",
+    "jest": "^24.9.0",
+    "jsdoc-to-markdown": "^5.0.3",
     "remark-cli": "^5.0.0",
     "remark-preset-github": "^0.0.9"
   },

@@ -24,8 +24,8 @@
     "lib"
   ],
   "devDependencies": {
-    "jest": "^24.8.0",
-    "jsdoc-to-markdown": "^5.0.0"
+    "jest": "^24.9.0",
+    "jsdoc-to-markdown": "^5.0.3"
   },
   "repository": {
     "type": "git",
@@ -49,8 +49,8 @@
   "dependencies": {
     "@arcblock/forge-util": "^1.6.3",
     "bn.js": "5.1.3",
-    "crypto-js": "^4.0.0",
-    "elliptic": "^6.5.3",
+    "crypto-js": "^4.1.1",
+    "elliptic": "^6.5.4",
     "hash.js": "^1.1.7",
     "interface": "^1.2.1",
     "js-sha3": "^0.8.0",

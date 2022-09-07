@@ -6,7 +6,6 @@
     "forge/*",
     "did/*",
     "swap/*",
-    "asset/*",
     "examples/*"
   ],
   "author": {
@@ -18,14 +17,14 @@
     "eslint": "5.3.0",
     "eslint-config-airbnb-base": "13.1.0",
     "eslint-config-prettier": "latest",
-    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-prettier": "latest",
-    "husky": "^2.3.0",
+    "husky": "^2.7.0",
     "js2dts": "^0.3.3",
-    "jsdoc": "^3.5.5",
-    "lerna": "^3.3.2",
-    "lint-staged": "^7.2.2",
-    "prettier": "^1.6.1",
+    "jsdoc": "^3.6.11",
+    "lerna": "^3.22.1",
+    "lint-staged": "^7.3.0",
+    "prettier": "^1.19.1",
     "remark-cli": "^5.0.0",
     "remark-preset-github": "^0.0.9"
   },
@@ -59,7 +58,7 @@
     "coverage": "CI=1 lerna run coverage"
   },
   "dependencies": {
-    "axios": "^0.19.0"
+    "axios": "^0.19.2"
   },
   "resolutions": {
     "bn.js": "5.1.3",

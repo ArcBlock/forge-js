@@ -16,7 +16,7 @@
   },
   "devDependencies": {
     "any-json": "^3.1.0",
-    "jest": "^24.8.0"
+    "jest": "^24.9.0"
   },
   "homepage": "https://github.com/ArcBlock/forge-js/tree/master/forge/forge-proto",
   "keywords": [
@@ -60,10 +60,10 @@
     "coverage": "yarn lint && yarn test -- --coverage --collectCoverageFrom=index.js --collectCoverageFrom=!lib/*.js"
   },
   "dependencies": {
-    "@grpc/grpc-js": "^1.0.5",
-    "debug": "^4.3.1",
-    "google-auth-library": "^6.0.1",
-    "lodash": "^4.17.20"
+    "@grpc/grpc-js": "^1.6.12",
+    "debug": "^4.3.4",
+    "google-auth-library": "^6.1.6",
+    "lodash": "^4.17.21"
   },
   "gitHead": "570a366418890ded86422e168417bae0c9967e35"
 }

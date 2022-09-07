@@ -6,7 +6,6 @@
     "forge/*",
     "did/*",
     "swap/*",
-    "asset/*",
     "examples/*"
   ]
 }

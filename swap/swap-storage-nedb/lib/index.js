@@ -1,6 +1,6 @@
 /* eslint-disable no-bitwise */
 /* eslint-disable no-underscore-dangle */
-const DataStore = require('@nedb/core');
+const { DataStore } = require('@nedb/core');
 const StorageInterface = require('@arcblock/swap-storage');
 
 const debug = require('debug')(require('../package.json').name);
@@ -144,7 +144,7 @@ class DiskSwapStorage extends StorageInterface {
         { traceId },
         { $set: updates },
         { multi: false, upsert: false, returnUpdatedDocs: true },
-        (err, numAffected, doc) => {
+        (err, [, doc]) => {
           if (err) {
             reject(err);
           } else {

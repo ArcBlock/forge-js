@@ -5,7 +5,7 @@
   "description": "Simple demo on how to deploy customized tx protocol to forge",
   "scripts": {},
   "dependencies": {
-    "@arcblock/did-util": "^1.6.3",
+    "@arcblock/did-util": "^1.17.18",
     "@arcblock/forge-config": "^1.6.3",
     "@arcblock/forge-proto": "^1.6.3",
     "@arcblock/forge-util": "^1.6.3",
@@ -13,9 +13,9 @@
     "@arcblock/graphql-client": "^1.6.3",
     "@arcblock/grpc-client": "^1.6.3",
     "@arcblock/mcrypto": "^1.6.3",
-    "base64-url": "^2.3.2",
+    "base64-url": "^2.3.3",
     "death": "^1.1.0",
-    "moment": "^2.24.0"
+    "moment": "^2.29.4"
   },
   "keywords": [],
   "author": "wangshijun <wangshijun2010@gmail.com> (http://github.com/wangshijun)",

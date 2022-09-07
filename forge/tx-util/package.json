@@ -16,10 +16,10 @@
   },
   "dependencies": {
     "@arcblock/forge-sdk": "^1.6.3",
-    "debug": "^4.3.1"
+    "debug": "^4.3.4"
   },
   "devDependencies": {
-    "jest": "^24.8.0",
+    "jest": "^24.9.0",
     "remark-cli": "^5.0.0",
     "remark-preset-github": "^0.0.9"
   },

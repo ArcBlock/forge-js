@@ -18,16 +18,16 @@
     "@arcblock/client-extension": "^1.6.3",
     "@arcblock/forge-message": "^1.6.3",
     "@arcblock/forge-proto": "^1.6.3",
-    "@grpc/grpc-js": "^1.0.5",
-    "debug": "^4.3.1",
-    "google-auth-library": "^6.0.1",
-    "lodash": "^4.17.20"
+    "@grpc/grpc-js": "^1.6.12",
+    "debug": "^4.3.4",
+    "google-auth-library": "^6.1.6",
+    "lodash": "^4.17.21"
   },
   "devDependencies": {
-    "@arcblock/did-util": "^1.6.3",
+    "@arcblock/did-util": "^1.17.18",
     "@arcblock/forge-util": "^1.6.3",
     "@arcblock/forge-wallet": "^1.6.3",
-    "jest": "^24.8.0",
+    "jest": "^24.9.0",
     "remark-cli": "^5.0.0",
     "remark-preset-github": "^0.0.9"
   },

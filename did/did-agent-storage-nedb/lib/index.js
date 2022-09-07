@@ -1,6 +1,6 @@
 /* eslint-disable no-underscore-dangle */
-const Nedb = require('@nedb/core');
-const NedbMulti = require('@nedb/multi');
+const { DataStore: SimpleDataStore } = require('@nedb/core');
+const { createDataStore } = require('@nedb/multi');
 const StorageInterface = require('@arcblock/did-agent-storage');
 
 const debug = require('debug')(require('../package.json').name);
@@ -23,7 +23,7 @@ module.exports = class DiskAgentStorage extends StorageInterface {
 
     this.options = options;
 
-    const DataStore = options.dbPort ? NedbMulti(options.dbPort) : Nedb;
+    const DataStore = options.dbPort ? createDataStore(options.dbPort) : SimpleDataStore;
 
     this.db = new DataStore(
       Object.assign(
@@ -92,7 +92,7 @@ module.exports = class DiskAgentStorage extends StorageInterface {
         { authorizeId },
         { $set: updates },
         { multi: false, upsert: false, returnUpdatedDocs: true },
-        (err, numAffected, doc) => {
+        (err, [, doc]) => {
           if (err) {
             reject(err);
           } else {
