@@ -59,7 +59,7 @@
   },
   "resolutions": {
     "bn.js": "5.1.3",
-    "elliptic": "6.5.3"
+    "elliptic": "6.5.4"
   },
   "gitHead": "570a366418890ded86422e168417bae0c9967e35"
 }
