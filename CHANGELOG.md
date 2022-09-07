@@ -1,3 +1,8 @@
+## 1.7.1 (September 08, 2022)
+
+- chore: use 2.x nedb
+- chore: update readme
+
 ## 1.7.0 (September 07, 2022)
 
 - chore: use latest nedb
