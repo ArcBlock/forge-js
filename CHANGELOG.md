@@ -1,3 +1,7 @@
+## 1.7.0 (September 07, 2022)
+
+- chore: use latest nedb
+
 ## 1.6.3 (April 21, 2021)
 
 - feat: support to specify dbPort when starting nedb
