@@ -58,7 +58,7 @@
     "coverage": "CI=1 lerna run coverage"
   },
   "dependencies": {
-    "axios": "^0.19.2"
+    "axios": "^0.21.2"
   },
   "resolutions": {
     "bn.js": "5.1.3",
