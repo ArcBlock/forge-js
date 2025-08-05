@@ -1,6 +1,7 @@
 name: publish
 env:
   ACTIONS_ALLOW_UNSECURE_COMMANDS: true
+  NODE_OPTIONS: --openssl-legacy-provider
 on:
   push:
     branches:
