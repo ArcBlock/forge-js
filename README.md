@@ -24,7 +24,7 @@
 [![docs](https://img.shields.io/badge/powered%20by-arcblock-green.svg)](https://docs.arcblock.io)
 [![Gitter](https://badges.gitter.im/ArcBlock/community.svg)](https://gitter.im/ArcBlock/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
-> Last updated at 9/7/2022, 2:26:20 PM
+> Last updated at 8/5/2025, 11:47:31 PM
 
 Javascript SDK for [forge](https://docs.arcblock.io/forge/latest/), which is an awesome framework to write distributed blockchain applications.
 
@@ -45,12 +45,12 @@ Javascript SDK for [forge](https://docs.arcblock.io/forge/latest/), which is an 
 - [did-agent-storage-memory <img src="https://img.shields.io/npm/v/@arcblock/did-agent-storage-memory.svg" alt="Version">](https://www.npmjs.com/package/@arcblock/did-agent-storage-memory)
 - [did-agent-storage-mongo <img src="https://img.shields.io/npm/v/@arcblock/did-agent-storage-mongo.svg" alt="Version">](https://www.npmjs.com/package/@arcblock/did-agent-storage-mongo)
 - [did-agent-storage-nedb <img src="https://img.shields.io/npm/v/@arcblock/did-agent-storage-nedb.svg" alt="Version">](https://www.npmjs.com/package/@arcblock/did-agent-storage-nedb)
-- [did-auth-storage <img src="https://img.shields.io/npm/v/@arcblock/did-connect-storage.svg" alt="Version">](https://www.npmjs.com/package/@arcblock/did-connect-storage)
-- [did-auth-storage-firebase <img src="https://img.shields.io/npm/v/@arcblock/did-connect-storage-firebase.svg" alt="Version">](https://www.npmjs.com/package/@arcblock/did-connect-storage-firebase)
-- [did-auth-storage-keystone <img src="https://img.shields.io/npm/v/@arcblock/did-connect-storage-keystone.svg" alt="Version">](https://www.npmjs.com/package/@arcblock/did-connect-storage-keystone)
-- [did-auth-storage-memory <img src="https://img.shields.io/npm/v/@arcblock/did-connect-storage-memory.svg" alt="Version">](https://www.npmjs.com/package/@arcblock/did-connect-storage-memory)
-- [did-auth-storage-mongo <img src="https://img.shields.io/npm/v/@arcblock/did-connect-storage-mongo.svg" alt="Version">](https://www.npmjs.com/package/@arcblock/did-connect-storage-mongo)
-- [did-auth-storage-nedb <img src="https://img.shields.io/npm/v/@arcblock/did-connect-storage-nedb.svg" alt="Version">](https://www.npmjs.com/package/@arcblock/did-connect-storage-nedb)
+- [did-connect-storage <img src="https://img.shields.io/npm/v/@arcblock/did-connect-storage.svg" alt="Version">](https://www.npmjs.com/package/@arcblock/did-connect-storage)
+- [did-connect-storage-firebase <img src="https://img.shields.io/npm/v/@arcblock/did-connect-storage-firebase.svg" alt="Version">](https://www.npmjs.com/package/@arcblock/did-connect-storage-firebase)
+- [did-connect-storage-keystone <img src="https://img.shields.io/npm/v/@arcblock/did-connect-storage-keystone.svg" alt="Version">](https://www.npmjs.com/package/@arcblock/did-connect-storage-keystone)
+- [did-connect-storage-memory <img src="https://img.shields.io/npm/v/@arcblock/did-connect-storage-memory.svg" alt="Version">](https://www.npmjs.com/package/@arcblock/did-connect-storage-memory)
+- [did-connect-storage-mongo <img src="https://img.shields.io/npm/v/@arcblock/did-connect-storage-mongo.svg" alt="Version">](https://www.npmjs.com/package/@arcblock/did-connect-storage-mongo)
+- [did-connect-storage-nedb <img src="https://img.shields.io/npm/v/@arcblock/did-connect-storage-nedb.svg" alt="Version">](https://www.npmjs.com/package/@arcblock/did-connect-storage-nedb)
 - [event-client <img src="https://img.shields.io/npm/v/@arcblock/event-client.svg" alt="Version">](https://www.npmjs.com/package/@arcblock/event-client)
 - [event-server <img src="https://img.shields.io/npm/v/@arcblock/event-server.svg" alt="Version">](https://www.npmjs.com/package/@arcblock/event-server)
 - [swap-retriever <img src="https://img.shields.io/npm/v/@arcblock/swap-retriever.svg" alt="Version">](https://www.npmjs.com/package/@arcblock/swap-retriever)
