@@ -1,7 +1,7 @@
 {
   "name": "@arcblock/did-connect-storage-nedb",
   "description": "Storage engine that uses nedb for DID Connect",
-  "version": "1.7.1",
+  "version": "1.8.0",
   "author": "wangshijun <shijun@arcblock.io> (https://ocap.arcblock.io)",
   "bugs": {
     "url": "https://github.com/ArcBlock/forge-js/issues",
@@ -61,7 +61,7 @@
   },
   "gitHead": "570a366418890ded86422e168417bae0c9967e35",
   "dependencies": {
-    "@arcblock/did-connect-storage": "^1.7.1",
+    "@arcblock/did-connect-storage": "1.8.0",
     "@nedb/core": "2.x",
     "@nedb/multi": "2.x",
     "debug": "^4.3.4"
