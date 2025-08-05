@@ -19,7 +19,7 @@ install:
 
 dep:
 	@echo "Install dependencies required for this repo..."
-	@lerna bootstrap
+	@yarn
 	@lerna link
 	@npx install-peerdeps -g --yarn eslint-config-airbnb
 	@cd forge/graphql-client && lerna link && yarn build
