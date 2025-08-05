@@ -22,13 +22,13 @@ tags:
 
 ## DidAgentStorage ⇐ `EventEmitter`
 
-**Kind**: global class  
-**Extends**: `EventEmitter`  
+**Kind**: global class
+**Extends**: `EventEmitter`
 **See**
 
-* [**@arcblock/did-auth-storage-firebase**](https://github.com/arcblock/did-auth-storage-firebase)
-* [**@arcblock/did-auth-storage-mongo**](https://github.com/arcblock/did-auth-storage-mongo)
-* [**@arcblock/did-auth-storage-keystone**](https://github.com/arcblock/did-auth-storage-keystone)
+* [**@arcblock/did-connect-storage-firebase**](https://github.com/arcblock/did-auth-storage-firebase)
+* [**@arcblock/did-connect-storage-mongo**](https://github.com/arcblock/did-auth-storage-mongo)
+* [**@arcblock/did-connect-storage-keystone**](https://github.com/arcblock/did-auth-storage-keystone)
 
 
 * [DidAgentStorage](#DidAgentStorage) ⇐ `EventEmitter`
@@ -51,7 +51,7 @@ Creates an instance of DidAgentStorage.
 
 ## DidAgentStorage
 
-**Kind**: global class  
+**Kind**: global class
 
 * [DidAgentStorage](#DidAgentStorage)
   * [new DidAgentStorage()](#new_DidAgentStorage_new)
@@ -76,5 +76,3 @@ Creates an instance of DidAgentStorage.
 | Name           | Website                    |
 | -------------- | -------------------------- |
 | **wangshijun** | <https://ocap.arcblock.io> |
-
-  

@@ -2,7 +2,7 @@
 
 [![styled with prettier](https://img.shields.io/badge/styled_with-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
 
-> Storage engine that uses mongo to store data, implements interfaces defined in `@arcblock/did-auth-storage`.
+> Storage engine that uses mongo to store data, implements interfaces defined in `@arcblock/did-connect-storage`.
 
 
 ## Table of Contents

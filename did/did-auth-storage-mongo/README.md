@@ -2,7 +2,7 @@
 
 [![styled with prettier](https://img.shields.io/badge/styled_with-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
 
-> Storage engine that uses mongo to store data, implements interfaces defined in `@arcblock/did-auth-storage`.
+> Storage engine that uses mongo to store data, implements interfaces defined in `@arcblock/did-connect-storage`.
 
 
 ## Table of Contents
@@ -15,16 +15,16 @@
 ## Install
 
 ```sh
-npm install @arcblock/did-auth-storage-mongo
+npm install @arcblock/did-connect-storage-mongo
 // or
-yarn add @arcblock/did-auth-storage-mongo
+yarn add @arcblock/did-connect-storage-mongo
 ```
 
 
 ## Usage
 
 ```js
-const MongoStorage = require('@arcblock/did-auth-storage-mongo');
+const MongoStorage = require('@arcblock/did-connect-storage-mongo');
 
 const storage = new MongoStorage({
   url: 'mongodb://localhost/forge-web-starter',

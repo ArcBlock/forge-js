@@ -1,4 +1,4 @@
-const StorageInterface = require('@arcblock/did-auth-storage');
+const StorageInterface = require('@arcblock/did-connect-storage');
 
 let storage = {};
 

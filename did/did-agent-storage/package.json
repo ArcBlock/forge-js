@@ -1,6 +1,6 @@
 {
   "name": "@arcblock/did-agent-storage",
-  "description": "Storage interface for delegated did-auth between application and wallet",
+  "description": "Storage interface for delegated DID Connect between application and wallet",
   "version": "1.7.1",
   "author": "wangshijun <shijun@arcblock.io> (https://ocap.arcblock.io)",
   "bugs": {

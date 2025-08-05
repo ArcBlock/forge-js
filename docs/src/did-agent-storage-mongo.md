@@ -1,6 +1,6 @@
 ---
 title: '@arcblock/did-agent-storage-mongo'
-description: 'Storage engine that uses mongodb for did-auth'
+description: 'Storage engine that uses mongodb for DID Connect'
 keywords: 'forge, sdk, javascript'
 author: 'wangshijun'
 category: 'packages'
@@ -15,5 +15,3 @@ tags:
 | Name           | Website                    |
 | -------------- | -------------------------- |
 | **wangshijun** | <https://ocap.arcblock.io> |
-
-  

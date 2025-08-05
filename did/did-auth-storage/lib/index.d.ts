@@ -6,9 +6,9 @@ import * as events from 'events';
  * Which is used to persist state during the DID-Auth process in a dApp
  *
  * @class AuthStorage
- * @see @arcblock/did-auth-storage-firebase
- * @see @arcblock/did-auth-storage-mongo
- * @see @arcblock/did-auth-storage-keystone
+ * @see @arcblock/did-connect-storage-firebase
+ * @see @arcblock/did-connect-storage-mongo
+ * @see @arcblock/did-connect-storage-keystone
  * @extends {EventEmitter}
  */
 declare class AuthStorage extends events {

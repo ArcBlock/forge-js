@@ -1,8 +1,8 @@
-# [**@arcblock/did-auth-storage-firebase**](https://github.com/arcblock/forge-js)
+# [**@arcblock/did-connect-storage-firebase**](https://github.com/arcblock/forge-js)
 
 [![styled with prettier](https://img.shields.io/badge/styled_with-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
 
-> Storage engine that uses firebase to store data, implements interfaces defined in `@arcblock/did-auth-storage`.
+> Storage engine that uses firebase to store data, implements interfaces defined in `@arcblock/did-connect-storage`.
 
 
 ## Table of Contents
@@ -15,17 +15,17 @@
 ## Install
 
 ```sh
-npm install @arcblock/did-auth-storage-firebase firebase-admin
+npm install @arcblock/did-connect-storage-firebase firebase-admin
 // or
-yarn add @arcblock/did-auth-storage-firebase firebase-admin
+yarn add @arcblock/did-connect-storage-firebase firebase-admin
 ```
 
 
 ## Usage
 
 ```js
-const { Handlers, Authenticator } = require('@arcblock/did-auth');
-const FirebaseStorage = require('@arcblock/did-auth-storage-firebase');
+const { Handlers, Authenticator } = require('@arcblock/did-connect-js');
+const FirebaseStorage = require('@arcblock/did-connect-storage-firebase');
 const firebase = require('firebase-admin');
 
 const connection = firebase.initializeApp({

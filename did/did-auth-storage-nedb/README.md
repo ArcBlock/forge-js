@@ -2,7 +2,7 @@
 
 [![styled with prettier](https://img.shields.io/badge/styled_with-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
 
-> Storage engine that uses [nedb](https://www.npmjs.com/package/nedb) to store data, implements interfaces defined in `@arcblock/did-auth-storage`.
+> Storage engine that uses [nedb](https://www.npmjs.com/package/nedb) to store data, implements interfaces defined in `@arcblock/did-connect-storage`.
 
 
 ## Table of Contents
@@ -15,16 +15,16 @@
 ## Install
 
 ```sh
-npm install @arcblock/did-auth-storage-nedb
+npm install @arcblock/did-connect-storage-nedb
 // or
-yarn add @arcblock/did-auth-storage-nedb
+yarn add @arcblock/did-connect-storage-nedb
 ```
 
 
 ## Usage
 
 ```js
-const DiskStorage = require('@arcblock/did-auth-storage-nedb');
+const DiskStorage = require('@arcblock/did-connect-storage-nedb');
 
 const storage = new DiskStorage({
   dbPath: '/path/to/db',

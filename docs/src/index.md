@@ -42,7 +42,7 @@ Javascript SDK for [forge](https://docs.arcblock.io/forge/latest/), which is an 
 ## Packages
 
 - [@arcblock/did <img src="https://img.shields.io/npm/v/@arcblock/did.svg" alt="Version">](https://www.npmjs.com/package/@arcblock/did)
-- [@arcblock/did-auth <img src="https://img.shields.io/npm/v/@arcblock/did-auth.svg" alt="Version">](https://www.npmjs.com/package/@arcblock/did-auth)
+- [@arcblock/did-connect-js <img src="https://img.shields.io/npm/v/@arcblock/did-connect-js.svg" alt="Version">](https://www.npmjs.com/package/@arcblock/did-connect-js)
 - [@arcblock/did-util <img src="https://img.shields.io/npm/v/@arcblock/did-util.svg" alt="Version">](https://www.npmjs.com/package/@arcblock/did-util)
 - [@arcblock/forge-config <img src="https://img.shields.io/npm/v/@arcblock/forge-config.svg" alt="Version">](https://www.npmjs.com/package/@arcblock/forge-config)
 - [@arcblock/forge-message <img src="https://img.shields.io/npm/v/@arcblock/forge-message.svg" alt="Version">](https://www.npmjs.com/package/@arcblock/forge-message)

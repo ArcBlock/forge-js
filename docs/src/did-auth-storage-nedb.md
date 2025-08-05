@@ -1,6 +1,6 @@
 ---
-title: '@arcblock/did-auth-storage-nedb'
-description: 'Storage engine that uses nedb for did-auth'
+title: '@arcblock/did-connect-storage-nedb'
+description: 'Storage engine that uses nedb for DID Connect'
 keywords: 'forge, sdk, javascript'
 author: 'wangshijun'
 category: 'packages'
@@ -15,5 +15,3 @@ tags:
 | Name           | Website                    |
 | -------------- | -------------------------- |
 | **wangshijun** | <https://ocap.arcblock.io> |
-
-  

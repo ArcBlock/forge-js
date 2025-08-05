@@ -1,5 +1,5 @@
 ---
-title: '@arcblock/did-auth'
+title: '@arcblock/did-connect-js'
 description: 'Helper function to setup DID authentication support on a node.js web server'
 keywords: 'forge, sdk, javascript'
 author: 'wangshijun'
@@ -46,8 +46,8 @@ tags:
 
 ## AgentAuthenticator ⇐ [`WalletAuthenticator`](#WalletAuthenticator)
 
-**Kind**: global class  
-**Extends**: [`WalletAuthenticator`](#WalletAuthenticator)  
+**Kind**: global class
+**Extends**: [`WalletAuthenticator`](#WalletAuthenticator)
 
 * [AgentAuthenticator](#AgentAuthenticator) ⇐ [`WalletAuthenticator`](#WalletAuthenticator)
   * [new AgentAuthenticator()](#new_AgentAuthenticator_new)
@@ -68,9 +68,9 @@ Can be used to build centralized platform services that aims to ease the life of
 
 Sign a auth response that returned to wallet: tell the wallet the appInfo/chainInfo
 
-**Kind**: instance method of [`AgentAuthenticator`](#AgentAuthenticator)  
-**Overrides**: [`sign`](#WalletAuthenticator+sign)  
-**Returns**: `object` - { appPk, authInfo }  
+**Kind**: instance method of [`AgentAuthenticator`](#AgentAuthenticator)
+**Overrides**: [`sign`](#WalletAuthenticator+sign)
+**Returns**: `object` - { appPk, authInfo }
 
 | Param                        | Type     | Description                                                 |
 | ---------------------------- | -------- | ----------------------------------------------------------- |
@@ -91,7 +91,7 @@ Sign a auth response that returned to wallet: tell the wallet the appInfo/chainI
 
 Generate a deep link url that can be displayed as QRCode for ABT Wallet to consume
 
-**Kind**: instance method of [`AgentAuthenticator`](#AgentAuthenticator)  
+**Kind**: instance method of [`AgentAuthenticator`](#AgentAuthenticator)
 
 | Param           | Type     | Description                                            |
 | --------------- | -------- | ------------------------------------------------------ |
@@ -105,7 +105,7 @@ Generate a deep link url that can be displayed as QRCode for ABT Wallet to consu
 
 Compute public url to return to wallet
 
-**Kind**: instance method of [`AgentAuthenticator`](#AgentAuthenticator)  
+**Kind**: instance method of [`AgentAuthenticator`](#AgentAuthenticator)
 
 | Param    | Type     |
 | -------- | -------- |
@@ -116,8 +116,8 @@ Compute public url to return to wallet
 
 Sign a plain response, usually on auth success or error
 
-**Kind**: instance method of [`AgentAuthenticator`](#AgentAuthenticator)  
-**Returns**: `object` - { appPk, authInfo }  
+**Kind**: instance method of [`AgentAuthenticator`](#AgentAuthenticator)
+**Returns**: `object` - { appPk, authInfo }
 
 | Param           | Type     | Description   |
 | --------------- | -------- | ------------- |
@@ -129,7 +129,7 @@ Sign a plain response, usually on auth success or error
 
 Determine chainInfo on the fly
 
-**Kind**: instance method of [`AgentAuthenticator`](#AgentAuthenticator)  
+**Kind**: instance method of [`AgentAuthenticator`](#AgentAuthenticator)
 
 | Param  | Type                    | Description                          |
 | ------ | ----------------------- | ------------------------------------ |
@@ -140,7 +140,7 @@ Determine chainInfo on the fly
 
 Determine appInfo on the fly
 
-**Kind**: instance method of [`AgentAuthenticator`](#AgentAuthenticator)  
+**Kind**: instance method of [`AgentAuthenticator`](#AgentAuthenticator)
 
 | Param  | Type                    | Description                          |
 | ------ | ----------------------- | ------------------------------------ |
@@ -151,8 +151,8 @@ Determine appInfo on the fly
 
 Verify a DID auth response sent from ABT Wallet
 
-**Kind**: instance method of [`AgentAuthenticator`](#AgentAuthenticator)  
-**Returns**: Promise<boolean>  
+**Kind**: instance method of [`AgentAuthenticator`](#AgentAuthenticator)
+**Returns**: Promise<boolean>
 
 | Param              | Type      | Default          |
 | ------------------ | --------- | ---------------- |
@@ -163,7 +163,7 @@ Verify a DID auth response sent from ABT Wallet
 
 ## AppAuthenticator
 
-**Kind**: global class  
+**Kind**: global class
 
 * [AppAuthenticator](#AppAuthenticator)
   * [new AppAuthenticator(wallet)](#new_AppAuthenticator_new)
@@ -182,8 +182,8 @@ Creates an instance of DID Authenticator.
 
 Generate and sign a jwt token, used to inter-application-communication
 
-**Kind**: instance method of [`AppAuthenticator`](#AppAuthenticator)  
-**Returns**: `object` - { appPk, appInfo }  
+**Kind**: instance method of [`AppAuthenticator`](#AppAuthenticator)
+**Returns**: `object` - { appPk, appInfo }
 
 | Param   | Type     | Description                        |
 | ------- | -------- | ---------------------------------- |
@@ -193,8 +193,8 @@ Generate and sign a jwt token, used to inter-application-communication
 
 Verify a jwt token signed by another application, used for inter-application communication
 
-**Kind**: instance method of [`AppAuthenticator`](#AppAuthenticator)  
-**Returns**: Promise<boolean>  
+**Kind**: instance method of [`AppAuthenticator`](#AppAuthenticator)
+**Returns**: Promise<boolean>
 
 | Param              | Type      | Default          |
 | ------------------ | --------- | ---------------- |
@@ -205,7 +205,7 @@ Verify a jwt token signed by another application, used for inter-application com
 
 ## WalletAuthenticator
 
-**Kind**: global class  
+**Kind**: global class
 
 * [WalletAuthenticator](#WalletAuthenticator)
   * [new WalletAuthenticator(config)](#new_WalletAuthenticator_new)
@@ -230,7 +230,7 @@ Creates an instance of DID Authenticator.
 | [config.baseUrl]  | `object`                                            |                               | url to assemble wallet request uri, can be inferred from request object                                                                                                |
 | [config.tokenKey] | `string`                                            | `&quot;&#x27;_t_&#x27;&quot;` | query param key for `token`                                                                                                                                            |
 
-**Example**  
+**Example**
 
 ```js
 const ForgeSDK = require('@arcblock/forge-sdk');
@@ -257,7 +257,7 @@ const auth = new Authenticator({
 
 Generate a deep link url that can be displayed as QRCode for ABT Wallet to consume
 
-**Kind**: instance method of [`WalletAuthenticator`](#WalletAuthenticator)  
+**Kind**: instance method of [`WalletAuthenticator`](#WalletAuthenticator)
 
 | Param           | Type     | Description                                            |
 | --------------- | -------- | ------------------------------------------------------ |
@@ -271,7 +271,7 @@ Generate a deep link url that can be displayed as QRCode for ABT Wallet to consu
 
 Compute public url to return to wallet
 
-**Kind**: instance method of [`WalletAuthenticator`](#WalletAuthenticator)  
+**Kind**: instance method of [`WalletAuthenticator`](#WalletAuthenticator)
 
 | Param    | Type     |
 | -------- | -------- |
@@ -282,8 +282,8 @@ Compute public url to return to wallet
 
 Sign a plain response, usually on auth success or error
 
-**Kind**: instance method of [`WalletAuthenticator`](#WalletAuthenticator)  
-**Returns**: `object` - { appPk, authInfo }  
+**Kind**: instance method of [`WalletAuthenticator`](#WalletAuthenticator)
+**Returns**: `object` - { appPk, authInfo }
 
 | Param           | Type     | Description   |
 | --------------- | -------- | ------------- |
@@ -295,8 +295,8 @@ Sign a plain response, usually on auth success or error
 
 Sign a auth response that returned to wallet: tell the wallet the appInfo/chainInfo
 
-**Kind**: instance method of [`WalletAuthenticator`](#WalletAuthenticator)  
-**Returns**: `object` - { appPk, authInfo }  
+**Kind**: instance method of [`WalletAuthenticator`](#WalletAuthenticator)
+**Returns**: `object` - { appPk, authInfo }
 
 | Param                        | Type     | Description                                       |
 | ---------------------------- | -------- | ------------------------------------------------- |
@@ -316,7 +316,7 @@ Sign a auth response that returned to wallet: tell the wallet the appInfo/chainI
 
 Determine chainInfo on the fly
 
-**Kind**: instance method of [`WalletAuthenticator`](#WalletAuthenticator)  
+**Kind**: instance method of [`WalletAuthenticator`](#WalletAuthenticator)
 
 | Param  | Type                    | Description                          |
 | ------ | ----------------------- | ------------------------------------ |
@@ -327,7 +327,7 @@ Determine chainInfo on the fly
 
 Determine appInfo on the fly
 
-**Kind**: instance method of [`WalletAuthenticator`](#WalletAuthenticator)  
+**Kind**: instance method of [`WalletAuthenticator`](#WalletAuthenticator)
 
 | Param  | Type                    | Description                          |
 | ------ | ----------------------- | ------------------------------------ |
@@ -338,8 +338,8 @@ Determine appInfo on the fly
 
 Verify a DID auth response sent from ABT Wallet
 
-**Kind**: instance method of [`WalletAuthenticator`](#WalletAuthenticator)  
-**Returns**: Promise<boolean>  
+**Kind**: instance method of [`WalletAuthenticator`](#WalletAuthenticator)
+**Returns**: Promise<boolean>
 
 | Param              | Type      | Default          |
 | ------------------ | --------- | ---------------- |
@@ -350,7 +350,7 @@ Verify a DID auth response sent from ABT Wallet
 
 ## AppHandlers
 
-**Kind**: global class  
+**Kind**: global class
 
 ### new AppHandlers(authenticator)
 
@@ -363,7 +363,7 @@ Creates an instance of Application DID Auth handler
 
 ## BaseHandler
 
-**Kind**: global class  
+**Kind**: global class
 
 ### new BaseHandler(config)
 
@@ -380,7 +380,7 @@ Creates an instance of DID Auth Handlers.
 
 ## AtomicSwapHandlers
 
-**Kind**: global class  
+**Kind**: global class
 
 * [AtomicSwapHandlers](#AtomicSwapHandlers)
   * [new AtomicSwapHandlers(config)](#new_AtomicSwapHandlers_new)
@@ -413,7 +413,7 @@ Creates an instance of atomic swap handlers.
 
 Create an swap placeholder, which must be finalized before actually doing the swap
 
-**Kind**: instance method of [`AtomicSwapHandlers`](#AtomicSwapHandlers)  
+**Kind**: instance method of [`AtomicSwapHandlers`](#AtomicSwapHandlers)
 
 | Param   | Type     |
 | ------- | -------- |
@@ -434,8 +434,8 @@ Browser
 * `GET /api/did/{action}/retrieve` check payment
 * `POST /api/did/{action}/retrieve` submit
 
-**Kind**: instance method of [`AtomicSwapHandlers`](#AtomicSwapHandlers)  
-**Returns**: void  
+**Kind**: instance method of [`AtomicSwapHandlers`](#AtomicSwapHandlers)
+**Returns**: void
 
 | Param                  | Type                           | Default         | Description                                                           |
 | ---------------------- | ------------------------------ | --------------- | --------------------------------------------------------------------- |
@@ -453,8 +453,8 @@ Browser
 
 ## WalletHandlers ⇐ `EventEmitter`
 
-**Kind**: global class  
-**Extends**: `EventEmitter`  
+**Kind**: global class
+**Extends**: `EventEmitter`
 
 * [WalletHandlers](#WalletHandlers) ⇐ `EventEmitter`
   * [new WalletHandlers()](#new_WalletHandlers_new)
@@ -496,8 +496,8 @@ Now express app have route handlers attached to the following url
 * `GET /api/did/{action}/auth` create auth response
 * `POST /api/did/{action}/auth` process payment request
 
-**Kind**: instance method of [`WalletHandlers`](#WalletHandlers)  
-**Returns**: void  
+**Kind**: instance method of [`WalletHandlers`](#WalletHandlers)
+**Returns**: void
 
 | Param                  | Type                           | Default         | Description                                                           |
 | ---------------------- | ------------------------------ | --------------- | --------------------------------------------------------------------- |
@@ -515,7 +515,7 @@ Now express app have route handlers attached to the following url
 
 ## WalletHandlers
 
-**Kind**: global class  
+**Kind**: global class
 
 * [WalletHandlers](#WalletHandlers)
   * [new WalletHandlers()](#new_WalletHandlers_new)
@@ -557,8 +557,8 @@ Now express app have route handlers attached to the following url
 * `GET /api/did/{action}/auth` create auth response
 * `POST /api/did/{action}/auth` process payment request
 
-**Kind**: instance method of [`WalletHandlers`](#WalletHandlers)  
-**Returns**: void  
+**Kind**: instance method of [`WalletHandlers`](#WalletHandlers)
+**Returns**: void
 
 | Param                  | Type                           | Default         | Description                                                           |
 | ---------------------- | ------------------------------ | --------------- | --------------------------------------------------------------------- |
@@ -576,7 +576,7 @@ Now express app have route handlers attached to the following url
 
 ## AgentWalletHandlers
 
-**Kind**: global class  
+**Kind**: global class
 
 * [AgentWalletHandlers](#AgentWalletHandlers)
   * [new AgentWalletHandlers(config)](#new_AgentWalletHandlers_new)
@@ -610,8 +610,8 @@ Now express app have route handlers attached to the following url
 * `GET /api/agent/:authorizeId/{action}/auth` create auth response
 * `POST /api/agent/:authorizeId/{action}/auth` process payment request
 
-**Kind**: instance method of [`AgentWalletHandlers`](#AgentWalletHandlers)  
-**Returns**: void  
+**Kind**: instance method of [`AgentWalletHandlers`](#AgentWalletHandlers)
+**Returns**: void
 
 | Param                  | Type                           | Default         | Description                                                           |
 | ---------------------- | ------------------------------ | --------------- | --------------------------------------------------------------------- |
@@ -629,7 +629,7 @@ Now express app have route handlers attached to the following url
 
 ## ApplicationInfo
 
-**Kind**: global typedef  
+**Kind**: global typedef
 **Properties**
 
 | Name        | Type     | Description                                                               |
@@ -644,7 +644,7 @@ Now express app have route handlers attached to the following url
 
 ## ChainInfo
 
-**Kind**: global typedef  
+**Kind**: global typedef
 **Properties**
 
 | Name              | Type      | Description                               |
@@ -652,5 +652,3 @@ Now express app have route handlers attached to the following url
 | id                | `string`  | application chain id                      |
 | host              | `string`  | graphql endpoint of the application chain |
 | restrictedDeclare | `boolean` | whether the declaration is restricted     |
-
-  

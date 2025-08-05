@@ -1,6 +1,6 @@
 ---
-title: '@arcblock/did-auth-storage'
-description: 'Storage interface for did-auth'
+title: '@arcblock/did-connect-storage'
+description: 'Storage interface for DID Connect'
 keywords: 'forge, sdk, javascript'
 author: 'wangshijun'
 category: 'packages'
@@ -22,13 +22,13 @@ tags:
 
 ## AuthStorage ⇐ `EventEmitter`
 
-**Kind**: global class  
-**Extends**: `EventEmitter`  
+**Kind**: global class
+**Extends**: `EventEmitter`
 **See**
 
-* [**@arcblock/did-auth-storage-firebase**](https://github.com/arcblock/did-auth-storage-firebase)
-* [**@arcblock/did-auth-storage-mongo**](https://github.com/arcblock/did-auth-storage-mongo)
-* [**@arcblock/did-auth-storage-keystone**](https://github.com/arcblock/did-auth-storage-keystone)
+* [**@arcblock/did-connect-storage-firebase**](https://github.com/arcblock/did-auth-storage-firebase)
+* [**@arcblock/did-connect-storage-mongo**](https://github.com/arcblock/did-auth-storage-mongo)
+* [**@arcblock/did-connect-storage-keystone**](https://github.com/arcblock/did-auth-storage-keystone)
 
 
 * [AuthStorage](#AuthStorage) ⇐ `EventEmitter`
@@ -51,7 +51,7 @@ Creates an instance of AuthStorage.
 
 ## AuthStorage
 
-**Kind**: global class  
+**Kind**: global class
 
 * [AuthStorage](#AuthStorage)
   * [new AuthStorage()](#new_AuthStorage_new)
@@ -76,5 +76,3 @@ Creates an instance of AuthStorage.
 | Name           | Website                    |
 | -------------- | -------------------------- |
 | **wangshijun** | <https://ocap.arcblock.io> |
-
-  

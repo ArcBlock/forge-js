@@ -1,4 +1,4 @@
-const StorageInterface = require('@arcblock/did-auth-storage');
+const StorageInterface = require('@arcblock/did-connect-storage');
 const keystone = require('keystone');
 
 module.exports = class KeystoneStorage extends StorageInterface {

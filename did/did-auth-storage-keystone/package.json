@@ -1,6 +1,6 @@
 {
-  "name": "@arcblock/did-auth-storage-keystone",
-  "description": "Storage engine that uses keystone.js for did-auth",
+  "name": "@arcblock/did-connect-storage-keystone",
+  "description": "Storage engine that uses keystone.js for DID Connect",
   "version": "1.7.1",
   "author": "wangshijun <shijun@arcblock.io> (https://ocap.arcblock.io)",
   "bugs": {
@@ -61,6 +61,6 @@
   },
   "gitHead": "570a366418890ded86422e168417bae0c9967e35",
   "dependencies": {
-    "@arcblock/did-auth-storage": "^1.7.1"
+    "@arcblock/did-connect-storage": "^1.7.1"
   }
 }

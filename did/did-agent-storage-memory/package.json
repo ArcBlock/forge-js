@@ -1,6 +1,6 @@
 {
   "name": "@arcblock/did-agent-storage-memory",
-  "description": "Storage engine that uses memory for did-auth",
+  "description": "Storage engine that uses memory for DID Connect",
   "version": "1.7.1",
   "author": "wangshijun <shijun@arcblock.io> (https://ocap.arcblock.io)",
   "bugs": {

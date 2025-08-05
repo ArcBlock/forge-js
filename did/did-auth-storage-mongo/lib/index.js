@@ -1,7 +1,7 @@
 /* eslint-disable no-param-reassign */
 /* eslint-disable no-underscore-dangle */
 const MongoClient = require('mongodb');
-const StorageInterface = require('@arcblock/did-auth-storage');
+const StorageInterface = require('@arcblock/did-connect-storage');
 
 const debug = require('debug')(require('../package.json').name);
 

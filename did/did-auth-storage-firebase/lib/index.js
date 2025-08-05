@@ -1,4 +1,4 @@
-const StorageInterface = require('@arcblock/did-auth-storage');
+const StorageInterface = require('@arcblock/did-connect-storage');
 
 module.exports = class FirebaseStorage extends StorageInterface {
   /**

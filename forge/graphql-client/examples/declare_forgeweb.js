@@ -9,7 +9,7 @@
  * Run script with: `DEBUG=@arcblock/graphql-client node examples/declare_forgeweb.js`
  */
 const axios = require('axios');
-const { JWT } = require('@arcblock/did-auth');
+const { JWT } = require('@arcblock/did-connect-js');
 const { fromRandom } = require('@arcblock/forge-wallet');
 const { toBase58 } = require('@arcblock/forge-util');
 

@@ -1,6 +1,6 @@
 {
   "name": "@arcblock/did-agent-storage-mongo",
-  "description": "Storage engine that uses mongodb for did-auth",
+  "description": "Storage engine that uses mongodb for DID Connect",
   "version": "1.7.1",
   "author": "wangshijun <shijun@arcblock.io> (https://ocap.arcblock.io)",
   "bugs": {

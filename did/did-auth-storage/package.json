@@ -1,6 +1,6 @@
 {
-  "name": "@arcblock/did-auth-storage",
-  "description": "Storage interface for did-auth",
+  "name": "@arcblock/did-connect-storage",
+  "description": "Storage interface for DID Connect",
   "version": "1.7.1",
   "author": "wangshijun <shijun@arcblock.io> (https://ocap.arcblock.io)",
   "bugs": {

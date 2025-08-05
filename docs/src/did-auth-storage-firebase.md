@@ -1,6 +1,6 @@
 ---
-title: '@arcblock/did-auth-storage-firebase'
-description: 'Storage engine that uses firebase for did-auth'
+title: '@arcblock/did-connect-storage-firebase'
+description: 'Storage engine that uses firebase for DID Connect'
 keywords: 'forge, sdk, javascript'
 author: 'wangshijun'
 category: 'packages'
@@ -15,5 +15,3 @@ tags:
 | Name           | Website                    |
 | -------------- | -------------------------- |
 | **wangshijun** | <https://ocap.arcblock.io> |
-
-  

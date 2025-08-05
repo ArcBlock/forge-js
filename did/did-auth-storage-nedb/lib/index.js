@@ -1,7 +1,7 @@
 /* eslint-disable no-underscore-dangle */
 const { DataStore: SimpleDataStore } = require('@nedb/core');
 const { createDataStore } = require('@nedb/multi');
-const StorageInterface = require('@arcblock/did-auth-storage');
+const StorageInterface = require('@arcblock/did-connect-storage');
 
 const debug = require('debug')(require('../package.json').name);
 

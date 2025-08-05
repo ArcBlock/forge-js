@@ -1,8 +1,8 @@
-# [**@arcblock/did-auth-storage**](https://github.com/arcblock/forge-js)
+# [**@arcblock/did-connect-storage**](https://github.com/arcblock/forge-js)
 
 [![styled with prettier](https://img.shields.io/badge/styled_with-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
 
-> Interface for define a storage class that can be used by [@arcblock/did-auth].
+> Interface for define a storage class that can be used by [@arcblock/did-connect-js].
 
 
 ## Table of Contents
@@ -38,16 +38,16 @@ Plan to support:
 ## Install
 
 ```sh
-npm install @arcblock/did-auth-storage
+npm install @arcblock/did-connect-storage
 // or
-yarn add @arcblock/did-auth-storage
+yarn add @arcblock/did-connect-storage
 ```
 
 
 ## Usage
 
 ```js
-const StorageInterface = require('@arcblock/did-auth-storage');
+const StorageInterface = require('@arcblock/did-connect-storage');
 const keystone = require('keystone');
 
 module.exports = class KeystoneStorage extends StorageInterface {

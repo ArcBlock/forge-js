@@ -2,17 +2,19 @@
 
 [![styled with prettier](https://img.shields.io/badge/styled_with-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
 
-> Interface for define a storage class that can be used by [@arcblock/did-auth].
+> Interface for define a storage class that can be used by [@arcblock/did-connect-js].
 
 
 ## Table of Contents
 
-* [Motivation & Spec](#motivation--spec)
-  * [Fields](#fields)
-  * [APIs](#apis)
-* [Install](#install)
-* [Usage](#usage)
-* [Contributors](#contributors)
+- [**@arcblock/did-agent-storage**](#arcblockdid-agent-storage)
+  - [Table of Contents](#table-of-contents)
+  - [Motivation \& Spec](#motivation--spec)
+    - [Fields](#fields)
+    - [APIs](#apis)
+  - [Install](#install)
+  - [Usage](#usage)
+  - [Contributors](#contributors)
 
 
 ## Motivation & Spec

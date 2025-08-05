@@ -1,8 +1,8 @@
-# [**@arcblock/did-auth-storage-keystone**](https://github.com/arcblock/forge-js)
+# [**@arcblock/did-connect-storage-keystone**](https://github.com/arcblock/forge-js)
 
 [![styled with prettier](https://img.shields.io/badge/styled_with-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
 
-> Storage engine that uses keystone.js to store data, implements interfaces defined in `@arcblock/did-auth-storage`.
+> Storage engine that uses keystone.js to store data, implements interfaces defined in `@arcblock/did-connect-storage`.
 
 
 ## Table of Contents
@@ -17,9 +17,9 @@
 ## Install
 
 ```sh
-npm install @arcblock/did-auth-storage-keystone keystone
+npm install @arcblock/did-connect-storage-keystone keystone
 // or
-yarn add @arcblock/did-auth-storage-keystone keystone
+yarn add @arcblock/did-connect-storage-keystone keystone
 ```
 
 
@@ -28,7 +28,7 @@ yarn add @arcblock/did-auth-storage-keystone keystone
 ### 1. Create model when bootstrap keystone
 
 ```js
-const KeystoneStorage = require('@arcblock/did-auth-storage-keystone');
+const KeystoneStorage = require('@arcblock/did-connect-storage-keystone');
 const keystone = require('keystone');
 
 KeystoneStorage.init();
@@ -37,9 +37,9 @@ KeystoneStorage.init();
 ### 2. Create storage instance when setup routes
 
 ```js
-const { Handlers, Authenticator } = require('@arcblock/did-auth');
+const { Handlers, Authenticator } = require('@arcblock/did-connect-js');
 const { fromSecretKey, WalletType } = require('@arcblock/forge-wallet');
-const KeystoneStorage = require('@arcblock/did-auth-storage-keystone');
+const KeystoneStorage = require('@arcblock/did-connect-storage-keystone');
 const Mcrypto = require('@arcblock/mcrypto');
 const keystone = require('keystone');
 

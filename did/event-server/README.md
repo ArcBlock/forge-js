@@ -31,7 +31,7 @@ yarn add @arcblock/event-server
 
 ```javascript
 const ForgeSDK = require('@arcblock/forge-sdk');
-const { WalletAuthenticator, WalletHandlers } = require('@arcblock/did-auth');
+const { WalletAuthenticator, WalletHandlers } = require('@arcblock/did-connect-js');
 
 // First setup authenticator and handler factory
 const wallet = ForgeSDK.Wallet.fromRandom().toJSON();
