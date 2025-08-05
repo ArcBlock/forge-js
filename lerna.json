@@ -1,6 +1,5 @@
 {
   "version": "1.7.1",
-  "useWorkspaces": true,
   "npmClient": "yarn",
   "packages": [
     "forge/*",
