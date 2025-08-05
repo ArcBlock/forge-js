@@ -1,0 +1,67 @@
+name: publish
+env:
+  ACTIONS_ALLOW_UNSECURE_COMMANDS: true
+on:
+  push:
+    branches:
+      - master
+jobs:
+  packages:
+    runs-on: ubuntu-latest
+    if: "! contains(github.event.head_commit.message, '[skip ci]')"
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          ref: master
+          token: ${{ secrets.GIT_HUB_TOKEN }}
+
+      - name: Use Node.js v16
+        uses: actions/setup-node@v2
+        with:
+          node-version: 16
+
+      - name: Install dependencies
+        run: |
+          make github-init
+          git checkout .
+
+      - name: Extract current version
+        id: get_version
+        run: |
+          CURRENT_VERSION=$(cat version | awk '{$1=$1;print}')
+          echo "CURRENT_VERSION=${CURRENT_VERSION}" >> $GITHUB_ENV
+
+      - name: Config Git
+        run: |
+          git config --local user.name "bot"
+          git config --local user.email "bot@arcblock.io"
+
+      - name: Build packages
+        run: |
+          make build
+
+      - name: Publish to NPM
+        run: |
+          npm config set '//registry.npmjs.org/:_authToken' "${{ secrets.NPM_TOKEN }}"
+          echo "publish version ${CURRENT_VERSION}"
+          lerna version ${CURRENT_VERSION} --exact --no-push --force-publish --yes
+          lerna publish from-git --yes
+
+      - name: Update Docs
+        run: |
+          node tools/update-readme.js
+          git add README.md
+          git commit -m '[skip ci] update readme'
+
+      - name: Push Readme
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GIT_HUB_TOKEN }}
+          branch: ${{ github.ref }}
+
+      - name: Post publish
+        run: node tools/post-publish.js
+        env:
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}

@@ -10,8 +10,8 @@ build:
 init: install dep
 	@echo "Initializing the repo..."
 
-travis-init: install dep
-	@echo "Initialize software required for travis (normally ubuntu software)"
+github-init: install dep
+	@echo "Initialize software required for github (normally ubuntu software)"
 
 install:
 	@echo "Install software required for this repo..."
