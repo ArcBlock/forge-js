@@ -1,3 +1,7 @@
+## 1.8.0 (八月 06, 2025)
+
+- chore: rename @arcblock/did-auth to @arcblock/did-connect
+
 ## 1.7.1 (September 08, 2022)
 
 - chore: use 2.x nedb
