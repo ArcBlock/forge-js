@@ -21,8 +21,8 @@ dep:
 	@echo "Install dependencies required for this repo..."
 	@yarn
 	@npx install-peerdeps -g --yarn eslint-config-airbnb
-	@cd forge/graphql-client && lerna link && yarn build
-	@cd forge/forge-sdk && lerna link && yarn build
+	@cd forge/graphql-client && yarn build
+	@cd forge/forge-sdk && yarn build
 
 pre-build: install dep
 	@echo "Running scripts before the build..."
